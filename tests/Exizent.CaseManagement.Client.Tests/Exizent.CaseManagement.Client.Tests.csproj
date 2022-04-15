@@ -24,7 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\Exizent.NET\src\Exizent.CaseManagement.Client\Exizent.CaseManagement.Client.csproj" />
+      <ProjectReference Include="..\..\src\Exizent.CaseManagement.Client\Exizent.CaseManagement.Client.csproj" />
     </ItemGroup>
 
 </Project>
