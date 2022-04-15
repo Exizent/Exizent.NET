@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+
+    <PropertyGroup>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Authors>Exizent</Authors>
+        <Company>Exizent</Company>
+        <Description>
+            The Exizent Case Management Client extensions for ASP.NET Core
+        </Description>
+        <Copyright>Exizent</Copyright>
+        <PackageTags>Exizent;Case Management;API;REST;WebService</PackageTags>
+        <PackageIcon>exizent.png</PackageIcon>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/Exizent/Exizent.NET</PackageProjectUrl>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/Exizent/Exizent.NET.git</RepositoryUrl>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <None Include="..\..\exizent.png" Pack="true" PackagePath="" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.9" />
+        <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.9" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\Exizent.CaseManagement.Client\Exizent.CaseManagement.Client.csproj" />
+    </ItemGroup>
+
+</Project>
