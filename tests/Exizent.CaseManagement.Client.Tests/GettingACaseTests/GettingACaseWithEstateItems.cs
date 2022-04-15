@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using AutoFixture;
+﻿using AutoFixture;
 using Exizent.CaseManagement.Client.Models.EstateItems;
 using Exizent.CaseManagement.Client.Tests.JsonBuilders;
 using FluentAssertions;
@@ -11,7 +7,7 @@ using Xunit;
 
 namespace Exizent.CaseManagement.Client.Tests.GettingACaseTests;
 
-public class GettingACaseWithEstateItems
+public sealed class GettingACaseWithEstateItems : IDisposable
 {
     private readonly TestHttpClientHandler _httpClientHandler;
     private readonly ICaseManagementApiClient _client;
@@ -63,5 +59,10 @@ public class GettingACaseWithEstateItems
         caseDetails!.Id.Should().Be(caseResourceRepresentation.Id);
         caseDetails.EstateItems.Single().Should()
             .BeEquivalentTo(estateItem);
+    }
+
+    public void Dispose()
+    {
+        _httpClientHandler.Dispose();
     }
 }

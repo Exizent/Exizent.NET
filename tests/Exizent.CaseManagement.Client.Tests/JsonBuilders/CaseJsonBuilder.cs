@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Text.Json.Nodes;
+﻿using System.Text.Json.Nodes;
 using Exizent.CaseManagement.Client.Models;
 
 namespace Exizent.CaseManagement.Client.Tests.JsonBuilders;

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using AutoFixture;
+﻿using AutoFixture;
 using Exizent.CaseManagement.Client.Models;
 using Exizent.CaseManagement.Client.Models.Deceased;
 using Exizent.CaseManagement.Client.Models.EstateItems;

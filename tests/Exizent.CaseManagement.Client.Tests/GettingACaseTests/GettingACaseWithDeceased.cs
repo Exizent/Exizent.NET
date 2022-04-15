@@ -1,7 +1,4 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using AutoFixture;
+﻿using AutoFixture;
 using Exizent.CaseManagement.Client.Models.Deceased;
 using Exizent.CaseManagement.Client.Tests.JsonBuilders;
 using FluentAssertions;
@@ -10,7 +7,7 @@ using Xunit;
 
 namespace Exizent.CaseManagement.Client.Tests.GettingACaseTests;
 
-public class GettingACaseWithDeceased
+public sealed class GettingACaseWithDeceased : IDisposable
 {
     private readonly Fixture _fixture = new();
     private readonly TestHttpClientHandler _httpClientHandler;
@@ -54,5 +51,10 @@ public class GettingACaseWithDeceased
         caseDetails.Should().NotBeNull();
         caseDetails!.Id.Should().Be(caseResourceRepresentation.Id);
         caseDetails.Deceased.Should().BeEquivalentTo(caseResourceRepresentation.Deceased);
+    }
+
+    public void Dispose()
+    {
+        _httpClientHandler.Dispose();
     }
 }

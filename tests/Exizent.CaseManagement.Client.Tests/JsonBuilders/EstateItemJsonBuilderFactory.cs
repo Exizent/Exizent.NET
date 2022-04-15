@@ -1,5 +1,4 @@
-﻿using System;
-using Exizent.CaseManagement.Client.Models.EstateItems;
+﻿using Exizent.CaseManagement.Client.Models.EstateItems;
 
 namespace Exizent.CaseManagement.Client.Tests.JsonBuilders;
 

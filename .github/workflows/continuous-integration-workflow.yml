@@ -1,0 +1,40 @@
+name: Continuous Integration Workflow
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      VERSION: 0.0.${{ github.run_number }}-preview
+      DOCKER_BUILDKIT: 1
+      BUILDKIT_PROGRESS: plain
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+    - name: Docker Build NuGet packages
+      run: |
+        docker build --build-arg NUGET_PACKAGE_VERSION=${{ env.VERSION }} -f ./Dockerfile --output ./ .
+    - name: Publish Unit Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v1
+      if: always()
+      with:
+        files: TestResults/**/*.xml
+    - name: NuGet.Org push
+      if: github.ref == 'refs/heads/main'
+      run: |
+        dotnet nuget push ./artifacts/*.nupkg --source NuGet.org --api-key ${{ secrets.NUGET_API_KEY }}
+    - name: Create Release
+      id: create_release
+      if: github.ref == 'refs/heads/main'
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ env.VERSION }}
+        release_name: Release ${{ env.VERSION }}
+        body: |
+          Release ${{ env.VERSION }}
+        draft: false
+        prerelease: false
