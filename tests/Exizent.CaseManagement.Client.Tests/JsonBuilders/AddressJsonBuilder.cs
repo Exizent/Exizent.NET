@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Nodes;
 using Exizent.CaseManagement.Client.Models;
 
-namespace Exizent.CaseManagement.Client.Tests;
+namespace Exizent.CaseManagement.Client.Tests.JsonBuilders;
 
 public static class AddressJsonBuilder
 {

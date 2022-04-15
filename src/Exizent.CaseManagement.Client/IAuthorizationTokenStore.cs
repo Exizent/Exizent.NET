@@ -1,6 +1,6 @@
 namespace Exizent.CaseManagement.Client;
 
-public interface IExizentAuthorizationTokenStore
+public interface IAuthorizationTokenStore
 {
     Task<string> GetToken();
 }

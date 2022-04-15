@@ -2,7 +2,7 @@ using System.Collections.Concurrent;
 
 namespace Exizent.CaseManagement.Client;
 
-public class InMemoryExizentAuthorizationTokenCache : IExizentAuthorizationTokenCache
+public class InMemoryAuthorizationTokenCache : IAuthorizationTokenCache
 {
     private readonly ConcurrentDictionary<string, AuthorizationToken> _cache = new();
 

@@ -1,7 +1,8 @@
-﻿using System.Text.Json.Nodes;
+﻿using System.Linq;
+using System.Text.Json.Nodes;
 using Exizent.CaseManagement.Client.Models;
 
-namespace Exizent.CaseManagement.Client.Tests;
+namespace Exizent.CaseManagement.Client.Tests.JsonBuilders;
 
 public static class CaseJsonBuilder
 {
@@ -11,6 +12,7 @@ public static class CaseJsonBuilder
         
         jsonObject.Add("id", resourceRepresentation.Id);
         jsonObject.Add("deceased", DeceasedJsonBuilder.Build(resourceRepresentation.Deceased));
+        jsonObject.Add("people",   new JsonArray(resourceRepresentation.People.Select(PersonJsonBuilder.Build).ToArray()));
 
         return jsonObject;
     }

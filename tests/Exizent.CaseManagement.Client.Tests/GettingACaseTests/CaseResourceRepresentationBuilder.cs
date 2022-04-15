@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using AutoFixture;
+using Exizent.CaseManagement.Client.Models;
+using Exizent.CaseManagement.Client.Models.People;
+
+namespace Exizent.CaseManagement.Client.Tests.GettingACaseTests;
+
+public class CaseResourceRepresentationBuilder
+{
+    private readonly Fixture _fixture = new();
+    private DeceasedResourceRepresentation? _deceased;
+    private readonly List<PersonResourceRepresentation> _people = new();
+    private readonly List<EstateItemResourceRepresentation> _estateItems = new();
+    
+    public CaseResourceRepresentationBuilder With(DeceasedResourceRepresentation deceased)
+    {
+        _deceased = deceased;
+        return this;
+    }
+    
+    public CaseResourceRepresentationBuilder With(PersonResourceRepresentation person)
+    {
+        _people.Add(person);
+        return this;
+    }
+    
+    public CaseResourceRepresentation Build()
+    {
+        return new CaseResourceRepresentation
+        {
+            Id = Guid.NewGuid(),
+            Deceased = _deceased ?? _fixture.Create<DeceasedResourceRepresentation>(),
+            People = _people.AsReadOnly(),
+            EstateItems = _estateItems
+        };
+    }
+}
