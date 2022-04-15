@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using AutoFixture;
 using Exizent.CaseManagement.Client.Models;
+using Exizent.CaseManagement.Client.Models.Deceased;
+using Exizent.CaseManagement.Client.Models.EstateItems;
 using Exizent.CaseManagement.Client.Models.People;
 
 namespace Exizent.CaseManagement.Client.Tests.GettingACaseTests;
@@ -22,6 +24,12 @@ public class CaseResourceRepresentationBuilder
     public CaseResourceRepresentationBuilder With(PersonResourceRepresentation person)
     {
         _people.Add(person);
+        return this;
+    }
+    
+    public CaseResourceRepresentationBuilder With(EstateItemResourceRepresentation estateItem)
+    {
+        _estateItems.Add(estateItem);
         return this;
     }
     

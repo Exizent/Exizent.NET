@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using AutoFixture;
-using Exizent.CaseManagement.Client.Models;
+using Exizent.CaseManagement.Client.Models.Deceased;
 using Exizent.CaseManagement.Client.Tests.JsonBuilders;
 using FluentAssertions;
 using FluentAssertions.Execution;

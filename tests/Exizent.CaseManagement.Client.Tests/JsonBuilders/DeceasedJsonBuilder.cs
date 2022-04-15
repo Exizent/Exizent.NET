@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Text.Json.Nodes;
-using Exizent.CaseManagement.Client.Models;
+using Exizent.CaseManagement.Client.Models.Deceased;
 
 namespace Exizent.CaseManagement.Client.Tests.JsonBuilders;
 

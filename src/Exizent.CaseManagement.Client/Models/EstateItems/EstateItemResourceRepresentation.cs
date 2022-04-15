@@ -1,4 +1,4 @@
-namespace Exizent.CaseManagement.Client.Models;
+namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
 public abstract class EstateItemResourceRepresentation
 {
@@ -9,6 +9,5 @@ public abstract class EstateItemResourceRepresentation
     public string? Notes { get; init; }
     public bool IsArchived { get; init; }
     public bool IsComplete { get; init; }
-    public EstateItemType Type { get; init; }
     public EstateItemRealisationResourceRepresentation? Realisation { get; init; }
 }

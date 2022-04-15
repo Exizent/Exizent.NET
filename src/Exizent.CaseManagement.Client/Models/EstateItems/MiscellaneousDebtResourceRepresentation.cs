@@ -1,4 +1,4 @@
-﻿namespace Exizent.CaseManagement.Client.Models;
+﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
 public class MiscellaneousDebtResourceRepresentation : EstateItemResourceRepresentation
 {

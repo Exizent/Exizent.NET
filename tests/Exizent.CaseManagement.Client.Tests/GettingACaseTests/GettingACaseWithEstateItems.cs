@@ -3,7 +3,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using AutoFixture;
-using Exizent.CaseManagement.Client.Models.People;
+using Exizent.CaseManagement.Client.Models.EstateItems;
 using Exizent.CaseManagement.Client.Tests.JsonBuilders;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -11,13 +11,13 @@ using Xunit;
 
 namespace Exizent.CaseManagement.Client.Tests.GettingACaseTests;
 
-public class GettingACaseWithPeople
+public class GettingACaseWithEstateItems
 {
     private readonly TestHttpClientHandler _httpClientHandler;
     private readonly ICaseManagementApiClient _client;
     private readonly Fixture _fixture = new();
 
-    public GettingACaseWithPeople()
+    public GettingACaseWithEstateItems()
     {
         _httpClientHandler = new TestHttpClientHandler();
         _client = new CaseManagementApiClient(new HttpClient(_httpClientHandler)
@@ -27,7 +27,7 @@ public class GettingACaseWithPeople
     }
 
     [Fact]
-    public async Task ShouldReturnEmptyPersonCollection()
+    public async Task ShouldReturnEmptyEstateItems()
     {
         var caseResourceRepresentation = new CaseResourceRepresentationBuilder()
             .Build();
@@ -41,15 +41,15 @@ public class GettingACaseWithPeople
         using var _ = new AssertionScope();
         caseDetails.Should().NotBeNull();
         caseDetails!.Id.Should().Be(caseResourceRepresentation.Id);
-        caseDetails.People.Should().BeEmpty();
+        caseDetails.EstateItems.Should().BeEmpty();
     }
 
     [Fact]
-    public async Task ShouldReturnPerson()
+    public async Task ShouldReturnBankAccount()
     {
-        var expectedPerson = _fixture.Create<PersonResourceRepresentation>();
+        var estateItem = _fixture.Create<BankAccountResourceRepresentation>();
         var caseResourceRepresentation = new CaseResourceRepresentationBuilder()
-            .With(expectedPerson)
+            .With(estateItem)
             .Build();
 
         var body = CaseJsonBuilder.Build(caseResourceRepresentation);
@@ -61,7 +61,7 @@ public class GettingACaseWithPeople
         using var _ = new AssertionScope();
         caseDetails.Should().NotBeNull();
         caseDetails!.Id.Should().Be(caseResourceRepresentation.Id);
-        caseDetails.People.Single().Should()
-            .BeEquivalentTo(expectedPerson);
+        caseDetails.EstateItems.Single().Should()
+            .BeEquivalentTo(estateItem);
     }
 }

@@ -1,3 +1,5 @@
+using Exizent.CaseManagement.Client.Models.Deceased;
+using Exizent.CaseManagement.Client.Models.EstateItems;
 using Exizent.CaseManagement.Client.Models.People;
 
 namespace Exizent.CaseManagement.Client.Models;

@@ -1,4 +1,4 @@
-﻿namespace Exizent.CaseManagement.Client.Models;
+﻿namespace Exizent.CaseManagement.Client.Models.Deceased;
 
 public class DeceasedResourceRepresentation
 {

@@ -1,5 +1,8 @@
-﻿namespace Exizent.CaseManagement.Client.Models;
+﻿using Dahomey.Json.Attributes;
 
+namespace Exizent.CaseManagement.Client.Models.EstateItems;
+
+[JsonDiscriminator(nameof(EstateItemType.BankAccount))]
 public class BankAccountResourceRepresentation : EstateItemResourceRepresentation
 {
     public decimal? EstimatedBalance { get; init; }

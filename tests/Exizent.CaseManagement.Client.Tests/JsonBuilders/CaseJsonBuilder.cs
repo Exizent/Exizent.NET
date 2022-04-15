@@ -12,7 +12,8 @@ public static class CaseJsonBuilder
         
         jsonObject.Add("id", resourceRepresentation.Id);
         jsonObject.Add("deceased", DeceasedJsonBuilder.Build(resourceRepresentation.Deceased));
-        jsonObject.Add("people",   new JsonArray(resourceRepresentation.People.Select(PersonJsonBuilder.Build).ToArray()));
+        jsonObject.Add("people",   new JsonArray(resourceRepresentation.People.Select(PersonJsonBuilder.Build).ToArray<JsonNode?>()));
+        jsonObject.Add("estateItems",   new JsonArray(resourceRepresentation.EstateItems.Select(x => EstateItemJsonBuilderFactory.Create(x).Build()).ToArray<JsonNode?>()));
 
         return jsonObject;
     }
