@@ -25,9 +25,8 @@ internal static class DefaultJsonSerializerOptions
         registry.RegisterType<BuildingResourceRepresentation>();
         registry.RegisterType<BusinessInterestResourceRepresentation>();
         registry.RegisterType<CashIsaResourceRepresentation>();
+        registry.RegisterType<CashSavingsAccountResourceRepresentation>();
         
-        
-
         return options;
     }
 }

@@ -11,6 +11,7 @@ public static class EstateItemJsonBuilderFactory
             BuildingResourceRepresentation building => new BuildingEstateItemJsonBuilder(building),
             BusinessInterestResourceRepresentation businessInterest => new BusinessInterestEstateItemJsonBuilder(businessInterest),
             CashIsaResourceRepresentation cashIsa => new CashIsaEstateItemJsonBuilder(cashIsa),
+            CashSavingsAccountResourceRepresentation cashSavingsAccount => new CashSavingsAccountEstateItemJsonBuilder(cashSavingsAccount),
             _ => throw new NotImplementedException()
         };
 }
