@@ -31,6 +31,8 @@ public static class EstateItemJsonBuilderFactory
             StoreCardOrCatalogueAccountResourceRepresentation storeCardOrCatalogueAccount => new StoreCardOrCatalogueAccountEstateItemJsonBuilder(storeCardOrCatalogueAccount),
             UKGovAndMunicipalSecuritiesResourceRepresentation ukGovAndMunicipalSecurities => new UKGovAndMunicipalSecuritiesEstateItemJsonBuilder(ukGovAndMunicipalSecurities),
             UnitTrustResourceRepresentation unitTrust => new UnitTrustEstateItemJsonBuilder(unitTrust),
+            VehicleFinanceResourceRepresentation vehicleFinance => new VehicleFinanceEstateItemJsonBuilder(vehicleFinance),
+            VehicleResourceRepresentation vehicle => new VehicleEstateItemJsonBuilder(vehicle),
             _ => throw new NotImplementedException()
         };
 }

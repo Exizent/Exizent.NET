@@ -32,5 +32,7 @@ public class AllEstateItemResourceRepresentationTypesData : DataAttribute
         yield return new object[] { typeof(StoreCardOrCatalogueAccountResourceRepresentation) };
         yield return new object[] { typeof(UKGovAndMunicipalSecuritiesResourceRepresentation) };
         yield return new object[] { typeof(UnitTrustResourceRepresentation) };
+        yield return new object[] { typeof(VehicleFinanceResourceRepresentation) };
+        yield return new object[] { typeof(VehicleResourceRepresentation) };
     }
 }

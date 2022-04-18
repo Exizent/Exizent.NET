@@ -1,5 +1,8 @@
-﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
+﻿using Dahomey.Json.Attributes;
 
+namespace Exizent.CaseManagement.Client.Models.EstateItems;
+
+[JsonDiscriminator(nameof(EstateItemType.Vehicle))]
 public class VehicleResourceRepresentation : EstateItemResourceRepresentation
 {
     public decimal ProportionOwned { get; init; }

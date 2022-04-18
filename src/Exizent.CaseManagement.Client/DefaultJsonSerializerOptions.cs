@@ -45,7 +45,8 @@ internal static class DefaultJsonSerializerOptions
         registry.RegisterType<StoreCardOrCatalogueAccountResourceRepresentation>();
         registry.RegisterType<UKGovAndMunicipalSecuritiesResourceRepresentation>();
         registry.RegisterType<UnitTrustResourceRepresentation>();
-        
+        registry.RegisterType<VehicleFinanceResourceRepresentation>();
+        registry.RegisterType<VehicleResourceRepresentation>();
 
         return options;
     }
