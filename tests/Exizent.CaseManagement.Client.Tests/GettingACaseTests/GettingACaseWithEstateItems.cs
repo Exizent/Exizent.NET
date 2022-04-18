@@ -81,7 +81,27 @@ public sealed class GettingACaseWithEstateItems : IDisposable
         caseDetails.EstateItems.Single().Should()
             .BeEquivalentTo(estateItem);
     }
+    
+    [Fact]
+    public async Task ShouldReturnBusinessInterest()
+    {
+        var estateItem = _fixture.Create<BusinessInterestResourceRepresentation>();
+        var caseResourceRepresentation = new CaseResourceRepresentationBuilder()
+            .With(estateItem)
+            .Build();
 
+        var body = CaseJsonBuilder.Build(caseResourceRepresentation);
+
+        _httpClientHandler.AddGetCaseResponse(caseResourceRepresentation.Id, body.ToJsonString());
+
+        var caseDetails = await _client.GetCase(caseResourceRepresentation.Id);
+
+        using var _ = new AssertionScope();
+        caseDetails.Should().NotBeNull();
+        caseDetails!.Id.Should().Be(caseResourceRepresentation.Id);
+        caseDetails.EstateItems.Single().Should()
+            .BeEquivalentTo(estateItem);
+    }
 
     public void Dispose()
     {

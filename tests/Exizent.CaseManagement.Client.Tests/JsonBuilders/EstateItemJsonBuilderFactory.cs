@@ -9,6 +9,7 @@ public static class EstateItemJsonBuilderFactory
         {
             BankAccountResourceRepresentation bankAccount => new BankAccountEstateItemJsonBuilder(bankAccount),
             BuildingResourceRepresentation building => new BuildingEstateItemJsonBuilder(building),
+            BusinessInterestResourceRepresentation businessInterest => new BusinessInterestEstateItemJsonBuilder(businessInterest),
             _ => throw new NotImplementedException()
         };
 }

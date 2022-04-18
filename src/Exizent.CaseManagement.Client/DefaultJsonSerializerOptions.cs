@@ -23,6 +23,8 @@ internal static class DefaultJsonSerializerOptions
         registry.RegisterConvention(new DefaultDiscriminatorConvention<string>(jsonSerializerOptions, "type"));
         registry.RegisterType<BankAccountResourceRepresentation>();
         registry.RegisterType<BuildingResourceRepresentation>();
+        registry.RegisterType<BusinessInterestResourceRepresentation>();
+        
 
         return options;
     }

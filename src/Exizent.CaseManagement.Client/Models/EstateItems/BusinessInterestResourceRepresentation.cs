@@ -1,5 +1,8 @@
-﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
+﻿using Dahomey.Json.Attributes;
 
+namespace Exizent.CaseManagement.Client.Models.EstateItems;
+
+[JsonDiscriminator(nameof(EstateItemType.BusinessInterest))]
 public class BusinessInterestResourceRepresentation : EstateItemResourceRepresentation
 {
     public string BusinessName { get; init; } = null!;
