@@ -1,5 +1,8 @@
-﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
+﻿using Dahomey.Json.Attributes;
 
+namespace Exizent.CaseManagement.Client.Models.EstateItems;
+
+[JsonDiscriminator(nameof(EstateItemType.CreditCardOrPersonalLoan))]
 public class CreditCardOrPersonalLoanResourceRepresentation : EstateItemResourceRepresentation
 {
     public decimal ProportionOwned { get; init; }
