@@ -3,44 +3,49 @@
 // ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public class ExizentCaseManagementClientSettings
-    {
-        public ExizentCaseManagementClientSettings(string clientId, string clientSecret)
-        {
-            ClientId = clientId;
-            ClientSecret = clientSecret;
-        }
-
-        /// <summary>
-        /// The client id for the application.
-        /// </summary>
-        public string ClientId { get; }
-        /// <summary>
-        /// The client secret for the application.
-        /// </summary>
-        public string ClientSecret { get; }
-        
-        /// <summary>
-        /// The scope for the application.
-        /// </summary>
-        public string Scope { get; set; } = ExizentScopes.All;
-        
-        /// <summary>
-        /// The base url for the api.
-        /// </summary>
-        public Uri BaseUri { get; set; } = ExizentUris.CaseManagementProduction;
-        
-        /// <summary>
-        /// The base authorization url for the api.
-        /// </summary>
-        public Uri BaseAuthorizationUri { get; set; } = ExizentUris.AuthorizationProduction;
-    }
-
     /// <summary>
     /// Extensions to adding exizent case management client to the service collection
     /// </summary>
     public static class ServiceCollectionExtensions
     {
+        /// <summary>
+        /// Registers the exizent case management client
+        /// </summary>
+        /// <param name="services">Service collection</param>
+        /// <param name="configure">Settings configuration for the case management client</param>     
+        /// <returns>Service collection</returns>
+        public static IServiceCollection AddExizentCaseManagementClient(this IServiceCollection services,
+            Func<IServiceProvider, ExizentCaseManagementClientSettings> configure)
+        {
+            services.AddSingleton(configure);
+
+            return AddExizentCaseManagementClient(services);
+        }
+        
+        /// <summary>
+        /// Registers the exizent case management client
+        /// </summary>
+        /// <param name="services">Service collection</param>
+        /// <param name="configure">Settings configuration for the case management client</param>     
+        /// <returns>Service collection</returns>
+        public static IServiceCollection AddExizentCaseManagementClient(this IServiceCollection services,
+            Func<ExizentCaseManagementClientSettings> configure)
+        {
+            return services.AddExizentCaseManagementClient(_ => configure());
+        }
+        
+        /// <summary>
+        /// Registers the exizent case management client
+        /// </summary>
+        /// <param name="services">Service collection</param>
+        /// <param name="settings">Settings configuration for the case management client</param>     
+        /// <returns>Service collection</returns>
+        public static IServiceCollection AddExizentCaseManagementClient(this IServiceCollection services,
+            ExizentCaseManagementClientSettings settings)
+        {
+            return services.AddExizentCaseManagementClient(() => settings);
+        }
+        
         /// <summary>
         /// Registers the exizent case management client
         /// </summary>
@@ -54,14 +59,7 @@ namespace Microsoft.Extensions.DependencyInjection
             string clientSecret,
             Action<ExizentCaseManagementClientSettings>? configure = null)
         {
-            services.AddSingleton(provider =>
-            {
-                var settings = new ExizentCaseManagementClientSettings(clientId, clientSecret);
-                configure?.Invoke(settings);
-                return settings;
-            });
-
-            return AddExizentCaseManagementClient(services);
+            return services.AddExizentCaseManagementClient(clientId, clientSecret, (_, settings) => configure?.Invoke(settings));
         }
         
         /// <summary>
@@ -77,14 +75,12 @@ namespace Microsoft.Extensions.DependencyInjection
             string clientSecret,
             Action<IServiceProvider, ExizentCaseManagementClientSettings>? configure = null)
         {
-            services.AddSingleton(provider =>
+            return services.AddExizentCaseManagementClient((provider) =>
             {
                 var settings = new ExizentCaseManagementClientSettings(clientId, clientSecret);
                 configure?.Invoke(provider, settings);
                 return settings;
             });
-
-            return AddExizentCaseManagementClient(services);
         }
 
         private static IServiceCollection AddExizentCaseManagementClient(this IServiceCollection services)
