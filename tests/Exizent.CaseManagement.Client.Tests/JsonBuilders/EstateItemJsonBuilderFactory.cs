@@ -30,6 +30,7 @@ public static class EstateItemJsonBuilderFactory
             StateBenefitOverpaymentResourceRepresentation stateBenefitOverpayment => new StateBenefitOverpaymentEstateItemJsonBuilder(stateBenefitOverpayment),
             StoreCardOrCatalogueAccountResourceRepresentation storeCardOrCatalogueAccount => new StoreCardOrCatalogueAccountEstateItemJsonBuilder(storeCardOrCatalogueAccount),
             UKGovAndMunicipalSecuritiesResourceRepresentation ukGovAndMunicipalSecurities => new UKGovAndMunicipalSecuritiesEstateItemJsonBuilder(ukGovAndMunicipalSecurities),
+            UnitTrustResourceRepresentation unitTrust => new UnitTrustEstateItemJsonBuilder(unitTrust),
             _ => throw new NotImplementedException()
         };
 }

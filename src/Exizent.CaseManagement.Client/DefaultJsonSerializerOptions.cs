@@ -44,6 +44,8 @@ internal static class DefaultJsonSerializerOptions
         registry.RegisterType<StateBenefitOverpaymentResourceRepresentation>();
         registry.RegisterType<StoreCardOrCatalogueAccountResourceRepresentation>();
         registry.RegisterType<UKGovAndMunicipalSecuritiesResourceRepresentation>();
+        registry.RegisterType<UnitTrustResourceRepresentation>();
+        
 
         return options;
     }
