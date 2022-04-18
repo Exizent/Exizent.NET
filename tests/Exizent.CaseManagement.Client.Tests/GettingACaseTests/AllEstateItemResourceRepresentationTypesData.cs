@@ -22,5 +22,7 @@ public class AllEstateItemResourceRepresentationTypesData : DataAttribute
         yield return new object[] { typeof(LifePolicyResourceRepresentation) };
         yield return new object[] { typeof(MiscellaneousAssetResourceRepresentation) };
         yield return new object[] { typeof(MiscellaneousDebtResourceRepresentation) };
+        yield return new object[] { typeof(MortgageResourceRepresentation) };
+        
     }
 }

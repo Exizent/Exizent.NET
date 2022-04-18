@@ -21,6 +21,7 @@ public static class EstateItemJsonBuilderFactory
             LifePolicyResourceRepresentation lifePolicy => new LifePolicyEstateItemJsonBuilder(lifePolicy),
             MiscellaneousAssetResourceRepresentation miscellaneousAsset => new MiscellaneousAssetEstateItemJsonBuilder(miscellaneousAsset),
             MiscellaneousDebtResourceRepresentation miscellaneousDebt => new MiscellaneousDebtEstateItemJsonBuilder(miscellaneousDebt),
+            MortgageResourceRepresentation mortgage => new MortgageEstateItemJsonBuilder(mortgage),
             _ => throw new NotImplementedException()
         };
 }
