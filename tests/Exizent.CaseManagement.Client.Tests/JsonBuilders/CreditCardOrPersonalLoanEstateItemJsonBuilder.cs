@@ -3,13 +3,16 @@ using Exizent.CaseManagement.Client.Models.EstateItems;
 
 namespace Exizent.CaseManagement.Client.Tests.JsonBuilders;
 
-public class CreditCardOrPersonalLoanEstateItemJsonBuilder : EstateItemJsonBuilder<CreditCardOrPersonalLoanResourceRepresentation>
+public class
+    CreditCardOrPersonalLoanEstateItemJsonBuilder : EstateItemJsonBuilder<
+        CreditCardOrPersonalLoanResourceRepresentation>
 {
-    public CreditCardOrPersonalLoanEstateItemJsonBuilder(CreditCardOrPersonalLoanResourceRepresentation resourceRepresentation)
+    public CreditCardOrPersonalLoanEstateItemJsonBuilder(
+        CreditCardOrPersonalLoanResourceRepresentation resourceRepresentation)
         : base(resourceRepresentation)
     {
     }
-   
+
     protected override JsonObject InnerBuild(JsonObject jsonObject,
         CreditCardOrPersonalLoanResourceRepresentation resourceRepresentation)
     {
@@ -21,7 +24,7 @@ public class CreditCardOrPersonalLoanEstateItemJsonBuilder : EstateItemJsonBuild
         jsonObject.Add("accountNumber", resourceRepresentation.AccountNumber);
         jsonObject.Add("hasProviderBeenAdvised", resourceRepresentation.HasProviderBeenAdvised);
         jsonObject.Add("debtValue", resourceRepresentation.DebtValue);
-   
+
         return jsonObject;
     }
 }
