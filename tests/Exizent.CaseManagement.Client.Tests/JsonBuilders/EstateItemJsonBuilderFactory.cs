@@ -22,6 +22,9 @@ public static class EstateItemJsonBuilderFactory
             MiscellaneousAssetResourceRepresentation miscellaneousAsset => new MiscellaneousAssetEstateItemJsonBuilder(miscellaneousAsset),
             MiscellaneousDebtResourceRepresentation miscellaneousDebt => new MiscellaneousDebtEstateItemJsonBuilder(miscellaneousDebt),
             MortgageResourceRepresentation mortgage => new MortgageEstateItemJsonBuilder(mortgage),
+            NomineeInvestmentAccountResourceRepresentation nomineeInvestmentAccount => new NomineeInvestmentAccountEstateItemJsonBuilder(nomineeInvestmentAccount),
+            PensionResourceRepresentation pension => new PensionEstateItemJsonBuilder(pension),
+            PhysicalShareholdingResourceRepresentation physicalShareholding => new PhysicalShareholdingEstateItemJsonBuilder(physicalShareholding),
             _ => throw new NotImplementedException()
         };
 }

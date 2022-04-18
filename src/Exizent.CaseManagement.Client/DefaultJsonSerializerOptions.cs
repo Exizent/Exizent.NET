@@ -36,6 +36,9 @@ internal static class DefaultJsonSerializerOptions
         registry.RegisterType<MiscellaneousAssetResourceRepresentation>();
         registry.RegisterType<MiscellaneousDebtResourceRepresentation>();
         registry.RegisterType<MortgageResourceRepresentation>();
+        registry.RegisterType<NomineeInvestmentAccountResourceRepresentation>();
+        registry.RegisterType<PensionResourceRepresentation>();
+        registry.RegisterType<PhysicalShareholdingResourceRepresentation>();
         
         return options;
     }
