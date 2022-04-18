@@ -29,6 +29,7 @@ public static class EstateItemJsonBuilderFactory
             SecuredLoanResourceRepresentation securedLoan => new SecuredLoanEstateItemJsonBuilder(securedLoan),
             StateBenefitOverpaymentResourceRepresentation stateBenefitOverpayment => new StateBenefitOverpaymentEstateItemJsonBuilder(stateBenefitOverpayment),
             StoreCardOrCatalogueAccountResourceRepresentation storeCardOrCatalogueAccount => new StoreCardOrCatalogueAccountEstateItemJsonBuilder(storeCardOrCatalogueAccount),
+            UKGovAndMunicipalSecuritiesResourceRepresentation ukGovAndMunicipalSecurities => new UKGovAndMunicipalSecuritiesEstateItemJsonBuilder(ukGovAndMunicipalSecurities),
             _ => throw new NotImplementedException()
         };
 }
