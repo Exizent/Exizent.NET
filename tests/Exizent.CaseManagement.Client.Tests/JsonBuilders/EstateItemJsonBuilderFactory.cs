@@ -27,6 +27,7 @@ public static class EstateItemJsonBuilderFactory
             PhysicalShareholdingResourceRepresentation physicalShareholding => new PhysicalShareholdingEstateItemJsonBuilder(physicalShareholding),
             PremiumBondResourceRepresentation premiumBond => new PremiumBondEstateItemJsonBuilder(premiumBond),
             SecuredLoanResourceRepresentation securedLoan => new SecuredLoanEstateItemJsonBuilder(securedLoan),
+            StateBenefitOverpaymentResourceRepresentation stateBenefitOverpayment => new StateBenefitOverpaymentEstateItemJsonBuilder(stateBenefitOverpayment),
             _ => throw new NotImplementedException()
         };
 }
