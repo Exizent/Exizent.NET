@@ -30,7 +30,7 @@ builder.Services.AddExizentCaseManagementClient(
 );
 ```
 
-We can now take a dependancy on `ICaseManagementClient` and use it to interact with the Exizent API.
+We can now take a dependency on `ICaseManagementClient` and use it to interact with the Exizent API.
 
 ```csharp
 [ApiController]
