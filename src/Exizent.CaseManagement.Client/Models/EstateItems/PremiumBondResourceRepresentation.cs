@@ -1,5 +1,8 @@
-﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
+﻿using Dahomey.Json.Attributes;
 
+namespace Exizent.CaseManagement.Client.Models.EstateItems;
+
+[JsonDiscriminator(nameof(EstateItemType.PremiumBond))]
 public class PremiumBondResourceRepresentation : EstateItemResourceRepresentation
 {
     public AddressResourceRepresentation Address { get; init; } = null!;
