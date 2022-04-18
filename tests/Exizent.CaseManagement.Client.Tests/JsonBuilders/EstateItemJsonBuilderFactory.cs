@@ -26,6 +26,7 @@ public static class EstateItemJsonBuilderFactory
             PensionResourceRepresentation pension => new PensionEstateItemJsonBuilder(pension),
             PhysicalShareholdingResourceRepresentation physicalShareholding => new PhysicalShareholdingEstateItemJsonBuilder(physicalShareholding),
             PremiumBondResourceRepresentation premiumBond => new PremiumBondEstateItemJsonBuilder(premiumBond),
+            SecuredLoanResourceRepresentation securedLoan => new SecuredLoanEstateItemJsonBuilder(securedLoan),
             _ => throw new NotImplementedException()
         };
 }
