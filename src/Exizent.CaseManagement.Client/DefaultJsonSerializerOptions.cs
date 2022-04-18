@@ -34,6 +34,7 @@ internal static class DefaultJsonSerializerOptions
         registry.RegisterType<LandResourceRepresentation>();
         registry.RegisterType<LifePolicyResourceRepresentation>();
         registry.RegisterType<MiscellaneousAssetResourceRepresentation>();
+        registry.RegisterType<MiscellaneousDebtResourceRepresentation>();
 
         return options;
     }

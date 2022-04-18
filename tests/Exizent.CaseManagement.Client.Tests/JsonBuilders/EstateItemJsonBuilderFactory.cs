@@ -20,6 +20,7 @@ public static class EstateItemJsonBuilderFactory
             LandResourceRepresentation land => new LandEstateItemJsonBuilder(land),
             LifePolicyResourceRepresentation lifePolicy => new LifePolicyEstateItemJsonBuilder(lifePolicy),
             MiscellaneousAssetResourceRepresentation miscellaneousAsset => new MiscellaneousAssetEstateItemJsonBuilder(miscellaneousAsset),
+            MiscellaneousDebtResourceRepresentation miscellaneousDebt => new MiscellaneousDebtEstateItemJsonBuilder(miscellaneousDebt),
             _ => throw new NotImplementedException()
         };
 }
