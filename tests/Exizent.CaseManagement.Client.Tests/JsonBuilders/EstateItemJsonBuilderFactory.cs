@@ -19,6 +19,7 @@ public static class EstateItemJsonBuilderFactory
             InvestmentBondResourceRepresentation investmentBond => new InvestmentBondEstateItemJsonBuilder(investmentBond),
             LandResourceRepresentation land => new LandEstateItemJsonBuilder(land),
             LifePolicyResourceRepresentation lifePolicy => new LifePolicyEstateItemJsonBuilder(lifePolicy),
+            MiscellaneousAssetResourceRepresentation miscellaneousAsset => new MiscellaneousAssetEstateItemJsonBuilder(miscellaneousAsset),
             _ => throw new NotImplementedException()
         };
 }

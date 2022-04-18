@@ -33,6 +33,7 @@ internal static class DefaultJsonSerializerOptions
         registry.RegisterType<InvestmentBondResourceRepresentation>();
         registry.RegisterType<LandResourceRepresentation>();
         registry.RegisterType<LifePolicyResourceRepresentation>();
+        registry.RegisterType<MiscellaneousAssetResourceRepresentation>();
 
         return options;
     }
