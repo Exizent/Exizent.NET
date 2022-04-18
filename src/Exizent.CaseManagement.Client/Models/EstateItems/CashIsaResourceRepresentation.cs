@@ -1,5 +1,8 @@
-﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
+﻿using Dahomey.Json.Attributes;
 
+namespace Exizent.CaseManagement.Client.Models.EstateItems;
+
+[JsonDiscriminator(nameof(EstateItemType.CashIsa))]
 public class CashIsaResourceRepresentation : EstateItemResourceRepresentation
 {
     public string? Institution { get; init; }
