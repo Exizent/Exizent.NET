@@ -16,7 +16,7 @@ internal static class DefaultJsonSerializerOptions
         options.Converters.Add(new JsonStringEnumConverter());
         options.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
         options.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-        
+
         var jsonSerializerOptions = options.SetupExtensions();
         var registry = jsonSerializerOptions.GetDiscriminatorConventionRegistry();
         registry.ClearConventions();
@@ -32,7 +32,8 @@ internal static class DefaultJsonSerializerOptions
         registry.RegisterType<IncomeBondResourceRepresentation>();
         registry.RegisterType<InvestmentBondResourceRepresentation>();
         registry.RegisterType<LandResourceRepresentation>();
-        
+        registry.RegisterType<LifePolicyResourceRepresentation>();
+
         return options;
     }
 }
