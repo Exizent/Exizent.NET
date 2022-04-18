@@ -34,13 +34,19 @@ public class GettingACaseTests
                 .WithHeader("Authorization", "Bearer 123456")
             );
 
+        var baseUri = casesApiServer.Url;
+        var baseAuthorizationUri = authApiServer.Url;
+
         var serviceContainer = new ServiceCollection();
         serviceContainer.AddExizentCaseManagementClient(
-            new Uri(casesApiServer.Url),
-            new Uri(authApiServer.Url),
             clientId,
             clientSecret,
-            ExizentScopes.All
+            settings =>
+            {
+                settings.BaseUri = new Uri(baseUri);
+                settings.BaseAuthorizationUri = new Uri(baseAuthorizationUri);
+                settings.Scope = ExizentScopes.All;
+            }
         );
         
         await using var serviceProvider = serviceContainer.BuildServiceProvider();
