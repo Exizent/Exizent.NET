@@ -43,7 +43,7 @@ public sealed class GettingACaseWithEstateItems : IDisposable
 
     [Theory]
     [AllEstateItemResourceRepresentationTypesData]
-    public async Task ShouldReturnBankAccount(Type estateItemResourceRepresentationType)
+    public async Task ShouldReturnEstateItem(Type estateItemResourceRepresentationType)
     {
         var estateItem =
             (EstateItemResourceRepresentation)new SpecimenContext(_fixture).Resolve(

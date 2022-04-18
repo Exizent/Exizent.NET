@@ -30,6 +30,7 @@ internal static class DefaultJsonSerializerOptions
         registry.RegisterType<CryptocurrencyResourceRepresentation>();
         registry.RegisterType<EndowmentPolicyResourceRepresentation>();
         registry.RegisterType<IncomeBondResourceRepresentation>();
+        registry.RegisterType<InvestmentBondResourceRepresentation>();
 
         return options;
     }

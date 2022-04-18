@@ -16,6 +16,7 @@ public static class EstateItemJsonBuilderFactory
             CryptocurrencyResourceRepresentation cryptocurrency => new CryptocurrencyEstateItemJsonBuilder(cryptocurrency),
             EndowmentPolicyResourceRepresentation endowmentPolicy => new EndowmentPolicyEstateItemJsonBuilder(endowmentPolicy),
             IncomeBondResourceRepresentation incomeBond => new IncomeBondEstateItemJsonBuilder(incomeBond),
+            InvestmentBondResourceRepresentation investmentBond => new InvestmentBondEstateItemJsonBuilder(investmentBond),
             _ => throw new NotImplementedException()
         };
 }
