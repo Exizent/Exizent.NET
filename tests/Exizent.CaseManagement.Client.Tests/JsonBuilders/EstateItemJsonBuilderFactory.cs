@@ -28,6 +28,7 @@ public static class EstateItemJsonBuilderFactory
             PremiumBondResourceRepresentation premiumBond => new PremiumBondEstateItemJsonBuilder(premiumBond),
             SecuredLoanResourceRepresentation securedLoan => new SecuredLoanEstateItemJsonBuilder(securedLoan),
             StateBenefitOverpaymentResourceRepresentation stateBenefitOverpayment => new StateBenefitOverpaymentEstateItemJsonBuilder(stateBenefitOverpayment),
+            StoreCardOrCatalogueAccountResourceRepresentation storeCardOrCatalogueAccount => new StoreCardOrCatalogueAccountEstateItemJsonBuilder(storeCardOrCatalogueAccount),
             _ => throw new NotImplementedException()
         };
 }

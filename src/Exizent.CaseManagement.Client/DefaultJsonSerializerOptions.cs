@@ -42,6 +42,8 @@ internal static class DefaultJsonSerializerOptions
         registry.RegisterType<PremiumBondResourceRepresentation>();
         registry.RegisterType<SecuredLoanResourceRepresentation>();
         registry.RegisterType<StateBenefitOverpaymentResourceRepresentation>();
+        registry.RegisterType<StoreCardOrCatalogueAccountResourceRepresentation>();
+        
         
         
         
