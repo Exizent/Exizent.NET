@@ -1,4 +1,5 @@
 ﻿using Exizent.CaseManagement.Client;
+using Exizent.CaseManagement.Client.Extensions.Microsoft.DependencyInjection;
 
 // ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection

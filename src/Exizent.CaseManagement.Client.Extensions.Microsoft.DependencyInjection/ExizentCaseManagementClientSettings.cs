@@ -1,6 +1,4 @@
-﻿using Exizent.CaseManagement.Client;
-
-namespace Microsoft.Extensions.DependencyInjection;
+﻿namespace Exizent.CaseManagement.Client.Extensions.Microsoft.DependencyInjection;
 
 public class ExizentCaseManagementClientSettings
 {
