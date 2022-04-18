@@ -7,7 +7,8 @@ public static class EstateItemJsonBuilderFactory
     public static IEstateItemJsonBuilder Create(EstateItemResourceRepresentation resourceRepresentation) =>
         resourceRepresentation switch
         {
-            BankAccountResourceRepresentation r => new BankAccountEstateItemJsonBuilder(r),
+            BankAccountResourceRepresentation bankAccount => new BankAccountEstateItemJsonBuilder(bankAccount),
+            BuildingResourceRepresentation building => new BuildingEstateItemJsonBuilder(building),
             _ => throw new NotImplementedException()
         };
 }
