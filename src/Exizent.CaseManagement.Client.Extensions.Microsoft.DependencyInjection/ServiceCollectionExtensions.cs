@@ -101,7 +101,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddTransient<CaseManagementAuthorizationHandler>();
 
             services.AddHttpClient<ICaseManagementApiClient, CaseManagementApiClient>((provider, cfg) =>
-                    cfg.BaseAddress = provider.GetRequiredService<ExizentCaseManagementClientSettings>().BaseAuthorizationUri)
+                    cfg.BaseAddress = provider.GetRequiredService<ExizentCaseManagementClientSettings>().BaseUri)
                 .AddHttpMessageHandler<CaseManagementAuthorizationHandler>();
 
             return services;
