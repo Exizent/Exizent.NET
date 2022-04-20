@@ -7,27 +7,17 @@ using Xunit;
 
 namespace Exizent.CaseManagement.Client.Tests.GettingACaseTests;
 
-public sealed class GettingACaseWithDeceased : IDisposable
+public sealed class GettingACaseWithDeceased : IClassFixture<Harness>
 {
-    private readonly Fixture _fixture = new();
-    private readonly TestHttpClientHandler _httpClientHandler;
-    private readonly ICaseManagementApiClient _client;
-
-    public GettingACaseWithDeceased()
-    {
-        _httpClientHandler = new TestHttpClientHandler();
-        _client = new CaseManagementApiClient(new HttpClient(_httpClientHandler)
-        {
-            BaseAddress = new Uri("https://testing.com")
-        });
-    }
+    private readonly Harness _harness;
+    public GettingACaseWithDeceased(Harness harness) => _harness = harness;
 
     [Fact]
     public async Task ShouldReturnNullWhen404NotFound()
     {
         var caseId = Guid.NewGuid();
 
-        var caseDetails = await _client.GetCase(caseId);
+        var caseDetails = await _harness.Client.GetCase(caseId);
         caseDetails.Should().BeNull();
     }
 
@@ -35,7 +25,7 @@ public sealed class GettingACaseWithDeceased : IDisposable
     public async Task ShouldReturnACaseWithDeceasedDetails()
     {
         
-        var expectedDeceased = _fixture.Create<DeceasedResourceRepresentation>();
+        var expectedDeceased = _harness.Fixture.Create<DeceasedResourceRepresentation>();
 
         var caseResourceRepresentation = new CaseResourceRepresentationBuilder()
             .With(expectedDeceased)
@@ -43,18 +33,13 @@ public sealed class GettingACaseWithDeceased : IDisposable
 
         var body = CaseJsonBuilder.Build(caseResourceRepresentation);
 
-        _httpClientHandler.AddGetCaseResponse(caseResourceRepresentation.Id, body.ToJsonString());
+        _harness.ClientHandler.AddGetCaseResponse(caseResourceRepresentation.Id, body.ToJsonString());
 
-        var caseDetails = await _client.GetCase(caseResourceRepresentation.Id);
+        var caseDetails = await _harness.Client.GetCase(caseResourceRepresentation.Id);
 
         using var _ = new AssertionScope();
         caseDetails.Should().NotBeNull();
         caseDetails!.Id.Should().Be(caseResourceRepresentation.Id);
         caseDetails.Deceased.Should().BeEquivalentTo(caseResourceRepresentation.Deceased);
-    }
-
-    public void Dispose()
-    {
-        _httpClientHandler.Dispose();
     }
 }

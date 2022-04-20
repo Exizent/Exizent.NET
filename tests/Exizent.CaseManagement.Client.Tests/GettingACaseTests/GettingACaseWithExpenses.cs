@@ -1,5 +1,5 @@
 ﻿using AutoFixture;
-using Exizent.CaseManagement.Client.Models.People;
+using Exizent.CaseManagement.Client.Models.Expenses;
 using Exizent.CaseManagement.Client.Tests.JsonBuilders;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -7,14 +7,14 @@ using Xunit;
 
 namespace Exizent.CaseManagement.Client.Tests.GettingACaseTests;
 
-public sealed class GettingACaseWithPeople : IClassFixture<Harness>
+public sealed class GettingACaseWithExpenses : IClassFixture<Harness>
 {
     private readonly Harness _harness;
-    
-    public GettingACaseWithPeople(Harness harness) => _harness = harness;
+
+    public GettingACaseWithExpenses(Harness harness) => _harness = harness;
 
     [Fact]
-    public async Task ShouldReturnEmptyPersonCollection()
+    public async Task ShouldReturnEmptyExpenseCollection()
     {
         var caseResourceRepresentation = new CaseResourceRepresentationBuilder()
             .Build();
@@ -28,15 +28,15 @@ public sealed class GettingACaseWithPeople : IClassFixture<Harness>
         using var _ = new AssertionScope();
         caseDetails.Should().NotBeNull();
         caseDetails!.Id.Should().Be(caseResourceRepresentation.Id);
-        caseDetails.People.Should().BeEmpty();
+        caseDetails.Expenses.Should().BeEmpty();
     }
 
     [Fact]
-    public async Task ShouldReturnPerson()
+    public async Task ShouldReturnExpense()
     {
-        var expectedPerson = _harness.Fixture.Create<PersonResourceRepresentation>();
+        var expectedExpense = _harness.Fixture.Create<ExpenseResourceRepresentation>();
         var caseResourceRepresentation = new CaseResourceRepresentationBuilder()
-            .With(expectedPerson)
+            .With(expectedExpense)
             .Build();
 
         var body = CaseJsonBuilder.Build(caseResourceRepresentation);
@@ -48,7 +48,8 @@ public sealed class GettingACaseWithPeople : IClassFixture<Harness>
         using var _ = new AssertionScope();
         caseDetails.Should().NotBeNull();
         caseDetails!.Id.Should().Be(caseResourceRepresentation.Id);
-        caseDetails.People.Single().Should()
-            .BeEquivalentTo(expectedPerson);
+        caseDetails.Expenses.Single().Should()
+            .BeEquivalentTo(expectedExpense);
     }
+
 }
