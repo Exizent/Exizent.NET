@@ -26,7 +26,7 @@ COPY ./tests/ ./tests/
 RUN dotnet build --configuration $CONFIGURATION --no-restore
 
 FROM build as test
-RUN dotnet test --logger "junit;LogFilePath=/TestResults/TestResults.xml" --configuration $CONFIGURATION --no-build
+RUN dotnet test --logger "junit" --configuration $CONFIGURATION --no-build
 
 FROM build as pack
 RUN mkdir -p artifacts
@@ -35,5 +35,6 @@ RUN dotnet pack --configuration Release -p:Version=${NUGET_PACKAGE_VERSION} --no
 FROM scratch
 COPY --from=pack /artifacts/*.nupkg /artifacts/
 COPY --from=pack /artifacts/*.snupkg /artifacts/
-COPY --from=test /TestResults/*.xml /TestResults/
+COPY --from=test /tests/Exizent.CaseManagement.Client.Tests/TestResults/*.xml /TestResults/Exizent.CaseManagement.Client.Tests/
+COPY --from=test /tests/Exizent.CaseManagement.Client.IntegrationTests/TestResults/*.xml /TestResults/Exizent.CaseManagement.Client.IntegrationTests/
 
