@@ -7,20 +7,11 @@ using Xunit;
 
 namespace Exizent.CaseManagement.Client.Tests.GettingACaseTests;
 
-public sealed class GettingACaseWithExpenses : IDisposable
+public sealed class GettingACaseWithExpenses : IClassFixture<Harness>
 {
-    private readonly TestHttpClientHandler _httpClientHandler;
-    private readonly ICaseManagementApiClient _client;
-    private readonly Fixture _fixture = new();
+    private readonly Harness _harness;
 
-    public GettingACaseWithExpenses()
-    {
-        _httpClientHandler = new TestHttpClientHandler();
-        _client = new CaseManagementApiClient(new HttpClient(_httpClientHandler)
-        {
-            BaseAddress = new Uri("https://testing.com")
-        });
-    }
+    public GettingACaseWithExpenses(Harness harness) => _harness = harness;
 
     [Fact]
     public async Task ShouldReturnEmptyExpenseCollection()
@@ -30,9 +21,9 @@ public sealed class GettingACaseWithExpenses : IDisposable
 
         var body = CaseJsonBuilder.Build(caseResourceRepresentation);
 
-        _httpClientHandler.AddGetCaseResponse(caseResourceRepresentation.Id, body.ToJsonString());
+        _harness.ClientHandler.AddGetCaseResponse(caseResourceRepresentation.Id, body.ToJsonString());
 
-        var caseDetails = await _client.GetCase(caseResourceRepresentation.Id);
+        var caseDetails = await _harness.Client.GetCase(caseResourceRepresentation.Id);
 
         using var _ = new AssertionScope();
         caseDetails.Should().NotBeNull();
@@ -43,16 +34,16 @@ public sealed class GettingACaseWithExpenses : IDisposable
     [Fact]
     public async Task ShouldReturnExpense()
     {
-        var expectedExpense = _fixture.Create<ExpenseResourceRepresentation>();
+        var expectedExpense = _harness.Fixture.Create<ExpenseResourceRepresentation>();
         var caseResourceRepresentation = new CaseResourceRepresentationBuilder()
             .With(expectedExpense)
             .Build();
 
         var body = CaseJsonBuilder.Build(caseResourceRepresentation);
 
-        _httpClientHandler.AddGetCaseResponse(caseResourceRepresentation.Id, body.ToJsonString());
+        _harness.ClientHandler.AddGetCaseResponse(caseResourceRepresentation.Id, body.ToJsonString());
 
-        var caseDetails = await _client.GetCase(caseResourceRepresentation.Id);
+        var caseDetails = await _harness.Client.GetCase(caseResourceRepresentation.Id);
 
         using var _ = new AssertionScope();
         caseDetails.Should().NotBeNull();
@@ -61,8 +52,4 @@ public sealed class GettingACaseWithExpenses : IDisposable
             .BeEquivalentTo(expectedExpense);
     }
 
-    public void Dispose()
-    {
-        _httpClientHandler.Dispose();
-    }
 }

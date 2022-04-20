@@ -1,27 +1,15 @@
-﻿using AutoFixture;
-using AutoFixture.Kernel;
-using Exizent.CaseManagement.Client.Models.EstateItems;
-using Exizent.CaseManagement.Client.Tests.JsonBuilders;
+﻿using Exizent.CaseManagement.Client.Tests.JsonBuilders;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
 
 namespace Exizent.CaseManagement.Client.Tests.GettingACaseTests;
 
-public sealed class GettingACaseWithEstateItems : IDisposable
+public sealed class GettingACaseWithEstateItems : IClassFixture<Harness>
 {
-    private readonly TestHttpClientHandler _httpClientHandler;
-    private readonly ICaseManagementApiClient _client;
-    private readonly Fixture _fixture = new();
+    private readonly Harness _harness;
 
-    public GettingACaseWithEstateItems()
-    {
-        _httpClientHandler = new TestHttpClientHandler();
-        _client = new CaseManagementApiClient(new HttpClient(_httpClientHandler)
-        {
-            BaseAddress = new Uri("https://testing.com")
-        });
-    }
+    public GettingACaseWithEstateItems(Harness harness) => _harness = harness;
 
     [Fact]
     public async Task ShouldReturnEmptyEstateItems()
@@ -31,9 +19,9 @@ public sealed class GettingACaseWithEstateItems : IDisposable
 
         var body = CaseJsonBuilder.Build(caseResourceRepresentation);
 
-        _httpClientHandler.AddGetCaseResponse(caseResourceRepresentation.Id, body.ToJsonString());
+        _harness.ClientHandler.AddGetCaseResponse(caseResourceRepresentation.Id, body.ToJsonString());
 
-        var caseDetails = await _client.GetCase(caseResourceRepresentation.Id);
+        var caseDetails = await _harness.Client.GetCase(caseResourceRepresentation.Id);
 
         using var _ = new AssertionScope();
         caseDetails.Should().NotBeNull();
@@ -45,9 +33,7 @@ public sealed class GettingACaseWithEstateItems : IDisposable
     [AllEstateItemResourceRepresentationTypesData]
     public async Task ShouldReturnEstateItem(Type estateItemResourceRepresentationType)
     {
-        var estateItem =
-            (EstateItemResourceRepresentation)new SpecimenContext(_fixture).Resolve(
-                estateItemResourceRepresentationType);
+        var estateItem = _harness.CreateEstateItem(estateItemResourceRepresentationType);
 
         var caseResourceRepresentation = new CaseResourceRepresentationBuilder()
             .With(estateItem)
@@ -55,19 +41,14 @@ public sealed class GettingACaseWithEstateItems : IDisposable
 
         var body = CaseJsonBuilder.Build(caseResourceRepresentation);
 
-        _httpClientHandler.AddGetCaseResponse(caseResourceRepresentation.Id, body.ToJsonString());
+        _harness.ClientHandler.AddGetCaseResponse(caseResourceRepresentation.Id, body.ToJsonString());
 
-        var caseDetails = await _client.GetCase(caseResourceRepresentation.Id);
+        var caseDetails = await _harness.Client.GetCase(caseResourceRepresentation.Id);
 
         using var _ = new AssertionScope();
         caseDetails.Should().NotBeNull();
         caseDetails!.Id.Should().Be(caseResourceRepresentation.Id);
         caseDetails.EstateItems.Single().Should()
             .BeEquivalentTo(estateItem, o => o.RespectingRuntimeTypes());
-    }
-
-    public void Dispose()
-    {
-        _httpClientHandler.Dispose();
     }
 }
