@@ -2,7 +2,7 @@
 
 namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-[JsonDiscriminator(nameof(EstateItemType.UKGovAndMunicipalSecurities))]
+[JsonDiscriminator(nameof(EstateItemType.UkGovAndMunicipalSecurities))]
 public class UKGovAndMunicipalSecuritiesResourceRepresentation : EstateItemResourceRepresentation
 {
     public AddressResourceRepresentation Address { get; init; } = null!;
