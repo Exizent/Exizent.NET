@@ -27,5 +27,5 @@ public enum EstateItemType
     UnitTrust,
     VehicleFinance,
     Vehicle,
-    UKGovAndMunicipalSecurities
+    UkGovAndMunicipalSecurities
 }

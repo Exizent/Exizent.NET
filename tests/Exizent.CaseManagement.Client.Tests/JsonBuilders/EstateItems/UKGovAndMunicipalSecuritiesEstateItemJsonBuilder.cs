@@ -13,7 +13,7 @@ public class UKGovAndMunicipalSecuritiesEstateItemJsonBuilder : EstateItemJsonBu
     protected override JsonObject InnerBuild(JsonObject jsonObject,
         UKGovAndMunicipalSecuritiesResourceRepresentation resourceRepresentation)
     {
-        jsonObject.Add("type", nameof(EstateItemType.UKGovAndMunicipalSecurities));
+        jsonObject.Add("type", nameof(EstateItemType.UkGovAndMunicipalSecurities));
         jsonObject.Add("address", AddressJsonBuilder.Build(resourceRepresentation.Address));
         jsonObject.Add("nameOfShareholding", resourceRepresentation.NameOfShareholding);
         jsonObject.Add("quantity", resourceRepresentation.Quantity);
