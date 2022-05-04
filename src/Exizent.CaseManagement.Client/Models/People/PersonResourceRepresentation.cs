@@ -21,4 +21,5 @@ public class PersonResourceRepresentation
     public AddressResourceRepresentation? Address { get; init; }
     public string? Notes { get; init; }
     public BankAccountDetailsResourceRepresentation? BankDetails { get; init; }
+    public bool? IsSignatory { get; init; }
 }
