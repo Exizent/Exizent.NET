@@ -10,4 +10,6 @@ public abstract class EstateItemResourceRepresentation
     public bool IsArchived { get; init; }
     public bool IsComplete { get; init; }
     public EstateItemRealisationResourceRepresentation? Realisation { get; init; }
+
+    public decimal DateOfDeathValue { get; init; }
 }
