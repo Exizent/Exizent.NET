@@ -36,6 +36,7 @@ public abstract class EstateItemJsonBuilder<TEstateItem> : IEstateItemJsonBuilde
             resourceRepresentation.Realisation is null
                 ? null
                 : EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
+        jsonObject.Add("dateOfDeathValue", resourceRepresentation.DateOfDeathValue);
 
         return jsonObject;
     }
