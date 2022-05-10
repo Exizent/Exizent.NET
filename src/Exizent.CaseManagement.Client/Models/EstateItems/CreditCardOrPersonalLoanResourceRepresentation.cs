@@ -12,4 +12,5 @@ public class CreditCardOrPersonalLoanResourceRepresentation : EstateItemResource
     public string? AccountNumber { get; init; }
     public bool HasProviderBeenAdvised { get; init; }
     public decimal? DebtValue { get; init; }
+    public EstateItemSettlementResourceRepresentation? Settlement { get; init; }
 }

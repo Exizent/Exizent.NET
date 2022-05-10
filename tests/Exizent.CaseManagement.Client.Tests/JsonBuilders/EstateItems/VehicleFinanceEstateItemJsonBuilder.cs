@@ -21,7 +21,8 @@ public class VehicleFinanceEstateItemJsonBuilder : EstateItemJsonBuilder<Vehicle
         jsonObject.Add("hasProviderBeenAdvised", resourceRepresentation.HasProviderBeenAdvised);
         jsonObject.Add("linkedEstateItemId", resourceRepresentation.LinkedEstateItemId);
         jsonObject.Add("debtValue", resourceRepresentation.DebtValue);
-         
+        jsonObject.Add("settlement", resourceRepresentation.Settlement is null ? null : EstateItemSettlementJsonBuilder.Build(resourceRepresentation.Settlement));
+ 
         return jsonObject;
     }
 }

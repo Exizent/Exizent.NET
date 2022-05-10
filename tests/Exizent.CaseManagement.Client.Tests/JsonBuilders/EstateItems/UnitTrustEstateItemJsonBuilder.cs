@@ -23,6 +23,7 @@ public class UnitTrustEstateItemJsonBuilder : EstateItemJsonBuilder<UnitTrustRes
         jsonObject.Add("notPassedDetails", resourceRepresentation.NotPassedDetails);
         jsonObject.Add("dividendDue", resourceRepresentation.DividendDue);
         jsonObject.Add("investmentValue", resourceRepresentation.InvestmentValue);
+        jsonObject.Add("realisation", resourceRepresentation.Realisation is null ? null : EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
 
         return jsonObject;
     }

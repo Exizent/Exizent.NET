@@ -12,4 +12,5 @@ public class MortgageResourceRepresentation : EstateItemResourceRepresentation
     public string? MortgageType { get; init; }
     public Guid? LinkedEstateItemId { get; init; }
     public decimal? DebtValue { get; init; }
+    public EstateItemSettlementResourceRepresentation? Settlement { get; init; }
 }

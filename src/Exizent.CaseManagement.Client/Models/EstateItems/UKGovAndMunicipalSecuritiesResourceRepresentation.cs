@@ -11,4 +11,5 @@ public class UKGovAndMunicipalSecuritiesResourceRepresentation : EstateItemResou
     public string? DescriptionOfStock { get; init; }
     public decimal? UnitPrice { get; init; }
     public decimal? InterestDue { get; init; }
+    public EstateItemRealisationResourceRepresentation? Realisation { get; init; }
 }

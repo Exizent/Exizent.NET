@@ -11,4 +11,5 @@ public class StoreCardOrCatalogueAccountResourceRepresentation : EstateItemResou
     public string? Provider { get; init; }
     public bool HasProviderBeenAdvised { get; init; }
     public decimal? DebtValue { get; init; }
+    public EstateItemSettlementResourceRepresentation? Settlement { get; init; }
 }

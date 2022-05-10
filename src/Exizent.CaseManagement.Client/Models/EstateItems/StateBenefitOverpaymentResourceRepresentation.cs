@@ -7,4 +7,5 @@ public class StateBenefitOverpaymentResourceRepresentation : EstateItemResourceR
 {
     public decimal? Amount { get; init; }
     public bool HasBeenRepaid { get; init; }
+    public EstateItemSettlementResourceRepresentation? Settlement { get; init; }
 }

@@ -18,4 +18,5 @@ public class CashSavingsAccountResourceRepresentation : EstateItemResourceRepres
     public bool? IsPassedToSurvivingJointOwner { get; init; }
     public string? NotPassedDetails { get; init; }
     public decimal ProportionOwned { get; init; }
+    public EstateItemRealisationResourceRepresentation? Realisation { get; init; }
 }

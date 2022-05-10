@@ -25,4 +25,5 @@ public class VehicleResourceRepresentation : EstateItemResourceRepresentation
     public int? YearOfManufacture { get; init; }
     public decimal? GrossSaleProceeds { get; init; }
     public DateTime? DateOfSale { get; init; }
+    public EstateItemRealisationResourceRepresentation? Realisation { get; init; }
 }

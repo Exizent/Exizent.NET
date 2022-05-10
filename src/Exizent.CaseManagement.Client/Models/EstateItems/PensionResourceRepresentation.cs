@@ -12,4 +12,5 @@ public class PensionResourceRepresentation : EstateItemResourceRepresentation
     public decimal? DeathBenefitValuePayable { get; init; }
     public string? BeneficiaryDetails { get; init; }
     public bool? IsValidForInheritanceTax { get; init; }
+    public EstateItemRealisationResourceRepresentation? Realisation { get; init; }
 }

@@ -16,4 +16,5 @@ public class PhysicalShareholdingResourceRepresentation : EstateItemResourceRepr
     public string? NotPassedDetails { get; init; }
     public decimal? DividendDue { get; init; }
     public bool IsQuotedOnLondonStockExchange { get; init; }
+    public EstateItemRealisationResourceRepresentation? Realisation { get; init; }
 }

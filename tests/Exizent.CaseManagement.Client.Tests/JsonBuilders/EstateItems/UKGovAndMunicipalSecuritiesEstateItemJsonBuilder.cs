@@ -20,6 +20,7 @@ public class UKGovAndMunicipalSecuritiesEstateItemJsonBuilder : EstateItemJsonBu
         jsonObject.Add("descriptionOfStock", resourceRepresentation.DescriptionOfStock);
         jsonObject.Add("unitPrice", resourceRepresentation.UnitPrice);
         jsonObject.Add("interestDue", resourceRepresentation.InterestDue);
+        jsonObject.Add("realisation", resourceRepresentation.Realisation is null ? null : EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
  
         return jsonObject;
     }

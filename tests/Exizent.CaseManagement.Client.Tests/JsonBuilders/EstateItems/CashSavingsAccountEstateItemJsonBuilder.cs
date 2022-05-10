@@ -27,6 +27,7 @@ public class CashSavingsAccountEstateItemJsonBuilder : EstateItemJsonBuilder<Cas
         jsonObject.Add("isPassedToSurvivingJointOwner", resourceRepresentation.IsPassedToSurvivingJointOwner);
         jsonObject.Add("notPassedDetails", resourceRepresentation.NotPassedDetails);
         jsonObject.Add("proportionOwned", resourceRepresentation.ProportionOwned);
+        jsonObject.Add("realisation", resourceRepresentation.Realisation is null ? null : EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
  
         return jsonObject;
     }
