@@ -21,7 +21,7 @@ public class PensionEstateItemJsonBuilder : EstateItemJsonBuilder<PensionResourc
         jsonObject.Add("deathBenefitValuePayable", resourceRepresentation.DeathBenefitValuePayable);
         jsonObject.Add("beneficiaryDetails", resourceRepresentation.BeneficiaryDetails);
         jsonObject.Add("isValidForInheritanceTax", resourceRepresentation.IsValidForInheritanceTax);
-        jsonObject.Add("realisation", resourceRepresentation.Realisation is null ? null : EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
+        jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
          
         return jsonObject;
     }

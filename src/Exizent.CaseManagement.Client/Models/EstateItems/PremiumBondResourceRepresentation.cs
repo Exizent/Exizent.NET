@@ -10,5 +10,5 @@ public class PremiumBondResourceRepresentation : EstateItemResourceRepresentatio
     public string? BondNumber { get; init; }
     public decimal? ValueAtDateOfDeath { get; init; }
     public decimal? ValueOfUnclaimedPrizes { get; init; }
-    public EstateItemRealisationResourceRepresentation? Realisation { get; init; }
+    public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
 }

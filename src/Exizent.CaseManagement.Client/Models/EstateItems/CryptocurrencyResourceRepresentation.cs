@@ -15,5 +15,5 @@ public class CryptocurrencyResourceRepresentation : EstateItemResourceRepresenta
     public string? NotPassedDetails { get; init; }
     public decimal? InvestmentValue { get; init; }
     public decimal? GrossSaleProceeds { get; init; }
-    public EstateItemRealisationResourceRepresentation? Realisation { get; init; }
+    public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
 }

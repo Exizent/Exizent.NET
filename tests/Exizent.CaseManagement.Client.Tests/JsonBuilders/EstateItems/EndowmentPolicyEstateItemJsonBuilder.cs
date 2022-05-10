@@ -22,7 +22,7 @@ public class EndowmentPolicyEstateItemJsonBuilder : EstateItemJsonBuilder<Endowm
         jsonObject.Add("bonusDue", resourceRepresentation.BonusDue);
         jsonObject.Add("paysOnDeathOfDeceased", resourceRepresentation.PaysOnDeathOfDeceased);
         jsonObject.Add("comments", resourceRepresentation.Comments);
-        jsonObject.Add("realisation", resourceRepresentation.Realisation is null ? null : EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
+        jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
 
         return jsonObject;
     }

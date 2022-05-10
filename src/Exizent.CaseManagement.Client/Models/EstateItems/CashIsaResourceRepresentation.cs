@@ -14,5 +14,5 @@ public class CashIsaResourceRepresentation : EstateItemResourceRepresentation
     public decimal? ConfirmedBalance { get; init; }
     public decimal? InterestUpToDateOfDeath { get; init; }
     public AddressResourceRepresentation Address { get; init; } = null!;
-    public EstateItemRealisationResourceRepresentation? Realisation { get; init; }
+    public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
 }

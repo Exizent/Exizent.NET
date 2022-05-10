@@ -24,7 +24,7 @@ public class
         jsonObject.Add("accountNumber", resourceRepresentation.AccountNumber);
         jsonObject.Add("hasProviderBeenAdvised", resourceRepresentation.HasProviderBeenAdvised);
         jsonObject.Add("debtValue", resourceRepresentation.DebtValue);
-        jsonObject.Add("settlement", resourceRepresentation.Settlement is null ? null : EstateItemSettlementJsonBuilder.Build(resourceRepresentation.Settlement));
+        jsonObject.Add("settlement", EstateItemSettlementJsonBuilder.Build(resourceRepresentation.Settlement));
 
         return jsonObject;
     }

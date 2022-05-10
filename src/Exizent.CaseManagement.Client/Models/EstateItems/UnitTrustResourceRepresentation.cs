@@ -14,5 +14,5 @@ public class UnitTrustResourceRepresentation : EstateItemResourceRepresentation
     public string? NotPassedDetails { get; init; }
     public decimal? DividendDue { get; init; }
     public decimal? InvestmentValue { get; init; }
-    public EstateItemRealisationResourceRepresentation? Realisation { get; init; }
+    public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
 }

@@ -24,7 +24,7 @@ public class InvestmentBondEstateItemJsonBuilder : EstateItemJsonBuilder<Investm
         jsonObject.Add("dividendDue", resourceRepresentation.DividendDue);
         jsonObject.Add("investmentValue", resourceRepresentation.InvestmentValue);
         jsonObject.Add("isValidForInheritanceTax", resourceRepresentation.IsValidForInheritanceTax);
-        jsonObject.Add("realisation", resourceRepresentation.Realisation is null ? null : EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
+        jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
 
         return jsonObject;
     }

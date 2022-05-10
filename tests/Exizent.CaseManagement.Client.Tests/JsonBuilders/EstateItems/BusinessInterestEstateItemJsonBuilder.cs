@@ -25,7 +25,7 @@ public class BusinessInterestEstateItemJsonBuilder : EstateItemJsonBuilder<Busin
         jsonObject.Add("isHeritable", resourceRepresentation.IsHeritable);
         jsonObject.Add("isValidForInheritanceTax", resourceRepresentation.IsValidForInheritanceTax);
         jsonObject.Add("grossSaleProceeds", resourceRepresentation.GrossSaleProceeds);
-        jsonObject.Add("realisation", resourceRepresentation.Realisation is null ? null : EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
+        jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
 
         return jsonObject;
     }

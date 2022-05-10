@@ -19,7 +19,7 @@ public class PremiumBondEstateItemJsonBuilder : EstateItemJsonBuilder<PremiumBon
         jsonObject.Add("bondNumber", resourceRepresentation.BondNumber);
         jsonObject.Add("valueAtDateOfDeath", resourceRepresentation.ValueAtDateOfDeath);
         jsonObject.Add("valueOfUnclaimedPrizes", resourceRepresentation.ValueOfUnclaimedPrizes);
-        jsonObject.Add("realisation", resourceRepresentation.Realisation is null ? null : EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
+        jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
 
         return jsonObject;
     }

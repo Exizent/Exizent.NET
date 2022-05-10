@@ -27,7 +27,7 @@ public class BankAccountEstateItemJsonBuilder : EstateItemJsonBuilder<BankAccoun
         jsonObject.Add("typeOfAccount", resourceRepresentation.TypeOfAccount);
         jsonObject.Add("notPassedDetails", resourceRepresentation.NotPassedDetails);
         jsonObject.Add("proportionOwned", resourceRepresentation.ProportionOwned);
-        jsonObject.Add("realisation", resourceRepresentation.Realisation is null ? null : EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
+        jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
 
         return jsonObject;
     }
