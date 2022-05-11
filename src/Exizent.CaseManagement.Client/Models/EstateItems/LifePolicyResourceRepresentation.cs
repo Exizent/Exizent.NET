@@ -13,4 +13,5 @@ public class LifePolicyResourceRepresentation : EstateItemResourceRepresentation
     public bool PaysOnDeathOfDeceased { get; init; }
     public string? BeneficiaryDetails { get; init; }
     public string? Comments { get; init; }
+    public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
 }

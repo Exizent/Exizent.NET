@@ -14,4 +14,5 @@ public class IncomeBondResourceRepresentation : EstateItemResourceRepresentation
     public decimal ProportionOwned { get; init; }
     public bool? IsPassedToSurvivingJointOwner { get; init; }
     public string? NotPassedDetails { get; init; }
+    public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
 }

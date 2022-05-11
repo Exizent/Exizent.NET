@@ -16,6 +16,7 @@ public class StateBenefitOverpaymentEstateItemJsonBuilder : EstateItemJsonBuilde
         jsonObject.Add("type", nameof(EstateItemType.StateBenefitOverpayment));
         jsonObject.Add("amount", resourceRepresentation.Amount);
         jsonObject.Add("hasBeenRepaid", resourceRepresentation.HasBeenRepaid);
+        jsonObject.Add("settlement", EstateItemSettlementJsonBuilder.Build(resourceRepresentation.Settlement));
 
         return jsonObject;
     }

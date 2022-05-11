@@ -34,7 +34,8 @@ public class VehicleEstateItemJsonBuilder : EstateItemJsonBuilder<VehicleResourc
         jsonObject.Add("yearOfManufacture", resourceRepresentation.YearOfManufacture);
         jsonObject.Add("grossSaleProceeds", resourceRepresentation.GrossSaleProceeds);
         jsonObject.Add("dateOfSale", resourceRepresentation.DateOfSale);
-       
+        jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
+ 
         return jsonObject;
     }
 }

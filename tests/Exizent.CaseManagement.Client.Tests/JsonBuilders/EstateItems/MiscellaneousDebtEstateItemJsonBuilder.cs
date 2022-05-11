@@ -22,6 +22,7 @@ public class MiscellaneousDebtEstateItemJsonBuilder : EstateItemJsonBuilder<Misc
         jsonObject.Add("provider", resourceRepresentation.Provider);
         jsonObject.Add("hasProviderBeenAdvised", resourceRepresentation.HasProviderBeenAdvised);
         jsonObject.Add("debtValue", resourceRepresentation.DebtValue);
+        jsonObject.Add("settlement", EstateItemSettlementJsonBuilder.Build(resourceRepresentation.Settlement));
  
         return jsonObject;
     }

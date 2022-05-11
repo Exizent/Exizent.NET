@@ -21,23 +21,16 @@ public abstract class EstateItemJsonBuilder<TEstateItem> : IEstateItemJsonBuilde
 
     protected abstract JsonObject InnerBuild(JsonObject jsonObject, TEstateItem resourceRepresentation);
 
-    private static JsonObject BuildEstateItem(EstateItemResourceRepresentation resourceRepresentation)
-    {
-        var jsonObject = new JsonObject();
-
-        jsonObject.Add("id", resourceRepresentation.Id);
-        jsonObject.Add("location", resourceRepresentation.Location.ToString("G"));
-        jsonObject.Add("createdAt", resourceRepresentation.CreatedAt);
-        jsonObject.Add("updatedAt", resourceRepresentation.UpdatedAt);
-        jsonObject.Add("notes", resourceRepresentation.Notes);
-        jsonObject.Add("isArchived", resourceRepresentation.IsArchived);
-        jsonObject.Add("isComplete", resourceRepresentation.IsComplete);
-        jsonObject.Add("realisation",
-            resourceRepresentation.Realisation is null
-                ? null
-                : EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
-        jsonObject.Add("dateOfDeathValue", resourceRepresentation.DateOfDeathValue);
-
-        return jsonObject;
-    }
+    private static JsonObject BuildEstateItem(EstateItemResourceRepresentation resourceRepresentation) =>
+        new()
+        {
+            {"id", resourceRepresentation.Id},
+            {"location", resourceRepresentation.Location.ToString("G")},
+            {"createdAt", resourceRepresentation.CreatedAt},
+            {"updatedAt", resourceRepresentation.UpdatedAt},
+            {"notes", resourceRepresentation.Notes},
+            {"isArchived", resourceRepresentation.IsArchived},
+            {"isComplete", resourceRepresentation.IsComplete},
+            {"dateOfDeathValue", resourceRepresentation.DateOfDeathValue}
+        };
 }

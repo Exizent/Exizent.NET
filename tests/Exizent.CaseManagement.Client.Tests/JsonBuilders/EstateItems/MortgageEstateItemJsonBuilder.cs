@@ -21,7 +21,8 @@ public class MortgageEstateItemJsonBuilder : EstateItemJsonBuilder<MortgageResou
         jsonObject.Add("mortgageType", resourceRepresentation.MortgageType);
         jsonObject.Add("linkedEstateItemId", resourceRepresentation.LinkedEstateItemId);
         jsonObject.Add("debtValue", resourceRepresentation.DebtValue);
-         
+        jsonObject.Add("settlement", EstateItemSettlementJsonBuilder.Build(resourceRepresentation.Settlement));
+ 
         return jsonObject;
     }
 }

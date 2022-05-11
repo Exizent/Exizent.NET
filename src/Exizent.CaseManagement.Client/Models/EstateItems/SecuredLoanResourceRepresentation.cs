@@ -13,4 +13,5 @@ public class SecuredLoanResourceRepresentation : EstateItemResourceRepresentatio
     public bool HasProviderBeenAdvised { get; init; }
     public Guid? LinkedEstateItemId { get; init; }
     public decimal? DebtValue { get; init; }
+    public EstateItemSettlementResourceRepresentation Settlement { get; init; } = null!;
 }

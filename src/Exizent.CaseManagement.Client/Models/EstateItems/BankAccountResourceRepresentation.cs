@@ -18,4 +18,5 @@ public class BankAccountResourceRepresentation : EstateItemResourceRepresentatio
     public string? TypeOfAccount { get; init; }
     public string? NotPassedDetails { get; init; }
     public decimal ProportionOwned { get; init; }
+    public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
 }

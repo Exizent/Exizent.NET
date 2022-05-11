@@ -45,6 +45,8 @@ public class LandEstateItemJsonBuilder : EstateItemJsonBuilder<LandResourceRepre
         jsonObject.Add("isSubjectToSpecialFactors", resourceRepresentation.IsSubjectToSpecialFactors);
         jsonObject.Add("specialFactorsDescription", resourceRepresentation.SpecialFactorsDescription);
         jsonObject.Add("isCharityDonation", resourceRepresentation.IsCharityDonation);
+        jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
+
 
         return jsonObject;
     }

@@ -16,4 +16,5 @@ public class BusinessInterestResourceRepresentation : EstateItemResourceRepresen
     public bool IsHeritable { get; init; }
     public bool IsValidForInheritanceTax { get; init; }
     public decimal? GrossSaleProceeds { get; init; }
+    public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
 }

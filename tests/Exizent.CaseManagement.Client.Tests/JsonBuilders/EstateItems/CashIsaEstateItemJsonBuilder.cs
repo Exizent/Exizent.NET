@@ -23,6 +23,7 @@ public class CashIsaEstateItemJsonBuilder : EstateItemJsonBuilder<CashIsaResourc
         jsonObject.Add("confirmedBalance", resourceRepresentation.ConfirmedBalance);
         jsonObject.Add("interestUpToDateOfDeath", resourceRepresentation.InterestUpToDateOfDeath);
         jsonObject.Add("address", AddressJsonBuilder.Build(resourceRepresentation.Address));
+        jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
 
         return jsonObject;
     }
