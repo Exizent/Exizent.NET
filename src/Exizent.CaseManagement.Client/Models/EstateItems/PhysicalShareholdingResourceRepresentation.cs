@@ -6,7 +6,7 @@ namespace Exizent.CaseManagement.Client.Models.EstateItems;
 public class PhysicalShareholdingResourceRepresentation : EstateItemResourceRepresentation
 {
     public AddressResourceRepresentation Address { get; init; } = null!;
-    public string? ShareholderName { get; init; }
+    public string? ShareholdingName { get; init; }
     public string? ShareholderReferenceNumber { get; init; }
     public decimal? Quantity { get; init; }
     public string? Description { get; init; }
