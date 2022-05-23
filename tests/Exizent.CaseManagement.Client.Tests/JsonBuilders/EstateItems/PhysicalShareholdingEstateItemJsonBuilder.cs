@@ -15,7 +15,7 @@ public class PhysicalShareholdingEstateItemJsonBuilder : EstateItemJsonBuilder<P
     {
         jsonObject.Add("type", nameof(EstateItemType.PhysicalShareholding));
         jsonObject.Add("address", AddressJsonBuilder.Build(resourceRepresentation.Address));
-        jsonObject.Add("shareholderName", resourceRepresentation.ShareholderName);
+        jsonObject.Add("shareholdingName", resourceRepresentation.ShareholdingName);
         jsonObject.Add("shareholderReferenceNumber", resourceRepresentation.ShareholderReferenceNumber);
         jsonObject.Add("quantity", resourceRepresentation.Quantity);
         jsonObject.Add("description", resourceRepresentation.Description);
