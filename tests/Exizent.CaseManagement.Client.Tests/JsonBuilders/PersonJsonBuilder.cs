@@ -36,6 +36,7 @@ public static class PersonJsonBuilder
                 ? null
                 : BankDetailsJsonBuilder.Build(resourceRepresentation.BankDetails));
         jsonObject.Add("isSignatory", resourceRepresentation.IsSignatory);
+        jsonObject.Add("createdAt", resourceRepresentation.CreatedAt);
         
         return jsonObject;
     }
