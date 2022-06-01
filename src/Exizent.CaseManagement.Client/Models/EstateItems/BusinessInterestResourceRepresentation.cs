@@ -5,11 +5,11 @@ namespace Exizent.CaseManagement.Client.Models.EstateItems;
 [JsonDiscriminator(nameof(EstateItemType.BusinessInterest))]
 public class BusinessInterestResourceRepresentation : EstateItemResourceRepresentation
 {
-    public string BusinessName { get; init; } = null!;
+    public string? BusinessName { get; init; }
     public decimal? ExecutorEstimatedValue { get; init; }
     public decimal? SurveyorFormalValue { get; init; }
     public string? FormalValuationBy { get; init; }
-    public string Description { get; init; } = null!;
+    public string? Description { get; init; }
     public bool IsJointlyOwned { get; init; }
     public bool? IsPassedToSurvivingJointOwner { get; init; }
     public AddressResourceRepresentation Address { get; init; } = null!;
