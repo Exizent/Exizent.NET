@@ -15,6 +15,7 @@ public class PhysicalShareholdingResourceRepresentation : EstateItemResourceRepr
     public bool? IsPassedToSurvivingJointOwner { get; init; }
     public string? NotPassedDetails { get; init; }
     public decimal? DividendDue { get; init; }
+    public string? ValuationBy { get; init; }
     public bool IsQuotedOnLondonStockExchange { get; init; }
     public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
 }
