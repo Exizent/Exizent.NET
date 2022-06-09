@@ -24,6 +24,7 @@ public class PhysicalShareholdingEstateItemJsonBuilder : EstateItemJsonBuilder<P
         jsonObject.Add("isPassedToSurvivingJointOwner", resourceRepresentation.IsPassedToSurvivingJointOwner);
         jsonObject.Add("notPassedDetails", resourceRepresentation.NotPassedDetails);
         jsonObject.Add("dividendDue", resourceRepresentation.DividendDue);
+        jsonObject.Add("valuationBy", resourceRepresentation.ValuationBy);
         jsonObject.Add("isQuotedOnLondonStockExchange", resourceRepresentation.IsQuotedOnLondonStockExchange);
         jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
  

@@ -14,6 +14,9 @@ public class NomineeInvestmentAccountResourceRepresentation : EstateItemResource
     public string? NotPassedDetails { get; init; }
     public decimal? DividendDue { get; init; }
     public decimal? InvestmentValue { get; init; }
+
+    public string? ValuationBy { get; init; }
+
     public bool? IsValidForInheritanceTax { get; init; }
     public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
 }
