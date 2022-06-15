@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Net;
 using System.Net.Http.Json;
+using System.Text.Json;
 using Exizent.CaseManagement.Client.Models;
 
 namespace Exizent.CaseManagement.Client;
@@ -31,7 +32,8 @@ public class CaseManagementApiClient : ICaseManagementApiClient
 
         response.EnsureSuccessStatusCode();
 
-        return await response.Content.ReadFromJsonAsync<CaseResourceRepresentation>(DefaultJsonSerializerOptions
-            .Instance);
+        var body = await response.Content.ReadAsStringAsync();
+
+        return JsonSerializer.Deserialize<CaseResourceRepresentation>(body, DefaultJsonSerializerOptions.Instance);
     }
 }
