@@ -25,6 +25,7 @@ public class CryptocurrencyEstateItemJsonBuilder : EstateItemJsonBuilder<Cryptoc
         jsonObject.Add("investmentValue", resourceRepresentation.InvestmentValue);
         jsonObject.Add("grossSaleProceeds", resourceRepresentation.GrossSaleProceeds);
         jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
+        jsonObject.Add("jointOwnerIds", new JsonArray(resourceRepresentation.JointOwnerIds.Select(x => (JsonNode)JsonValue.Create(x)!).ToArray()));
 
         return jsonObject;
     }

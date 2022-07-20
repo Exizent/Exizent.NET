@@ -19,4 +19,5 @@ public class MiscellaneousAssetResourceRepresentation : EstateItemResourceRepres
     public bool? IsCharityDonation { get; init; }
     public decimal? GrossSaleProceeds { get; init; }
     public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
+    public IReadOnlyList<Guid> JointOwnerIds { get; init; } = Array.Empty<Guid>();
 }

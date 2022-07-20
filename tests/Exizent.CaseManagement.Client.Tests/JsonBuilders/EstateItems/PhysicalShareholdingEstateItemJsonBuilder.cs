@@ -27,7 +27,8 @@ public class PhysicalShareholdingEstateItemJsonBuilder : EstateItemJsonBuilder<P
         jsonObject.Add("valuationBy", resourceRepresentation.ValuationBy);
         jsonObject.Add("isQuotedOnLondonStockExchange", resourceRepresentation.IsQuotedOnLondonStockExchange);
         jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
- 
+        jsonObject.Add("jointOwnerIds", new JsonArray(resourceRepresentation.JointOwnerIds.Select(x => (JsonNode)JsonValue.Create(x)!).ToArray()));
+
         return jsonObject;
     }
 }

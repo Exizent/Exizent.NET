@@ -1,5 +1,7 @@
-﻿using System.Text.Json.Nodes;
+﻿using System.Linq;
+using System.Text.Json.Nodes;
 using Exizent.CaseManagement.Client.Models.EstateItems;
+using Newtonsoft.Json;
 
 namespace Exizent.CaseManagement.Client.Tests.JsonBuilders.EstateItems;
 
@@ -28,6 +30,7 @@ public class BankAccountEstateItemJsonBuilder : EstateItemJsonBuilder<BankAccoun
         jsonObject.Add("notPassedDetails", resourceRepresentation.NotPassedDetails);
         jsonObject.Add("proportionOwned", resourceRepresentation.ProportionOwned);
         jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
+        jsonObject.Add("jointOwnerIds", new JsonArray(resourceRepresentation.JointOwnerIds.Select(x => (JsonNode)JsonValue.Create(x)!).ToArray()));
 
         return jsonObject;
     }

@@ -19,4 +19,5 @@ public class CashSavingsAccountResourceRepresentation : EstateItemResourceRepres
     public string? NotPassedDetails { get; init; }
     public decimal ProportionOwned { get; init; }
     public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
+    public IReadOnlyList<Guid> JointOwnerIds { get; init; } = Array.Empty<Guid>();
 }

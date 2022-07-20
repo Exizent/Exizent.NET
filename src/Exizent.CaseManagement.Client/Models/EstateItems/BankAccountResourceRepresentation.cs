@@ -18,5 +18,6 @@ public class BankAccountResourceRepresentation : EstateItemResourceRepresentatio
     public string? TypeOfAccount { get; init; }
     public string? NotPassedDetails { get; init; }
     public decimal ProportionOwned { get; init; }
+    public IReadOnlyList<Guid> JointOwnerIds { get; init; } = Array.Empty<Guid>();
     public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
 }

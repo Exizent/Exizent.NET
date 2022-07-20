@@ -13,4 +13,5 @@ public class VehicleFinanceResourceRepresentation : EstateItemResourceRepresenta
     public Guid? LinkedEstateItemId { get; init; }
     public decimal? DebtValue { get; init; }
     public EstateItemSettlementResourceRepresentation Settlement { get; init; } = null!;
+    public IReadOnlyList<Guid> JointOwnerIds { get; init; } = Array.Empty<Guid>();
 }

@@ -52,6 +52,7 @@ public class BuildingEstateItemJsonBuilder : EstateItemJsonBuilder<BuildingResou
         jsonObject.Add("isCharityDonation", resourceRepresentation.IsCharityDonation);
         jsonObject.Add("isHeritable", resourceRepresentation.IsHeritable);
         jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
+        jsonObject.Add("jointOwnerIds", new JsonArray(resourceRepresentation.JointOwnerIds.Select(x => (JsonNode)JsonValue.Create(x)!).ToArray()));
 
         return jsonObject;
     }
