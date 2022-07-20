@@ -16,4 +16,5 @@ public class CryptocurrencyResourceRepresentation : EstateItemResourceRepresenta
     public decimal? InvestmentValue { get; init; }
     public decimal? GrossSaleProceeds { get; init; }
     public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
+    public IReadOnlyList<Guid> JointOwnerIds { get; init; } = Array.Empty<Guid>();
 }

@@ -18,4 +18,5 @@ public class PhysicalShareholdingResourceRepresentation : EstateItemResourceRepr
     public string? ValuationBy { get; init; }
     public bool IsQuotedOnLondonStockExchange { get; init; }
     public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
+    public IReadOnlyList<Guid> JointOwnerIds { get; init; } = Array.Empty<Guid>();
 }

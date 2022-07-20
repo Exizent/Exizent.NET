@@ -19,4 +19,5 @@ public class NomineeInvestmentAccountResourceRepresentation : EstateItemResource
 
     public bool? IsValidForInheritanceTax { get; init; }
     public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
+    public IReadOnlyList<Guid> JointOwnerIds { get; init; } = Array.Empty<Guid>();
 }

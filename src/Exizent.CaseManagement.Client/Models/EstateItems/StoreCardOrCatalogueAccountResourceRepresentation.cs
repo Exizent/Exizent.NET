@@ -12,4 +12,5 @@ public class StoreCardOrCatalogueAccountResourceRepresentation : EstateItemResou
     public bool HasProviderBeenAdvised { get; init; }
     public decimal? DebtValue { get; init; }
     public EstateItemSettlementResourceRepresentation Settlement { get; init; } = null!;
+    public IReadOnlyList<Guid> JointOwnerIds { get; init; } = Array.Empty<Guid>();
 }

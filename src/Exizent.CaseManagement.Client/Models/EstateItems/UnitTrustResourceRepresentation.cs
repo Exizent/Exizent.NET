@@ -15,4 +15,5 @@ public class UnitTrustResourceRepresentation : EstateItemResourceRepresentation
     public decimal? DividendDue { get; init; }
     public decimal? InvestmentValue { get; init; }
     public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
+    public IReadOnlyList<Guid> JointOwnerIds { get; init; } = Array.Empty<Guid>();
 }

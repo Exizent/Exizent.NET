@@ -26,4 +26,5 @@ public class VehicleResourceRepresentation : EstateItemResourceRepresentation
     public decimal? GrossSaleProceeds { get; init; }
     public DateTime? DateOfSale { get; init; }
     public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
+    public IReadOnlyList<Guid> JointOwnerIds { get; init; } = Array.Empty<Guid>();
 }
