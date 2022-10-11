@@ -7,12 +7,13 @@ public static class WillDetailsJsonBuilder
 {
     public static JsonObject Build(WillDetailsResourceRepresentation willDetails)
     {
-        var jsonObject = new JsonObject();
-        
-        jsonObject.Add("hasWill", willDetails.HasWill);
-        jsonObject.Add("willDate", willDetails.WillDate);
-        jsonObject.Add("originalWillLocation", willDetails.OriginalWillLocation);
-        
+        var jsonObject = new JsonObject
+        {
+            { "hasWill", willDetails.HasWill },
+            { "willDate", willDetails.WillDate },
+            { "originalWillLocation", willDetails.OriginalWillLocation }
+        };
+
         return jsonObject;
     }
 }

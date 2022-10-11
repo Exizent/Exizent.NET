@@ -3,6 +3,7 @@ using Exizent.CaseManagement.Client.Models;
 using Exizent.CaseManagement.Client.Models.Deceased;
 using Exizent.CaseManagement.Client.Models.EstateItems;
 using Exizent.CaseManagement.Client.Models.Expenses;
+using Exizent.CaseManagement.Client.Models.Organisations;
 using Exizent.CaseManagement.Client.Models.People;
 
 namespace Exizent.CaseManagement.Client.Tests.GettingACaseTests;
@@ -12,6 +13,7 @@ public class CaseResourceRepresentationBuilder
     private readonly Fixture _fixture = new();
     private DeceasedResourceRepresentation? _deceased;
     private readonly List<PersonResourceRepresentation> _people = new();
+    private readonly List<OrganisationResourceRepresentation> _organisations = new();
     private readonly List<EstateItemResourceRepresentation> _estateItems = new();
     private readonly List<ExpenseResourceRepresentation> _expenses = new();
 
@@ -24,6 +26,12 @@ public class CaseResourceRepresentationBuilder
     public CaseResourceRepresentationBuilder With(PersonResourceRepresentation person)
     {
         _people.Add(person);
+        return this;
+    }
+
+    public CaseResourceRepresentationBuilder With(OrganisationResourceRepresentation organisation)
+    {
+        _organisations.Add(organisation);
         return this;
     }
 
@@ -47,6 +55,7 @@ public class CaseResourceRepresentationBuilder
             Deceased = _deceased ?? _fixture.Create<DeceasedResourceRepresentation>(),
             People = _people.AsReadOnly(),
             EstateItems = _estateItems,
+            Organisations = _organisations,
             Expenses = _expenses
         };
     }

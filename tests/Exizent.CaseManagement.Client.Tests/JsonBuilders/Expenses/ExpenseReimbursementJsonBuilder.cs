@@ -7,13 +7,14 @@ public class ExpenseReimbursementJsonBuilder
 {
     public static JsonObject Build(ExpenseReimbursementResourceRepresentation resourceRepresentation)
     {
-        var jsonObject = new JsonObject();
-        
-        jsonObject.Add("value", resourceRepresentation.Value);
-        jsonObject.Add("sourceOfFunds", resourceRepresentation.SourceOfFunds.ToString("G"));
-        jsonObject.Add("at", resourceRepresentation.At.ToString("O"));
-        jsonObject.Add("estateItemId", resourceRepresentation.EstateItemId);
-        jsonObject.Add("personId", resourceRepresentation.PersonId);
+        var jsonObject = new JsonObject
+        {
+            { "value", resourceRepresentation.Value },
+            { "sourceOfFunds", resourceRepresentation.SourceOfFunds.ToString("G") },
+            { "at", resourceRepresentation.At.ToString("O") },
+            { "estateItemId", resourceRepresentation.EstateItemId },
+            { "personId", resourceRepresentation.PersonId }
+        };
 
         return jsonObject;
     }

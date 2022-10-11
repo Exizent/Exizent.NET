@@ -7,13 +7,14 @@ public static class AddressJsonBuilder
 {
     public static JsonObject Build(AddressResourceRepresentation address)
     {
-        var jsonObject = new JsonObject();
-
-        jsonObject.Add("buildingNumber", address.BuildingNumber);
-        jsonObject.Add("buildingNameOrFlatNumber", address.BuildingNameOrFlatNumber);
-        jsonObject.Add("streetName", address.StreetName);
-        jsonObject.Add("city", address.City);
-        jsonObject.Add("postcode", address.Postcode);
+        var jsonObject = new JsonObject
+        {
+            { "buildingNumber", address.BuildingNumber },
+            { "buildingNameOrFlatNumber", address.BuildingNameOrFlatNumber },
+            { "streetName", address.StreetName },
+            { "city", address.City },
+            { "postcode", address.Postcode }
+        };
 
         return jsonObject;
     }

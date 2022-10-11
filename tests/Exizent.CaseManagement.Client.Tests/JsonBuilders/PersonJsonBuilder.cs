@@ -7,37 +7,38 @@ public static class PersonJsonBuilder
 {
     public static JsonObject Build(PersonResourceRepresentation resourceRepresentation)
     {
-        var jsonObject = new JsonObject();
-
-        jsonObject.Add("id", resourceRepresentation.Id);
-        jsonObject.Add("roles",
-            new JsonArray(resourceRepresentation.Roles.Select(x => JsonValue.Create(x.ToString("G"))).ToArray<JsonNode?>()));
-        jsonObject.Add("executorStatus", resourceRepresentation.ExecutorStatus?.ToString());
-        jsonObject.Add("title", resourceRepresentation.Title);
-        jsonObject.Add("firstName", resourceRepresentation.FirstName);
-        jsonObject.Add("lastName", resourceRepresentation.LastName);
-        jsonObject.Add("middleName", resourceRepresentation.MiddleName);
-        jsonObject.Add("otherNames",
-            new JsonArray(resourceRepresentation.OtherNames?.Select(x => JsonValue.Create(x)).ToArray<JsonNode?>() ??
-                          Array.Empty<JsonNode>()));
-        jsonObject.Add("relationshipToDeceased", resourceRepresentation.RelationshipToDeceased?.ToString());
-        jsonObject.Add("otherRelationshipToDeceased", resourceRepresentation.OtherRelationshipToDeceased);
-        jsonObject.Add("dateOfBirth", resourceRepresentation.DateOfBirth);
-        jsonObject.Add("dateOfDeath", resourceRepresentation.DateOfDeath);
-        jsonObject.Add("contactNumber", resourceRepresentation.ContactNumber);
-        jsonObject.Add("emailAddress", resourceRepresentation.EmailAddress);
-        jsonObject.Add("occupation", resourceRepresentation.Occupation);
-        jsonObject.Add("niNumber", resourceRepresentation.NiNumber);
-        jsonObject.Add("address",
-            resourceRepresentation.Address is null ? null : AddressJsonBuilder.Build(resourceRepresentation.Address));
-        jsonObject.Add("notes", resourceRepresentation.Notes);
-        jsonObject.Add("bankDetails",
-            resourceRepresentation.BankDetails is null
+        var jsonObject = new JsonObject
+        {
+            { "id", resourceRepresentation.Id },
+            {
+                "roles",
+                new JsonArray(resourceRepresentation.Roles.Select(x => JsonValue.Create(x.ToString("G")))
+                    .ToArray<JsonNode?>())
+            },
+            { "executorStatus", resourceRepresentation.ExecutorStatus?.ToString() },
+            { "title", resourceRepresentation.Title },
+            { "firstName", resourceRepresentation.FirstName },
+            { "lastName", resourceRepresentation.LastName },
+            { "middleName", resourceRepresentation.MiddleName },
+            { "otherNames", new JsonArray(resourceRepresentation.OtherNames?.Select(x => JsonValue.Create(x)).ToArray<JsonNode?>() ??
+                                          Array.Empty<JsonNode>()) },
+            { "relationshipToDeceased", resourceRepresentation.RelationshipToDeceased?.ToString() },
+            { "otherRelationshipToDeceased", resourceRepresentation.OtherRelationshipToDeceased },
+            { "dateOfBirth", resourceRepresentation.DateOfBirth },
+            { "dateOfDeath", resourceRepresentation.DateOfDeath },
+            { "contactNumber", resourceRepresentation.ContactNumber },
+            { "emailAddress", resourceRepresentation.EmailAddress },
+            { "occupation", resourceRepresentation.Occupation },
+            { "niNumber", resourceRepresentation.NiNumber },
+            { "address", resourceRepresentation.Address is null ? null : AddressJsonBuilder.Build(resourceRepresentation.Address) },
+            { "notes", resourceRepresentation.Notes },
+            { "bankDetails", resourceRepresentation.BankDetails is null
                 ? null
-                : BankDetailsJsonBuilder.Build(resourceRepresentation.BankDetails));
-        jsonObject.Add("isSignatory", resourceRepresentation.IsSignatory);
-        jsonObject.Add("createdAt", resourceRepresentation.CreatedAt);
-        
+                : BankDetailsJsonBuilder.Build(resourceRepresentation.BankDetails) },
+            { "isSignatory", resourceRepresentation.IsSignatory },
+            { "createdAt", resourceRepresentation.CreatedAt }
+        };
+
         return jsonObject;
     }
 }
