@@ -9,14 +9,19 @@ public static class CaseJsonBuilder
 {
     public static JsonObject Build(CaseResourceRepresentation resourceRepresentation)
     {
-        var jsonObject = new JsonObject();
-
-        jsonObject.Add("id", resourceRepresentation.Id);
-        jsonObject.Add("deceased", DeceasedJsonBuilder.Build(resourceRepresentation.Deceased));
+        var jsonObject = new JsonObject
+        {
+            { "id", resourceRepresentation.Id },
+            { "deceased", DeceasedJsonBuilder.Build(resourceRepresentation.Deceased) }
+        };
 
         var people = new JsonArray(resourceRepresentation.People.Select(
             PersonJsonBuilder.Build).ToArray<JsonNode?>());
         jsonObject.Add("people", people);
+
+        var organisations = new JsonArray(resourceRepresentation.Organisations.Select(
+            OrganisationJsonBuilder.Build).ToArray<JsonNode?>());
+        jsonObject.Add("organisations", organisations);
 
         var estateItems = new JsonArray(resourceRepresentation.EstateItems.Select(x =>
             EstateItemJsonBuilderFactory.Create(x).Build()).ToArray<JsonNode?>());

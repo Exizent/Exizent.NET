@@ -7,21 +7,21 @@ public class ExpenseJsonBuilder
 {
     public static JsonObject Build(ExpenseResourceRepresentation resourceRepresentation)
     {
-        var jsonObject = new JsonObject();
-
-        jsonObject.Add("id", resourceRepresentation.Id);
-        jsonObject.Add("description", resourceRepresentation.Description);
-        jsonObject.Add("caseItemId", resourceRepresentation.CaseItemId);
-        jsonObject.Add("value", resourceRepresentation.Value);
-        jsonObject.Add("from", resourceRepresentation.From.ToString("O"));
-        jsonObject.Add("to", resourceRepresentation.To.ToString("O"));
-        jsonObject.Add("supplier", resourceRepresentation.Supplier);
-        jsonObject.Add("paidByThirdParty", resourceRepresentation.PaidByThirdParty);
-        jsonObject.Add("reimbursement",
-            resourceRepresentation.Reimbursement is null
+        var jsonObject = new JsonObject
+        {
+            { "id", resourceRepresentation.Id },
+            { "description", resourceRepresentation.Description },
+            { "caseItemId", resourceRepresentation.CaseItemId },
+            { "value", resourceRepresentation.Value },
+            { "from", resourceRepresentation.From.ToString("O") },
+            { "to", resourceRepresentation.To.ToString("O") },
+            { "supplier", resourceRepresentation.Supplier },
+            { "paidByThirdParty", resourceRepresentation.PaidByThirdParty },
+            { "reimbursement", resourceRepresentation.Reimbursement is null
                 ? null
-                : ExpenseReimbursementJsonBuilder.Build(resourceRepresentation.Reimbursement));
-        jsonObject.Add("notes", resourceRepresentation.Notes);
+                : ExpenseReimbursementJsonBuilder.Build(resourceRepresentation.Reimbursement) },
+            { "notes", resourceRepresentation.Notes }
+        };
 
 
         return jsonObject;

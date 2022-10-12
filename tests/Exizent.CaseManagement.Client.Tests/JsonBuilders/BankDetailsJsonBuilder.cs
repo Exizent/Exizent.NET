@@ -7,13 +7,14 @@ public static class BankDetailsJsonBuilder
 {
     public static JsonObject Build(BankAccountDetailsResourceRepresentation bankAccountDetails)
     {
-        var jsonObject = new JsonObject();
- 
-        jsonObject.Add("name", bankAccountDetails.Name);
-        jsonObject.Add("nameOnAccount", bankAccountDetails.NameOnAccount);
-        jsonObject.Add("accountNumber", bankAccountDetails.AccountNumber);
-        jsonObject.Add("sortCode", bankAccountDetails.SortCode);
- 
+        var jsonObject = new JsonObject
+        {
+            { "name", bankAccountDetails.Name },
+            { "nameOnAccount", bankAccountDetails.NameOnAccount },
+            { "accountNumber", bankAccountDetails.AccountNumber },
+            { "sortCode", bankAccountDetails.SortCode }
+        };
+
         return jsonObject;
     }
 }
