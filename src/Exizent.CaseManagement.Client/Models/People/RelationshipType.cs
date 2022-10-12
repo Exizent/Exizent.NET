@@ -30,6 +30,7 @@ public enum RelationshipType
     DaughterInLaw = 21,
     BrotherInLaw = 22,
     SisterInLaw = 23,
-    Partner = 24
+    Partner = 24,
+    Organisation = 25
 
 }
