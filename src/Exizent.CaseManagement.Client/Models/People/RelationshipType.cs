@@ -23,14 +23,15 @@ public enum RelationshipType
     Cousin = 14,
     Friend = 15,
     Other = 16,
-    Solicitor = 17,
-    MotherInLaw = 18,
-    FatherInLaw = 19,
-    SonInLaw = 20,
-    DaughterInLaw = 21,
-    BrotherInLaw = 22,
-    SisterInLaw = 23,
-    Partner = 24,
-    Organisation = 25
+    Organisation = 17,
+    Solicitor = 18,
+    MotherInLaw = 19,
+    FatherInLaw = 20,
+    SonInLaw = 21,
+    DaughterInLaw = 22,
+    BrotherInLaw = 23,
+    SisterInLaw = 24,
+    Partner = 25,
+
 
 }
