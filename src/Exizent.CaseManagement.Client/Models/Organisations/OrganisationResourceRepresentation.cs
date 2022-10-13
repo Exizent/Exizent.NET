@@ -9,7 +9,7 @@ public class OrganisationResourceRepresentation
     public string? Type { get; init; }
     public IReadOnlyList<OrganisationRole> Roles { get; init; } = null!;
     public ExecutorStatus? ExecutorStatus { get; init; }
-    public ProfessionalExecutorSignatoryResourceRepresentation? Signatory { get; init; }
+    public IndividualSignatoryDetails? IndividualSignatoryDetails { get; init; }
     public string? RegisteredCharityNumber { get; init; }
     public string? CompaniesHouseNumber { get; init; }
     public AddressResourceRepresentation? Address { get; init; }
@@ -17,4 +17,5 @@ public class OrganisationResourceRepresentation
     public string? ContactNumber { get; init; }
     public string? EmailAddress { get; init; }
     public string? Notes { get; init; }
+    public bool IsC1Signatory { get; init; }
 }
