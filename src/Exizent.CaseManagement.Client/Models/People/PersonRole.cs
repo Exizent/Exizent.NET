@@ -7,5 +7,6 @@ public enum PersonRole
     Beneficiary = 3,
     Creditor = 4,
     LeadTrusteeParentOrGuardian = 5,
-    SurvivingJointOwner = 6
+    SurvivingJointOwner = 6,
+    ProfessionalExecutorSignatory = 7
 }
