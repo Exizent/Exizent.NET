@@ -30,6 +30,7 @@ public static class OrganisationJsonBuilder
             { "individualSignatoryDetails", resourceRepresentation.IndividualSignatoryDetails is null
                 ? null
                 :  IndividualSignatoryDetailsJsonBuilder.Build(resourceRepresentation.IndividualSignatoryDetails) },
+            { "isSignatory", resourceRepresentation.IsSignatory },
             { "updatedAt", resourceRepresentation.UpdatedAt },
             { "createdAt", resourceRepresentation.CreatedAt }
 
