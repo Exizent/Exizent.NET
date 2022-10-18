@@ -5,7 +5,7 @@ namespace Exizent.CaseManagement.Client.Tests.JsonBuilders;
 
 public static class SignatoryJsonBuilder
 {
-    public static JsonObject Build(ProfessionalExecutorSignatoryResourceRepresentation? signatoryDetails)
+    public static JsonObject Build(IndividualSignatoryDetailsResourceRepresentation? signatoryDetails)
     {
         var jsonObject = new JsonObject
         {
