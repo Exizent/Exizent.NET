@@ -17,4 +17,6 @@ public class OrganisationResourceRepresentation
     public string? ContactNumber { get; init; }
     public string? EmailAddress { get; init; }
     public string? Notes { get; init; }
+    public DateTime CreatedAt { get; init; }
+    public DateTime UpdatedAt { get; init; }
 }
