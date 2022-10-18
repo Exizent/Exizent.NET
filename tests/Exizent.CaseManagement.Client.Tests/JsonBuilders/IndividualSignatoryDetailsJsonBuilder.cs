@@ -3,7 +3,7 @@ using Exizent.CaseManagement.Client.Models.Organisations;
 
 namespace Exizent.CaseManagement.Client.Tests.JsonBuilders;
 
-public static class SignatoryJsonBuilder
+public static class IndividualSignatoryDetailsJsonBuilder
 {
     public static JsonObject Build(IndividualSignatoryDetailsResourceRepresentation? signatoryDetails)
     {

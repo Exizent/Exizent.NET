@@ -29,8 +29,11 @@ public static class OrganisationJsonBuilder
                 : BankDetailsJsonBuilder.Build(resourceRepresentation.BankDetails) },
             { "individualSignatoryDetails", resourceRepresentation.IndividualSignatoryDetails is null
                 ? null
-                :  SignatoryJsonBuilder.Build(resourceRepresentation.IndividualSignatoryDetails) },
-            { "isSignatory", resourceRepresentation.IsSignatory }
+                :  IndividualSignatoryDetailsJsonBuilder.Build(resourceRepresentation.IndividualSignatoryDetails) },
+            { "isSignatory", resourceRepresentation.IsSignatory },
+            { "updatedAt", resourceRepresentation.UpdatedAt },
+            { "createdAt", resourceRepresentation.CreatedAt }
+
         };
 
         return jsonObject;
