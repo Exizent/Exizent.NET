@@ -7,5 +7,6 @@ public enum MiscellaneousAssetClassification
     MoneyOwedToThePerson,
     PartnerShipAndBusinessInterests,
     Jewellery,
-    AntiquesWorksOfArtOrCollections
+    AntiquesWorksOfArtOrCollections,
+    Cash
 }
