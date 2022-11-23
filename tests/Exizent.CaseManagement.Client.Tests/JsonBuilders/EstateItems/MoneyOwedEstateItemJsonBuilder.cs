@@ -18,9 +18,9 @@ public class MoneyOwedEstateItemJsonBuilder : EstateItemJsonBuilder<MoneyOwedRes
         jsonObject.Add("proportionOwned", resourceRepresentation.ProportionOwned);
         jsonObject.Add("isPassedToSurvivingJointOwner", resourceRepresentation.IsPassedToSurvivingJointOwner);
         jsonObject.Add("notPassedDetails", resourceRepresentation.NotPassedDetails);
-        jsonObject.Add("itemClassification", resourceRepresentation.ItemClassification.ToString("G"));
+        jsonObject.Add("classification", resourceRepresentation.Classification.ToString("G"));
         jsonObject.Add("institution", resourceRepresentation.Institution);
-        jsonObject.Add("itemDescription", resourceRepresentation.ItemDescription);
+        jsonObject.Add("description", resourceRepresentation.Description);
         jsonObject.Add("expectedValue", resourceRepresentation.ExpectedValue);
         jsonObject.Add("isValidForInheritanceTax", resourceRepresentation.IsValidForInheritanceTax);
         jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
