@@ -16,6 +16,7 @@ public enum EstateItemType
     LifePolicy,
     MiscellaneousAsset,
     MiscellaneousDebt,
+    MoneyOwed,
     Mortgage,
     NomineeInvestmentAccount,
     Pension,
