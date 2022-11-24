@@ -4,7 +4,7 @@ public enum MoneyOwedClassification
 {
     Other,
     OutstandingLoans,
-    PensionsArrears,
+    PensionArrears,
     Refunds,
     TaxRepayments,
     TrustIncome
