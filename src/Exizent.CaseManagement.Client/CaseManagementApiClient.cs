@@ -1,6 +1,5 @@
 using System.Globalization;
 using System.Net;
-using System.Net.Http.Json;
 using System.Text.Json;
 using Exizent.CaseManagement.Client.Models;
 
@@ -14,10 +13,29 @@ public class CaseManagementApiClient : ICaseManagementApiClient
     {
         _client = httpClient;
     }
-
-    public async Task<CaseResourceRepresentation?> GetCase(Guid caseId, int? companyId = null, GetCaseOptions? options = null, CancellationToken cancellationToken = default)
+    public async Task<CaseResourceRepresentation?> GetCase(Guid caseId, int? companyId = null, CancellationToken cancellationToken = default)
     {
-        var expandCompany = options?.ExpandCompany ?? false ? "company" : null;
+        return await GetCase(caseId, companyId,  new GetCaseOptions(), cancellationToken);
+    }
+
+    public async Task<CaseResourceRepresentation?> GetCase(Guid caseId, int companyId, CancellationToken cancellationToken = default)
+    {
+        return await GetCase(caseId, companyId, new GetCaseOptions(), cancellationToken);
+    }
+
+    public async Task<CaseResourceRepresentation?> GetCase(Guid caseId, int companyId, GetCaseOptions options, CancellationToken cancellationToken = default)
+    {
+        return await GetCase(caseId, companyId, options, cancellationToken);
+    }
+
+    public async  Task<CaseResourceRepresentation?> GetCase(Guid caseId, GetCaseOptions options, CancellationToken cancellationToken = default)
+    {
+        return await GetCase(caseId, null, options, cancellationToken);
+    }
+
+    private async Task<CaseResourceRepresentation?> GetCase(Guid caseId, int? companyId, GetCaseOptions options, CancellationToken cancellationToken)
+    {
+        var expandCompany = options.ExpandCompany ? "company" : null;
 
         var query = expandCompany is null ? "" : $"?expand={expandCompany}";
         using var request = new HttpRequestMessage(HttpMethod.Get, $"/cases/{caseId}{query}");

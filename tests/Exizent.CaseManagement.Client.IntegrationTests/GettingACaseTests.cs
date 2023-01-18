@@ -106,7 +106,7 @@ public class GettingACaseTests
         using var scope = serviceProvider.CreateScope();
         var client = scope.ServiceProvider.GetRequiredService<ICaseManagementApiClient>();
 
-        var @case = await client.GetCase(caseId, options: new GetCaseOptions{ExpandCompany = true});
+        var @case = await client.GetCase(caseId, new GetCaseOptions{ExpandCompany = true});
         @case!.Id.Should().Be(caseId);
         @case.Deceased.FirstName.Should().Be("Foo");
         @case.Deceased.LastName.Should().Be("Bar");
