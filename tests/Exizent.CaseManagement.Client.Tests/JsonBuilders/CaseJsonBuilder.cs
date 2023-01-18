@@ -14,7 +14,10 @@ public static class CaseJsonBuilder
             { "id", resourceRepresentation.Id },
             { "deceased", DeceasedJsonBuilder.Build(resourceRepresentation.Deceased) }
         };
-
+        
+        var company = CompanyJsonBuilder.Build(resourceRepresentation.Company);
+        jsonObject.Add("company", company);
+        
         var people = new JsonArray(resourceRepresentation.People.Select(
             PersonJsonBuilder.Build).ToArray<JsonNode?>());
         jsonObject.Add("people", people);

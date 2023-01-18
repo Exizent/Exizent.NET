@@ -1,5 +1,6 @@
 ﻿using AutoFixture;
 using Exizent.CaseManagement.Client.Models;
+using Exizent.CaseManagement.Client.Models.Company;
 using Exizent.CaseManagement.Client.Models.Deceased;
 using Exizent.CaseManagement.Client.Models.EstateItems;
 using Exizent.CaseManagement.Client.Models.Expenses;
@@ -11,11 +12,18 @@ namespace Exizent.CaseManagement.Client.Tests.GettingACaseTests;
 public class CaseResourceRepresentationBuilder
 {
     private readonly Fixture _fixture = new();
+    private CompanyResourceRepresentation? _company;
     private DeceasedResourceRepresentation? _deceased;
     private readonly List<PersonResourceRepresentation> _people = new();
     private readonly List<OrganisationResourceRepresentation> _organisations = new();
     private readonly List<EstateItemResourceRepresentation> _estateItems = new();
     private readonly List<ExpenseResourceRepresentation> _expenses = new();
+
+    public CaseResourceRepresentationBuilder With(CompanyResourceRepresentation? company)
+    {
+        _company = company;
+        return this;
+    }
 
     public CaseResourceRepresentationBuilder With(DeceasedResourceRepresentation deceased)
     {
@@ -52,6 +60,7 @@ public class CaseResourceRepresentationBuilder
         return new CaseResourceRepresentation
         {
             Id = Guid.NewGuid(),
+            Company = _company,
             Deceased = _deceased ?? _fixture.Create<DeceasedResourceRepresentation>(),
             People = _people.AsReadOnly(),
             EstateItems = _estateItems,

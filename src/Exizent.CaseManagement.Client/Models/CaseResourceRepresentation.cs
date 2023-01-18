@@ -1,3 +1,4 @@
+using Exizent.CaseManagement.Client.Models.Company;
 using Exizent.CaseManagement.Client.Models.Deceased;
 using Exizent.CaseManagement.Client.Models.EstateItems;
 using Exizent.CaseManagement.Client.Models.Expenses;
@@ -9,6 +10,8 @@ namespace Exizent.CaseManagement.Client.Models;
 public class CaseResourceRepresentation
 {
     public Guid Id { get; init; }
+
+    public CompanyResourceRepresentation? Company { get; init; }
     public DeceasedResourceRepresentation Deceased { get; init; } = null!;
     public IReadOnlyList<PersonResourceRepresentation> People { get; init; } = null!;
     public IReadOnlyList<OrganisationResourceRepresentation> Organisations { get; init; } = null!;

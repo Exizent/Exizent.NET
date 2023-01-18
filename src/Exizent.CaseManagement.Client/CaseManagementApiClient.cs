@@ -15,9 +15,12 @@ public class CaseManagementApiClient : ICaseManagementApiClient
         _client = httpClient;
     }
 
-    public async Task<CaseResourceRepresentation?> GetCase(Guid caseId, int? companyId = null, CancellationToken cancellationToken = default)
+    public async Task<CaseResourceRepresentation?> GetCase(Guid caseId, int? companyId = null, GetCaseOptions? options = null, CancellationToken cancellationToken = default)
     {
-        using var request = new HttpRequestMessage(HttpMethod.Get, $"/cases/{caseId}");
+        var expandCompany = options?.ExpandCompany ?? false ? "company" : null;
+
+        var query = expandCompany is null ? "" : $"?expand={expandCompany}";
+        using var request = new HttpRequestMessage(HttpMethod.Get, $"/cases/{caseId}{query}");
         if (companyId.HasValue)
         {
             request.Headers.Add("Company-Id", companyId.Value.ToString(CultureInfo.InvariantCulture));
