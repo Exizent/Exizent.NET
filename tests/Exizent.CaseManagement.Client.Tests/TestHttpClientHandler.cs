@@ -24,4 +24,8 @@ public class TestHttpClientHandler : HttpMessageHandler
     {
         _response.Add(("GET", $"/cases/{caseId}"), response);
     }
+    public void AddGetCaseWithCompanyResponse(Guid caseId, string response)
+    {
+        _response.Add(("GET", $"/cases/{caseId}?expand=company"), response);
+    }
 }

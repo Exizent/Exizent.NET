@@ -11,7 +11,7 @@ public class CaseResourceRepresentation
 {
     public Guid Id { get; init; }
 
-    public CompanyResourceRepresentation? Company { get; init; } = null!;
+    public CompanyResourceRepresentation? Company { get; init; }
     public DeceasedResourceRepresentation Deceased { get; init; } = null!;
     public IReadOnlyList<PersonResourceRepresentation> People { get; init; } = null!;
     public IReadOnlyList<OrganisationResourceRepresentation> Organisations { get; init; } = null!;
