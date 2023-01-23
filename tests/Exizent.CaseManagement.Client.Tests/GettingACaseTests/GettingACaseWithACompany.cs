@@ -27,7 +27,7 @@ public class GettingACaseWithACompany : IClassFixture<Harness>
 
         _harness.ClientHandler.AddGetCaseWithCompanyResponse(caseResourceRepresentation.Id, body.ToJsonString());
 
-        var caseDetails = await _harness.Client.GetCase(caseResourceRepresentation.Id, options: new GetCaseOptions {ExpandCompany = true} );
+        var caseDetails = await _harness.Client.GetCase(caseResourceRepresentation.Id, new GetCaseOptions {ExpandCompany = true} );
 
         using var _ = new AssertionScope();
         caseDetails.Should().NotBeNull();
@@ -45,7 +45,7 @@ public class GettingACaseWithACompany : IClassFixture<Harness>
 
         _harness.ClientHandler.AddGetCaseResponse(caseResourceRepresentation.Id, body.ToJsonString());
 
-        var caseDetails = await _harness.Client.GetCase(caseResourceRepresentation.Id, options: new GetCaseOptions {ExpandCompany = false} );
+        var caseDetails = await _harness.Client.GetCase(caseResourceRepresentation.Id, new GetCaseOptions {ExpandCompany = false} );
 
         using var _ = new AssertionScope();
         caseDetails.Should().NotBeNull();
