@@ -27,6 +27,7 @@ public class MiscellaneousAssetEstateItemJsonBuilder : EstateItemJsonBuilder<Mis
         jsonObject.Add("isValidForInheritanceTax", resourceRepresentation.IsValidForInheritanceTax);
         jsonObject.Add("isCharityDonation", resourceRepresentation.IsCharityDonation);
         jsonObject.Add("grossSaleProceeds", resourceRepresentation.GrossSaleProceeds);
+        jsonObject.Add("dateOfSale", resourceRepresentation.DateOfSale);
         jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
         jsonObject.Add("jointOwnerIds", new JsonArray(resourceRepresentation.JointOwnerIds.Select(x => (JsonNode)JsonValue.Create(x)!).ToArray()));
 
