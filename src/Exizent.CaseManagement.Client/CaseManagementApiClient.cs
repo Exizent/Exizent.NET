@@ -15,25 +15,25 @@ public class CaseManagementApiClient : ICaseManagementApiClient
     }
     public async Task<CaseResourceRepresentation?> GetCase(Guid caseId, int? companyId = null, CancellationToken cancellationToken = default)
     {
-        return await GetCase(caseId, companyId,  new GetCaseOptions(), cancellationToken);
+        return await GetCaseInternal(caseId, companyId,  new GetCaseOptions(), cancellationToken);
     }
 
     public async Task<CaseResourceRepresentation?> GetCase(Guid caseId, int companyId, CancellationToken cancellationToken = default)
     {
-        return await GetCase(caseId, companyId, new GetCaseOptions(), cancellationToken);
+        return await GetCaseInternal(caseId, companyId, new GetCaseOptions(), cancellationToken);
     }
 
     public async Task<CaseResourceRepresentation?> GetCase(Guid caseId, int companyId, GetCaseOptions options, CancellationToken cancellationToken = default)
     {
-        return await GetCase(caseId, companyId, options, cancellationToken);
+        return await GetCaseInternal(caseId, companyId, options, cancellationToken);
     }
 
     public async  Task<CaseResourceRepresentation?> GetCase(Guid caseId, GetCaseOptions options, CancellationToken cancellationToken = default)
     {
-        return await GetCase(caseId, null, options, cancellationToken);
+        return await GetCaseInternal(caseId, null, options, cancellationToken);
     }
 
-    private async Task<CaseResourceRepresentation?> GetCase(Guid caseId, int? companyId, GetCaseOptions options, CancellationToken cancellationToken)
+    private async Task<CaseResourceRepresentation?> GetCaseInternal(Guid caseId, int? companyId, GetCaseOptions options, CancellationToken cancellationToken)
     {
         var expandCompany = options.ExpandCompany ? "company" : null;
 
