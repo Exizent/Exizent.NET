@@ -35,6 +35,29 @@ public class GettingACaseWithACompany : IClassFixture<Harness>
         caseDetails.Company.Should().BeEquivalentTo(caseResourceRepresentation.Company);
     }
     
+
+    [Fact]
+    public async Task ShouldReturnACaseWithCompanyDetailsOverLoad2()
+    {
+
+        var expectedCompany = _harness.Fixture.Create<CompanyResourceRepresentation>();
+
+        var caseResourceRepresentation = new CaseResourceRepresentationBuilder()
+            .With(expectedCompany)
+            .Build();
+
+        var body = CaseJsonBuilder.Build(caseResourceRepresentation);
+
+        _harness.ClientHandler.AddGetCaseWithCompanyResponse(caseResourceRepresentation.Id, body.ToJsonString());
+
+        var caseDetails = await _harness.Client.GetCase(caseResourceRepresentation.Id, 0, new GetCaseOptions {ExpandCompany = true} );
+
+        using var _ = new AssertionScope();
+        caseDetails.Should().NotBeNull();
+        caseDetails!.Id.Should().Be(caseResourceRepresentation.Id);
+        caseDetails.Company.Should().BeEquivalentTo(caseResourceRepresentation.Company);
+    }
+
     [Fact]
     public async Task ShouldReturnACaseWithNullCompany()
     {
