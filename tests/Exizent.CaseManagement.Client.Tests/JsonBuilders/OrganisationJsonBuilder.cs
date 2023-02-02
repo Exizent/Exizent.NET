@@ -19,6 +19,7 @@ public static class OrganisationJsonBuilder
             { "name", resourceRepresentation.Name },
             { "type", resourceRepresentation.Type },
             { "companiesHouseNumber", resourceRepresentation.CompaniesHouseNumber },
+            { "uniqueTaxpayerReference", resourceRepresentation.UniqueTaxpayerReference },
             { "registeredCharityNumber", resourceRepresentation.RegisteredCharityNumber },
             { "contactNumber", resourceRepresentation.ContactNumber },
             { "emailAddress", resourceRepresentation.EmailAddress },

@@ -12,6 +12,8 @@ public class OrganisationResourceRepresentation
     public IndividualSignatoryDetailsResourceRepresentation? IndividualSignatoryDetails { get; init; }
     public string? RegisteredCharityNumber { get; init; }
     public string? CompaniesHouseNumber { get; init; }
+    
+    public string? UniqueTaxpayerReference { get; init; }
     public AddressResourceRepresentation? Address { get; init; }
     public BankAccountDetailsResourceRepresentation? BankDetails { get; init; }
     public string? ContactNumber { get; init; }
