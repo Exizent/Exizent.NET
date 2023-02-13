@@ -11,7 +11,7 @@ public static class CompanyAddressJsonBuilder
         {
             { "buildingNumber", address.BuildingNumber },
             { "buildingName", address.BuildingName },
-            { "streetName", address.StreetName },
+            { "street", address.Street },
             { "city", address.City },
             { "postcode", address.Postcode }
         };
