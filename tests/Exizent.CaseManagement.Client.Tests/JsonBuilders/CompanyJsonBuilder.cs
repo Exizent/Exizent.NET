@@ -16,7 +16,7 @@ public static class CompanyJsonBuilder
         {
             { "name", company.Name },
             { "officePhoneNumber", company.OfficePhoneNumber },
-            { "address", company.Address is null ? null : AddressJsonBuilder.Build(company.Address) },
+            { "address", company.Address is null ? null : CompanyAddressJsonBuilder.Build(company.Address) },
         };
 
         return deceasedJson;
