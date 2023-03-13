@@ -4,9 +4,9 @@ using Exizent.CaseManagement.Client.Models.EstateItems;
 
 namespace Exizent.CaseManagement.Client.Tests.JsonBuilders;
 
-public class FinancialGiftsDetailsEstateItemJsonBuilder 
+public class FinancialGiftsDetailsJsonBuilder 
 {
-    public FinancialGiftsDetailsEstateItemJsonBuilder(FinancialGiftsDetailsResourceRepresentation resourceRepresentation)
+    public FinancialGiftsDetailsJsonBuilder(FinancialGiftsDetailsResourceRepresentation resourceRepresentation)
     {
     }
               

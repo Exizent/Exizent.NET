@@ -18,12 +18,14 @@ public static class CaseJsonBuilder
         if (resourceRepresentation.FinancialGiftsDetails is not null)
         {
             jsonObject.Add("financialGiftsDetails",
-                FinancialGiftsDetailsEstateItemJsonBuilder.Build(resourceRepresentation.FinancialGiftsDetails));
+                FinancialGiftsDetailsJsonBuilder.Build(resourceRepresentation.FinancialGiftsDetails));
         }
 
         var company = CompanyJsonBuilder.Build(resourceRepresentation.Company);
-        jsonObject.Add("company", company);
-        
+        if(company is not null)
+        {
+            jsonObject.Add("company", company);
+        }        
         var people = new JsonArray(resourceRepresentation.People.Select(
             PersonJsonBuilder.Build).ToArray<JsonNode?>());
         jsonObject.Add("people", people);
