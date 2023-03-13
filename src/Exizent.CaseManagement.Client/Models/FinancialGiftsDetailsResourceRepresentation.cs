@@ -1,6 +1,6 @@
 ﻿namespace Exizent.CaseManagement.Client.Models;
 
-public class FinancialGiftDetailsResourceRepresentation
+public class FinancialGiftsDetailsResourceRepresentation
 {
     public string DidDeceasedMakeAnyGiftsOrTransfers { get; init; } = null!;
     public string DidDeceasedBenefitFromAnyAssets { get; init; } = null!;

@@ -63,7 +63,7 @@ public class GettingACaseTests
         @case.Company.Should().BeNull();
     }
     
-        [Fact]
+    [Fact]
     public async Task ShouldReturnCaseOverload2()
     {
         var clientId = Guid.NewGuid().ToString();
