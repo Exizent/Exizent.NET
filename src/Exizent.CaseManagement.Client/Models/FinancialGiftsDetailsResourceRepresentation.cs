@@ -2,9 +2,9 @@
 
 public class FinancialGiftsDetailsResourceRepresentation
 {
-    public string DidDeceasedMakeAnyGiftsOrTransfers { get; init; } = null!;
-    public string DidDeceasedBenefitFromAnyAssets { get; init; } = null!;
-    public string DidDeceasedMakeUseOfTheAsset { get; init; } = null!;
-    public string DidPersonGiftDidNotTakeFullPossession { get; init; } = null!;
-    public string ElectionForInheritanceTax { get; init; } = null!;
+    public bool HasMadeGiftsOverAnnualLimit { get; init; }
+    public bool HasGivenUpTrustAssetsWithinTimeLimit { get; init; }
+    public bool ContinuedToBenefitFromGift { get; init; }
+    public bool MadeGiftWhereRecipientDidNotTakeFullPossession { get; init; }
+    public bool ElectedThatIhtShouldNotApplyToAssetsPreviouslyOwned { get; init; }
 }
