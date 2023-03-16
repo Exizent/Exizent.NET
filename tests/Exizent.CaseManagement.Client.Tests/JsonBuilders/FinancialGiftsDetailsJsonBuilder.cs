@@ -18,12 +18,11 @@ public class FinancialGiftsDetailsJsonBuilder
         }
         return new JsonObject
         {
-            {"type", nameof(EstateItemType.FinancialGift)},
-            {"electionForInheritanceTax", resourceRepresentation.ElectionForInheritanceTax},
-            {"didDeceasedBenefitFromAnyAssets", resourceRepresentation.DidDeceasedBenefitFromAnyAssets},
-            {"didDeceasedMakeAnyGiftsOrTransfers", resourceRepresentation.DidDeceasedMakeAnyGiftsOrTransfers},
-            {"didDeceasedMakeUseOfTheAsset", resourceRepresentation.DidDeceasedMakeUseOfTheAsset},
-            {"didPersonGiftDidNotTakeFullPossession", resourceRepresentation.DidPersonGiftDidNotTakeFullPossession},
+            {"continuedToBenefitFromGift", resourceRepresentation.ContinuedToBenefitFromGift},
+            {"hasMadeGiftsOverAnnualLimit", resourceRepresentation.HasMadeGiftsOverAnnualLimit},
+            {"hasGivenUpTrustAssetsWithinTimeLimit", resourceRepresentation.HasGivenUpTrustAssetsWithinTimeLimit},
+            {"madeGiftWhereRecipientDidNotTakeFullPossession", resourceRepresentation.MadeGiftWhereRecipientDidNotTakeFullPossession},
+            {"electedThatIhtShouldNotApplyToAssetsPreviouslyOwned", resourceRepresentation.ElectedThatIhtShouldNotApplyToAssetsPreviouslyOwned},
         };
     }
 }
