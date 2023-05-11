@@ -6,6 +6,7 @@ namespace Exizent.CaseManagement.Client.Models.EstateItems;
 public class PensionResourceRepresentation : EstateItemResourceRepresentation
 {
     public AddressResourceRepresentation Address { get; init; } = null!;
+    public string? PensionType { get; init; }
     public string? Provider { get; init; }
     public string? PlanReference { get; init; }
     public bool? HasValidNominationForm { get; init; }
