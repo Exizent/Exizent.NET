@@ -17,6 +17,7 @@ public class PensionEstateItemJsonBuilder : EstateItemJsonBuilder<PensionResourc
         jsonObject.Add("address", AddressJsonBuilder.Build(resourceRepresentation.Address));
         jsonObject.Add("provider", resourceRepresentation.Provider);
         jsonObject.Add("planReference", resourceRepresentation.PlanReference);
+        jsonObject.Add("pensionType", resourceRepresentation.PensionType);
         jsonObject.Add("hasValidNominationForm", resourceRepresentation.HasValidNominationForm);
         jsonObject.Add("deathBenefitValuePayable", resourceRepresentation.DeathBenefitValuePayable);
         jsonObject.Add("beneficiaryDetails", resourceRepresentation.BeneficiaryDetails);
