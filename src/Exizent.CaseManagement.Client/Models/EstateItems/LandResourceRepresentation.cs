@@ -36,6 +36,7 @@ public class LandResourceRepresentation : EstateItemResourceRepresentation
     public bool IsSubjectToSpecialFactors { get; init; }
     public string? SpecialFactorsDescription { get; init; }
     public bool IsCharityDonation { get; init; }
+    public bool IsClaimingResidenceNilRateBand { get; init; }
     public bool IsHeritable { get; init; }
     public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
     public IReadOnlyList<Guid> JointOwnerIds { get; init; } = Array.Empty<Guid>();
