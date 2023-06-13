@@ -22,6 +22,8 @@ public class LifePolicyEstateItemJsonBuilder : EstateItemJsonBuilder<LifePolicyR
         jsonObject.Add("paysOnDeathOfDeceased", resourceRepresentation.PaysOnDeathOfDeceased);
         jsonObject.Add("beneficiaryDetails", resourceRepresentation.BeneficiaryDetails);
         jsonObject.Add("comments", resourceRepresentation.Comments);
+        jsonObject.Add("proportionOwned", resourceRepresentation.ProportionOwned);
+        jsonObject.Add("jointOwnerIds", new JsonArray(resourceRepresentation.JointOwnerIds.Select(x => (JsonNode)JsonValue.Create(x)!).ToArray()));
         jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
 
         return jsonObject;
