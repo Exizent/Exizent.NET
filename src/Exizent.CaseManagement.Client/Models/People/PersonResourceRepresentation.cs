@@ -22,5 +22,6 @@ public class PersonResourceRepresentation
     public string? Notes { get; init; }
     public BankAccountDetailsResourceRepresentation? BankDetails { get; init; }
     public bool? IsSignatory { get; init; }
+    public string? PlaceOfMarriage { get; init; }
     public DateTime CreatedAt { get; init; }
 }
