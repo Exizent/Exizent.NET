@@ -37,6 +37,7 @@ public static class PersonJsonBuilder
                 : BankDetailsJsonBuilder.Build(resourceRepresentation.BankDetails) },
             { "isSignatory", resourceRepresentation.IsSignatory },
             { "placeOfMarriage", resourceRepresentation.PlaceOfMarriage },
+            { "dateOfMarriageOrCivilPartnership", resourceRepresentation.DateOfMarriageOrCivilPartnership },
             { "createdAt", resourceRepresentation.CreatedAt }
         };
 
