@@ -29,5 +29,8 @@ public enum GiftRelationshipType
     SisterInLaw = 25,
     Solicitor = 26,
     Son = 27,
-    SonInLaw = 28
+    SonInLaw = 28,
+    BusinessPartner = 29,
+    CivilPartner = 30,
+    Spouse = 31,
 }
