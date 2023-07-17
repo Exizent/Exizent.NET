@@ -2,11 +2,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
-namespace Exizent.CaseManagement.Client.Models.People;
+namespace Exizent.CaseManagement.Client.Models;
 
 public enum RelationshipType
 {
-
     Husband = 1,
     Wife = 2,
     BiologicalChild = 3,
@@ -31,5 +30,11 @@ public enum RelationshipType
     DaughterInLaw = 22,
     BrotherInLaw = 23,
     SisterInLaw = 24,
-    Partner = 25
+    Partner = 25,
+    Son = 26,
+    Daughter = 27,
+    BusinessPartner = 28,
+    CivilPartner = 29,
+    Spouse = 30,
+    Charity = 31
 }

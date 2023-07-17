@@ -16,6 +16,6 @@ public class FinancialGiftResourceRepresentation : EstateItemResourceRepresentat
     public FinancialGiftExemptionCategory? ExemptionCategory { get; init; }
     public string? ExemptionDetails { get; init; }
     public GiftType GiftType { get; init; }
-    public GiftRelationshipType? RelationshipToDeceased { get; set; }
+    public RelationshipType? RelationshipToDeceased { get; set; }
     public string? OtherRelationshipToDeceasedDetails { get; set; }
 }
