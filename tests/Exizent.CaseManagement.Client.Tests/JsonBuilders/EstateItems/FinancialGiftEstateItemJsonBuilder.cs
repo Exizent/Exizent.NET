@@ -9,7 +9,18 @@ public class FinancialGiftEstateItemJsonBuilder : EstateItemJsonBuilder<Financia
         : base(resourceRepresentation)
     {
     }
-              
+
+    private static JsonObject BuildGiftExemptionResourceRepresentation(
+        GiftExemptionResourceRepresentation resourceRepresentation)
+    {
+        var jsonObject = new JsonObject();
+
+        jsonObject.Add("category", (int)resourceRepresentation.Category);
+        jsonObject.Add("details", resourceRepresentation.Details);
+        jsonObject.Add("value", resourceRepresentation.Value);
+        return jsonObject;
+    }
+
     protected override JsonObject InnerBuild(JsonObject jsonObject,
         FinancialGiftResourceRepresentation resourceRepresentation)
     {
@@ -26,7 +37,7 @@ public class FinancialGiftEstateItemJsonBuilder : EstateItemJsonBuilder<Financia
         jsonObject.Add("dateOfGift", resourceRepresentation.DateOfGift);
         jsonObject.Add("relationshipToDeceased", resourceRepresentation.RelationshipToDeceased.ToString());
         jsonObject.Add("otherRelationshipToDeceasedDetails", resourceRepresentation.OtherRelationshipToDeceasedDetails);
-
+        jsonObject.Add("exemptions",new JsonArray(resourceRepresentation.Exemptions.Select(BuildGiftExemptionResourceRepresentation).ToArray<JsonNode>()));
         return jsonObject;
     }
 }

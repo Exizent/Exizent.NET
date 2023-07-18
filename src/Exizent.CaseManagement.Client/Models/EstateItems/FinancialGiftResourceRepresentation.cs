@@ -12,6 +12,7 @@ public class FinancialGiftResourceRepresentation : EstateItemResourceRepresentat
     public string? Description { get; init; }
     public decimal? GrossValue { get; init; }
     public decimal? ExemptionValue { get; init; }
+    public List<GiftExemptionResourceRepresentation> Exemptions { get; init; } = null!;
     public DateTime? DateOfGift { get; init; }
     public FinancialGiftExemptionCategory? ExemptionCategory { get; init; }
     public string? ExemptionDetails { get; init; }
