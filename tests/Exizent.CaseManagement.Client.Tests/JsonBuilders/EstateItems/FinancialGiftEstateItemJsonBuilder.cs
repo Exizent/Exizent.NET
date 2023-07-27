@@ -30,10 +30,7 @@ public class FinancialGiftEstateItemJsonBuilder : EstateItemJsonBuilder<Financia
         jsonObject.Add("recipientOrganisationName", resourceRepresentation.RecipientOrganisationName);
         jsonObject.Add("description", resourceRepresentation.Description);
         jsonObject.Add("grossValue", resourceRepresentation.GrossValue);
-        jsonObject.Add("exemptionCategory", resourceRepresentation.ExemptionCategory.ToString());
-        jsonObject.Add("exemptionDetails", resourceRepresentation.ExemptionDetails);
         jsonObject.Add("giftType", resourceRepresentation.GiftType.ToString());
-        jsonObject.Add("exemptionValue", resourceRepresentation.ExemptionValue);
         jsonObject.Add("dateOfGift", resourceRepresentation.DateOfGift);
         jsonObject.Add("relationshipToDeceased", resourceRepresentation.RelationshipToDeceased.ToString());
         jsonObject.Add("otherRelationshipToDeceasedDetails", resourceRepresentation.OtherRelationshipToDeceasedDetails);
