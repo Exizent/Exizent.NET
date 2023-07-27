@@ -4,5 +4,5 @@ public class GiftExemptionResourceRepresentation
 {
     public FinancialGiftExemptionCategory Category { get; init; }
     public string? Details  { get; init; }
-    public decimal? Value  { get; init; }
+    public decimal Value  { get; init; }
 }
