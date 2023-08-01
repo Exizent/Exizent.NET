@@ -6,6 +6,8 @@ namespace Exizent.CaseManagement.Client.Models.EstateItems;
 [JsonDiscriminator(nameof(EstateItemType.FinancialGift))]
 public class FinancialGiftResourceRepresentation : EstateItemResourceRepresentation
 {
+    public string? PreOwnedAssetNumber { get; init; }
+    public DateTime? DateOfElection { get; init; }
     public string? RecipientFirstName { get; init; }
     public string? RecipientSurname { get; init; }
     public string? RecipientOrganisationName { get; set; }

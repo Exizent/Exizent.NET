@@ -25,6 +25,8 @@ public class FinancialGiftEstateItemJsonBuilder : EstateItemJsonBuilder<Financia
         FinancialGiftResourceRepresentation resourceRepresentation)
     {
         jsonObject.Add("type", nameof(EstateItemType.FinancialGift));
+        jsonObject.Add("preOwnedAssetNumber", resourceRepresentation.PreOwnedAssetNumber);
+        jsonObject.Add("dateOfElection", resourceRepresentation.DateOfElection);
         jsonObject.Add("recipientFirstName", resourceRepresentation.RecipientFirstName);
         jsonObject.Add("recipientSurname", resourceRepresentation.RecipientSurname);
         jsonObject.Add("recipientOrganisationName", resourceRepresentation.RecipientOrganisationName);
