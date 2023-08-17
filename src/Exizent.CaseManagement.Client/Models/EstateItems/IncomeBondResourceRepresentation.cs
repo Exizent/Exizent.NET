@@ -6,6 +6,7 @@ namespace Exizent.CaseManagement.Client.Models.EstateItems;
 public class IncomeBondResourceRepresentation : EstateItemResourceRepresentation
 {
     public AddressResourceRepresentation Address { get; init; } = null!;
+    public string? Institution { get; init; }
     public string? AccountNumber { get; init; }
     public decimal? ConfirmedBalance { get; init; }
     public decimal? EstimatedBalance { get; init; }
