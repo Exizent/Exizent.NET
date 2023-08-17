@@ -15,6 +15,7 @@ public class IncomeBondEstateItemJsonBuilder : EstateItemJsonBuilder<IncomeBondR
     {
         jsonObject.Add("type", nameof(EstateItemType.IncomeBond));
         jsonObject.Add("address", AddressJsonBuilder.Build(resourceRepresentation.Address));
+        jsonObject.Add("institution", resourceRepresentation.Institution);
         jsonObject.Add("accountNumber", resourceRepresentation.AccountNumber);
         jsonObject.Add("confirmedBalance", resourceRepresentation.ConfirmedBalance);
         jsonObject.Add("estimatedBalance", resourceRepresentation.EstimatedBalance);
