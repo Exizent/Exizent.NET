@@ -1,7 +1,9 @@
 using System.Globalization;
 using System.Net;
+using System.Text;
 using System.Text.Json;
 using Exizent.CaseManagement.Client.Models;
+using Exizent.CaseManagement.Client.Models.EstateItems;
 
 namespace Exizent.CaseManagement.Client;
 
@@ -33,6 +35,32 @@ public class CaseManagementApiClient : ICaseManagementApiClient
         return await GetCaseInternal(caseId, null, options, cancellationToken);
     }
 
+
+    public async Task<EstateItemResponseResourceRepresentation?> PostEstateItem(Guid caseId, EstateItemResourceRepresentationBase estateItem, CancellationToken cancellationToken = default)
+    {
+        return await PostPutEstateItem(HttpMethod.Post, caseId, estateItem, cancellationToken);
+    }
+    
+    public async Task<EstateItemResponseResourceRepresentation?> PutEstateItem(Guid caseId, EstateItemResourceRepresentationBase estateItem, CancellationToken cancellationToken = default)
+    {
+        return await PostPutEstateItem(HttpMethod.Put, caseId, estateItem, cancellationToken);
+    }
+    
+    private async Task<EstateItemResponseResourceRepresentation?> PostPutEstateItem(HttpMethod httpMethod, Guid caseId, EstateItemResourceRepresentationBase estateItem, CancellationToken cancellationToken = default)
+    {
+        var json = JsonSerializer.Serialize(estateItem, estateItem.GetType(),DefaultJsonSerializerOptions.Instance);
+        
+        
+        using var request = new HttpRequestMessage(httpMethod, $"/cases/{caseId}/estateitems");
+        request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+        using var response = await _client.SendAsync(request, cancellationToken);
+        response.EnsureSuccessStatusCode();
+
+        var body = await response.Content.ReadAsStringAsync(cancellationToken);
+        return JsonSerializer.Deserialize<EstateItemResponseResourceRepresentation>(body);
+    }
+    
+    
     private async Task<CaseResourceRepresentation?> GetCaseInternal(Guid caseId, int? companyId, GetCaseOptions options, CancellationToken cancellationToken)
     {
         var expandCompany = options.ExpandCompany ? "company" : null;
