@@ -1,6 +1,6 @@
 ﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-public class BankAccountResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, IHasAddress, IRealisable
+public abstract class BankAccountResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, IHasAddress, IRealisable
 {
     public decimal? EstimatedBalance { get; set; }
     public decimal? ConfirmedBalance { get; set; }

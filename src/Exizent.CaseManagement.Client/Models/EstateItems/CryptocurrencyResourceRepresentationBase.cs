@@ -1,6 +1,6 @@
 ﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-public class CryptocurrencyResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IStandardJointOwnership, IRealisable
+public abstract class CryptocurrencyResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IStandardJointOwnership, IRealisable
 {
     public AddressResourceRepresentation Address { get; set; } = null!;
     public string? TypeOfWallet { get; set; }

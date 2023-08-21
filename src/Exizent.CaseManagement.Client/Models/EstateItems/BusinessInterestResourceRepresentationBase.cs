@@ -1,6 +1,6 @@
 ﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-public class BusinessInterestResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IHasJointOwners, IRealisable
+public abstract class BusinessInterestResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IHasJointOwners, IRealisable
 {
     public string? BusinessName { get; set; }
     public decimal? ExecutorEstimatedValue { get; set; }

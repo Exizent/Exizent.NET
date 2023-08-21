@@ -1,6 +1,6 @@
 ﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-public class MoneyOwedResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IStandardJointOwnership, IRealisable, ICanBeValidForIht
+public abstract class MoneyOwedResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IStandardJointOwnership, IRealisable, ICanBeValidForIht
 {
     public AddressResourceRepresentation Address { get; set; } = null!;
     public decimal ProportionOwned { get; set; }

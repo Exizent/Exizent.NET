@@ -1,8 +1,6 @@
-﻿using System.ComponentModel;
+﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-namespace Exizent.CaseManagement.Client.Models.EstateItems;
-
-public class BuildingResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IHasJointOwners, IRealisable, IHeritable, ICanBeValidForIht
+public abstract class BuildingResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IHasJointOwners, IRealisable, IHeritable, ICanBeValidForIht
 {
     public AddressResourceRepresentation Address { get; set; } = null!;
     public string? ResidenceType { get; set; }

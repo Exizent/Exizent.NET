@@ -1,6 +1,6 @@
 ﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-public class PensionResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IRealisable, ICanBeValidForIht
+public abstract class PensionResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IRealisable, ICanBeValidForIht
 {
     public AddressResourceRepresentation Address { get; set; } = null!;
     public string? PensionType { get; set; }

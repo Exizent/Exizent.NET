@@ -1,6 +1,6 @@
 ﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-public class CashIsaResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IRealisable
+public abstract class CashIsaResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IRealisable
 {
     public string? Institution { get; set; }
     public string? AccountNumber { get; set; }

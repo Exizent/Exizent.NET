@@ -1,6 +1,6 @@
 ﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-public class LifePolicyResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IHasJointOwners, IRealisable, ICanBeValidForIht
+public abstract class LifePolicyResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IHasJointOwners, IRealisable, ICanBeValidForIht
 {
     public AddressResourceRepresentation Address { get; set; } = null!;
     public string? Provider { get; set; }

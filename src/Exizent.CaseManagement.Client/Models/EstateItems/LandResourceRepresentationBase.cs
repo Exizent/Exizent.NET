@@ -1,6 +1,6 @@
 ﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-public class LandResourceRepresentationBase : EstateItemResourceRepresentationBase, ICanBeValidForIht, IHeritable, IRealisable, IHasJointOwners
+public abstract class LandResourceRepresentationBase : EstateItemResourceRepresentationBase, ICanBeValidForIht, IHeritable, IRealisable, IHasJointOwners
 {
     public string LandType { get; set; } = null!;
     public string LandRegistryNumber { get; set; } = null!;

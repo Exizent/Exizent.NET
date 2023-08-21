@@ -1,6 +1,6 @@
 ﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-public class FinancialGiftResourceRepresentationBase : EstateItemResourceRepresentationBase
+public abstract class FinancialGiftResourceRepresentationBase : EstateItemResourceRepresentationBase
 {
     public string? PreOwnedAssetNumber { get; set; }
     public DateTime? DateOfElection { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-public class MiscellaneousDebtResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, ICanBeValidForIht, ISettleable
+public abstract class MiscellaneousDebtResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, ICanBeValidForIht, ISettleable
 {
     public decimal ProportionOwned { get; set; }
     public bool? IsPassedToSurvivingJointOwner { get; set; }

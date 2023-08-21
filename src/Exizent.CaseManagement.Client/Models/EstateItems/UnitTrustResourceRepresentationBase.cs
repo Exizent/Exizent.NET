@@ -1,6 +1,6 @@
 ﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-public class UnitTrustResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, IRealisable
+public abstract class UnitTrustResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, IRealisable
 {
     public AddressResourceRepresentation Address { get; set; } = null!;
     public string? FundManager { get; set; }

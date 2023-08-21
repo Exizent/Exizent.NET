@@ -1,6 +1,6 @@
 ﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-public class PhysicalShareholdingResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, IHasAddress, IRealisable
+public abstract class PhysicalShareholdingResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, IHasAddress, IRealisable
 {
     public AddressResourceRepresentation Address { get; set; } = null!;
     public string? ShareholdingName { get; set; }

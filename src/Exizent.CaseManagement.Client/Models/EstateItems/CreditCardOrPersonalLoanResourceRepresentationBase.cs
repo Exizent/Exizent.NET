@@ -1,6 +1,6 @@
 ﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-public class CreditCardOrPersonalLoanResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, ISettleable
+public abstract class CreditCardOrPersonalLoanResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, ISettleable
 {
     public decimal ProportionOwned { get; set; }
     public bool? IsPassedToSurvivingJointOwner { get; set; }

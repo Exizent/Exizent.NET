@@ -1,6 +1,6 @@
 ﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-public class PremiumBondResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IRealisable
+public abstract class PremiumBondResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IRealisable
 {
     public AddressResourceRepresentation Address { get; set; } = null!;
     public string? BondHolderNumber { get; set; }

@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Globalization;
 using System.Net;
 using System.Text;
@@ -36,11 +37,13 @@ public class CaseManagementApiClient : ICaseManagementApiClient
     }
 
 
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public async Task<EstateItemResponseResourceRepresentation?> PostEstateItem(Guid caseId, EstateItemResourceRepresentationBase estateItem, CancellationToken cancellationToken = default)
     {
         return await PostPutEstateItem(HttpMethod.Post, caseId, estateItem, cancellationToken);
     }
     
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public async Task<EstateItemResponseResourceRepresentation?> PutEstateItem(Guid caseId, EstateItemResourceRepresentationBase estateItem, CancellationToken cancellationToken = default)
     {
         return await PostPutEstateItem(HttpMethod.Put, caseId, estateItem, cancellationToken);

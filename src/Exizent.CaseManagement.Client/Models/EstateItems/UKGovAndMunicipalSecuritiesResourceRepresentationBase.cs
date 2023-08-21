@@ -1,6 +1,6 @@
 ﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-public class UKGovAndMunicipalSecuritiesResourceRepresentationBase : EstateItemResourceRepresentationBase, IRealisable, IHasAddress
+public abstract class UKGovAndMunicipalSecuritiesResourceRepresentationBase : EstateItemResourceRepresentationBase, IRealisable, IHasAddress
 {
     public AddressResourceRepresentation Address { get; set; } = null!;
     public string? NameOfShareholding { get; set; }

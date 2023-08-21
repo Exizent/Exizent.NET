@@ -1,6 +1,6 @@
 ﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-public class VehicleResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, IRealisable
+public abstract class VehicleResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, IRealisable
 {
     public decimal ProportionOwned { get; set; }
     public bool? IsPassedToSurvivingJointOwner { get; set; }

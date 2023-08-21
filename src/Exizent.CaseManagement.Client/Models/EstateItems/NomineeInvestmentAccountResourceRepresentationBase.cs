@@ -1,6 +1,6 @@
 ﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-public class NomineeInvestmentAccountResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, IHasAddress, ICanBeValidForIht, IRealisable
+public abstract class NomineeInvestmentAccountResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, IHasAddress, ICanBeValidForIht, IRealisable
 {
     public AddressResourceRepresentation Address { get; set; } = null!;
     public string? NomineeManager { get; set; }
