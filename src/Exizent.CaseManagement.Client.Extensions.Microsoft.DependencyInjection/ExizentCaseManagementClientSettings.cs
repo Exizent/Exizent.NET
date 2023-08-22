@@ -31,4 +31,9 @@ public class ExizentCaseManagementClientSettings
     /// The base authorization url for the api.
     /// </summary>
     public Uri BaseAuthorizationUri { get; set; } = ExizentUris.AuthorizationProduction;
+    
+    /// <summary>
+    /// The user agent calling the api.
+    /// </summary>
+    public string? UserAgent { get; set; }
 }

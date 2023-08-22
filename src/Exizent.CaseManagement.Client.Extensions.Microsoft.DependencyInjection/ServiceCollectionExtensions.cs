@@ -98,11 +98,18 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.AddHttpClient<IExizentAuthorizationClient, ExizentAuthorizationClient>((provider, cfg) =>
                 cfg.BaseAddress = provider.GetRequiredService<ExizentCaseManagementClientSettings>().BaseAuthorizationUri);
-
             services.AddTransient<CaseManagementAuthorizationHandler>();
 
             services.AddHttpClient<ICaseManagementApiClient, CaseManagementApiClient>((provider, cfg) =>
-                    cfg.BaseAddress = provider.GetRequiredService<ExizentCaseManagementClientSettings>().BaseUri)
+                    {
+                        var settings = provider.GetService<ExizentCaseManagementClientSettings>();
+                        if(settings.UserAgent is not null)
+                        {
+                            cfg.DefaultRequestHeaders.Add("User-Agent", settings.UserAgent);
+                        }
+
+                        cfg.BaseAddress = provider.GetRequiredService<ExizentCaseManagementClientSettings>().BaseUri;
+                    })
                 .AddHttpMessageHandler<CaseManagementAuthorizationHandler>();
 
             return services;
