@@ -29,7 +29,10 @@ public class GettingACaseTests
             );
 
         using var casesApiServer = WireMockServer.Start();
-        casesApiServer.Given(Request.Create().WithPath($"/cases/{caseId}").UsingGet())
+        casesApiServer.Given(
+                Request.Create().WithPath($"/cases/{caseId}").UsingGet()
+                    .WithHeader("User-Agent", "My browser")
+                )
             .RespondWith(Response.Create()
                 .WithBody(@$"{{ ""id"": ""{caseId}"", ""deceased"": {{ ""firstName"": ""Foo"", ""lastName"": ""Bar"", ""dateOfDeath"": ""1988-02-01"" }} }}")
                 .WithHeader("Authorization", "Bearer 123456")
@@ -47,6 +50,7 @@ public class GettingACaseTests
                 settings.BaseUri = new Uri(baseUri);
                 settings.BaseAuthorizationUri = new Uri(baseAuthorizationUri);
                 settings.Scope = ExizentScopes.All;
+                settings.UserAgent = "My browser";
             }
         );
         
