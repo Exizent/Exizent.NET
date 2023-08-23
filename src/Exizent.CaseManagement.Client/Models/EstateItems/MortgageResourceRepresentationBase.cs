@@ -2,6 +2,8 @@
 
 public abstract class MortgageResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, ILinkableToAsset, ISettleable
 {
+    protected MortgageResourceRepresentationBase(): base(EstateItemType.Mortgage){}
+
     public decimal ProportionOwned { get; set; }
     public bool? IsPassedToSurvivingJointOwner { get; set; }
     public string? NotPassedDetails { get; set; }

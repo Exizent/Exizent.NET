@@ -2,6 +2,8 @@
 
 public abstract class UKGovAndMunicipalSecuritiesResourceRepresentationBase : EstateItemResourceRepresentationBase, IRealisable, IHasAddress
 {
+    protected UKGovAndMunicipalSecuritiesResourceRepresentationBase(): base(EstateItemType.UkGovAndMunicipalSecurities){}
+
     public AddressResourceRepresentation Address { get; set; } = null!;
     public string? NameOfShareholding { get; set; }
     public decimal? Quantity { get; set; }

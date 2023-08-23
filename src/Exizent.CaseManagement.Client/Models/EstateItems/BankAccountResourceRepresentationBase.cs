@@ -2,6 +2,7 @@
 
 public abstract class BankAccountResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, IHasAddress, IRealisable
 {
+    protected BankAccountResourceRepresentationBase(): base(EstateItemType.BankAccount){}
     public decimal? EstimatedBalance { get; set; }
     public decimal? ConfirmedBalance { get; set; }
     public decimal? InterestUpToDateOfDeath { get; set; }

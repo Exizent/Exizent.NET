@@ -2,6 +2,8 @@
 
 public abstract class CreditCardOrPersonalLoanResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, ISettleable
 {
+    protected CreditCardOrPersonalLoanResourceRepresentationBase(): base(EstateItemType.CreditCardOrPersonalLoan){}
+
     public decimal ProportionOwned { get; set; }
     public bool? IsPassedToSurvivingJointOwner { get; set; }
     public string? NotPassedDetails { get; set; }

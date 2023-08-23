@@ -4,6 +4,7 @@ using Exizent.CaseManagement.Client.Models.Company;
 using Exizent.CaseManagement.Client.Models.Deceased;
 using Exizent.CaseManagement.Client.Models.EstateItems;
 using Exizent.CaseManagement.Client.Models.Expenses;
+using Exizent.CaseManagement.Client.Models.Incomes;
 using Exizent.CaseManagement.Client.Models.Organisations;
 using Exizent.CaseManagement.Client.Models.People;
 
@@ -19,6 +20,7 @@ public class CaseResourceRepresentationBuilder
     private readonly List<OrganisationResourceRepresentation> _organisations = new();
     private readonly List<EstateItemResourceRepresentation> _estateItems = new();
     private readonly List<ExpenseResourceRepresentation> _expenses = new();
+    private readonly List<GetIncomeBaseResourceRepresentation> _incomes = new();
 
     public CaseResourceRepresentationBuilder With(CompanyResourceRepresentation? company)
     {
@@ -62,6 +64,12 @@ public class CaseResourceRepresentationBuilder
         return this;
     }
 
+    public CaseResourceRepresentationBuilder With(GetIncomeBaseResourceRepresentation getIncome)
+    {
+        _incomes.Add(getIncome);
+        return this;
+    }
+
     public CaseResourceRepresentation Build()
     {
         return new CaseResourceRepresentation
@@ -73,7 +81,8 @@ public class CaseResourceRepresentationBuilder
             People = _people.AsReadOnly(),
             EstateItems = _estateItems,
             Organisations = _organisations,
-            Expenses = _expenses
+            Expenses = _expenses,
+            Incomes = _incomes,
         };
     }
 }

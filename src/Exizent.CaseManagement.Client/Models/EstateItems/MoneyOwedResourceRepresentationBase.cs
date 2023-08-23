@@ -2,6 +2,9 @@
 
 public abstract class MoneyOwedResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IStandardJointOwnership, IRealisable, ICanBeValidForIht
 {
+    
+    protected MoneyOwedResourceRepresentationBase(): base(EstateItemType.MoneyOwed){}
+
     public AddressResourceRepresentation Address { get; set; } = null!;
     public decimal ProportionOwned { get; set; }
     public bool? IsPassedToSurvivingJointOwner { get; set; }

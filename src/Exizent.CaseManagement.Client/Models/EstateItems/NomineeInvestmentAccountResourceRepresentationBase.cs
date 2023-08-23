@@ -2,6 +2,8 @@
 
 public abstract class NomineeInvestmentAccountResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, IHasAddress, ICanBeValidForIht, IRealisable
 {
+    protected NomineeInvestmentAccountResourceRepresentationBase(): base(EstateItemType.NomineeInvestmentAccount){}
+
     public AddressResourceRepresentation Address { get; set; } = null!;
     public string? NomineeManager { get; set; }
     public string? AccountNumber { get; set; }

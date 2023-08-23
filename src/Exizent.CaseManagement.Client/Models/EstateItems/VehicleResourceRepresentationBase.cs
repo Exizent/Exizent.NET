@@ -2,6 +2,8 @@
 
 public abstract class VehicleResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, IRealisable
 {
+    protected VehicleResourceRepresentationBase(): base(EstateItemType.Vehicle){}
+
     public decimal ProportionOwned { get; set; }
     public bool? IsPassedToSurvivingJointOwner { get; set; }
     public string? NotPassedDetails { get; set; }

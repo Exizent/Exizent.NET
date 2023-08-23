@@ -2,6 +2,8 @@
 
 public abstract class IncomeBondResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IStandardJointOwnership, IRealisable
 {
+    protected IncomeBondResourceRepresentationBase(): base(EstateItemType.IncomeBond){}
+
     public AddressResourceRepresentation Address { get; set; } = null!;
     public string? AccountNumber { get; set; }
     public decimal? ConfirmedBalance { get; set; }

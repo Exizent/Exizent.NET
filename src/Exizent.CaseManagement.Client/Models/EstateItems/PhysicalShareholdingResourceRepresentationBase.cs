@@ -2,6 +2,8 @@
 
 public abstract class PhysicalShareholdingResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, IHasAddress, IRealisable
 {
+    protected PhysicalShareholdingResourceRepresentationBase(): base(EstateItemType.PhysicalShareholding){}
+
     public AddressResourceRepresentation Address { get; set; } = null!;
     public string? ShareholdingName { get; set; }
     public string? ShareholderReferenceNumber { get; set; }

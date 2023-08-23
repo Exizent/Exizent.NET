@@ -2,6 +2,8 @@
 
 public abstract class InvestmentBondResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IStandardJointOwnership, IRealisable, ICanBeValidForIht
 {
+    protected InvestmentBondResourceRepresentationBase(): base(EstateItemType.InvestmentBond){}
+
     public AddressResourceRepresentation Address { get; set; } = null!;
     public string? Provider { get; set; }
     public string? AccountNumber { get; set; }

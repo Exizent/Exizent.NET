@@ -2,6 +2,8 @@
 
 public abstract class CashIsaResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IRealisable
 {
+    protected CashIsaResourceRepresentationBase(): base(EstateItemType.CashIsa){}
+
     public string? Institution { get; set; }
     public string? AccountNumber { get; set; }
     public string? SortCode { get; set; }

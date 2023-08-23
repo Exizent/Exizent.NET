@@ -2,6 +2,8 @@
 
 public abstract class FinancialGiftResourceRepresentationBase : EstateItemResourceRepresentationBase
 {
+    protected FinancialGiftResourceRepresentationBase(): base(EstateItemType.FinancialGift){}
+
     public string? PreOwnedAssetNumber { get; set; }
     public DateTime? DateOfElection { get; set; }
     public string? RecipientFirstName { get; set; }

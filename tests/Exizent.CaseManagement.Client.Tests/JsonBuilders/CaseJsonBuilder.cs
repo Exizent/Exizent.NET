@@ -2,6 +2,7 @@
 using Exizent.CaseManagement.Client.Models;
 using Exizent.CaseManagement.Client.Tests.JsonBuilders.EstateItems;
 using Exizent.CaseManagement.Client.Tests.JsonBuilders.Expenses;
+using Exizent.CaseManagement.Client.Tests.JsonBuilders.Incomes;
 
 namespace Exizent.CaseManagement.Client.Tests.JsonBuilders;
 
@@ -38,6 +39,11 @@ public static class CaseJsonBuilder
             EstateItemJsonBuilderFactory.Create(x).Build()).ToArray<JsonNode?>());
 
         jsonObject.Add("estateItems", estateItems);
+
+        var incomes = new JsonArray(resourceRepresentation.Incomes.Select(x =>
+            IncomeJsonBuilderFactory.Create(x).Build()).ToArray<JsonNode?>());
+
+        jsonObject.Add("incomes", incomes);
 
         var expenses = new JsonArray(resourceRepresentation.Expenses.Select(
             ExpenseJsonBuilder.Build).ToArray<JsonNode?>());

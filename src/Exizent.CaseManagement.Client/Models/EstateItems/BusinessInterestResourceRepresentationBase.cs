@@ -2,6 +2,8 @@
 
 public abstract class BusinessInterestResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IHasJointOwners, IRealisable
 {
+    protected BusinessInterestResourceRepresentationBase(): base(EstateItemType.BusinessInterest){}
+
     public string? BusinessName { get; set; }
     public decimal? ExecutorEstimatedValue { get; set; }
     public decimal? SurveyorFormalValue { get; set; }
