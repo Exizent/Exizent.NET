@@ -2,6 +2,9 @@
 
 public abstract class StoreCardOrCatalogueAccountResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, ISettleable
 {
+    
+    protected StoreCardOrCatalogueAccountResourceRepresentationBase(): base(EstateItemType.StoreCardOrCatalogueAccount){}
+
     public decimal ProportionOwned { get; set; }
     public bool? IsPassedToSurvivingJointOwner { get; set; }
     public string? NotPassedDetails { get; set; }

@@ -1,6 +1,7 @@
 using AutoFixture;
 using AutoFixture.Kernel;
 using Exizent.CaseManagement.Client.Models.EstateItems;
+using Exizent.CaseManagement.Client.Models.Incomes;
 
 namespace Exizent.CaseManagement.Client.Tests;
 
@@ -28,5 +29,9 @@ public sealed class Harness : IDisposable
     public EstateItemResourceRepresentation CreateEstateItem(Type type)
     {
         return (EstateItemResourceRepresentation)new SpecimenContext(Fixture).Resolve(type);
+    }
+    public GetIncomeBaseResourceRepresentation CreateIncome(Type type)
+    {
+        return (GetIncomeBaseResourceRepresentation)new SpecimenContext(Fixture).Resolve(type);
     }
 }

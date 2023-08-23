@@ -2,6 +2,8 @@
 
 public abstract class CryptocurrencyResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IStandardJointOwnership, IRealisable
 {
+    protected CryptocurrencyResourceRepresentationBase(): base(EstateItemType.Cryptocurrency){}
+
     public AddressResourceRepresentation Address { get; set; } = null!;
     public string? TypeOfWallet { get; set; }
     public string? LocationOfWallet { get; set; }

@@ -2,6 +2,9 @@
 
 public abstract class PensionResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IRealisable, ICanBeValidForIht
 {
+    
+    protected PensionResourceRepresentationBase(): base(EstateItemType.Pension){}
+
     public AddressResourceRepresentation Address { get; set; } = null!;
     public string? PensionType { get; set; }
     public string? Provider { get; set; }

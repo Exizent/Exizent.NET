@@ -2,6 +2,8 @@
 
 public abstract class MiscellaneousDebtResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, ICanBeValidForIht, ISettleable
 {
+    protected MiscellaneousDebtResourceRepresentationBase(): base(EstateItemType.MiscellaneousDebt){}
+
     public decimal ProportionOwned { get; set; }
     public bool? IsPassedToSurvivingJointOwner { get; set; }
     public string? NotPassedDetails { get; set; }

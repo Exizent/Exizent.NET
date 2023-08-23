@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 using Dahomey.Json;
 using Dahomey.Json.Serialization.Conventions;
 using Exizent.CaseManagement.Client.Models.EstateItems;
+using Exizent.CaseManagement.Client.Models.Incomes;
 
 namespace Exizent.CaseManagement.Client;
 
@@ -49,6 +50,11 @@ internal static class DefaultJsonSerializerOptions
         registry.RegisterType<UnitTrustResourceRepresentation>();
         registry.RegisterType<VehicleFinanceResourceRepresentation>();
         registry.RegisterType<VehicleResourceRepresentation>();
+        
+        registry.RegisterType<GetIncomeResourceRepresentation>();
+        registry.RegisterType<ReceiptGetIncomeResourceRepresentation>();
+        registry.RegisterType<SumsReceivedGetIncomeResourceRepresentation>();
+        
 
         return options;
     }

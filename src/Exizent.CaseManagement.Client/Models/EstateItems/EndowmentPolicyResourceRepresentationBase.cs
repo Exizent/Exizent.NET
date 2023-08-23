@@ -2,6 +2,8 @@
 
 public abstract class EndowmentPolicyResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IRealisable
 {
+    protected EndowmentPolicyResourceRepresentationBase(): base(EstateItemType.EndowmentPolicy){}
+
     public AddressResourceRepresentation Address { get; set; } = null!;
     public string? Provider { get; set; }
     public string? PolicyNumber { get; set; }

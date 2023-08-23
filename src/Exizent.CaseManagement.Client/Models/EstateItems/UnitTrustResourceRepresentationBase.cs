@@ -2,6 +2,8 @@
 
 public abstract class UnitTrustResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, IRealisable
 {
+    protected UnitTrustResourceRepresentationBase(): base(EstateItemType.UnitTrust){}
+
     public AddressResourceRepresentation Address { get; set; } = null!;
     public string? FundManager { get; set; }
     public decimal? UnitsHeld { get; set; }

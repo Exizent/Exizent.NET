@@ -2,6 +2,8 @@
 
 public abstract class CashSavingsAccountResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, IHasAddress, IRealisable
 {
+    protected CashSavingsAccountResourceRepresentationBase(): base(EstateItemType.CashSavingsAccount){}
+
     public string? Institution { get; set; }
     public string? AccountNumber { get; set; }
     public string? SortCode { get; set; }

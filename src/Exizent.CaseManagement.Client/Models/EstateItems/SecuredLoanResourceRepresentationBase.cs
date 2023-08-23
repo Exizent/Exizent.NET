@@ -2,6 +2,9 @@
 
 public abstract class SecuredLoanResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, ISettleable, ILinkableToAsset
 {
+    
+    protected SecuredLoanResourceRepresentationBase(): base(EstateItemType.SecuredLoan){}
+
     public decimal ProportionOwned { get; set; }
     public bool? IsPassedToSurvivingJointOwner { get; set; }
     public string? NotPassedDetails { get; set; }

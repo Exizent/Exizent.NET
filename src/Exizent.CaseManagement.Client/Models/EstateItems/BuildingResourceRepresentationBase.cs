@@ -2,6 +2,8 @@
 
 public abstract class BuildingResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IHasJointOwners, IRealisable, IHeritable, ICanBeValidForIht
 {
+    protected BuildingResourceRepresentationBase(): base(EstateItemType.Building){}
+
     public AddressResourceRepresentation Address { get; set; } = null!;
     public string? ResidenceType { get; set; }
     public string? ConveyancingDescription { get; set; }

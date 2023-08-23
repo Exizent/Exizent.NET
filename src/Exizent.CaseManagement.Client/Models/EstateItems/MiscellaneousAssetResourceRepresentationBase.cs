@@ -2,6 +2,8 @@
 
 public abstract class MiscellaneousAssetResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IStandardJointOwnership, IRealisable, IHeritable, ICanBeValidForIht
 {
+    protected MiscellaneousAssetResourceRepresentationBase(): base(EstateItemType.MiscellaneousAsset){}
+
     public AddressResourceRepresentation Address { get; set; } = null!;
     public decimal ProportionOwned { get; set; }
     public bool? IsPassedToSurvivingJointOwner { get; set; }

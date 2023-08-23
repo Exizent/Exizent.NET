@@ -2,6 +2,8 @@
 
 public abstract class PremiumBondResourceRepresentationBase : EstateItemResourceRepresentationBase, IHasAddress, IRealisable
 {
+    protected PremiumBondResourceRepresentationBase(): base(EstateItemType.PremiumBond){}
+
     public AddressResourceRepresentation Address { get; set; } = null!;
     public string? BondHolderNumber { get; set; }
     public string? BondNumber { get; set; }
