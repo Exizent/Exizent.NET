@@ -3,7 +3,7 @@
 namespace Exizent.CaseManagement.Client.Models.Incomes;
 
 [JsonDiscriminator(nameof(IncomeType.Receipt))]
-public class ReceiptGetIncomeResourceRepresentation : GetIncomeBaseResourceRepresentation
+public class ReceiptIncomeResourceRepresentation : IncomeBaseResourceRepresentation
 {
     public string CompanyName { get; init; } = null!;
 

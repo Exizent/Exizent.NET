@@ -8,8 +8,8 @@ public class AllIncomeResourceRepresentationTypesData : DataAttribute
 {
     public override IEnumerable<object[]> GetData(MethodInfo testMethod)
     {
-        yield return new object[] { typeof(GetIncomeResourceRepresentation) };
-        yield return new object[] { typeof(SumsReceivedGetIncomeResourceRepresentation) };
-        yield return new object[] { typeof(ReceiptGetIncomeResourceRepresentation) };
+        yield return new object[] { typeof(IncomeResourceRepresentation) };
+        yield return new object[] { typeof(SumsReceivedIncomeResourceRepresentation) };
+        yield return new object[] { typeof(ReceiptIncomeResourceRepresentation) };
     }
 }
