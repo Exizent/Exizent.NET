@@ -1,6 +1,6 @@
 ﻿namespace Exizent.CaseManagement.Client.Models.Incomes;
 
-public abstract class GetIncomeBaseResourceRepresentation: IIncomeResourceRepresentation
+public abstract class IncomeBaseResourceRepresentation: IIncomeResourceRepresentation
 {
     public Guid Id { get; init; }
     public decimal? Value { get; init; }

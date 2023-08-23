@@ -3,7 +3,7 @@
 namespace Exizent.CaseManagement.Client.Models.Incomes;
 
 [JsonDiscriminator((nameof(IncomeType.Income)))]
-public class GetIncomeResourceRepresentation : GetIncomeBaseResourceRepresentation
+public class IncomeResourceRepresentation : IncomeBaseResourceRepresentation
 {
     
     public Guid? EstateItemId { get; init; }

@@ -5,15 +5,15 @@ using Exizent.CaseManagement.Client.Tests.JsonBuilders.EstateItems;
 
 namespace Exizent.CaseManagement.Client.Tests.JsonBuilders.Incomes;
 
-public class IncomeJsonBuilder : IncomeBaseJsonBuilder<GetIncomeResourceRepresentation>
+public class IncomeJsonBuilder : IncomeBaseJsonBuilder<IncomeResourceRepresentation>
 {
-    public IncomeJsonBuilder(GetIncomeResourceRepresentation resourceRepresentation)
+    public IncomeJsonBuilder(IncomeResourceRepresentation resourceRepresentation)
         : base(resourceRepresentation)
     {
     }
 
     protected override JsonObject InnerBuild(JsonObject jsonObject,
-        GetIncomeResourceRepresentation resourceRepresentation)
+        IncomeResourceRepresentation resourceRepresentation)
     {
         jsonObject.Add("type", nameof(IncomeType.Income));
         jsonObject.Add("estateItemId", resourceRepresentation.EstateItemId);

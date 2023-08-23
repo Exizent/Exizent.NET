@@ -20,7 +20,7 @@ public class CaseResourceRepresentationBuilder
     private readonly List<OrganisationResourceRepresentation> _organisations = new();
     private readonly List<EstateItemResourceRepresentation> _estateItems = new();
     private readonly List<ExpenseResourceRepresentation> _expenses = new();
-    private readonly List<GetIncomeBaseResourceRepresentation> _incomes = new();
+    private readonly List<IncomeBaseResourceRepresentation> _incomes = new();
 
     public CaseResourceRepresentationBuilder With(CompanyResourceRepresentation? company)
     {
@@ -64,9 +64,9 @@ public class CaseResourceRepresentationBuilder
         return this;
     }
 
-    public CaseResourceRepresentationBuilder With(GetIncomeBaseResourceRepresentation getIncome)
+    public CaseResourceRepresentationBuilder With(IncomeBaseResourceRepresentation income)
     {
-        _incomes.Add(getIncome);
+        _incomes.Add(income);
         return this;
     }
 

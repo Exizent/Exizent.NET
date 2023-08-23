@@ -5,7 +5,7 @@ using Exizent.CaseManagement.Client.Models.Incomes;
 namespace Exizent.CaseManagement.Client.Tests.JsonBuilders.Incomes;
 
 public abstract class IncomeBaseJsonBuilder<TIncome> : IIncomeBaseJsonBuilder
-    where TIncome : GetIncomeBaseResourceRepresentation
+    where TIncome : IncomeBaseResourceRepresentation
 {
     private readonly TIncome _resourceRepresentation;
 
@@ -22,7 +22,7 @@ public abstract class IncomeBaseJsonBuilder<TIncome> : IIncomeBaseJsonBuilder
 
     protected abstract JsonObject InnerBuild(JsonObject jsonObject, TIncome resourceRepresentation);
 
-    private static JsonObject BuildEstateItem(GetIncomeBaseResourceRepresentation resourceRepresentation) =>
+    private static JsonObject BuildEstateItem(IncomeBaseResourceRepresentation resourceRepresentation) =>
         new()
         {
             {"id", resourceRepresentation.Id},

@@ -3,7 +3,7 @@ using Dahomey.Json.Attributes;
 namespace Exizent.CaseManagement.Client.Models.Incomes;
 
 [JsonDiscriminator(nameof(IncomeType.SumsReceived))]
-public class SumsReceivedGetIncomeResourceRepresentation : GetIncomeBaseResourceRepresentation
+public class SumsReceivedIncomeResourceRepresentation : IncomeBaseResourceRepresentation
 {
     public string Description { get; init; } = null!;
 

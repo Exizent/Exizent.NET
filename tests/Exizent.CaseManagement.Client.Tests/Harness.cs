@@ -30,8 +30,8 @@ public sealed class Harness : IDisposable
     {
         return (EstateItemResourceRepresentation)new SpecimenContext(Fixture).Resolve(type);
     }
-    public GetIncomeBaseResourceRepresentation CreateIncome(Type type)
+    public IncomeBaseResourceRepresentation CreateIncome(Type type)
     {
-        return (GetIncomeBaseResourceRepresentation)new SpecimenContext(Fixture).Resolve(type);
+        return (IncomeBaseResourceRepresentation)new SpecimenContext(Fixture).Resolve(type);
     }
 }
