@@ -24,6 +24,7 @@ public static class EstateItemJsonBuilderFactory
             MiscellaneousDebtResourceRepresentation miscellaneousDebt => new MiscellaneousDebtEstateItemJsonBuilder(miscellaneousDebt),
             MoneyOwedResourceRepresentation moneyOwed => new MoneyOwedEstateItemJsonBuilder(moneyOwed),
             MortgageResourceRepresentation mortgage => new MortgageEstateItemJsonBuilder(mortgage),
+            NationalSavingsAndInvestmentsProductResourceRepresentation nationalSavingsAndInvestmentsProduct => new NationalSavingsAndInvestmentsProductEstateItemJsonBuilder(nationalSavingsAndInvestmentsProduct),
             NomineeInvestmentAccountResourceRepresentation nomineeInvestmentAccount => new NomineeInvestmentAccountEstateItemJsonBuilder(nomineeInvestmentAccount),
             PensionResourceRepresentation pension => new PensionEstateItemJsonBuilder(pension),
             PhysicalShareholdingResourceRepresentation physicalShareholding => new PhysicalShareholdingEstateItemJsonBuilder(physicalShareholding),

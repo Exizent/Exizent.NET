@@ -18,6 +18,7 @@ public enum EstateItemType
     MiscellaneousDebt,
     MoneyOwed,
     Mortgage,
+    NationalSavingsAndInvestmentsProduct,
     NomineeInvestmentAccount,
     Pension,
     PhysicalShareholding,
