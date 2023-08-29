@@ -159,7 +159,16 @@ public class EstateItemsPostPutResourceRepresentationsSetToCorrectType
         estateItem = new PutMortgageResourceRepresentation();
         estateItem.Type.Should().Be(EstateItemType.Mortgage);
     }
-    
+
+    [Fact]
+    public void TestNationalSavingsAndInvestmentsProduct()
+    {
+        EstateItemResourceRepresentationBase estateItem = new PostNationalSavingsAndInvestmentsProductResourceRepresentation();
+        estateItem.Type.Should().Be(EstateItemType.NationalSavingsAndInvestmentsProduct);
+        estateItem = new PutNationalSavingsAndInvestmentsProductResourceRepresentation();
+        estateItem.Type.Should().Be(EstateItemType.NationalSavingsAndInvestmentsProduct);
+    }
+
     [Fact]
     public void TestNomineeInvestmentAccount()
     {
