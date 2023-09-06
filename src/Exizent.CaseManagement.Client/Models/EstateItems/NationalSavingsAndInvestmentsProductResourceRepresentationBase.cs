@@ -5,7 +5,7 @@ public abstract class NationalSavingsAndInvestmentsProductResourceRepresentation
     protected NationalSavingsAndInvestmentsProductResourceRepresentationBase(): base(EstateItemType.NationalSavingsAndInvestmentsProduct){}
 
     public string AccountNumber { get; set; } = null!;
-    public NSIProductType? Product { get; init; }
+    public NSIProductType ProductType { get; init; }
     public decimal? ConfirmedBalance { get; set; }
     public decimal? EstimatedBalance { get; set; }
     public decimal? InterestUpToDateOfDeath { get; set; }

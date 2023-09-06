@@ -15,7 +15,7 @@ public class NationalSavingsAndInvestmentsProductEstateItemJsonBuilder : EstateI
     {
         jsonObject.Add("type", nameof(EstateItemType.NationalSavingsAndInvestmentsProduct));
         jsonObject.Add("accountNumber", resourceRepresentation.AccountNumber);
-        jsonObject.Add("product", (int?)resourceRepresentation.Product);
+        jsonObject.Add("productType", (int)resourceRepresentation.ProductType);
         jsonObject.Add("confirmedBalance", resourceRepresentation.ConfirmedBalance);
         jsonObject.Add("estimatedBalance", resourceRepresentation.EstimatedBalance);
         jsonObject.Add("interestUpToDateOfDeath", resourceRepresentation.InterestUpToDateOfDeath);

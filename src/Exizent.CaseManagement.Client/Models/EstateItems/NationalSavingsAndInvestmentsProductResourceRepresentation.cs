@@ -6,7 +6,7 @@ namespace Exizent.CaseManagement.Client.Models.EstateItems;
 public class NationalSavingsAndInvestmentsProductResourceRepresentation : EstateItemResourceRepresentation
 {
     public string AccountNumber { get; init; } = null!;
-    public NSIProductType? Product { get; init; }
+    public NSIProductType ProductType { get; init; }
     public decimal? ConfirmedBalance { get; init; }
     public decimal? EstimatedBalance { get; init; }
     public decimal? InterestUpToDateOfDeath { get; init; }
