@@ -1,4 +1,6 @@
+using System.Net;
 using Exizent.CaseManagement.Client.Models;
+using Exizent.CaseManagement.Client.Models.EstateItems;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using WireMock.Matchers;

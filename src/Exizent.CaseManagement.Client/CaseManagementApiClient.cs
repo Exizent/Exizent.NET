@@ -53,14 +53,18 @@ public class CaseManagementApiClient : ICaseManagementApiClient
     {
         var json = JsonSerializer.Serialize(estateItem, estateItem.GetType(),DefaultJsonSerializerOptions.Instance);
         
-        
         using var request = new HttpRequestMessage(httpMethod, $"/cases/{caseId}/estateitems");
         request.Content = new StringContent(json, Encoding.UTF8, "application/json");
         using var response = await _client.SendAsync(request, cancellationToken);
         response.EnsureSuccessStatusCode();
+        
+        if (response.StatusCode == HttpStatusCode.Created)
+        {
+            var body = await response.Content.ReadAsStringAsync(cancellationToken);
+            return JsonSerializer.Deserialize<EstateItemResponseResourceRepresentation>(body, DefaultJsonSerializerOptions.Instance);
+        }
 
-        var body = await response.Content.ReadAsStringAsync(cancellationToken);
-        return JsonSerializer.Deserialize<EstateItemResponseResourceRepresentation>(body);
+        return new EstateItemResponseResourceRepresentation { Id = estateItem.Id };
     }
     
     
