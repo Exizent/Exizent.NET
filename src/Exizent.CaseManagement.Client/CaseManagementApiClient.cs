@@ -40,7 +40,7 @@ public class CaseManagementApiClient : ICaseManagementApiClient
     [EditorBrowsable(EditorBrowsableState.Never)]
     public async Task<EstateItemResponseResourceRepresentation?> PostEstateItem(Guid caseId, EstateItemResourceRepresentationBase estateItem, CancellationToken cancellationToken = default)
     {
-        return await PostPutEstateItem(HttpMethod.Put, caseId, estateItem, cancellationToken);
+        return await PostPutEstateItem(HttpMethod.Post, caseId, estateItem, cancellationToken);
     }
     
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -52,7 +52,6 @@ public class CaseManagementApiClient : ICaseManagementApiClient
     private async Task<EstateItemResponseResourceRepresentation?> PostPutEstateItem(HttpMethod httpMethod, Guid caseId, EstateItemResourceRepresentationBase estateItem, CancellationToken cancellationToken = default)
     {
         var json = JsonSerializer.Serialize(estateItem, estateItem.GetType(),DefaultJsonSerializerOptions.Instance);
-        
         
         using var request = new HttpRequestMessage(httpMethod, $"/cases/{caseId}/estateitems");
         request.Content = new StringContent(json, Encoding.UTF8, "application/json");

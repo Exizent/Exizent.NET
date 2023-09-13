@@ -1,3 +1,4 @@
+using System.Net;
 using Exizent.CaseManagement.Client.Models.EstateItems;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,6 +39,7 @@ public class PostingEstateItemTests
             .RespondWith(Response.Create()
                 .WithBody(@$"{{ ""id"": ""{estateItemId}""}}")
                 .WithHeader("Authorization", "Bearer 123456")
+                .WithStatusCode(HttpStatusCode.Created)
             );
 
         var baseUri = casesApiServer.Url;
