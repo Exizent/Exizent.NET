@@ -14,6 +14,7 @@ public class MoneyOwedResourceRepresentation : EstateItemResourceRepresentation
     public string Description { get; init; } = null!;
     public decimal? ExpectedValue { get; init; }
     public bool IsValidForInheritanceTax { get; init; }
+    public bool GenerateIht409 { get; init; }
     public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
     public IReadOnlyList<Guid> JointOwnerIds { get; init; } = Array.Empty<Guid>();
 }
