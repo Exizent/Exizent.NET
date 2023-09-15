@@ -23,6 +23,7 @@ public class MoneyOwedEstateItemJsonBuilder : EstateItemJsonBuilder<MoneyOwedRes
         jsonObject.Add("description", resourceRepresentation.Description);
         jsonObject.Add("expectedValue", resourceRepresentation.ExpectedValue);
         jsonObject.Add("isValidForInheritanceTax", resourceRepresentation.IsValidForInheritanceTax);
+        jsonObject.Add("generateIht409", resourceRepresentation.GenerateIht409);
         jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
         jsonObject.Add("jointOwnerIds", new JsonArray(resourceRepresentation.JointOwnerIds.Select(x => (JsonNode)JsonValue.Create(x)!).ToArray()));
 
