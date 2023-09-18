@@ -33,7 +33,7 @@ public class PuttingEstateItemTests
 
         using var casesApiServer = WireMockServer.Start();
         casesApiServer.Given(
-                Request.Create().WithPath($"/cases/{caseId}/estateitems").UsingPut()
+                Request.Create().WithPath($"/cases/{caseId}/estateitems/{estateItemId}").UsingPut()
                     .WithHeader("User-Agent", "My browser")
             )
             .RespondWith(Response.Create()
@@ -89,7 +89,7 @@ public class PuttingEstateItemTests
 
         using var casesApiServer = WireMockServer.Start();
         casesApiServer.Given(
-                Request.Create().WithPath($"/cases/{caseId}/estateitems").UsingPut()
+                Request.Create().WithPath($"/cases/{caseId}/estateitems/{estateItemId}").UsingPut()
                     .WithHeader("User-Agent", "My browser")
             )
             .RespondWith(Response.Create()
