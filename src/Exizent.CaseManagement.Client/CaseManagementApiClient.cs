@@ -36,6 +36,23 @@ public class CaseManagementApiClient : ICaseManagementApiClient
         return await GetCaseInternal(caseId, null, options, cancellationToken);
     }
 
+    public async  Task<EstateItemResourceRepresentation?> GetEstateItem(Guid caseId, Guid estateItemId, CancellationToken cancellationToken = default)
+    {
+        using var request = new HttpRequestMessage(HttpMethod.Get, $"/cases/{caseId}/estateitems/{estateItemId}");
+
+        using var response = await _client.SendAsync(request, cancellationToken);
+
+        if (response.StatusCode == HttpStatusCode.NotFound)
+        {
+            return null;
+        }
+
+        response.EnsureSuccessStatusCode();
+
+        var body = await response.Content.ReadAsStringAsync(cancellationToken);
+
+        return JsonSerializer.Deserialize<EstateItemResourceRepresentation>(body, DefaultJsonSerializerOptions.Instance);
+    }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
     public async Task<EstateItemResponseResourceRepresentation?> PostEstateItem(Guid caseId,
