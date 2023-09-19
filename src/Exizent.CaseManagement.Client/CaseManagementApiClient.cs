@@ -36,24 +36,45 @@ public class CaseManagementApiClient : ICaseManagementApiClient
         return await GetCaseInternal(caseId, null, options, cancellationToken);
     }
 
+    public async  Task<EstateItemResourceRepresentation?> GetEstateItem(Guid caseId, Guid estateItemId, CancellationToken cancellationToken = default)
+    {
+        using var request = new HttpRequestMessage(HttpMethod.Get, $"/cases/{caseId}/estateitems/{estateItemId}");
+
+        using var response = await _client.SendAsync(request, cancellationToken);
+
+        if (response.StatusCode == HttpStatusCode.NotFound)
+        {
+            return null;
+        }
+
+        response.EnsureSuccessStatusCode();
+
+        var body = await response.Content.ReadAsStringAsync(cancellationToken);
+
+        return JsonSerializer.Deserialize<EstateItemResourceRepresentation>(body, DefaultJsonSerializerOptions.Instance);
+    }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public async Task<EstateItemResponseResourceRepresentation?> PostEstateItem(Guid caseId, EstateItemResourceRepresentationBase estateItem, CancellationToken cancellationToken = default)
+    public async Task<EstateItemResponseResourceRepresentation?> PostEstateItem(Guid caseId,
+        EstateItemResourceRepresentationBase estateItem, CancellationToken cancellationToken = default)
     {
-        return await PostPutEstateItem(HttpMethod.Post, caseId, estateItem, cancellationToken);
+        var json = JsonSerializer.Serialize(estateItem, estateItem.GetType(), DefaultJsonSerializerOptions.Instance);
+
+        using var request = new HttpRequestMessage(HttpMethod.Post, $"/cases/{caseId}/estateitems");
+        request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+        using var response = await _client.SendAsync(request, cancellationToken);
+        response.EnsureSuccessStatusCode();
+
+        var body = await response.Content.ReadAsStringAsync(cancellationToken);
+        return JsonSerializer.Deserialize<EstateItemResponseResourceRepresentation>(body,
+            DefaultJsonSerializerOptions.Instance);
     }
-    
+
     [EditorBrowsable(EditorBrowsableState.Never)]
     public async Task<EstateItemResponseResourceRepresentation?> PutEstateItem(Guid caseId, EstateItemResourceRepresentationBase estateItem, CancellationToken cancellationToken = default)
     {
-        return await PostPutEstateItem(HttpMethod.Put, caseId, estateItem, cancellationToken);
-    }
-    
-    private async Task<EstateItemResponseResourceRepresentation?> PostPutEstateItem(HttpMethod httpMethod, Guid caseId, EstateItemResourceRepresentationBase estateItem, CancellationToken cancellationToken = default)
-    {
         var json = JsonSerializer.Serialize(estateItem, estateItem.GetType(),DefaultJsonSerializerOptions.Instance);
-        
-        using var request = new HttpRequestMessage(httpMethod, $"/cases/{caseId}/estateitems");
+        using var request = new HttpRequestMessage(HttpMethod.Put, $"/cases/{caseId}/estateitems/{estateItem.Id}" );
         request.Content = new StringContent(json, Encoding.UTF8, "application/json");
         using var response = await _client.SendAsync(request, cancellationToken);
         response.EnsureSuccessStatusCode();
@@ -64,9 +85,8 @@ public class CaseManagementApiClient : ICaseManagementApiClient
             return JsonSerializer.Deserialize<EstateItemResponseResourceRepresentation>(body, DefaultJsonSerializerOptions.Instance);
         }
 
-        return new EstateItemResponseResourceRepresentation { Id = estateItem.Id };
+        return new EstateItemResponseResourceRepresentation { Id = estateItem.Id };        
     }
-    
     
     private async Task<CaseResourceRepresentation?> GetCaseInternal(Guid caseId, int? companyId, GetCaseOptions options, CancellationToken cancellationToken)
     {
