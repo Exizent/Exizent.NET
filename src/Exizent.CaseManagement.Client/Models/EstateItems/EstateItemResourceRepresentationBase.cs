@@ -9,7 +9,6 @@ public abstract class EstateItemResourceRepresentationBase
     
     public EstateItemType Type { get; }
 
-    public Guid Id { get; set; }
     public Location Location { get; set; }
     public string? Notes { get; set; }
 }
