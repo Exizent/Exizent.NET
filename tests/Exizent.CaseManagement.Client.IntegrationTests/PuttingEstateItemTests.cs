@@ -61,8 +61,8 @@ public class PuttingEstateItemTests
         using var scope = serviceProvider.CreateScope();
         var client = scope.ServiceProvider.GetRequiredService<ICaseManagementApiClient>();
 
-        var response = await client.PutEstateItem(caseId,
-            new PostIncomeBondResourceRepresentation {Id = estateItemId, AccountNumber = "12344" });
+        var response = await client.PutEstateItem(caseId, estateItemId,
+            new PostIncomeBondResourceRepresentation { AccountNumber = "12344" });
         response!.Id.Should().Be(estateItemId);
     }
     
@@ -118,8 +118,8 @@ public class PuttingEstateItemTests
         using var scope = serviceProvider.CreateScope();
         var client = scope.ServiceProvider.GetRequiredService<ICaseManagementApiClient>();
 
-        var response = await client.PutEstateItem(caseId,
-            new PostIncomeBondResourceRepresentation {Id = estateItemId, AccountNumber = "12344" });
+        var response = await client.PutEstateItem(caseId, estateItemId,
+            new PostIncomeBondResourceRepresentation {AccountNumber = "12344" });
         response!.Id.Should().Be(createdEstateItemId);
     }
 }
