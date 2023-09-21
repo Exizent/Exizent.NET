@@ -5,5 +5,5 @@ public enum EstateItemStatusChangeAction
     Archive,
     Restore,
     Complete,
-    Reopen
+    ReOpen
 }
