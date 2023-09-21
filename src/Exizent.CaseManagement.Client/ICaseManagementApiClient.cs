@@ -19,4 +19,7 @@ public interface ICaseManagementApiClient
     Task<EstateItemResponseResourceRepresentation?> PutEstateItem(Guid caseId, Guid estateItemId,
         EstateItemResourceRepresentationBase estateItem, CancellationToken cancellationToken = default);
 
+    Task ChangeEstateItemStatus(Guid caseId, Guid estateItemId, EstateItemStatusChange statusChange,
+        CancellationToken cancellationToken = default);
+
 }
