@@ -88,6 +88,17 @@ public class CaseManagementApiClient : ICaseManagementApiClient
         return new EstateItemResponseResourceRepresentation { Id = estateItemId };        
     }
     
+    
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public async Task ChangeEstateItemStatus(Guid caseId, Guid estateItemId, EstateItemStatusChange statusChange, CancellationToken cancellationToken = default)
+    {
+        var json = JsonSerializer.Serialize(statusChange, DefaultJsonSerializerOptions.Instance);
+        using var request = new HttpRequestMessage(HttpMethod.Put, $"/cases/{caseId}/estateitems/{estateItemId}/status" );
+        request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+        using var response = await _client.SendAsync(request, cancellationToken);
+        response.EnsureSuccessStatusCode();
+    }
+    
     private async Task<CaseResourceRepresentation?> GetCaseInternal(Guid caseId, int? companyId, GetCaseOptions options, CancellationToken cancellationToken)
     {
         var expandCompany = options.ExpandCompany ? "company" : null;
