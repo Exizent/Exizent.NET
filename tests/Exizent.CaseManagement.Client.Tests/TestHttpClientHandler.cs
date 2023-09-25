@@ -1,4 +1,5 @@
 using System.Text;
+using Exizent.CaseManagement.Client.Models;
 
 namespace Exizent.CaseManagement.Client.Tests;
 
@@ -33,5 +34,15 @@ public class TestHttpClientHandler : HttpMessageHandler
     public void AddGetCaseWithCompanyResponse(Guid caseId, string response)
     {
         _response.Add(("GET", $"/cases/{caseId}?expand=company"), response);
+    }
+    
+    public void AddGetCaseWithEstateItemsFilterResponse(Guid caseId, EstateItemsFilter estateItemsFilter, string response)
+    {
+        _response.Add(("GET", $"/cases/{caseId}?estateItemsFilter={estateItemsFilter}"), response);
+    }
+    
+    public void AddGetCaseWithCompanyAndEstateItemsFilterResponse(Guid caseId, EstateItemsFilter estateItemsFilter, string response)
+    {
+        _response.Add(("GET", $"/cases/{caseId}?expand=company&estateItemsFilter={estateItemsFilter}"), response);
     }
 }
