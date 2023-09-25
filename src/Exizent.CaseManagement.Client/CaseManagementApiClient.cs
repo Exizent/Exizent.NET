@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json;
 using Exizent.CaseManagement.Client.Models;
 using Exizent.CaseManagement.Client.Models.EstateItems;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace Exizent.CaseManagement.Client;
 
@@ -104,6 +105,12 @@ public class CaseManagementApiClient : ICaseManagementApiClient
         var expandCompany = options.ExpandCompany ? "company" : null;
 
         var query = expandCompany is null ? "" : $"?expand={expandCompany}";
+
+        const string url = "https://customer-information.azure-api.net/customers/search/taxnbr";
+        var param = new Dictionary<string, string>() { { "CIKey", "123456789" } };
+
+        var newUrl = new Uri(QueryHelpers.AddQueryString(url, param));
+
         using var request = new HttpRequestMessage(HttpMethod.Get, $"/cases/{caseId}{query}");
         if (companyId.HasValue)
         {
