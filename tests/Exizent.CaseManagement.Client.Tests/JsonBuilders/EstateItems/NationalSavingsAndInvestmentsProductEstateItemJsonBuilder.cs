@@ -25,6 +25,8 @@ public class NationalSavingsAndInvestmentsProductEstateItemJsonBuilder : EstateI
         jsonObject.Add("notPassedDetails", resourceRepresentation.NotPassedDetails);
         jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
         jsonObject.Add("jointOwnerIds", new JsonArray(resourceRepresentation.JointOwnerIds.Select(x => (JsonNode)JsonValue.Create(x)!).ToArray()));
+        
+        if (resourceRepresentation.Address is not null) jsonObject.Add("address", AddressJsonBuilder.Build(resourceRepresentation.Address));
 
         return jsonObject;
     }
