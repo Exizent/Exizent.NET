@@ -21,6 +21,7 @@ public class CaseResourceRepresentationBuilder
     private readonly List<EstateItemResourceRepresentation> _estateItems = new();
     private readonly List<ExpenseResourceRepresentation> _expenses = new();
     private readonly List<IncomeBaseResourceRepresentation> _incomes = new();
+    private readonly List<CaseDocumentResourceRepresentation> _documents = new();
 
     public CaseResourceRepresentationBuilder With(CompanyResourceRepresentation? company)
     {
@@ -69,6 +70,11 @@ public class CaseResourceRepresentationBuilder
         _incomes.Add(income);
         return this;
     }
+    public CaseResourceRepresentationBuilder With(CaseDocumentResourceRepresentation document)
+    {
+        _documents.Add(document);
+        return this;
+    }
 
     public CaseResourceRepresentation Build()
     {
@@ -83,6 +89,7 @@ public class CaseResourceRepresentationBuilder
             Organisations = _organisations,
             Expenses = _expenses,
             Incomes = _incomes,
+            Documents = _documents
         };
     }
 }
