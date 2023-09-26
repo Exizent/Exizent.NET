@@ -20,4 +20,5 @@ public class CaseResourceRepresentation
     public IReadOnlyList<ExpenseResourceRepresentation> Expenses { get; init; } = null!;
     public IReadOnlyList<IncomeBaseResourceRepresentation> Incomes { get; init; } = null!;
     public FinancialGiftsDetailsResourceRepresentation FinancialGiftsDetails { get; init; } = null!;
+    public IReadOnlyList<CaseDocumentResourceRepresentation> Documents { get; init; } = null!;
 }

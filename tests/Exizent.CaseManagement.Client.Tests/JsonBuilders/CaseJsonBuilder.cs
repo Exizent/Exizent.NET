@@ -47,9 +47,14 @@ public static class CaseJsonBuilder
 
         var expenses = new JsonArray(resourceRepresentation.Expenses.Select(
             ExpenseJsonBuilder.Build).ToArray<JsonNode?>());
-
+        
         jsonObject.Add("expenses", expenses);
 
+        var documents = new JsonArray(resourceRepresentation.Documents
+            .Select(CaseDocumentJsonBuilder.Build).ToArray<JsonNode?>());
+
+        jsonObject.Add("documents", documents);
+     
         return jsonObject;
     }
 }

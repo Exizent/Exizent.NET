@@ -11,4 +11,5 @@ public abstract class EstateItemResourceRepresentationBase
 
     public Location Location { get; set; }
     public string? Notes { get; set; }
+     
 }
