@@ -10,4 +10,7 @@ public abstract class EstateItemResourceRepresentation
     public bool IsArchived { get; init; }
     public bool IsComplete { get; init; }
     public decimal DateOfDeathValue { get; init; }
+
+    public IReadOnlyList<CaseDocumentResourceRepresentation> Documents { get; set; } =
+        new List<CaseDocumentResourceRepresentation>();
 }

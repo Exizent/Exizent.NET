@@ -22,4 +22,13 @@ public interface ICaseManagementApiClient
     Task ChangeEstateItemStatus(Guid caseId, Guid estateItemId, EstateItemStatusChange statusChange,
         CancellationToken cancellationToken = default);
 
+    Task ArchiveEstateItem(Guid caseId, Guid estateItemId, CancellationToken cancellationToken = default);
+    Task RestoreEstateItem(Guid caseId, Guid estateItemId, CancellationToken cancellationToken = default);
+    Task CompleteEstateItem(Guid caseId, Guid estateItemId, CancellationToken cancellationToken = default);
+    Task ReopenEstateItem(Guid caseId, Guid estateItemId, CancellationToken cancellationToken = default);
+
+
+    Task<string?> GetDocumentUrl(Guid caseId, string documentKey, CancellationToken cancellationToken = default);
+    Task<string?> GetDocumentUploadUrl(Guid caseId, string documentKey, CancellationToken cancellationToken = default);
+    Task DeleteDocument(Guid caseId, string documentKey, CancellationToken cancellationToken = default);
 }

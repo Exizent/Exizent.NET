@@ -30,6 +30,14 @@ public class TestHttpClientHandler : HttpMessageHandler
     {
         _response.Add(("GET", $"/cases/{caseId}/estateitems/{estateItemId}"), response);
     }
+    public void AddGetDocumentUrlResponse(Guid caseId, string documentKey, string response)
+    {
+        _response.Add(("GET", $"/cases/{caseId}/documents/{documentKey}/url"), response);
+    }
+    public void AddGetDocumentUploadUrlResponse(Guid caseId, string documentKey, string response)
+    {
+        _response.Add(("GET", $"/cases/{caseId}/documents/{documentKey}/uploadUrl"), response);
+    }
     
     public void AddGetCaseWithCompanyResponse(Guid caseId, string response)
     {

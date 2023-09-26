@@ -16,4 +16,5 @@ public class NationalSavingsAndInvestmentsProductResourceRepresentation : Estate
     public string? NotPassedDetails { get; init; }
     public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
     public IReadOnlyList<Guid> JointOwnerIds { get; init; } = Array.Empty<Guid>();
+    public AddressResourceRepresentation? Address { get; init; }
 }

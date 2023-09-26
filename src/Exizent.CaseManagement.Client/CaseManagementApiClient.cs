@@ -111,6 +111,43 @@ public class CaseManagementApiClient : ICaseManagementApiClient
         response.EnsureSuccessStatusCode();
     }
 
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public async Task ArchiveEstateItem(Guid caseId, Guid estateItemId,
+        CancellationToken cancellationToken = default)
+    {
+        await ChangeEstateItemStatus(caseId, estateItemId, EstateItemStatusChangeAction.Archive, cancellationToken);
+    }
+
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public async Task RestoreEstateItem(Guid caseId, Guid estateItemId,
+        CancellationToken cancellationToken = default)
+    {
+        await ChangeEstateItemStatus(caseId, estateItemId, EstateItemStatusChangeAction.Restore, cancellationToken);
+    }
+
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public async Task CompleteEstateItem(Guid caseId, Guid estateItemId,
+        CancellationToken cancellationToken = default)
+    {
+        await ChangeEstateItemStatus(caseId, estateItemId, EstateItemStatusChangeAction.Complete, cancellationToken);
+    }
+
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public async Task ReopenEstateItem(Guid caseId, Guid estateItemId,
+        CancellationToken cancellationToken = default)
+    {
+        await ChangeEstateItemStatus(caseId, estateItemId, EstateItemStatusChangeAction.ReOpen, cancellationToken);
+    }
+
+    private async Task ChangeEstateItemStatus(Guid caseId, Guid estateItemId, EstateItemStatusChangeAction status,
+        CancellationToken cancellationToken = default)
+    {
+        using var request = new HttpRequestMessage(HttpMethod.Put, $"/cases/{caseId}/estateitems/{estateItemId}/status");
+        request.Content = new StringContent(status.ToString(), Encoding.UTF8, "application/json");
+        using var response = await _client.SendAsync(request, cancellationToken);
+        response.EnsureSuccessStatusCode();
+    }
+
     private async Task<CaseResourceRepresentation?> GetCaseInternal(Guid caseId, int? companyId, GetCaseOptions options,
         CancellationToken cancellationToken)
     {
@@ -174,5 +211,47 @@ public class CaseManagementApiClient : ICaseManagementApiClient
         using var request = new HttpRequestMessage(HttpMethod.Post, $"/cases/{caseId}/forms/refresh");
         using var response = await _client.SendAsync(request, cancellationToken);
         response.EnsureSuccessStatusCode();
+    }
+
+    public async Task<string?> GetDocumentUrl(Guid caseId, string documentKey,
+        CancellationToken cancellationToken = default)
+    {
+        return await GetDocumentUrlResource(caseId, documentKey, "url", cancellationToken);
+    }
+
+    public async Task<string?> GetDocumentUploadUrl(Guid caseId, string documentKey,
+        CancellationToken cancellationToken = default)
+    {
+        return await GetDocumentUrlResource(caseId, documentKey, "uploadUrl", cancellationToken);
+    }
+
+    public async Task DeleteDocument(Guid caseId, string documentKey,
+        CancellationToken cancellationToken = default)
+    {
+        using var request = new HttpRequestMessage(HttpMethod.Delete, $"/cases/{caseId}/documents/{documentKey}");
+
+        using var response = await _client.SendAsync(request, cancellationToken);
+
+        response.EnsureSuccessStatusCode();
+    }
+
+    private async Task<string?> GetDocumentUrlResource(Guid caseId, string documentKey, string resource,
+        CancellationToken cancellationToken = default)
+    {
+        using var request =
+            new HttpRequestMessage(HttpMethod.Get, $"/cases/{caseId}/documents/{documentKey}/{resource}");
+
+        using var response = await _client.SendAsync(request, cancellationToken);
+
+        if (response.StatusCode == HttpStatusCode.NotFound)
+        {
+            return null;
+        }
+
+        response.EnsureSuccessStatusCode();
+
+        var body = await response.Content.ReadAsStringAsync(cancellationToken);
+
+        return body;
     }
 }
