@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json;
 using Exizent.CaseManagement.Client.Models;
 using Exizent.CaseManagement.Client.Models.EstateItems;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace Exizent.CaseManagement.Client;
 
@@ -150,10 +151,42 @@ public class CaseManagementApiClient : ICaseManagementApiClient
     private async Task<CaseResourceRepresentation?> GetCaseInternal(Guid caseId, int? companyId, GetCaseOptions options,
         CancellationToken cancellationToken)
     {
-        var expandCompany = options.ExpandCompany ? "company" : null;
+        var uri = $"/cases/{caseId}";
 
-        var query = expandCompany is null ? "" : $"?expand={expandCompany}";
-        using var request = new HttpRequestMessage(HttpMethod.Get, $"/cases/{caseId}{query}");
+        if (options.ExpandCompany)
+        {
+            var param = new Dictionary<string, string> { { "expand", "company" } };
+            uri = QueryHelpers.AddQueryString(uri, param);
+        }
+
+        if (options.EstateItemsFilter is not null)
+        {
+            switch (options.EstateItemsFilter)
+            {
+                case EstateItemsFilter.Archived:
+                    uri =QueryHelpers.AddQueryString(uri,
+                        new Dictionary<string, string>
+                            { { "estateItemsFilter", EstateItemsFilter.Archived.ToString() } });
+                    break;
+                case EstateItemsFilter.Complete:
+                    uri =QueryHelpers.AddQueryString(uri,
+                        new Dictionary<string, string>
+                            { { "estateItemsFilter",   EstateItemsFilter.Complete.ToString() } });
+                    break;
+                case EstateItemsFilter.Open:
+                    uri =QueryHelpers.AddQueryString(uri,
+                        new Dictionary<string, string>
+                            { { "estateItemsFilter", EstateItemsFilter.Open.ToString() } });
+                    break;
+                case EstateItemsFilter.AllAssets:
+                    uri =QueryHelpers.AddQueryString(uri,
+                        new Dictionary<string, string>
+                            { { "estateItemsFilter", EstateItemsFilter.AllAssets.ToString() } });
+                    break;
+            }
+        }
+
+        using var request = new HttpRequestMessage(HttpMethod.Get, uri);
         if (companyId.HasValue)
         {
             request.Headers.Add("Company-Id", companyId.Value.ToString(CultureInfo.InvariantCulture));
