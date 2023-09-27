@@ -166,22 +166,22 @@ public class CaseManagementApiClient : ICaseManagementApiClient
                 case EstateItemsFilter.Archived:
                     uri =QueryHelpers.AddQueryString(uri,
                         new Dictionary<string, string>
-                            { { "estateItemsFilter", ((int)EstateItemsFilter.Archived).ToString(CultureInfo.InvariantCulture) } });
+                            { { "estateItemsFilter", EstateItemsFilter.Archived.ToString() } });
                     break;
                 case EstateItemsFilter.Complete:
                     uri =QueryHelpers.AddQueryString(uri,
                         new Dictionary<string, string>
-                            { { "estateItemsFilter",  ((int)EstateItemsFilter.Complete).ToString(CultureInfo.InvariantCulture) } });
+                            { { "estateItemsFilter",   EstateItemsFilter.Complete.ToString() } });
                     break;
                 case EstateItemsFilter.Open:
                     uri =QueryHelpers.AddQueryString(uri,
                         new Dictionary<string, string>
-                            { { "estateItemsFilter", ((int)EstateItemsFilter.Open).ToString(CultureInfo.InvariantCulture) } });
+                            { { "estateItemsFilter", EstateItemsFilter.Open.ToString() } });
                     break;
                 case EstateItemsFilter.AllAssets:
                     uri =QueryHelpers.AddQueryString(uri,
                         new Dictionary<string, string>
-                            { { "estateItemsFilter", ((int)EstateItemsFilter.AllAssets).ToString(CultureInfo.InvariantCulture) } });
+                            { { "estateItemsFilter", EstateItemsFilter.AllAssets.ToString() } });
                     break;
             }
         }

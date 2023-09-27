@@ -46,11 +46,11 @@ public class TestHttpClientHandler : HttpMessageHandler
     
     public void AddGetCaseWithEstateItemsFilterResponse(Guid caseId, EstateItemsFilter estateItemsFilter, string response)
     {
-        _response.Add(("GET", $"/cases/{caseId}?estateItemsFilter={(int)estateItemsFilter}"), response);
+        _response.Add(("GET", $"/cases/{caseId}?estateItemsFilter={estateItemsFilter}"), response);
     }
     
     public void AddGetCaseWithCompanyAndEstateItemsFilterResponse(Guid caseId, EstateItemsFilter estateItemsFilter, string response)
     {
-        _response.Add(("GET", $"/cases/{caseId}?expand=company&estateItemsFilter={(int)estateItemsFilter}"), response);
+        _response.Add(("GET", $"/cases/{caseId}?expand=company&estateItemsFilter={estateItemsFilter}"), response);
     }
 }

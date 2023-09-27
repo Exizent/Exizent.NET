@@ -182,11 +182,11 @@ public class GettingACaseTests
     }
 
     [Theory]
-    [InlineData("true", "false", EstateItemsFilter.Complete)]
-    [InlineData("false", "true", EstateItemsFilter.Archived)]
-    [InlineData("true", "true", EstateItemsFilter.AllAssets)]
-    [InlineData("false", "false", EstateItemsFilter.Open)]
-    public async Task ShouldReturnCaseWithEstateItems(string isComplete, string isArchived, EstateItemsFilter estateItemsFilter)
+    [InlineData(true, false, EstateItemsFilter.Complete)]
+    [InlineData(false, true, EstateItemsFilter.Archived)]
+    [InlineData(true, true, EstateItemsFilter.AllAssets)]
+    [InlineData(false, false, EstateItemsFilter.Open)]
+    public async Task ShouldReturnCaseWithEstateItems(bool isComplete, bool isArchived, EstateItemsFilter estateItemsFilter)
     {
         var clientId = Guid.NewGuid().ToString();
         var clientSecret = Guid.NewGuid().ToString();
@@ -205,11 +205,11 @@ public class GettingACaseTests
 
         using var casesApiServer = WireMockServer.Start();
         casesApiServer.Given(Request.Create().WithPath($"/cases/{caseId}").WithParam("estateItemsFilter",
-                    ((int)estateItemsFilter).ToString(CultureInfo.InvariantCulture))
+                    estateItemsFilter.ToString())
                 .UsingGet())
             .RespondWith(Response.Create()
                 .WithBody(
-                    @$"{{ ""id"": ""{caseId}"", ""company"": {{ ""id"": 1, ""name"": ""Google"", ""officePhoneNumber"": ""07711123456"" }}, ""deceased"": {{ ""firstName"": ""Foo"", ""lastName"": ""Bar"", ""dateOfDeath"": ""1988-02-01"" }},""estateItems"": [ {{ ""id"": ""{Guid.NewGuid()}"", ""account"": ""4444"", ""product"": ""1"", ""type"": ""NationalSavingsAndInvestmentsProduct"", ""isComplete"": {isComplete}, ""isArchived"": {isArchived} }} ] }}")
+                    @$"{{ ""id"": ""{caseId}"", ""company"": {{ ""id"": 1, ""name"": ""Google"", ""officePhoneNumber"": ""07711123456"" }}, ""deceased"": {{ ""firstName"": ""Foo"", ""lastName"": ""Bar"", ""dateOfDeath"": ""1988-02-01"" }},""estateItems"": [ {{ ""id"": ""{Guid.NewGuid()}"", ""account"": ""4444"", ""product"": ""1"", ""type"": ""NationalSavingsAndInvestmentsProduct"", ""isComplete"": {isComplete.ToString().ToLowerInvariant()}, ""isArchived"": {isArchived.ToString().ToLowerInvariant()} }} ] }}")
                 .WithHeader("Authorization", "Bearer 123456")
             );
 
@@ -235,16 +235,16 @@ public class GettingACaseTests
         var @case = await client.GetCase(caseId, new GetCaseOptions { EstateItemsFilter = estateItemsFilter });
         @case!.Id.Should().Be(caseId);
         @case.EstateItems.Count.Should().Be(1);
-        @case.EstateItems[0].IsArchived.Should().Be(bool.Parse(isArchived));
-        @case.EstateItems[0].IsComplete.Should().Be(bool.Parse(isComplete));
+        @case.EstateItems[0].IsArchived.Should().Be(isArchived);
+        @case.EstateItems[0].IsComplete.Should().Be(isComplete);
     }
     
     [Theory]
-    [InlineData("true", "false", EstateItemsFilter.Complete)]
-    [InlineData("false", "true", EstateItemsFilter.Archived)]
-    [InlineData("true", "true", EstateItemsFilter.AllAssets)]
-    [InlineData("false", "false", EstateItemsFilter.Open)]
-    public async Task ShouldReturnCaseWithCompanyAndEstateItems(string isComplete, string isArchived, EstateItemsFilter estateItemsFilter)
+    [InlineData(true, false, EstateItemsFilter.Complete)]
+    [InlineData(false, true, EstateItemsFilter.Archived)]
+    [InlineData(true, true, EstateItemsFilter.AllAssets)]
+    [InlineData(false, false, EstateItemsFilter.Open)]
+    public async Task ShouldReturnCaseWithCompanyAndEstateItems(bool isComplete, bool isArchived, EstateItemsFilter estateItemsFilter)
     {
         var clientId = Guid.NewGuid().ToString();
         var clientSecret = Guid.NewGuid().ToString();
@@ -263,11 +263,11 @@ public class GettingACaseTests
 
         using var casesApiServer = WireMockServer.Start();
         casesApiServer.Given(Request.Create().WithPath($"/cases/{caseId}").WithParam("estateItemsFilter",
-                    ((int)estateItemsFilter).ToString(CultureInfo.InvariantCulture))
+                    estateItemsFilter.ToString())
                 .UsingGet())
             .RespondWith(Response.Create()
                 .WithBody(
-                    @$"{{ ""id"": ""{caseId}"", ""company"": {{ ""id"": 1, ""name"": ""Google"", ""officePhoneNumber"": ""07711123456"" }}, ""deceased"": {{ ""firstName"": ""Foo"", ""lastName"": ""Bar"", ""dateOfDeath"": ""1988-02-01"" }},""estateItems"": [ {{ ""id"": ""{Guid.NewGuid()}"", ""account"": ""4444"", ""product"": ""1"", ""type"": ""NationalSavingsAndInvestmentsProduct"", ""isComplete"": {isComplete}, ""isArchived"": {isArchived} }} ] }}")
+                    @$"{{ ""id"": ""{caseId}"", ""company"": {{ ""id"": 1, ""name"": ""Google"", ""officePhoneNumber"": ""07711123456"" }}, ""deceased"": {{ ""firstName"": ""Foo"", ""lastName"": ""Bar"", ""dateOfDeath"": ""1988-02-01"" }},""estateItems"": [ {{ ""id"": ""{Guid.NewGuid()}"", ""account"": ""4444"", ""product"": ""1"", ""type"": ""NationalSavingsAndInvestmentsProduct"", ""isComplete"": {isComplete.ToString().ToLowerInvariant() }, ""isArchived"": {isArchived.ToString().ToLowerInvariant() } }} ] }}")
                 .WithHeader("Authorization", "Bearer 123456")
             );
 
@@ -299,7 +299,7 @@ public class GettingACaseTests
         @case.Company!.Name.Should().Be("Google");
         @case.Company!.OfficePhoneNumber.Should().Be("07711123456");
         @case.EstateItems.Count.Should().Be(1);
-        @case.EstateItems[0].IsArchived.Should().Be(bool.Parse(isArchived));
-        @case.EstateItems[0].IsComplete.Should().Be(bool.Parse(isComplete));
+        @case.EstateItems[0].IsArchived.Should().Be(isArchived);
+        @case.EstateItems[0].IsComplete.Should().Be(isComplete);
     }
 }
