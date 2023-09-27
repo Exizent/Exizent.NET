@@ -142,7 +142,8 @@ public class CaseManagementApiClient : ICaseManagementApiClient
     private async Task ChangeEstateItemStatus(Guid caseId, Guid estateItemId, EstateItemStatusChangeAction status,
         CancellationToken cancellationToken = default)
     {
-        using var request = new HttpRequestMessage(HttpMethod.Put, $"/cases/{caseId}/estateitems/{estateItemId}/status");
+        using var request =
+            new HttpRequestMessage(HttpMethod.Put, $"/cases/{caseId}/estateitems/{estateItemId}/status");
         request.Content = new StringContent(status.ToString(), Encoding.UTF8, "application/json");
         using var response = await _client.SendAsync(request, cancellationToken);
         response.EnsureSuccessStatusCode();
@@ -161,29 +162,9 @@ public class CaseManagementApiClient : ICaseManagementApiClient
 
         if (options.EstateItemsFilter is not null)
         {
-            switch (options.EstateItemsFilter)
-            {
-                case EstateItemsFilter.Archived:
-                    uri =QueryHelpers.AddQueryString(uri,
-                        new Dictionary<string, string>
-                            { { "estateItemsFilter", EstateItemsFilter.Archived.ToString() } });
-                    break;
-                case EstateItemsFilter.Complete:
-                    uri =QueryHelpers.AddQueryString(uri,
-                        new Dictionary<string, string>
-                            { { "estateItemsFilter",   EstateItemsFilter.Complete.ToString() } });
-                    break;
-                case EstateItemsFilter.Open:
-                    uri =QueryHelpers.AddQueryString(uri,
-                        new Dictionary<string, string>
-                            { { "estateItemsFilter", EstateItemsFilter.Open.ToString() } });
-                    break;
-                case EstateItemsFilter.AllAssets:
-                    uri =QueryHelpers.AddQueryString(uri,
-                        new Dictionary<string, string>
-                            { { "estateItemsFilter", EstateItemsFilter.AllAssets.ToString() } });
-                    break;
-            }
+            uri = QueryHelpers.AddQueryString(uri,
+                new Dictionary<string, string>
+                    { { "estateItemsFilter", options.EstateItemsFilter.ToString()! } });
         }
 
         using var request = new HttpRequestMessage(HttpMethod.Get, uri);
