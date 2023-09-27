@@ -15,6 +15,7 @@ public class CaseDocumentJsonBuilder
         {"fileSize", resourceRepresentation.FileSize},
         {"updatedAt", resourceRepresentation.UpdatedAt},
         {"documentType", resourceRepresentation.DocumentType.ToString()},
+        {"isInfected", resourceRepresentation.IsInfected},
     };
 
 }
