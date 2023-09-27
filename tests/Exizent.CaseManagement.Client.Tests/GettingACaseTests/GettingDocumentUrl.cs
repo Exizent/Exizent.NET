@@ -34,13 +34,14 @@ public class GettingDocumentUrl: IClassFixture<Harness>
     public async Task ShouldReturnDocumentUploadUrl()
     {
         var caseId = Guid.NewGuid();
+        var estateItemId = Guid.NewGuid();
         var url = "develop/1/2/Assets/12345/Document.csv?token=ddsadsasd3ewfsgrg";
 
         var body = url;
 
-        _harness.ClientHandler.AddGetDocumentUploadUrlResponse(caseId, "DocumentKey", body);
+        _harness.ClientHandler.AddGetDocumentUploadUrlResponse(caseId, estateItemId,"Document.csv", body);
 
-        var documentUrl = await _harness.Client.GetDocumentUploadUrl(caseId, "DocumentKey");
+        var documentUrl = await _harness.Client.GetEstateItemDocumentUploadUrl(caseId, estateItemId,"Document.csv");
 
         using var _ = new AssertionScope();
         documentUrl.Should().NotBeNull();

@@ -9,4 +9,5 @@ public class CaseDocumentResourceRepresentation
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
     public int FileSize { get; set; }
+    public bool IsInfected { get; set; }
 }
