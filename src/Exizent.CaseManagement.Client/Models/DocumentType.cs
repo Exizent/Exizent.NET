@@ -3,13 +3,13 @@ namespace Exizent.CaseManagement.Client.Models;
 public enum DocumentType
 {
     Unknown = 0,
-    CourtForms = 1,
-    TaxForms = 2,
-    Assets = 3,
+    CourtForm = 1,
+    TaxForm = 2,
+    Asset = 3,
     Deceased = 4,
-    ExecutorsToS = 5,
-    ExecutorsLoA = 6,
-    AdditionalDocuments = 7,
+    ExecutorsTermsOfService = 5,
+    ExecutorsLetterOfAdministration = 6,
+    AdditionalDocument = 7,
     EstateDiscovery = 8,
-    CaseLevelDocument = 9
+    Temp = 9
 }

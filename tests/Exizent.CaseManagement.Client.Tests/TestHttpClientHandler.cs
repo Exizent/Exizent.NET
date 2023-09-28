@@ -36,7 +36,11 @@ public class TestHttpClientHandler : HttpMessageHandler
     }
     public void AddGetDocumentUploadUrlResponse(Guid caseId, Guid estateItemId, string fileName, string response)
     {
-        _response.Add(("GET", $"/cases/{caseId}/documents/uploadurl?documentType=Assets&estateItemId={estateItemId}&fileName={fileName}"), response);
+        _response.Add(("GET", $"/cases/{caseId}/documents/uploadurl?documentType=Asset&estateItemId={estateItemId}&fileName={fileName}"), response);
+    }    
+    public void AddGetDocumentUploadUrlResponse(Guid caseId, DocumentType documentType, string fileName, string response)
+    {
+        _response.Add(("GET", $"/cases/{caseId}/documents/uploadurl?documentType={documentType}&fileName={fileName}"), response);
     }
     
     public void AddGetCaseWithCompanyResponse(Guid caseId, string response)
