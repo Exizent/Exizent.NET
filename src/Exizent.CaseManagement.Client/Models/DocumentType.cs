@@ -11,4 +11,5 @@ public enum DocumentType
     ExecutorsLetterOfAdministration = 6,
     AdditionalDocument = 7,
     EstateDiscovery = 8,
+    Temp = 9
 }
