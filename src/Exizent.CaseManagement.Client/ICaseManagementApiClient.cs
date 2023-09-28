@@ -39,7 +39,10 @@ public interface ICaseManagementApiClient
 
     Task<string?> GetDocumentUrl(Guid caseId, string documentKey, CancellationToken cancellationToken = default);
 
-    Task<string?> GetEstateItemDocumentUploadUrl(Guid caseId, Guid estateItemId, string fileName,
+    Task<string?> GetDocumentUploadUrl(Guid caseId, Guid estateItemId, string fileName,
+        CancellationToken cancellationToken = default);
+
+    Task<string?> GetDocumentUploadUrl(Guid caseId, DocumentType documentType, string fileName,
         CancellationToken cancellationToken = default);
 
     Task DeleteDocument(Guid caseId, string documentKey, CancellationToken cancellationToken = default);

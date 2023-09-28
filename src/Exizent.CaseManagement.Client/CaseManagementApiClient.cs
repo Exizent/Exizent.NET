@@ -233,10 +233,10 @@ public class CaseManagementApiClient : ICaseManagementApiClient
         return body;
     }
 
-    public async Task<string?> GetEstateItemDocumentUploadUrl(Guid caseId, Guid estateItemId, string fileName,
+    public async Task<string?> GetDocumentUploadUrl(Guid caseId, Guid estateItemId, string fileName,
         CancellationToken cancellationToken = default)
     {
-        var path = $"/cases/{caseId}/documents/uploadurl?documentType={DocumentType.Assets.ToString()}&estateItemId={estateItemId}&fileName={fileName}";
+        var path = $"/cases/{caseId}/documents/uploadurl?documentType={DocumentType.Asset.ToString()}&estateItemId={estateItemId}&fileName={fileName}";
         using var request = new HttpRequestMessage(HttpMethod.Get, path);
 
         using var response = await _client.SendAsync(request, cancellationToken);
@@ -253,6 +253,27 @@ public class CaseManagementApiClient : ICaseManagementApiClient
         return body;
     }
 
+
+    public async Task<string?> GetDocumentUploadUrl(Guid caseId, DocumentType documentType, string fileName,
+        CancellationToken cancellationToken = default)
+    {
+        var path = $"/cases/{caseId}/documents/uploadurl?documentType={documentType}&fileName={fileName}";
+        using var request = new HttpRequestMessage(HttpMethod.Get, path);
+
+        using var response = await _client.SendAsync(request, cancellationToken);
+
+        if (response.StatusCode == HttpStatusCode.NotFound)
+        {
+            return null;
+        }
+
+        response.EnsureSuccessStatusCode();
+
+        var body = await response.Content.ReadAsStringAsync(cancellationToken);
+
+        return body;
+    }    
+    
     public async Task DeleteDocument(Guid caseId, string documentKey,
         CancellationToken cancellationToken = default)
     {
