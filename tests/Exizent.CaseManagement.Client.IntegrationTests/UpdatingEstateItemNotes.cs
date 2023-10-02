@@ -65,9 +65,10 @@ public class UpdatingEstateItemNotes
     }
 
     [Theory]
-    [InlineData(HttpStatusCode.NotFound)]
-    [InlineData(HttpStatusCode.BadRequest)]
-    public async Task ShouldErrorWhenUpdateEstateItemNotesFailsWith404NotFoundOrBadRequest(HttpStatusCode statusCode)
+    [InlineData(HttpStatusCode.NotFound, "Response status code does not indicate success: 404 (Not Found).")]
+    [InlineData(HttpStatusCode.BadRequest, "Response status code does not indicate success: 400 (Bad Request).")]
+    public async Task ShouldErrorWhenUpdateEstateItemNotesFailsWith404NotFoundOrBadRequest(HttpStatusCode statusCode,
+        string expectedMessage)
     {
         var clientId = Guid.NewGuid().ToString();
         var clientSecret = Guid.NewGuid().ToString();
@@ -117,14 +118,7 @@ public class UpdatingEstateItemNotes
 
         Func<Task> action = async () => await client.UpdateEstateItemNotes(caseId, estateItemId, "some notes");
 
-        switch (statusCode)
-        {
-            case HttpStatusCode.NotFound : await action.Should().ThrowAsync<HttpRequestException>()
-            .WithMessage("Response status code does not indicate success: 404 (Not Found).");
-                break;
-            case HttpStatusCode.BadRequest: await action.Should().ThrowAsync<HttpRequestException>()
-                    .WithMessage("Response status code does not indicate success: 400 (Bad Request).");
-                break;
-        }
+        await action.Should().ThrowAsync<HttpRequestException>()
+            .WithMessage(expectedMessage);
     }
 }
