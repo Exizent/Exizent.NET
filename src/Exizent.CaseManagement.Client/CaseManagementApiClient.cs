@@ -147,6 +147,18 @@ public class CaseManagementApiClient : ICaseManagementApiClient
         using var response = await _client.SendAsync(request, cancellationToken);
         response.EnsureSuccessStatusCode();
     }
+    
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public async Task UpdateEstateItemNotes(Guid caseId, Guid estateItemId, string notes,
+        CancellationToken cancellationToken = default)
+    {
+        var json = JsonSerializer.Serialize(notes, DefaultJsonSerializerOptions.Instance);
+        using var request =
+            new HttpRequestMessage(HttpMethod.Put, $"/cases/{caseId}/estateitems/{estateItemId}/notes");
+        request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+        using var response = await _client.SendAsync(request, cancellationToken);
+        response.EnsureSuccessStatusCode();
+    }
 
     private async Task<CaseResourceRepresentation?> GetCaseInternal(Guid caseId, int? companyId, GetCaseOptions options,
         CancellationToken cancellationToken)
