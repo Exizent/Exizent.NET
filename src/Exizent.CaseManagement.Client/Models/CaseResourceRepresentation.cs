@@ -11,7 +11,8 @@ namespace Exizent.CaseManagement.Client.Models;
 public class CaseResourceRepresentation
 {
     public Guid Id { get; init; }
-
+    public decimal TaxThreshold { get; init; }
+    public decimal ClientAccountBalance { get; init; }
     public CompanyResourceRepresentation? Company { get; init; }
     public DeceasedResourceRepresentation Deceased { get; init; } = null!;
     public IReadOnlyList<PersonResourceRepresentation> People { get; init; } = null!;

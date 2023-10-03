@@ -81,6 +81,8 @@ public class CaseResourceRepresentationBuilder
         return new CaseResourceRepresentation
         {
             Id = Guid.NewGuid(),
+            TaxThreshold = 10000,
+            ClientAccountBalance = 20000,
             Company = _company,
             Deceased = _deceased ?? _fixture.Create<DeceasedResourceRepresentation>(),
             FinancialGiftsDetails = _financialGiftsDetails = new FinancialGiftsDetailsResourceRepresentation(),
