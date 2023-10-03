@@ -13,6 +13,8 @@ public static class CaseJsonBuilder
         var jsonObject = new JsonObject
         {
             { "id", resourceRepresentation.Id },
+            { "taxThreshold", resourceRepresentation.TaxThreshold },
+            { "clientAccountBalance", resourceRepresentation.ClientAccountBalance },
             { "deceased", DeceasedJsonBuilder.Build(resourceRepresentation.Deceased) }
         };
 
