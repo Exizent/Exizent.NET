@@ -121,29 +121,9 @@ public class CaseManagementApiClient : ICaseManagementApiClient
 
         if (options.EstateItemsFilter is not null)
         {
-            switch (options.EstateItemsFilter)
-            {
-                case EstateItemsFilter.Archived:
-                    uri =QueryHelpers.AddQueryString(uri,
-                        new Dictionary<string, string>
-                            { { "estateItemsFilter", EstateItemsFilter.Archived.ToString() } });
-                    break;
-                case EstateItemsFilter.Complete:
-                    uri =QueryHelpers.AddQueryString(uri,
-                        new Dictionary<string, string>
-                            { { "estateItemsFilter",   EstateItemsFilter.Complete.ToString() } });
-                    break;
-                case EstateItemsFilter.Open:
-                    uri =QueryHelpers.AddQueryString(uri,
-                        new Dictionary<string, string>
-                            { { "estateItemsFilter", EstateItemsFilter.Open.ToString() } });
-                    break;
-                case EstateItemsFilter.AllAssets:
-                    uri =QueryHelpers.AddQueryString(uri,
-                        new Dictionary<string, string>
-                            { { "estateItemsFilter", EstateItemsFilter.AllAssets.ToString() } });
-                    break;
-            }
+            uri = QueryHelpers.AddQueryString(uri,
+                new Dictionary<string, string>
+                    { { "estateItemsFilter", options.EstateItemsFilter.ToString()! } });
         }
 
         using var request = new HttpRequestMessage(HttpMethod.Get, uri);
