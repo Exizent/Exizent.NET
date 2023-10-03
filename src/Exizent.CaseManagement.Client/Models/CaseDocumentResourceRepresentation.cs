@@ -10,4 +10,5 @@ public class CaseDocumentResourceRepresentation
     public DateTime UpdatedAt { get; set; }
     public int FileSize { get; set; }
     public bool IsInfected { get; set; }
+    public Dictionary<string, string> Metadata { get; set; } = new ();
 }
