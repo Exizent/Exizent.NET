@@ -29,6 +29,7 @@
     <ItemGroup>
         <PackageReference Include="Dahomey.Json" Version="1.12.2" />
         <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
+        <PackageReference Include="System.Text.Encodings.Web" Version="5.0.1" />
     </ItemGroup>
     
     <ItemGroup>
