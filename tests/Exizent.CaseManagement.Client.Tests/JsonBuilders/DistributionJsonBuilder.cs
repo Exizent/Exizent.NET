@@ -15,7 +15,9 @@ public class DistributionJsonBuilder
                     resourceRepresentation.CaseItemIds?.Select(x => JsonValue.Create(x)).ToArray<JsonNode?>() ??
                     Array.Empty<JsonNode>())
             },
-            { "isDeleted", resourceRepresentation.IsDeleted }
+            { "isDeleted", resourceRepresentation.IsDeleted },
+            { "distributionType", resourceRepresentation.DistributionType.ToString() },
+            { "interimPaymentValue", resourceRepresentation.InterimPaymentValue }
         };
 
 
