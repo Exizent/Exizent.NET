@@ -1,5 +1,6 @@
 using Exizent.CaseManagement.Client.Models.Company;
 using Exizent.CaseManagement.Client.Models.Deceased;
+using Exizent.CaseManagement.Client.Models.Distributions;
 using Exizent.CaseManagement.Client.Models.EstateItems;
 using Exizent.CaseManagement.Client.Models.Expenses;
 using Exizent.CaseManagement.Client.Models.Incomes;
@@ -20,6 +21,7 @@ public class CaseResourceRepresentation
     public IReadOnlyList<EstateItemResourceRepresentation> EstateItems { get; init; } = null!;
     public IReadOnlyList<ExpenseResourceRepresentation> Expenses { get; init; } = null!;
     public IReadOnlyList<IncomeBaseResourceRepresentation> Incomes { get; init; } = null!;
+    public IReadOnlyList<DistributionResourceRepresentation> Distributions { get; init; } = null!;
     public FinancialGiftsDetailsResourceRepresentation FinancialGiftsDetails { get; init; } = null!;
     public IReadOnlyList<CaseDocumentResourceRepresentation> Documents { get; init; } = null!;
 }
