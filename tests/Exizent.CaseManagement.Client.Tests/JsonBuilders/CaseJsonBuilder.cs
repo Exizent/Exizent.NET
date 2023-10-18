@@ -51,6 +51,10 @@ public static class CaseJsonBuilder
             ExpenseJsonBuilder.Build).ToArray<JsonNode?>());
         
         jsonObject.Add("expenses", expenses);
+        
+        var distributions = new JsonArray(resourceRepresentation.Distributions.Select(
+            DistributionJsonBuilder.Build).ToArray<JsonNode?>());
+        jsonObject.Add("distributions", distributions);
 
         var documents = new JsonArray(resourceRepresentation.Documents
             .Select(CaseDocumentJsonBuilder.Build).ToArray<JsonNode?>());
