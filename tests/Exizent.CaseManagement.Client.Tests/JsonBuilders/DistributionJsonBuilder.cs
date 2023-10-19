@@ -16,7 +16,7 @@ public class DistributionJsonBuilder
                     Array.Empty<JsonNode>())
             },
             { "isDeleted", resourceRepresentation.IsDeleted },
-            { "distributionType", resourceRepresentation.DistributionType.ToString() },
+            { "type", resourceRepresentation.Type.ToString() },
             { "interimPaymentValue", resourceRepresentation.InterimPaymentValue }
         };
 
