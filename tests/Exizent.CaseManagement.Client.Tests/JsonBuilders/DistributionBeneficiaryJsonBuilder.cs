@@ -5,15 +5,19 @@ namespace Exizent.CaseManagement.Client.Tests.JsonBuilders;
 
 public static class DistributionBeneficiaryJsonBuilder
 {
-    public static JsonObject Build(DistributionBeneficiaryResourceRepresentation beneficiary)
+    public static JsonArray Build(IReadOnlyList<DistributionBeneficiaryResourceRepresentation> beneficiaries)
     {
-        var jsonObject = new JsonObject
+        var jsonArray = new JsonArray();
+        foreach (var b in beneficiaries)
         {
-            { "beneficiaryId", beneficiary.BeneficiaryId },
-            { "descriptionOfTrustOrContingency", beneficiary.DescriptionOfTrustOrContingency },
-            { "leadTrusteePersonId", beneficiary.LeadTrusteePersonId },
-        };
+            jsonArray.Add(new JsonObject
+            {
+                { "beneficiaryId", b.BeneficiaryId },
+                { "descriptionOfTrustOrContingency", b.DescriptionOfTrustOrContingency },
+                { "leadTrusteePersonId", b.LeadTrusteePersonId },
+            });
+        }
 
-        return jsonObject;
+        return jsonArray;
     }
 }

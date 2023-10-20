@@ -26,4 +26,5 @@ public class DistributionJsonBuilder
 
         return jsonObject;
     }
+    
 }
