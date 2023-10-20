@@ -7,4 +7,5 @@ public class DistributionResourceRepresentation
     public Boolean IsDeleted { get; init; }
     public DistributionType Type { get; init; }
     public decimal? InterimPaymentValue { get; init; }
+    public IReadOnlyList<DistributionBeneficiaryResourceRepresentation>? DistributionBeneficiaries { get; init; }
 }
