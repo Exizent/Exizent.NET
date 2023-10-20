@@ -17,10 +17,14 @@ public class DistributionJsonBuilder
             },
             { "isDeleted", resourceRepresentation.IsDeleted },
             { "type", resourceRepresentation.Type.ToString() },
-            { "interimPaymentValue", resourceRepresentation.InterimPaymentValue }
+            { "interimPaymentValue", resourceRepresentation.InterimPaymentValue },
+            {
+                "distributionBeneficiaries", resourceRepresentation.DistributionBeneficiaries is null? null: DistributionBeneficiaryJsonBuilder.Build(resourceRepresentation.DistributionBeneficiaries)
+            },
         };
 
 
         return jsonObject;
     }
+    
 }
