@@ -12,4 +12,5 @@ public class ExpenseResourceRepresentation
     public bool PaidByThirdParty { get; init; }
     public ExpenseReimbursementResourceRepresentation? Reimbursement { get; init; }
     public string? Notes { get; }
+    public ExpensePurposeType? Purpose { get; init; }   
 }
