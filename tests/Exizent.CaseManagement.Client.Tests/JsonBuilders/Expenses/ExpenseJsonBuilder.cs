@@ -20,7 +20,8 @@ public class ExpenseJsonBuilder
             { "reimbursement", resourceRepresentation.Reimbursement is null
                 ? null
                 : ExpenseReimbursementJsonBuilder.Build(resourceRepresentation.Reimbursement) },
-            { "notes", resourceRepresentation.Notes }
+            { "notes", resourceRepresentation.Notes },
+            { "purpose", resourceRepresentation.Purpose.ToString() }
         };
 
 
