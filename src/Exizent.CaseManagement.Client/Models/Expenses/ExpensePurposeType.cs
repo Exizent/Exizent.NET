@@ -4,7 +4,7 @@ public enum ExpensePurposeType
 {
     Other = 0,
     AssetSaleOrLiabilityRepayment = 1,
-    InheritanceTax,
+    InheritanceTax = 2,
     CapitalGainsTax = 3,
     IncomeTax = 4,
     FuneralCeremony = 5,
