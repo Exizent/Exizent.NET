@@ -7,5 +7,6 @@ public enum MoneyOwedClassification
     PensionArrears,
     Refunds,
     TaxRepayments,
-    TrustIncome
+    TrustIncome,
+    InterestInAnotherEstate
 }
