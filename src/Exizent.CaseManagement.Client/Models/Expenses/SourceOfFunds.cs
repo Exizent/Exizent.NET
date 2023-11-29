@@ -8,4 +8,7 @@ public enum SourceOfFunds
     ClientCashAccount,
     ProceedsOfSale,
     PrepaidFuneralPlan,
+    PremiumBond,
+    NationalSavingsAndInvestmentsProduct,
+    NationalSavingsAndInvestmentsIncomeBond
 }
