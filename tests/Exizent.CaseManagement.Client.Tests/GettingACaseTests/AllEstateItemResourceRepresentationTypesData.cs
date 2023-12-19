@@ -15,6 +15,7 @@ public class AllEstateItemResourceRepresentationTypesData : DataAttribute
         yield return new object[] { typeof(CashSavingsAccountResourceRepresentation) };
         yield return new object[] { typeof(CreditCardOrPersonalLoanResourceRepresentation) };
         yield return new object[] { typeof(CryptocurrencyResourceRepresentation) };
+        yield return new object[] { typeof(DeceasedAssetsTrustResourceRepresentation) };
         yield return new object[] { typeof(EndowmentPolicyResourceRepresentation) };
         yield return new object[] { typeof(FinancialGiftResourceRepresentation) };
         yield return new object[] { typeof(IncomeBondResourceRepresentation) };

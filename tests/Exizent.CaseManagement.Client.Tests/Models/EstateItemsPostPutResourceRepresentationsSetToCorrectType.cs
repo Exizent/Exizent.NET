@@ -71,6 +71,15 @@ public class EstateItemsPostPutResourceRepresentationsSetToCorrectType
     }
 
     [Fact]
+    public void TestDeceasedAssetsTrust()
+    {
+        EstateItemResourceRepresentationBase estateItem = new PostDeceasedAssetsTrustResourceRepresentation();
+        estateItem.Type.Should().Be(EstateItemType.DeceasedAssetsTrust);
+        estateItem = new PutDeceasedAssetsTrustResourceRepresentation();
+        estateItem.Type.Should().Be(EstateItemType.DeceasedAssetsTrust);
+    }
+
+    [Fact]
     public void TestEndowmentPolicy()
     {
         EstateItemResourceRepresentationBase estateItem = new PostEndowmentPolicyResourceRepresentation();
