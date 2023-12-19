@@ -14,6 +14,7 @@ public static class EstateItemJsonBuilderFactory
             CashSavingsAccountResourceRepresentation cashSavingsAccount => new CashSavingsAccountEstateItemJsonBuilder(cashSavingsAccount),
             CreditCardOrPersonalLoanResourceRepresentation creditCardOrPersonalLoan => new CreditCardOrPersonalLoanEstateItemJsonBuilder(creditCardOrPersonalLoan),
             CryptocurrencyResourceRepresentation cryptocurrency => new CryptocurrencyEstateItemJsonBuilder(cryptocurrency),
+            DeceasedAssetsTrustResourceRepresentation deceasedAssetsTrust => new DeceasedAssetsTrustEstateItemJsonBuilder(deceasedAssetsTrust),
             EndowmentPolicyResourceRepresentation endowmentPolicy => new EndowmentPolicyEstateItemJsonBuilder(endowmentPolicy),
             FinancialGiftResourceRepresentation gift => new FinancialGiftEstateItemJsonBuilder(gift),
             IncomeBondResourceRepresentation incomeBond => new IncomeBondEstateItemJsonBuilder(incomeBond),

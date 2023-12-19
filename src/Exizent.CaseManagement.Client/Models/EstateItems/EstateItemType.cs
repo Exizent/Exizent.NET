@@ -9,6 +9,7 @@ public enum EstateItemType
     CashSavingsAccount,
     CreditCardOrPersonalLoan,
     Cryptocurrency,
+    DeceasedAssetsTrust,
     EndowmentPolicy,
     IncomeBond,
     InvestmentBond,
