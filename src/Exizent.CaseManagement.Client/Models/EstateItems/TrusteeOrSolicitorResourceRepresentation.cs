@@ -2,7 +2,7 @@
 
 namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-public class TrusteeOrSolicitor
+public class TrusteeOrSolicitorResourceRepresentation
 {
     public string FirstName { get; init; } = null!;
     public string LastName { get; init; } = null!;

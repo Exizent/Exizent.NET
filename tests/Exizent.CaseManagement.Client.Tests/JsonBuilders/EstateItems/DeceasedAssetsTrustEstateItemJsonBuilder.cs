@@ -11,7 +11,7 @@ public class DeceasedAssetsTrustEstateItemJsonBuilder : EstateItemJsonBuilder<De
     }
 
     private static JsonObject BuildExemption(
-       Exemption exemption)
+       ExemptionResourceRepresentation exemption)
     {
         var jsonObject = new JsonObject();
 
@@ -22,7 +22,7 @@ public class DeceasedAssetsTrustEstateItemJsonBuilder : EstateItemJsonBuilder<De
     }
 
     private static JsonObject BuildTrusteeOrSolicitor(
-       TrusteeOrSolicitor trusteeOrSolicitor)
+       TrusteeOrSolicitorResourceRepresentation trusteeOrSolicitor)
     {
         var jsonObject = new JsonObject();
 
@@ -33,7 +33,7 @@ public class DeceasedAssetsTrustEstateItemJsonBuilder : EstateItemJsonBuilder<De
     }
 
     private static JsonObject BuildAsset(
-      Asset asset)
+      AssetResourceRepresentation asset)
     {
         var jsonObject = new JsonObject();
 
@@ -43,7 +43,7 @@ public class DeceasedAssetsTrustEstateItemJsonBuilder : EstateItemJsonBuilder<De
     }
 
     private static JsonObject BuildLiability(
-     Liability liability)
+     LiabilityResourceRepresentation liability)
     {
         var jsonObject = new JsonObject();
 
@@ -53,7 +53,7 @@ public class DeceasedAssetsTrustEstateItemJsonBuilder : EstateItemJsonBuilder<De
     }
 
     private static JsonObject BuildAssetDetails(
-     AssetDetails assetDetails)
+     AssetDetailsResourceRepresentation assetDetails)
     {
         var jsonObject = new JsonObject();
 
