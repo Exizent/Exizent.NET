@@ -72,6 +72,7 @@ public class DeceasedAssetsTrustEstateItemJsonBuilder : EstateItemJsonBuilder<De
         jsonObject.Add("nameOfSettlor", resourceRepresentation.NameOfSettlor);
         jsonObject.Add("settlorDateOfDeathOrSettlementDate", resourceRepresentation.SettlorDateOfDeathOrSettlementDate);
         jsonObject.Add("name", resourceRepresentation.Name);
+        jsonObject.Add("nameAndAgeOfPersonReceivingBenefit", resourceRepresentation.NameAndAgeOfPersonReceivingBenefit);
         jsonObject.Add("uniqueTaxReferenceNumber", resourceRepresentation.UniqueTaxReferenceNumber);
         jsonObject.Add("trustCreationDate", resourceRepresentation.TrustCreationDate);
         jsonObject.Add("hasDetailsOfAssets", resourceRepresentation.HasDetailsOfAssets);
@@ -79,7 +80,11 @@ public class DeceasedAssetsTrustEstateItemJsonBuilder : EstateItemJsonBuilder<De
         jsonObject.Add("propertyBusinessSharesAssets", BuildAssetDetails(resourceRepresentation.PropertyBusinessSharesAssets));
         jsonObject.Add("otherAssets", BuildAssetDetails(resourceRepresentation.OtherAssets));
         jsonObject.Add("exemptions", new JsonArray(resourceRepresentation.Exemptions.Select(BuildExemption).ToArray<JsonNode>()));
+        jsonObject.Add("assetValue", resourceRepresentation.AssetValue);
+        jsonObject.Add("debtsPayableValue", resourceRepresentation.DebtsPayableValue);
+        jsonObject.Add("exemptionValue", resourceRepresentation.ExemptionValue);
         jsonObject.Add("totalValue", resourceRepresentation.TotalValue);
+
 
         return jsonObject;
     }
