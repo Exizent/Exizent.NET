@@ -9,6 +9,7 @@ public class DeceasedAssetsTrustResourceRepresentation : EstateItemResourceRepre
     public string? NameOfSettlor { get; init; }
     public DateTime? SettlorDateOfDeathOrSettlementDate { get; init; }
     public string? Name { get; init; }
+    public string? NameAndAgeOfPersonReceivingBenefit { get; init; }
     public List<TrusteeOrSolicitorResourceRepresentation> TrusteesAndSolicitors { get; init; } = new List<TrusteeOrSolicitorResourceRepresentation>();
     public string? UniqueTaxReferenceNumber { get; init; }
     public DateTime? TrustCreationDate { get; init; }
@@ -16,5 +17,8 @@ public class DeceasedAssetsTrustResourceRepresentation : EstateItemResourceRepre
     public AssetDetailsResourceRepresentation PropertyBusinessSharesAssets { get; init; } = null!;
     public AssetDetailsResourceRepresentation OtherAssets { get; init; } = null!;
     public List<ExemptionResourceRepresentation> Exemptions { get; init; } = null!;
+    public decimal? AssetValue { get; init; }
+    public decimal? DebtsPayableValue { get; init; }
+    public decimal? ExemptionValue { get; init; }
     public decimal? TotalValue { get; init; }
 }
