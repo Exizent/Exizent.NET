@@ -80,9 +80,6 @@ public class DeceasedAssetsTrustEstateItemJsonBuilder : EstateItemJsonBuilder<De
         jsonObject.Add("propertyBusinessSharesAssets", BuildAssetDetails(resourceRepresentation.PropertyBusinessSharesAssets));
         jsonObject.Add("otherAssets", BuildAssetDetails(resourceRepresentation.OtherAssets));
         jsonObject.Add("exemptions", new JsonArray(resourceRepresentation.Exemptions.Select(BuildExemption).ToArray<JsonNode>()));
-        jsonObject.Add("assetValue", resourceRepresentation.AssetValue);
-        jsonObject.Add("debtsPayableValue", resourceRepresentation.DebtsPayableValue);
-        jsonObject.Add("exemptionValue", resourceRepresentation.ExemptionValue);
         jsonObject.Add("totalValue", resourceRepresentation.TotalValue);
 
 
