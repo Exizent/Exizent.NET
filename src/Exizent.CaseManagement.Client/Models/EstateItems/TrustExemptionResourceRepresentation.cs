@@ -1,6 +1,6 @@
 ﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-public class ExemptionResourceRepresentation
+public class TrustExemptionResourceRepresentation
 {
     public DeceasedAssetsTrustExemptionType Type { get; init; }
     public decimal Value { get; init; }
