@@ -11,56 +11,66 @@ public class DeceasedAssetsTrustEstateItemJsonBuilder : EstateItemJsonBuilder<De
     }
 
     private static JsonObject BuildExemption(
-       ExemptionResourceRepresentation exemption)
+       TrustExemptionResourceRepresentation exemption)
     {
-        var jsonObject = new JsonObject();
+        var jsonObject = new JsonObject
+        {
+            { "type", (int)exemption.Type },
+            { "value", exemption.Value },
+            { "details", exemption.Details }
+        };
 
-        jsonObject.Add("type", (int)exemption.Type);
-        jsonObject.Add("value", exemption.Value);
-        jsonObject.Add("details", exemption.Details);
         return jsonObject;
     }
 
     private static JsonObject BuildTrusteeOrSolicitor(
        TrusteeOrSolicitorResourceRepresentation trusteeOrSolicitor)
     {
-        var jsonObject = new JsonObject();
+        var jsonObject = new JsonObject
+        {
+            { "firstName", trusteeOrSolicitor.FirstName },
+            { "lastName", trusteeOrSolicitor.LastName },
+            { "address", AddressJsonBuilder.Build(trusteeOrSolicitor.Address!) }
+        };
 
-        jsonObject.Add("firstName", trusteeOrSolicitor.FirstName);
-        jsonObject.Add("lastName", trusteeOrSolicitor.LastName);
-        jsonObject.Add("address",  AddressJsonBuilder.Build(trusteeOrSolicitor.Address!));
         return jsonObject;
     }
 
     private static JsonObject BuildAsset(
-      AssetResourceRepresentation asset)
+      TrustAssetResourceRepresentation asset)
     {
-        var jsonObject = new JsonObject();
+        var jsonObject = new JsonObject
+        {
+            { "description", asset.Description },
+            { "value", asset.Value }
+        };
 
-        jsonObject.Add("description", asset.Description);
-        jsonObject.Add("value", asset.Value);
         return jsonObject;
     }
 
     private static JsonObject BuildLiability(
-     LiabilityResourceRepresentation liability)
+     TrustLiabilityResourceRepresentation trustLiability)
     {
-        var jsonObject = new JsonObject();
+        var jsonObject = new JsonObject
+        {
+            { "description", trustLiability.Description },
+            { "value", trustLiability.Value }
+        };
 
-        jsonObject.Add("description", liability.Description);
-        jsonObject.Add("value", liability.Value);
         return jsonObject;
     }
 
     private static JsonObject BuildAssetDetails(
-     AssetDetailsResourceRepresentation assetDetails)
+     TrustAssetDetailsResourceRepresentation assetDetails)
     {
-        var jsonObject = new JsonObject();
+        var jsonObject = new JsonObject
+        {
+            { "assets", new JsonArray(assetDetails.Assets.Select(BuildAsset).ToArray<JsonNode>()) },
+            { "liabilities", new JsonArray(assetDetails.Liabilities.Select(BuildLiability).ToArray<JsonNode>()) },
+            { "exemptions", new JsonArray(assetDetails.Exemptions.Select(BuildExemption).ToArray<JsonNode>()) },
+            { "isTaxToBePaidNow", assetDetails.IsTaxToBePaidNow }
+        };
 
-        jsonObject.Add("trustAssets", new JsonArray(assetDetails.TrustAssets.Select(BuildAsset).ToArray<JsonNode>()));
-        jsonObject.Add("trustLiabilities", new JsonArray(assetDetails.TrustLiabilities.Select(BuildLiability).ToArray<JsonNode>()));
-        jsonObject.Add("exemptions", new JsonArray(assetDetails.Exemptions.Select(BuildExemption).ToArray<JsonNode>()));
-        jsonObject.Add("isTaxToBePaidNow", assetDetails.IsTaxToBePaidNow);
         return jsonObject;
     }
 
@@ -79,10 +89,6 @@ public class DeceasedAssetsTrustEstateItemJsonBuilder : EstateItemJsonBuilder<De
         jsonObject.Add("trusteesAndSolicitors", new JsonArray(resourceRepresentation.TrusteesAndSolicitors.Select(BuildTrusteeOrSolicitor).ToArray<JsonNode>()));
         jsonObject.Add("propertyBusinessSharesAssets", BuildAssetDetails(resourceRepresentation.PropertyBusinessSharesAssets));
         jsonObject.Add("otherAssets", BuildAssetDetails(resourceRepresentation.OtherAssets));
-        jsonObject.Add("exemptions", new JsonArray(resourceRepresentation.Exemptions.Select(BuildExemption).ToArray<JsonNode>()));
-        jsonObject.Add("assetValue", resourceRepresentation.AssetValue);
-        jsonObject.Add("debtsPayableValue", resourceRepresentation.DebtsPayableValue);
-        jsonObject.Add("exemptionValue", resourceRepresentation.ExemptionValue);
         jsonObject.Add("totalValue", resourceRepresentation.TotalValue);
 
 
