@@ -17,4 +17,5 @@ public class DeceasedAssetsTrustResourceRepresentation : EstateItemResourceRepre
     public TrustAssetDetailsResourceRepresentation PropertyBusinessSharesAssets { get; init; } = null!;
     public TrustAssetDetailsResourceRepresentation OtherAssets { get; init; } = null!;
     public decimal? TotalValue { get; init; }
+    public decimal? EstimatedValue { get; init; }
 }

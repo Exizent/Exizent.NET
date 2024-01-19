@@ -28,8 +28,7 @@ public class DeceasedAssetsTrustEstateItemJsonBuilder : EstateItemJsonBuilder<De
     {
         var jsonObject = new JsonObject
         {
-            { "firstName", trusteeOrSolicitor.FirstName },
-            { "lastName", trusteeOrSolicitor.LastName },
+            { "name", trusteeOrSolicitor.Name },
             { "address", AddressJsonBuilder.Build(trusteeOrSolicitor.Address!) }
         };
 
@@ -90,7 +89,7 @@ public class DeceasedAssetsTrustEstateItemJsonBuilder : EstateItemJsonBuilder<De
         jsonObject.Add("propertyBusinessSharesAssets", BuildAssetDetails(resourceRepresentation.PropertyBusinessSharesAssets));
         jsonObject.Add("otherAssets", BuildAssetDetails(resourceRepresentation.OtherAssets));
         jsonObject.Add("totalValue", resourceRepresentation.TotalValue);
-
+        jsonObject.Add("estimatedValue", resourceRepresentation.EstimatedValue);
 
         return jsonObject;
     }
