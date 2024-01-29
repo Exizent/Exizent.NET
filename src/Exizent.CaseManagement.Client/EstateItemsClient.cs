@@ -44,11 +44,19 @@ internal class EstateItemsClient
         using var request = new HttpRequestMessage(HttpMethod.Post, $"/cases/{caseId}/estateitems");
         request.Content = new StringContent(json, Encoding.UTF8, "application/json");
         using var response = await _client.SendAsync(request, cancellationToken);
+        if (response.StatusCode == HttpStatusCode.BadRequest)
+        {
+            var errors = await response.Content.ReadAsStringAsync(cancellationToken);
+            return new EstateItemBadRequestResourceRepresentation { StatusCode = HttpStatusCode.BadRequest, Body = errors};
+        }
         response.EnsureSuccessStatusCode();
 
         var body = await response.Content.ReadAsStringAsync(cancellationToken);
-        return JsonSerializer.Deserialize<EstateItemResponseResourceRepresentation>(body,
+        var estateItemResponse = JsonSerializer.Deserialize<EstateItemResponseResourceRepresentation>(body,
             DefaultJsonSerializerOptions.Instance);
+        estateItemResponse!.StatusCode = response.StatusCode;
+        return estateItemResponse;
+
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -59,16 +67,24 @@ internal class EstateItemsClient
         using var request = new HttpRequestMessage(HttpMethod.Put, $"/cases/{caseId}/estateitems/{estateItemId}");
         request.Content = new StringContent(json, Encoding.UTF8, "application/json");
         using var response = await _client.SendAsync(request, cancellationToken);
-        response.EnsureSuccessStatusCode();
+        if (response.StatusCode == HttpStatusCode.BadRequest)
+        {
+            var errors = await response.Content.ReadAsStringAsync(cancellationToken);
+            return new EstateItemBadRequestResourceRepresentation { StatusCode = HttpStatusCode.BadRequest, Body = errors};
+        }
 
         if (response.StatusCode == HttpStatusCode.Created)
         {
             var body = await response.Content.ReadAsStringAsync(cancellationToken);
-            return JsonSerializer.Deserialize<EstateItemResponseResourceRepresentation>(body,
+            var estateItemCreatedResponse = JsonSerializer.Deserialize<EstateItemResponseResourceRepresentation>(body,
                 DefaultJsonSerializerOptions.Instance);
+            estateItemCreatedResponse!.StatusCode = HttpStatusCode.Created;
+            return estateItemCreatedResponse;
         }
 
-        return new EstateItemResponseResourceRepresentation { Id = estateItemId };
+        response.EnsureSuccessStatusCode();
+
+        return new EstateItemResponseResourceRepresentation { Id = estateItemId, StatusCode = response.StatusCode};
     }
 
 
