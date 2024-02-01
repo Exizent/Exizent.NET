@@ -19,6 +19,7 @@ public class VehicleEstateItemJsonBuilder : EstateItemJsonBuilder<VehicleResourc
         jsonObject.Add("notPassedDetails", resourceRepresentation.NotPassedDetails);
         jsonObject.Add("manufacturer", resourceRepresentation.Manufacturer);
         jsonObject.Add("model", resourceRepresentation.Model);
+        jsonObject.Add("engineSize", resourceRepresentation.EngineSize);
         jsonObject.Add("registrationPlate", resourceRepresentation.RegistrationPlate);
         jsonObject.Add("executorEstimatedValue", resourceRepresentation.ExecutorEstimatedValue);
         jsonObject.Add("ukVehicleDataEstimatedValue", resourceRepresentation.UkVehicleDataEstimatedValue);

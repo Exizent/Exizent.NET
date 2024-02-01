@@ -9,6 +9,7 @@ public abstract class VehicleResourceRepresentationBase : EstateItemResourceRepr
     public string? NotPassedDetails { get; set; }
     public string? Manufacturer { get; set; }
     public string? Model { get; set; }
+    public string? EngineSize { get; set; }
     public string? RegistrationPlate { get; set; }
     public decimal? ExecutorEstimatedValue { get; set; }
     public decimal? UkVehicleDataEstimatedValue { get; set; }
