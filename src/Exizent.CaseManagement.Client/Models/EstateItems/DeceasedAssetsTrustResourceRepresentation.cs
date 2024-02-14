@@ -14,7 +14,6 @@ public class DeceasedAssetsTrustResourceRepresentation : EstateItemResourceRepre
     public string? UniqueTaxReferenceNumber { get; init; }
     public DateTime? TrustCreationDate { get; init; }
     public bool HasDetailsOfAssets { get; init; }
-    public bool AnyLiabilitiesOrExemptionsDeductedFromAssets { get; init; }
     public TrustAssetDetailsResourceRepresentation PropertyBusinessSharesAssets { get; init; } = null!;
     public TrustAssetDetailsResourceRepresentation OtherAssets { get; init; } = null!;
     public decimal? TotalValue { get; init; }

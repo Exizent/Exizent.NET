@@ -5,5 +5,6 @@ public class TrustAssetDetailsResourceRepresentation
     public List<TrustAssetResourceRepresentation> Assets { get; init; } = new List<TrustAssetResourceRepresentation>();
     public List<TrustLiabilityResourceRepresentation> Liabilities { get; init; } = new List<TrustLiabilityResourceRepresentation>();
     public List<TrustExemptionResourceRepresentation> Exemptions { get; init; } = new List<TrustExemptionResourceRepresentation>();
+    public bool AnyLiabilitiesOrExemptionsDeductedFromAssets { get; init; }
     public bool IsTaxToBePaidNow { get; init; }
 }
