@@ -15,7 +15,8 @@ public static class CaseJsonBuilder
             { "id", resourceRepresentation.Id },
             { "taxThreshold", resourceRepresentation.TaxThreshold },
             { "clientAccountBalance", resourceRepresentation.ClientAccountBalance },
-            { "deceased", DeceasedJsonBuilder.Build(resourceRepresentation.Deceased) }
+            { "deceased", DeceasedJsonBuilder.Build(resourceRepresentation.Deceased) },
+            { "owner", CollaboratorJsonBuilder.Build(resourceRepresentation.Owner)}
         };
 
         if (resourceRepresentation.FinancialGiftsDetails is not null)
@@ -60,6 +61,10 @@ public static class CaseJsonBuilder
             .Select(CaseDocumentJsonBuilder.Build).ToArray<JsonNode?>());
 
         jsonObject.Add("documents", documents);
+        
+        var collaborators = new JsonArray(resourceRepresentation.Collaborators.Select(
+            CollaboratorJsonBuilder.Build).ToArray<JsonNode?>());
+        jsonObject.Add("collaborators", collaborators);
      
         return jsonObject;
     }

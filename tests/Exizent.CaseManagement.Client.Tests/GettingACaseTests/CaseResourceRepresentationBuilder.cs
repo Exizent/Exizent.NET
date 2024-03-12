@@ -1,5 +1,6 @@
 ﻿using AutoFixture;
 using Exizent.CaseManagement.Client.Models;
+using Exizent.CaseManagement.Client.Models.Collaborators;
 using Exizent.CaseManagement.Client.Models.Company;
 using Exizent.CaseManagement.Client.Models.Deceased;
 using Exizent.CaseManagement.Client.Models.Distributions;
@@ -24,6 +25,8 @@ public class CaseResourceRepresentationBuilder
     private readonly List<IncomeBaseResourceRepresentation> _incomes = new();
     private readonly List<DistributionResourceRepresentation> _distributions = new();
     private readonly List<CaseDocumentResourceRepresentation> _documents = new();
+    private readonly List<CollaboratorResourceRepresentation> _collaborators = new();
+    private CollaboratorResourceRepresentation? _owner = new();
 
     public CaseResourceRepresentationBuilder With(CompanyResourceRepresentation? company)
     {
@@ -83,6 +86,24 @@ public class CaseResourceRepresentationBuilder
         _documents.Add(document);
         return this;
     }
+    
+    public CaseResourceRepresentationBuilder WithCollaborator(CollaboratorResourceRepresentation collaborator)
+    {
+        _collaborators.Add(collaborator);
+        return this;
+    }
+    
+    public CaseResourceRepresentationBuilder WithCollaborators(IEnumerable<CollaboratorResourceRepresentation> collaborators)
+    {
+        _collaborators.AddRange(collaborators);
+        return this;
+    }
+    
+    public CaseResourceRepresentationBuilder WithOwner(CollaboratorResourceRepresentation owner)
+    {
+        _owner = owner;
+        return this;
+    }
 
     public CaseResourceRepresentation Build()
     {
@@ -100,7 +121,9 @@ public class CaseResourceRepresentationBuilder
             Expenses = _expenses,
             Incomes = _incomes,
             Distributions = _distributions,
-            Documents = _documents
+            Documents = _documents,
+            Owner = _owner ?? _fixture.Create<CollaboratorResourceRepresentation>(),
+            Collaborators = _collaborators
         };
     }
 }

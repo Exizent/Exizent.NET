@@ -1,3 +1,4 @@
+using Exizent.CaseManagement.Client.Models.Collaborators;
 using Exizent.CaseManagement.Client.Models.Company;
 using Exizent.CaseManagement.Client.Models.Deceased;
 using Exizent.CaseManagement.Client.Models.Distributions;
@@ -24,4 +25,6 @@ public class CaseResourceRepresentation
     public IReadOnlyList<DistributionResourceRepresentation> Distributions { get; init; } = null!;
     public FinancialGiftsDetailsResourceRepresentation FinancialGiftsDetails { get; init; } = null!;
     public IReadOnlyList<CaseDocumentResourceRepresentation> Documents { get; init; } = null!;
+    public CollaboratorResourceRepresentation Owner { get; init; } = null!;
+    public IReadOnlyList<CollaboratorResourceRepresentation> Collaborators { get; init; } = null!;
 }
