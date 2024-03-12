@@ -12,14 +12,16 @@ namespace Exizent.CaseManagement.Client;
 public class CaseManagementApiClient : ICaseManagementApiClient
 {
     private readonly HttpClient _client;
-    private EstateItemsClient _estateItemsClient;
-    private DocumentsClient _documentsClient;
+    private readonly EstateItemsClient _estateItemsClient;
+    private readonly DocumentsClient _documentsClient;
+    private readonly CollaboratorsClient _collaboratorsClient;
 
     public CaseManagementApiClient(HttpClient httpClient)
     {
         _client = httpClient;
         _estateItemsClient = new EstateItemsClient(httpClient);
         _documentsClient = new DocumentsClient(httpClient);
+        _collaboratorsClient = new CollaboratorsClient(httpClient);
     }
 
     public async Task<CaseResourceRepresentation?> GetCase(Guid caseId, int? companyId = null,
@@ -176,5 +178,14 @@ public class CaseManagementApiClient : ICaseManagementApiClient
     {
         await _documentsClient.DeleteDocument(caseId, documentKey, cancellationToken);
     }
-
+    
+    public async Task UpdateCaseOwner(Guid caseId, int ownerId, CancellationToken cancellationToken = default)
+    {
+        await _collaboratorsClient.UpdateCaseOwner(caseId, ownerId, cancellationToken);
+    }
+    
+    public async Task UpdateCaseCollaborators(Guid caseId, List<int> collaboratorIds, CancellationToken cancellationToken = default)
+    {
+        await _collaboratorsClient.UpdateCaseCollaborators(caseId, collaboratorIds, cancellationToken);
+    }
 }
