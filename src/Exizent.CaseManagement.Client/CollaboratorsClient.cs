@@ -19,7 +19,7 @@ internal class CollaboratorsClient
         response.EnsureSuccessStatusCode();
     }
     
-    public async Task UpdateCaseCollaborators(Guid caseId, List<int> collaboratorIds, CancellationToken cancellationToken = default)
+    public async Task UpdateCaseCollaborators(Guid caseId, IEnumerable<int> collaboratorIds, CancellationToken cancellationToken = default)
     {
         using var request = new HttpRequestMessage(HttpMethod.Put, $"/cases/{caseId}/collaborators");
         request.Content = JsonContent.Create(collaboratorIds);
