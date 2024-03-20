@@ -184,7 +184,7 @@ public class CaseManagementApiClient : ICaseManagementApiClient
         await _collaboratorsClient.UpdateCaseOwner(caseId, ownerId, cancellationToken);
     }
     
-    public async Task UpdateCaseCollaborators(Guid caseId, List<int> collaboratorIds, CancellationToken cancellationToken = default)
+    public async Task UpdateCaseCollaborators(Guid caseId, IEnumerable<int> collaboratorIds, CancellationToken cancellationToken = default)
     {
         await _collaboratorsClient.UpdateCaseCollaborators(caseId, collaboratorIds, cancellationToken);
     }

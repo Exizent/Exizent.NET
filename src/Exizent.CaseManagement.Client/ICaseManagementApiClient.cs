@@ -44,5 +44,5 @@ public interface ICaseManagementApiClient
         CancellationToken cancellationToken = default);
     Task DeleteDocument(Guid caseId, string documentKey, CancellationToken cancellationToken = default);
     Task UpdateCaseOwner(Guid caseId, int ownerId, CancellationToken cancellationToken = default);
-    Task UpdateCaseCollaborators(Guid caseId, List<int> collaboratorIds, CancellationToken cancellationToken = default);
+    Task UpdateCaseCollaborators(Guid caseId, IEnumerable<int> collaboratorIds, CancellationToken cancellationToken = default);
 }
