@@ -3,5 +3,6 @@
 public enum IncomeDestination
 {
     ClientCashAccount,
-    Other
+    Other,
+    AssetValue
 }
