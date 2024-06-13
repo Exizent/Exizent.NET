@@ -21,7 +21,8 @@ public class ExpenseJsonBuilder
                 ? null
                 : ExpenseReimbursementJsonBuilder.Build(resourceRepresentation.Reimbursement) },
             { "notes", resourceRepresentation.Notes },
-            { "purpose", resourceRepresentation.Purpose.ToString() }
+            { "purpose", resourceRepresentation.Purpose.ToString() },
+            { "generateIht423", resourceRepresentation.GenerateIht423 }
         };
 
 
