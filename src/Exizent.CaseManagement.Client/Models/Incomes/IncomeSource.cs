@@ -7,5 +7,6 @@ public enum IncomeSource
     Dividend,
     Bonus,
     PensionArrears,
-    Other
+    Other,
+    Prize
 }
