@@ -17,6 +17,8 @@ public class DeceasedResourceRepresentation
     public string? PlaceOfDeath { get;init; }
     public string? Domicile { get; init;}
     public string? OtherDomicile { get; init;}
+    public Sheriffdom? Sheriffdom { get; init; }
+    public string? OtherSheriffdom { get; init; }
     public bool? HasDeathCertificate { get;init; }
     public string? IhtReferenceNumber { get; init;}
     public string? UniqueTaxpayerReference { get; init;}
