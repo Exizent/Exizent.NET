@@ -24,6 +24,8 @@ public static class DeceasedJsonBuilder
             { "placeOfDeath", deceased.PlaceOfDeath },
             { "domicile", deceased.Domicile },
             { "otherDomicile", deceased.OtherDomicile },
+            { "sheriffdom", deceased.Sheriffdom?.ToString() },
+            { "otherSheriffdom", deceased.OtherSheriffdom },
             { "hasDeathCertificate", deceased.HasDeathCertificate },
             { "ihtReferenceNumber", deceased.IhtReferenceNumber },
             { "uniqueTaxpayerReference", deceased.UniqueTaxpayerReference },
