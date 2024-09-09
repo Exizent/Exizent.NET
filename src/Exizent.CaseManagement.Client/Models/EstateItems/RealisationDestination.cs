@@ -3,5 +3,6 @@
 public enum RealisationDestination
 {
     ClientCashAccount = 1,
-    Other
+    Other = 2,
+    BankAccount = 3
 }
