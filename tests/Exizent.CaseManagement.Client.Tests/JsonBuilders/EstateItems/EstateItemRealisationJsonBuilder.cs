@@ -11,6 +11,7 @@ public static class EstateItemRealisationJsonBuilder
             {"receivedAt", resourceRepresentation.ReceivedAt},
             {"value", resourceRepresentation.Value},
             {"destination", resourceRepresentation.Destination.ToString()},
-            {"otherDestination", resourceRepresentation.OtherDestination}
+            {"otherDestination", resourceRepresentation.OtherDestination},
+            {"caseItemId", resourceRepresentation.CaseItemId}
         };
 }
