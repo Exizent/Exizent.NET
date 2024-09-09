@@ -6,4 +6,5 @@ public class EstateItemRealisationResourceRepresentation
     public decimal? Value { get; init; }
     public RealisationDestination? Destination { get; init; }
     public string? OtherDestination { get; init; }
+    public Guid? BankAccountId { get; init; }
 }
