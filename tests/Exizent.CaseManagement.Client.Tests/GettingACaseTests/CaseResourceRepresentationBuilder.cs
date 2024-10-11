@@ -27,6 +27,7 @@ public class CaseResourceRepresentationBuilder
     private readonly List<CaseDocumentResourceRepresentation> _documents = new();
     private readonly List<CollaboratorResourceRepresentation> _collaborators = new();
     private CollaboratorResourceRepresentation? _owner = new();
+    private CompanyAddressResourceRepresentation _address = new();
 
     public CaseResourceRepresentationBuilder With(CompanyResourceRepresentation? company)
     {
@@ -105,6 +106,12 @@ public class CaseResourceRepresentationBuilder
         return this;
     }
 
+    public CaseResourceRepresentationBuilder With(CompanyAddressResourceRepresentation address)
+    {
+        _address = address;
+        return this;
+    }
+
     public CaseResourceRepresentation Build()
     {
         return new CaseResourceRepresentation
@@ -123,7 +130,8 @@ public class CaseResourceRepresentationBuilder
             Distributions = _distributions,
             Documents = _documents,
             Owner = _owner ?? _fixture.Create<CollaboratorResourceRepresentation>(),
-            Collaborators = _collaborators
+            Collaborators = _collaborators,
+            Address = _address,
         };
     }
 }
