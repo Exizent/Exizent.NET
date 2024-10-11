@@ -27,4 +27,5 @@ public class CaseResourceRepresentation
     public IReadOnlyList<CaseDocumentResourceRepresentation> Documents { get; init; } = null!;
     public CollaboratorResourceRepresentation Owner { get; init; } = null!;
     public IReadOnlyList<CollaboratorResourceRepresentation> Collaborators { get; init; } = null!;
+    public CompanyAddressResourceRepresentation Address { get; init; } = null!;
 }

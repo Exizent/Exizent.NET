@@ -18,4 +18,20 @@ public static class CompanyAddressJsonBuilder
 
         return jsonObject;
     }
+
+    public static JsonObject Build(CompanyAddressResourceRepresentation address)
+    {
+        var jsonObject = new JsonObject
+        {
+            { "id", address.Id },
+            { "officeName", address.OfficeName },
+            { "buildingNumber", address.BuildingNumber },
+            { "buildingName", address.BuildingName },
+            { "street", address.Street },
+            { "city", address.City },
+            { "postcode", address.Postcode }
+        };
+
+        return jsonObject;
+    }
 }

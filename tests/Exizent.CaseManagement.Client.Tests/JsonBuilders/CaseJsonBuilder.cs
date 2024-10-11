@@ -65,7 +65,13 @@ public static class CaseJsonBuilder
         var collaborators = new JsonArray(resourceRepresentation.Collaborators.Select(
             CollaboratorJsonBuilder.Build).ToArray<JsonNode?>());
         jsonObject.Add("collaborators", collaborators);
-     
+
+        var address = CompanyAddressJsonBuilder.Build(resourceRepresentation.Address);
+        if (address is not null)
+        {
+            jsonObject.Add("address", address);
+        }
+
         return jsonObject;
     }
 }
