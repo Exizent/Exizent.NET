@@ -29,7 +29,8 @@ public static class CompanyAddressJsonBuilder
             { "buildingName", address.BuildingName },
             { "street", address.Street },
             { "city", address.City },
-            { "postcode", address.Postcode }
+            { "postcode", address.Postcode },
+            { "isDeleted", address.IsDeleted }
         };
 
         return jsonObject;
