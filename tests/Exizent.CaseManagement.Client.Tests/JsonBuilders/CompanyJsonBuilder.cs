@@ -17,7 +17,13 @@ public static class CompanyJsonBuilder
             { "name", company.Name },
             { "officePhoneNumber", company.OfficePhoneNumber },
             { "address", CompanyAddressJsonBuilder.Build(company.Address) },
+            { "primaryAddress", CompanyAddressJsonBuilder.Build(company.PrimaryAddress) },
         };
+
+        var addresses = new JsonArray(company.Addresses.Select(
+          CompanyAddressJsonBuilder.Build).ToArray<JsonNode?>());
+
+        deceasedJson.Add("addresses", addresses);
 
         return deceasedJson;
     }

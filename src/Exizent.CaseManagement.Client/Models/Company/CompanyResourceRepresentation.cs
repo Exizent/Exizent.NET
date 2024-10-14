@@ -5,4 +5,6 @@ public class CompanyResourceRepresentation
     public string? Name { get; init; }
     public string? OfficePhoneNumber { get; init; }
     public CompanyAddressResourceRepresentation Address { get; init; } = null!;
+    public CompanyAddressResourceRepresentation PrimaryAddress { get; init; } = null!;
+    public IReadOnlyList<CompanyAddressResourceRepresentation> Addresses { get; init; } = new List<CompanyAddressResourceRepresentation>();
 }
