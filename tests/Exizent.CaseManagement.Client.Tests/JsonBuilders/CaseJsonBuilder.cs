@@ -13,6 +13,7 @@ public static class CaseJsonBuilder
         var jsonObject = new JsonObject
         {
             { "id", resourceRepresentation.Id },
+            { "companyCaseId", resourceRepresentation.CompanyCaseId },
             { "taxThreshold", resourceRepresentation.TaxThreshold },
             { "clientAccountBalance", resourceRepresentation.ClientAccountBalance },
             { "deceased", DeceasedJsonBuilder.Build(resourceRepresentation.Deceased) },
@@ -26,10 +27,10 @@ public static class CaseJsonBuilder
         }
 
         var company = CompanyJsonBuilder.Build(resourceRepresentation.Company);
-        if(company is not null)
+        if (company is not null)
         {
             jsonObject.Add("company", company);
-        }        
+        }
         var people = new JsonArray(resourceRepresentation.People.Select(
             PersonJsonBuilder.Build).ToArray<JsonNode?>());
         jsonObject.Add("people", people);
@@ -50,9 +51,9 @@ public static class CaseJsonBuilder
 
         var expenses = new JsonArray(resourceRepresentation.Expenses.Select(
             ExpenseJsonBuilder.Build).ToArray<JsonNode?>());
-        
+
         jsonObject.Add("expenses", expenses);
-        
+
         var distributions = new JsonArray(resourceRepresentation.Distributions.Select(
             DistributionJsonBuilder.Build).ToArray<JsonNode?>());
         jsonObject.Add("distributions", distributions);
@@ -61,7 +62,7 @@ public static class CaseJsonBuilder
             .Select(CaseDocumentJsonBuilder.Build).ToArray<JsonNode?>());
 
         jsonObject.Add("documents", documents);
-        
+
         var collaborators = new JsonArray(resourceRepresentation.Collaborators.Select(
             CollaboratorJsonBuilder.Build).ToArray<JsonNode?>());
         jsonObject.Add("collaborators", collaborators);
