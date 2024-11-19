@@ -22,21 +22,23 @@ public abstract class EstateItemJsonBuilder<TEstateItem> : IEstateItemJsonBuilde
     protected abstract JsonObject InnerBuild(JsonObject jsonObject, TEstateItem resourceRepresentation);
 
     private static JsonObject BuildEstateItem(EstateItemResourceRepresentation resourceRepresentation) =>
-        
+
         // var documents = new JsonArray(resourceRepresentation.Documents
         // .Select(CaseDocumentJsonBuilder.Build).ToArray<JsonNode?>());
-
         new()
         {
-            {"id", resourceRepresentation.Id},
-            {"location", resourceRepresentation.Location.ToString("G")},
-            {"createdAt", resourceRepresentation.CreatedAt},
-            {"updatedAt", resourceRepresentation.UpdatedAt},
-            {"notes", resourceRepresentation.Notes},
-            {"isArchived", resourceRepresentation.IsArchived},
-            {"isComplete", resourceRepresentation.IsComplete},
-            {"dateOfDeathValue", resourceRepresentation.DateOfDeathValue},
-            {"documents", new JsonArray(resourceRepresentation.Documents
-                .Select(CaseDocumentJsonBuilder.Build).ToArray<JsonNode?>())}
+            { "id", resourceRepresentation.Id },
+            { "location", resourceRepresentation.Location.ToString("G") },
+            { "createdAt", resourceRepresentation.CreatedAt },
+            { "updatedAt", resourceRepresentation.UpdatedAt },
+            { "notes", resourceRepresentation.Notes },
+            { "isArchived", resourceRepresentation.IsArchived },
+            { "isComplete", resourceRepresentation.IsComplete },
+            { "dateOfDeathValue", resourceRepresentation.DateOfDeathValue },
+            { "fullDateOfDeathValue", resourceRepresentation.FullDateOfDeathValue },
+            {
+                "documents", new JsonArray(resourceRepresentation.Documents
+                    .Select(CaseDocumentJsonBuilder.Build).ToArray<JsonNode?>())
+            }
         };
 }
