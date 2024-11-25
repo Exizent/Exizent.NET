@@ -10,5 +10,7 @@ public enum SourceOfFunds
     PrepaidFuneralPlan,
     PremiumBond,
     NationalSavingsAndInvestmentsProduct,
-    NationalSavingsAndInvestmentsIncomeBond
+    NationalSavingsAndInvestmentsIncomeBond,
+    Pension,
+    LifePolicy
 }
