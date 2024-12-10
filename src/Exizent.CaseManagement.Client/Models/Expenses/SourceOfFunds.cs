@@ -10,7 +10,9 @@ public enum SourceOfFunds
     PrepaidFuneralPlan,
     PremiumBond,
     NationalSavingsAndInvestmentsProduct,
-    NationalSavingsAndInvestmentsIncomeBond,
+    NationalSavingsAndInvestmentsIncomeBond = 9,
     Pension,
-    LifePolicy
+    LifePolicy,
+#pragma warning disable CA1069 // Enums values should not be duplicated
+    IncomeBond = 9
 }
