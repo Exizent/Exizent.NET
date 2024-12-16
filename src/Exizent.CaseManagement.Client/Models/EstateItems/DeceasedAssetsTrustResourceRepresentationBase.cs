@@ -8,6 +8,7 @@ public abstract class DeceasedAssetsTrustResourceRepresentationBase : EstateItem
     public string? NameOfSettlor { get; set; }
     public DateTime? SettlorDateOfDeathOrSettlementDate { get; set; }
     public string? Name { get; set; }
+    public string? NameAndAgeOfPersonReceivingBenefit { get; init; }
     public string? NameOfPersonReceivingBenefit { get; init; }
     public int? AgeOfPersonReceivingBenefit { get; init; }
     public List<TrusteeOrSolicitorResourceRepresentation> TrusteesAndSolicitors { get; set; } = new List<TrusteeOrSolicitorResourceRepresentation>();

@@ -81,6 +81,7 @@ public class DeceasedAssetsTrustEstateItemJsonBuilder : EstateItemJsonBuilder<De
         jsonObject.Add("nameOfSettlor", resourceRepresentation.NameOfSettlor);
         jsonObject.Add("settlorDateOfDeathOrSettlementDate", resourceRepresentation.SettlorDateOfDeathOrSettlementDate);
         jsonObject.Add("name", resourceRepresentation.Name);
+        jsonObject.Add("nameAndAgeOfPersonReceivingBenefit", resourceRepresentation.NameAndAgeOfPersonReceivingBenefit);
         jsonObject.Add("nameOfPersonReceivingBenefit", resourceRepresentation.NameOfPersonReceivingBenefit);
         jsonObject.Add("ageOfPersonReceivingBenefit", resourceRepresentation.AgeOfPersonReceivingBenefit);
         jsonObject.Add("uniqueTaxReferenceNumber", resourceRepresentation.UniqueTaxReferenceNumber);
