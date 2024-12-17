@@ -14,5 +14,9 @@ public enum SourceOfFunds
 #pragma warning disable CA1069 // Enums values should not be duplicated
     IncomeBond = 9,
     Pension = 10,
-    LifePolicy = 11
+    LifePolicy = 11,
+    UnitTrust = 12,
+    InvestmentBond = 13,
+    NomineeInvestmentAccount = 14,
+    PhysicalShareholding = 15
 }
