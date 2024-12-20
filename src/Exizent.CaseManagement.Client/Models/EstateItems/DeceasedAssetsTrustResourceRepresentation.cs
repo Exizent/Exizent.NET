@@ -21,4 +21,5 @@ public class DeceasedAssetsTrustResourceRepresentation : EstateItemResourceRepre
     public decimal? TotalValue { get; init; }
     public bool IsTaxOnTotalValueToBePaidNow { get; init; }
     public decimal? EstimatedValue { get; init; }
+    public IhtFormApplicantCapacity? Capacity { get; init; }
 }
