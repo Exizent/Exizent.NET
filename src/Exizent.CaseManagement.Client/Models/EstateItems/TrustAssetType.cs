@@ -7,7 +7,7 @@ public enum TrustAssetType
     ControlHoldingsShares,
     FarmshousesAndland,
     BusinessesAndAssets,
-    OtherLandBuildingsAndRights,
+    OtherLandBuildingsAndRightsOverLand,
     BankAndFinancialAccounts,
     Cash,
     PremiumBondsAndSavingsInvestments,
