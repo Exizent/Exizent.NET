@@ -94,7 +94,7 @@ public class DeceasedAssetsTrustEstateItemJsonBuilder : EstateItemJsonBuilder<De
         jsonObject.Add("isTaxOnTotalValueToBePaidNow", resourceRepresentation.IsTaxOnTotalValueToBePaidNow);
         jsonObject.Add("estimatedValue", resourceRepresentation.EstimatedValue);
         jsonObject.Add("capacity", (int?)resourceRepresentation.Capacity);
-        jsonObject.Add("assetType", (int?)resourceRepresentation.AssetType);
+        jsonObject.Add("trustAssetType", (int?)resourceRepresentation.TrustAssetType);
 
         return jsonObject;
     }
