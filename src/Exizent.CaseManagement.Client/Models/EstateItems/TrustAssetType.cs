@@ -3,10 +3,10 @@
 public enum TrustAssetType
 {
     HousesBuildingsAndLand,
-    TradedUnlistedSharesExceptControlHoldings,
-    ControlHoldingsShares,
-    FarmshousesAndland,
-    BusinessesAndAssets,
+    UnlistedShares,
+    ControlHoldingsOfShares,
+    FarmsFarmhousesAndFarmLand,
+    BusinessesAndBusinessAssets,
     OtherLandBuildingsAndRightsOverLand,
     BankAndFinancialAccounts,
     Cash,
@@ -16,8 +16,8 @@ public enum TrustAssetType
     GovernmentAndMunicipalSecurities,
     ListedStocksAndShares,
     DividendsOrInterestOnStocksAndShares,
-    TradedUnlistedAndUnlistedShares,
+    UnlistedSharesWhereIhtInstallmentsApply,
     DebtsDueToTrustees,
-    TaxRepayments,
+    IncomeOrCapitalGainsTaxRepayments,
     OtherAssetsAndIncomeDueToTrustees
 }
