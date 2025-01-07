@@ -5,7 +5,7 @@ public enum TrustAssetType
     HousesBuildingsAndLand,
     UnlistedShares,
     ControlHoldingsOfShares,
-    FarmsFarmhousesAndFarmLand,
+    FarmsFarmhousesAndFarmland,
     BusinessesAndBusinessAssets,
     OtherLandBuildingsAndRightsOverLand,
     BankAndFinancialAccounts,
