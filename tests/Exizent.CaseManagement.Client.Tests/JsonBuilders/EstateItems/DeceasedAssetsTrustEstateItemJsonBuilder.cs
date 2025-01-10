@@ -24,11 +24,11 @@ public class DeceasedAssetsTrustEstateItemJsonBuilder : EstateItemJsonBuilder<De
     }
 
     private static JsonObject BuildSolicitor(
-    SolicitorResourceRepresentation? solicitor)
+    SolicitorResourceRepresentation solicitor)
     {
         var jsonObject = new JsonObject
         {
-            { "fullNameOrBusinessName", solicitor!.FullNameOrBusinessName },
+            { "fullNameOrBusinessName", solicitor.FullNameOrBusinessName },
             { "contactName", solicitor.ContactName },
             { "phoneNumber", solicitor.PhoneNumber },
             { "emailAddress", solicitor.EmailAddress },
@@ -41,12 +41,12 @@ public class DeceasedAssetsTrustEstateItemJsonBuilder : EstateItemJsonBuilder<De
     }
 
     private static JsonObject BuildTrustee(
-       TrusteeResourceRepresentation trusteeOrSolicitor)
+       TrusteeResourceRepresentation trustee)
     {
         var jsonObject = new JsonObject
         {
-            { "name", trusteeOrSolicitor.Name },
-            { "address", AddressJsonBuilder.Build(trusteeOrSolicitor.Address!) }
+            { "name", trustee.Name },
+            { "address", AddressJsonBuilder.Build(trustee.Address!) }
         };
 
         return jsonObject;
@@ -105,7 +105,7 @@ public class DeceasedAssetsTrustEstateItemJsonBuilder : EstateItemJsonBuilder<De
         jsonObject.Add("uniqueTaxReferenceNumber", resourceRepresentation.UniqueTaxReferenceNumber);
         jsonObject.Add("trustCreationDate", resourceRepresentation.TrustCreationDate);
         jsonObject.Add("hasDetailsOfAssets", resourceRepresentation.HasDetailsOfAssets);
-        jsonObject.Add("solicitor", BuildSolicitor(resourceRepresentation.SolicitorOrOtherAgent));
+        if(resourceRepresentation.SolicitorOrOtherAgent is not null) jsonObject.Add("solicitorOrOtherAgent", BuildSolicitor(resourceRepresentation.SolicitorOrOtherAgent));
         jsonObject.Add("trustees", new JsonArray(resourceRepresentation.Trustees.Select(BuildTrustee).ToArray<JsonNode>()));
         jsonObject.Add("propertyBusinessSharesAssets", BuildAssetDetails(resourceRepresentation.PropertyBusinessSharesAssets));
         jsonObject.Add("otherAssets", BuildAssetDetails(resourceRepresentation.OtherAssets));
