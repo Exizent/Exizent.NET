@@ -28,7 +28,12 @@ public class DeceasedAssetsTrustEstateItemJsonBuilder : EstateItemJsonBuilder<De
     {
         var jsonObject = new JsonObject
         {
-            { "name", trusteeOrSolicitor.Name },
+            { "fullNameOrBusinessName", trusteeOrSolicitor.FullNameOrBusinessName },
+            { "contactName", trusteeOrSolicitor.ContactName },
+            { "phoneNumber", trusteeOrSolicitor.PhoneNumber },
+            { "emailAddress", trusteeOrSolicitor.EmailAddress },
+            { "capacity", trusteeOrSolicitor.Capacity },
+            { "referenceNumber", trusteeOrSolicitor.ReferenceNumber },
             { "address", AddressJsonBuilder.Build(trusteeOrSolicitor.Address!) }
         };
 
