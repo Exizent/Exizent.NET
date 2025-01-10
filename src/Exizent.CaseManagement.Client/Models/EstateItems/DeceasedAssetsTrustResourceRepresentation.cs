@@ -12,7 +12,7 @@ public class DeceasedAssetsTrustResourceRepresentation : EstateItemResourceRepre
     public string? NameAndAgeOfPersonReceivingBenefit { get; init; }
     public string? NameOfPersonReceivingBenefit { get; init; }
     public int? AgeOfPersonReceivingBenefit { get; init; }
-    public SolicitorResourceRepresentation? Solicitor { get; init; }
+    public SolicitorResourceRepresentation? SolicitorOrOtherAgent { get; init; }
     public List<TrusteeResourceRepresentation> Trustees { get; init; } = new List<TrusteeResourceRepresentation>();
     public string? UniqueTaxReferenceNumber { get; init; }
     public DateTime? TrustCreationDate { get; init; }
