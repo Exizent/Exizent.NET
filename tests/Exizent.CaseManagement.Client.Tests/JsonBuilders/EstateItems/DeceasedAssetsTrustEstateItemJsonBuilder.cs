@@ -70,6 +70,7 @@ public class DeceasedAssetsTrustEstateItemJsonBuilder : EstateItemJsonBuilder<De
     {
         var jsonObject = new JsonObject
         {
+            { "nameOfCreditor", trustLiability.NameOfCreditor },
             { "description", trustLiability.Description },
             { "value", trustLiability.Value }
         };
