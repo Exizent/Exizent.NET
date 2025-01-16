@@ -33,6 +33,23 @@ public sealed class GettingACaseWithEstateItems : IClassFixture<Harness>
         caseDetails.EstateItems.Should().BeEmpty();
     }
 
+    [Fact]
+    public async Task ShouldReturnCaseFromFile()
+    {
+        //var path = Directory.GetCurrentDirectory();
+        var fileStream = File.OpenRead(@"c:\temp\deceasedassetTrust.json");
+        string fileContents;
+        using (StreamReader reader = new StreamReader(fileStream))
+        {
+            fileContents = reader.ReadToEnd();
+        }        
+
+        var caseId = Guid.NewGuid();
+        _harness.ClientHandler.AddGetCaseResponse(caseId, fileContents);
+
+        var caseDetails = await _harness.Client.GetCase(caseId);
+        }    
+    
     [Theory]
     [AllEstateItemResourceRepresentationTypesData]
     public async Task ShouldReturnEstateItem(Type estateItemResourceRepresentationType)

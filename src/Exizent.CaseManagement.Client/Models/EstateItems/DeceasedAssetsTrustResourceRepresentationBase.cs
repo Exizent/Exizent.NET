@@ -11,9 +11,7 @@ public abstract class DeceasedAssetsTrustResourceRepresentationBase : EstateItem
     public string? NameAndAgeOfPersonReceivingBenefit { get; init; }
     public string? NameOfPersonReceivingBenefit { get; init; }
     public int? AgeOfPersonReceivingBenefit { get; init; }
-    public SolicitorResourceRepresentation? SolicitorOrOtherAgent { get; init; }
     public List<TrusteeResourceRepresentation> TrusteesAndSolicitors { get; set; } = new List<TrusteeResourceRepresentation>();
-    public List<TrusteeResourceRepresentation> Trustees { get; set; } = new List<TrusteeResourceRepresentation>();
     public string? UniqueTaxReferenceNumber { get; set; }
     public DateTime? TrustCreationDate { get; set; }
     public bool HasDetailsOfAssets { get; set; }

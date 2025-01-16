@@ -1,0 +1,236 @@
+{
+    "id": "01000000-a9fe-0a58-6dea-08dcf81e1735",
+    "companyCaseId": "AaronTest1290",
+    "company": {
+        "id": 410,
+        "name": "Lama Consultancy6",
+        "officePhoneNumber": "07711636066",
+        "address": {
+            "id": "0a4f6c48-3813-4b71-8b09-78e425e946a7",
+            "officeName": null,
+            "buildingName": null,
+            "street": "Forest Gardens",
+            "isDeleted": false,
+            "streetName": "Forest Gardens",
+            "buildingNumber": "15",
+            "buildingNameOrFlatNumber": null,
+            "city": "Lyndhurst",
+            "postcode": "SO43 7AF"
+        },
+        "primaryAddress": {
+            "id": "0a4f6c48-3813-4b71-8b09-78e425e946a7",
+            "officeName": null,
+            "buildingName": null,
+            "street": "Forest Gardens",
+            "isDeleted": false,
+            "streetName": "Forest Gardens",
+            "buildingNumber": "15",
+            "buildingNameOrFlatNumber": null,
+            "city": "Lyndhurst",
+            "postcode": "SO43 7AF"
+        },
+        "addresses": [
+            {
+                "id": "e57b523e-43ab-4662-aa76-b85a08697f14",
+                "officeName": "Lama Global Head Office",
+                "buildingName": null,
+                "street": "Forest Gardens",
+                "isDeleted": false,
+                "streetName": "Forest Gardens",
+                "buildingNumber": "15",
+                "buildingNameOrFlatNumber": null,
+                "city": "Lyndhurst",
+                "postcode": "SO43 7AF"
+            }
+        ]
+    },
+    "deceased": {
+        "title": null,
+        "firstName": "Jackie",
+        "lastName": "Lopez",
+        "middleName": null,
+        "otherNames": [],
+        "maidenName": null,
+        "dateOfBirth": "1967-06-01T00:00:00Z",
+        "niNumber": null,
+        "occupation": null,
+        "address": {
+            "streetName": "Princes Crescent",
+            "buildingNumber": "15",
+            "buildingNameOrFlatNumber": null,
+            "city": "Lyndhurst",
+            "postcode": "SO43 7BS"
+        },
+        "willDetails": null,
+        "dateOfDeath": "2024-06-01T00:00:00Z",
+        "placeOfDeath": "Nove scotia",
+        "domicile": null,
+        "otherDomicile": null,
+        "sheriffdom": null,
+        "otherSheriffdom": null,
+        "hasDeathCertificate": false,
+        "ihtReferenceNumber": null,
+        "uniqueTaxpayerReference": null,
+        "hasSurvivingSpouseOrCivilPartner": false,
+        "maritalStatus": null,
+        "maritalStatusDate": null,
+        "notes": null
+    },
+    "people": [],
+    "expenses": [],
+    "estateItems": [
+        {
+            "trustType": "InterestInPossession",
+            "nameOfSettlor": "Mr Trust Creator",
+            "settlorDateOfDeathOrSettlementDate": null,
+            "nameAndAgeOfPersonReceivingBenefit": null,
+            "ageOfPersonReceivingBenefit": null,
+            "name": "The Trust",
+            "solicitorOrOtherAgent": {
+                "fullNameOrBusinessName": null,
+                "contactName": null,
+                "phoneNumber": null,
+                "emailAddress": null,
+                "capacity": null,
+                "referenceNumber": null,
+                "address": null
+            },
+            "trusteesAndSolicitors": [
+                {
+                    "name": "Trustee1",
+                    "address": {
+                        "streetName": "Princes Crescent",
+                        "buildingNumber": "12",
+                        "buildingNameOrFlatNumber": null,
+                        "city": "Lyndhurst",
+                        "postcode": "SO43 7BS"
+                    }
+                }
+            ],
+            "trustees": [
+                {
+                    "name": "Trustee1",
+                    "address": {
+                        "streetName": "Princes Crescent",
+                        "buildingNumber": "12",
+                        "buildingNameOrFlatNumber": null,
+                        "city": "Lyndhurst",
+                        "postcode": "SO43 7BS"
+                    }
+                }
+            ],
+            "uniqueTaxReferenceNumber": "UTR4434",
+            "trustCreationDate": "2016-12-12T00:00:00Z",
+            "hasDetailsOfAssets": true,
+            "propertyBusinessSharesAssets": {
+                "assets": [
+                    {
+                        "type": "BusinessesAndBusinessAssets",
+                        "description": "Bus Relief",
+                        "value": 2121
+                    }
+                ],
+                "liabilities": [],
+                "exemptions": [],
+                "isTaxToBePaidNow": false
+            },
+            "otherAssets": {
+                "assets": [],
+                "liabilities": [],
+                "exemptions": [],
+                "isTaxToBePaidNow": false
+            },
+            "totalValue": null,
+            "isTaxOnTotalValueToBePaidNow": false,
+            "estimatedValue": null,
+            "createdBy": "",
+            "capacity": "ExecutorOrAdministrator",
+            "id": "01000000-a9fe-0a58-5237-08dd361e9138",
+            "location": "EnglandWales",
+            "createdAt": "2025-01-16T11:32:38.32Z",
+            "updatedAt": "2025-01-16T11:32:38.32Z",
+            "notes": null,
+            "isArchived": false,
+            "isComplete": false,
+            "type": "DeceasedAssetsTrust",
+            "dateOfDeathValue": 2121,
+            "fullDateOfDeathValue": 2121,
+            "documents": [],
+            "distributionValue": 2121
+        }
+    ],
+    "financialGiftsDetails": {
+        "hasMadeGiftsOverAnnualLimit": false,
+        "hasGivenUpTrustAssetsWithinTimeLimit": false,
+        "continuedToBenefitFromGift": false,
+        "madeGiftWhereRecipientDidNotTakeFullPossession": false,
+        "electedThatIhtShouldNotApplyToAssetsPreviouslyOwned": false,
+        "updatedAt": "0001-01-01T00:00:00"
+    },
+    "incomes": [],
+    "distributions": [],
+    "organisations": [],
+    "documents": [
+        {
+            "id": "6af88f0f-50c0-4dae-9d54-7ea2d1bf7dcc",
+            "key": "ZGV2ZWxvcC80MTAvMjU3MjQvRGVjZWFzZWQvSUhUNDE4LnBkZg",
+            "fileName": "IHT418.pdf",
+            "documentType": "Deceased",
+            "type": "Deceased",
+            "createdAt": "2025-01-09T16:20:38+00:00",
+            "updatedAt": "2025-01-09T16:20:38+00:00",
+            "fileSize": 916,
+            "isInfected": false,
+            "status": "Uploaded",
+            "metadata": {}
+        },
+        {
+            "id": "a166921b-fd9c-40f7-8e92-db8b44d9a3a8",
+            "key": "ZGV2ZWxvcC80MTAvMjU3MjQvRXhlY3V0b3JzLUxvQS9JSFQ0MTgucGRm",
+            "fileName": "IHT418.pdf",
+            "documentType": "ExecutorsLetterOfAdministration",
+            "type": "ExecutorsLetterOfAdministration",
+            "createdAt": "2025-01-09T16:28:18+00:00",
+            "updatedAt": "2025-01-09T16:28:18+00:00",
+            "fileSize": 916,
+            "isInfected": false,
+            "status": "Uploaded",
+            "metadata": {}
+        },
+        {
+            "id": "721a91e0-d140-469d-b963-56e0073844f8",
+            "key": "ZGV2ZWxvcC80MTAvMjU3MjQvRXhlY3V0b3JzLVRvUy9JSFQ0MTgucGRm",
+            "fileName": "IHT418.pdf",
+            "documentType": "ExecutorsTermsOfService",
+            "type": "ExecutorsTermsOfService",
+            "createdAt": "2025-01-09T16:27:57+00:00",
+            "updatedAt": "2025-01-09T16:27:57+00:00",
+            "fileSize": 916,
+            "isInfected": false,
+            "status": "Uploaded",
+            "metadata": {}
+        }
+    ],
+    "taxThreshold": 325000,
+    "clientAccountBalance": 0,
+    "settings": {
+        "estateAccounts": null
+    },
+    "collaborators": [],
+    "owner": {
+        "id": 653,
+        "fullName": "Aaron Ashworth"
+    },
+    "address": {
+        "id": "0a4f6c48-3813-4b71-8b09-78e425e946a7",
+        "officeName": null,
+        "buildingName": null,
+        "street": "Forest Gardens",
+        "isDeleted": false,
+        "streetName": "Forest Gardens",
+        "buildingNumber": "15",
+        "buildingNameOrFlatNumber": null,
+        "city": "Lyndhurst",
+        "postcode": "SO43 7AF"
+    }
+}
