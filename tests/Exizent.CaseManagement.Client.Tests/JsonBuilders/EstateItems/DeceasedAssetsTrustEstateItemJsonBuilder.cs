@@ -108,7 +108,7 @@ public class DeceasedAssetsTrustEstateItemJsonBuilder : EstateItemJsonBuilder<De
         jsonObject.Add("hasDetailsOfAssets", resourceRepresentation.HasDetailsOfAssets);
         if(resourceRepresentation.SolicitorOrOtherAgent is not null) jsonObject.Add("solicitorOrOtherAgent", BuildSolicitor(resourceRepresentation.SolicitorOrOtherAgent));
         jsonObject.Add("trusteesAndSolicitors", new JsonArray(resourceRepresentation.TrusteesAndSolicitors.Select(BuildTrustee).ToArray<JsonNode>()));
-        jsonObject.Add("trustees", new JsonArray(resourceRepresentation.TrusteesAndSolicitors.Select(BuildTrustee).ToArray<JsonNode>()));
+        jsonObject.Add("trustees", new JsonArray(resourceRepresentation.Trustees.Select(BuildTrustee).ToArray<JsonNode>()));
         jsonObject.Add("propertyBusinessSharesAssets", BuildAssetDetails(resourceRepresentation.PropertyBusinessSharesAssets));
         jsonObject.Add("otherAssets", BuildAssetDetails(resourceRepresentation.OtherAssets));
         jsonObject.Add("totalValue", resourceRepresentation.TotalValue);
