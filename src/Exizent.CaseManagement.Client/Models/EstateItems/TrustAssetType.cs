@@ -8,7 +8,6 @@ public enum TrustAssetType
     FarmsFarmhousesAndFarmland,
     BusinessesAndBusinessAssets,
     OtherLandBuildingsAndRightsOverLand,
-    NetForeignAssetsPaidByInstallments,
     BankAndFinancialAccounts,
     Cash,
     PremiumBondsAndSavingsInvestments,
@@ -21,5 +20,6 @@ public enum TrustAssetType
     DebtsDueToTrustees,
     IncomeOrCapitalGainsTaxRepayments,
     OtherAssetsAndIncomeDueToTrustees,
-    NetForeignAssetsNotPaidByInstallments
+    NetForeignAssets,
+    NetForeignAssetsWhereIhtInstallmentsApply
 }
