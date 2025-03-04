@@ -4,6 +4,7 @@ using System.Net;
 using System.Text;
 using System.Text.Json;
 using Exizent.CaseManagement.Client.Models;
+using Exizent.CaseManagement.Client.Models.Deceased;
 using Exizent.CaseManagement.Client.Models.EstateItems;
 using Microsoft.AspNetCore.WebUtilities;
 
@@ -24,6 +25,36 @@ public class CaseManagementApiClient : ICaseManagementApiClient
         _collaboratorsClient = new CollaboratorsClient(httpClient);
     }
 
+    public async Task<CaseResponseResourceRepresentation> CreateCase(string companyCaseId, PostDeceasedResourceRepresentation deceased, CancellationToken cancellationToken = default)
+    {
+        var postCase = new PostCaseResourceRepresentation
+        {
+            CompanyCaseId = companyCaseId,
+            Deceased = deceased
+        };
+        
+        var json = JsonSerializer.Serialize(postCase, DefaultJsonSerializerOptions.Instance);
+        using var request = new HttpRequestMessage(HttpMethod.Post, $"/cases");
+        request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+        using var response = await _client.SendAsync(request, cancellationToken);
+
+        if (response.StatusCode == HttpStatusCode.BadRequest)
+        {
+            var errors = await response.Content.ReadAsStringAsync(cancellationToken);
+            return new CaseBadRequestResourceRepresentation { StatusCode = HttpStatusCode.BadRequest, Body = errors};
+        }
+        response.EnsureSuccessStatusCode();
+
+        var body = await response.Content.ReadAsStringAsync(cancellationToken);
+        var caseResponse = JsonSerializer.Deserialize<CaseResponseResourceRepresentation>(body,
+            DefaultJsonSerializerOptions.Instance);
+        caseResponse!.StatusCode = response.StatusCode;
+        
+        return caseResponse;
+
+
+    }
+    
     public async Task<CaseResourceRepresentation?> GetCase(Guid caseId, int? companyId = null,
         CancellationToken cancellationToken = default)
     {
