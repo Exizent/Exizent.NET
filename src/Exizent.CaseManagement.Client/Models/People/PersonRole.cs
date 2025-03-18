@@ -6,8 +6,10 @@ public enum PersonRole
     Executor = 2,
     Beneficiary = 3,
     Creditor = 4,
-    LeadTrusteeParentOrGuardian = 5,
+    Trustee = 5,
     SurvivingJointOwner = 6,
     ProfessionalExecutorSignatory = 7,
-    PreDeceasedSpouse = 8
+    PreDeceasedSpouse = 8,
+    ParentGuardian = 9,
+    LeadTrusteeParentOrGuardian = 99
 }
