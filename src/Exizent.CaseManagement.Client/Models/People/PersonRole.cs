@@ -10,6 +10,6 @@ public enum PersonRole
     SurvivingJointOwner = 6,
     ProfessionalExecutorSignatory = 7,
     PreDeceasedSpouse = 8,
-    ParentGuardian = 9,
+    ParentOrGuardian = 9,
     LeadTrusteeParentOrGuardian = 99
 }
