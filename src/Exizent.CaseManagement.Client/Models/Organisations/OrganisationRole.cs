@@ -4,4 +4,5 @@ public enum OrganisationRole
 {
     Executor = 2,
     Beneficiary = 3,
+    Trustee = 4
 }
