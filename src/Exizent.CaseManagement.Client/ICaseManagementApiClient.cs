@@ -9,6 +9,8 @@ public interface ICaseManagementApiClient
     Task<CaseResponseResourceRepresentation> CreateCase(string companyCaseId,
         PostDeceasedResourceRepresentation deceased, CancellationToken cancellationToken = default);
 
+    Task UpdateCaseStatus(Guid caseId, CaseStatus status, CancellationToken cancellationToken = default);
+
     Task<CaseResourceRepresentation?> GetCase(Guid caseId, int? companyId = null,
         CancellationToken cancellationToken = default);
 

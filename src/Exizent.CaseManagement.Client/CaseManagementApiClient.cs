@@ -51,10 +51,17 @@ public class CaseManagementApiClient : ICaseManagementApiClient
         caseResponse!.StatusCode = response.StatusCode;
         
         return caseResponse;
-
-
     }
-    
+
+    public async Task UpdateCaseStatus(Guid caseId, CaseStatus status, CancellationToken cancellationToken = default)
+    {
+        using var request = new HttpRequestMessage(HttpMethod.Put, $"/cases/{caseId}/status");
+        request.Content = new StringContent($"\"{status}\"", Encoding.UTF8, "application/json");
+        using var response = await _client.SendAsync(request, cancellationToken);
+
+        response.EnsureSuccessStatusCode();
+    }
+
     public async Task<CaseResourceRepresentation?> GetCase(Guid caseId, int? companyId = null,
         CancellationToken cancellationToken = default)
     {

@@ -10,25 +10,23 @@ using Response = WireMock.ResponseBuilders.Response;
 
 namespace Exizent.CaseManagement.Client.IntegrationTests;
 
-public class PostingEstateItemTests
+public class UpdatingCaseStatusTests
 {
     [Fact]
-    public async Task ShouldPostEstateItem()
+    public async Task ShouldUpdateCaseStatus()
     {
         var caseId = Guid.NewGuid();
-        var estateItemId = Guid.NewGuid();
 
         using var authApiServer = MockAuthApiServerProvider.Create(out var clientId, out var clientSecret);
 
         using var casesApiServer = WireMockServer.Start();
         casesApiServer.Given(
-                Request.Create().WithPath($"/cases/{caseId}/estateitems").UsingPost()
+                Request.Create().WithPath($"/cases/{caseId}/status").UsingPut()
                     .WithHeader("User-Agent", "My browser")
             )
             .RespondWith(Response.Create()
-                .WithBody(@$"{{ ""id"": ""{estateItemId}""}}")
                 .WithHeader("Authorization", "Bearer 123456")
-                .WithStatusCode(HttpStatusCode.Created)
+                .WithStatusCode(HttpStatusCode.NoContent)
             );
 
         var serviceContainer = ServiceCollectionBuilder
@@ -38,14 +36,11 @@ public class PostingEstateItemTests
         using var scope = serviceProvider.CreateScope();
         var client = scope.ServiceProvider.GetRequiredService<ICaseManagementApiClient>();
 
-        var response = await client.PostEstateItem(caseId,
-            new PostIncomeBondResourceRepresentation { AccountNumber = "12344" });
-        response!.StatusCode.Should().Be(HttpStatusCode.Created);
-        response!.Id.Should().Be(estateItemId);
+        await client.UpdateCaseStatus(caseId, CaseStatus.Open );
     }
     
     [Fact]
-    public async Task ShouldPostEstateItemAndReturnBadRequest()
+    public async Task ShouldThrowExceptionWhenUpdateCaseStatusFailsWith404NotFound()
     {
         var caseId = Guid.NewGuid();
         var estateItemId = Guid.NewGuid();
@@ -54,13 +49,12 @@ public class PostingEstateItemTests
 
         using var casesApiServer = WireMockServer.Start();
         casesApiServer.Given(
-                Request.Create().WithPath($"/cases/{caseId}/estateitems").UsingPost()
+                Request.Create().WithPath($"/cases/{caseId}/status").UsingPut()
                     .WithHeader("User-Agent", "My browser")
             )
             .RespondWith(Response.Create()
-                .WithBody(@$"{{ ""Errors"": ""Input data had errors""}}")
                 .WithHeader("Authorization", "Bearer 123456")
-                .WithStatusCode(HttpStatusCode.BadRequest)
+                .WithStatusCode(HttpStatusCode.NotFound)
             );
 
         var serviceContainer = ServiceCollectionBuilder
@@ -69,14 +63,9 @@ public class PostingEstateItemTests
         await using var serviceProvider = serviceContainer.BuildServiceProvider();
         using var scope = serviceProvider.CreateScope();
         var client = scope.ServiceProvider.GetRequiredService<ICaseManagementApiClient>();
+        
+        Func<Task> action = async () => await client.UpdateCaseStatus(caseId, CaseStatus.Open);
 
-        var response = await client.PostEstateItem(caseId,
-            new PostIncomeBondResourceRepresentation { AccountNumber = "12344" });
-        response.Should().BeOfType<EstateItemBadRequestResourceRepresentation>();
-        var errorResponse = (EstateItemBadRequestResourceRepresentation)response!;
-        errorResponse!.Id.Should().Be(Guid.Empty);
-        errorResponse!.StatusCode.Should().Be(HttpStatusCode.BadRequest);
-        errorResponse!.Body.Should().Be(@$"{{ ""Errors"": ""Input data had errors""}}");
+        await action.Should().ThrowAsync<HttpRequestException>().WithMessage("Response status code does not indicate success: 404 (Not Found).");
     }
-
 }
