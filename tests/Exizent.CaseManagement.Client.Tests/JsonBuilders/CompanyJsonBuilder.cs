@@ -15,7 +15,7 @@ public static class CompanyJsonBuilder
         var deceasedJson = new JsonObject
         {
             { "name", company.Name },
-            { "officePhoneNumber", company.OfficePhoneNumber },
+            { "contactNumber", company.ContactNumber },
             { "address", CompanyAddressJsonBuilder.Build(company.Address) },
             { "primaryAddress", CompanyAddressJsonBuilder.Build(company.PrimaryAddress) },
         };
