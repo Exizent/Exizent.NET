@@ -87,7 +87,7 @@ public class GettingACaseTests
         casesApiServer.Given(Request.Create().WithPath($"/cases/{caseId}").WithParam("expand", "company").UsingGet())
             .RespondWith(Response.Create()
                 .WithBody(
-                    @$"{{ ""id"": ""{caseId}"", ""company"": {{ ""id"": 1, ""name"": ""Google"", ""officePhoneNumber"": ""07711123456"" }}, ""deceased"": {{ ""firstName"": ""Foo"", ""lastName"": ""Bar"", ""dateOfDeath"": ""1988-02-01"" }} }}")
+                    @$"{{ ""id"": ""{caseId}"", ""company"": {{ ""id"": 1, ""name"": ""Google"", ""contactNumber"": ""07711123456"" }}, ""deceased"": {{ ""firstName"": ""Foo"", ""lastName"": ""Bar"", ""dateOfDeath"": ""1988-02-01"" }} }}")
                 .WithHeader("Authorization", "Bearer 123456")
             );
 
@@ -105,7 +105,7 @@ public class GettingACaseTests
         @case.Deceased.DateOfDeath.Should().Be(new DateTime(1988, 02, 01));
 
         @case.Company!.Name.Should().Be("Google");
-        @case.Company!.OfficePhoneNumber.Should().Be("07711123456");
+        @case.Company!.ContactNumber.Should().Be("07711123456");
     }
 
     [Theory]
@@ -125,7 +125,7 @@ public class GettingACaseTests
                 .UsingGet())
             .RespondWith(Response.Create()
                 .WithBody(
-                    @$"{{ ""id"": ""{caseId}"", ""company"": {{ ""id"": 1, ""name"": ""Google"", ""officePhoneNumber"": ""07711123456"" }}, ""deceased"": {{ ""firstName"": ""Foo"", ""lastName"": ""Bar"", ""dateOfDeath"": ""1988-02-01"" }},""estateItems"": [ {{ ""id"": ""{Guid.NewGuid()}"", ""account"": ""4444"", ""product"": ""1"", ""type"": ""NationalSavingsAndInvestmentsProduct"", ""isComplete"": {isComplete.ToString().ToLowerInvariant()}, ""isArchived"": {isArchived.ToString().ToLowerInvariant()} }} ] }}")
+                    @$"{{ ""id"": ""{caseId}"", ""company"": {{ ""id"": 1, ""name"": ""Google"", ""contactNumber"": ""07711123456"" }}, ""deceased"": {{ ""firstName"": ""Foo"", ""lastName"": ""Bar"", ""dateOfDeath"": ""1988-02-01"" }},""estateItems"": [ {{ ""id"": ""{Guid.NewGuid()}"", ""account"": ""4444"", ""product"": ""1"", ""type"": ""NationalSavingsAndInvestmentsProduct"", ""isComplete"": {isComplete.ToString().ToLowerInvariant()}, ""isArchived"": {isArchived.ToString().ToLowerInvariant()} }} ] }}")
                 .WithHeader("Authorization", "Bearer 123456")
             );
 
@@ -160,7 +160,7 @@ public class GettingACaseTests
                 .UsingGet())
             .RespondWith(Response.Create()
                 .WithBody(
-                    @$"{{ ""id"": ""{caseId}"", ""company"": {{ ""id"": 1, ""name"": ""Google"", ""officePhoneNumber"": ""07711123456"" }}, ""deceased"": {{ ""firstName"": ""Foo"", ""lastName"": ""Bar"", ""dateOfDeath"": ""1988-02-01"" }},""estateItems"": [ {{ ""id"": ""{Guid.NewGuid()}"", ""account"": ""4444"", ""product"": ""1"", ""type"": ""NationalSavingsAndInvestmentsProduct"", ""isComplete"": {isComplete.ToString().ToLowerInvariant() }, ""isArchived"": {isArchived.ToString().ToLowerInvariant() } }} ] }}")
+                    @$"{{ ""id"": ""{caseId}"", ""company"": {{ ""id"": 1, ""name"": ""Google"", ""contactNumber"": ""07711123456"" }}, ""deceased"": {{ ""firstName"": ""Foo"", ""lastName"": ""Bar"", ""dateOfDeath"": ""1988-02-01"" }},""estateItems"": [ {{ ""id"": ""{Guid.NewGuid()}"", ""account"": ""4444"", ""product"": ""1"", ""type"": ""NationalSavingsAndInvestmentsProduct"", ""isComplete"": {isComplete.ToString().ToLowerInvariant() }, ""isArchived"": {isArchived.ToString().ToLowerInvariant() } }} ] }}")
                 .WithHeader("Authorization", "Bearer 123456")
             );
 
@@ -178,7 +178,7 @@ public class GettingACaseTests
         @case.Deceased.DateOfDeath.Should().Be(new DateTime(1988, 02, 01));
 
         @case.Company!.Name.Should().Be("Google");
-        @case.Company!.OfficePhoneNumber.Should().Be("07711123456");
+        @case.Company!.ContactNumber.Should().Be("07711123456");
         @case.EstateItems.Count.Should().Be(1);
         @case.EstateItems[0].IsArchived.Should().Be(isArchived);
         @case.EstateItems[0].IsComplete.Should().Be(isComplete);
