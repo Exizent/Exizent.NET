@@ -35,6 +35,10 @@ public static class CaseJsonBuilder
             PersonJsonBuilder.Build).ToArray<JsonNode?>());
         jsonObject.Add("people", people);
 
+        var trusts = new JsonArray(resourceRepresentation.Trusts.Select(
+            TrustJsonBuilder.Build).ToArray<JsonNode?>());
+        jsonObject.Add("trusts", trusts);
+
         var organisations = new JsonArray(resourceRepresentation.Organisations.Select(
             OrganisationJsonBuilder.Build).ToArray<JsonNode?>());
         jsonObject.Add("organisations", organisations);

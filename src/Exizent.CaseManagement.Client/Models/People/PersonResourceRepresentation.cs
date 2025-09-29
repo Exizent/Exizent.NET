@@ -24,5 +24,6 @@ public class PersonResourceRepresentation
     public bool? IsSignatory { get; init; }
     public string? PlaceOfMarriage { get; init; }
     public DateTime? DateOfMarriageOrCivilPartnership { get; init; }
+    public EntitlementResourceRepresentation? Entitlement { get; init; }
     public DateTime CreatedAt { get; init; }
 }

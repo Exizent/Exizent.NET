@@ -9,6 +9,7 @@ using Exizent.CaseManagement.Client.Models.Expenses;
 using Exizent.CaseManagement.Client.Models.Incomes;
 using Exizent.CaseManagement.Client.Models.Organisations;
 using Exizent.CaseManagement.Client.Models.People;
+using Exizent.CaseManagement.Client.Models.Trusts;
 
 namespace Exizent.CaseManagement.Client.Tests.GettingACaseTests;
 
@@ -19,6 +20,7 @@ public class CaseResourceRepresentationBuilder
     private DeceasedResourceRepresentation? _deceased;
     private FinancialGiftsDetailsResourceRepresentation? _financialGiftsDetails;
     private readonly List<PersonResourceRepresentation> _people = new();
+    private readonly List<TrustResourceRepresentation> _trusts = new();
     private readonly List<OrganisationResourceRepresentation> _organisations = new();
     private readonly List<EstateItemResourceRepresentation> _estateItems = new();
     private readonly List<ExpenseResourceRepresentation> _expenses = new();
@@ -50,6 +52,11 @@ public class CaseResourceRepresentationBuilder
     public CaseResourceRepresentationBuilder With(PersonResourceRepresentation person)
     {
         _people.Add(person);
+        return this;
+    }
+    public CaseResourceRepresentationBuilder With(TrustResourceRepresentation trust)
+    {
+        _trusts.Add(trust);
         return this;
     }
 
@@ -123,6 +130,7 @@ public class CaseResourceRepresentationBuilder
             Deceased = _deceased ?? _fixture.Create<DeceasedResourceRepresentation>(),
             FinancialGiftsDetails = _financialGiftsDetails = new FinancialGiftsDetailsResourceRepresentation(),
             People = _people.AsReadOnly(),
+            Trusts = _trusts.AsReadOnly(),
             EstateItems = _estateItems,
             Organisations = _organisations,
             Expenses = _expenses,

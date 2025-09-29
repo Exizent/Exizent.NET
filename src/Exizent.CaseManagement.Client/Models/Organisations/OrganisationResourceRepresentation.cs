@@ -20,6 +20,7 @@ public class OrganisationResourceRepresentation
     public string? EmailAddress { get; init; }
     public string? Notes { get; init; }
     public bool IsSignatory { get; init; }
+    public EntitlementResourceRepresentation? Entitlement { get; init; }
     public DateTime CreatedAt { get; init; }
     public DateTime UpdatedAt { get; init; }
 }
