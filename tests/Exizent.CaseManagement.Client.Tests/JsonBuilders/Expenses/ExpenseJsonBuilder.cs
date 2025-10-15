@@ -13,13 +13,14 @@ public class ExpenseJsonBuilder
             { "description", resourceRepresentation.Description },
             { "caseItemId", resourceRepresentation.CaseItemId },
             { "value", resourceRepresentation.Value },
-            { "from", resourceRepresentation.From.ToString("O") },
-            { "to", resourceRepresentation.To.ToString("O") },
+            { "from", resourceRepresentation.From!.Value.ToString("O") },
+            { "to", resourceRepresentation.To!.Value.ToString("O") },
             { "supplier", resourceRepresentation.Supplier },
             { "paidByThirdParty", resourceRepresentation.PaidByThirdParty },
             { "reimbursement", resourceRepresentation.Reimbursement is null
                 ? null
                 : ExpenseReimbursementJsonBuilder.Build(resourceRepresentation.Reimbursement) },
+            { "settlements", ExpenseSettlementJsonBuilder.Build(resourceRepresentation.Settlements) },
             { "notes", resourceRepresentation.Notes },
             { "purpose", resourceRepresentation.Purpose.ToString() },
             { "generateIht423", resourceRepresentation.GenerateIht423 }
