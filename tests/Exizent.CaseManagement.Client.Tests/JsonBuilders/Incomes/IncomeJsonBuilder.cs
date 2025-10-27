@@ -24,7 +24,7 @@ public class IncomeJsonBuilder : IncomeBaseJsonBuilder<IncomeResourceRepresentat
         jsonObject.Add("otherSource", resourceRepresentation.OtherSource);
         jsonObject.Add("source", resourceRepresentation.Source.ToString());
         jsonObject.Add("amountType", resourceRepresentation.AmountType.ToString());
-        jsonObject.Add("includesDateOfDeathValue", resourceRepresentation.IncludesDateOfDeathValue);
+        jsonObject.Add("includesValueUpToDateOfDeath", resourceRepresentation.IncludesValueUpToDateOfDeath);
 
         return jsonObject;
     }
