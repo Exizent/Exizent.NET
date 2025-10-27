@@ -21,4 +21,6 @@ public class IncomeResourceRepresentation : IncomeBaseResourceRepresentation
     public IncomeDestination? Destination { get; init; }
 
     public string? OtherDestination { get; init; }
+
+    public bool IncludesDateOfDeathValue { get; init; }
 }
