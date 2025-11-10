@@ -2,7 +2,7 @@ namespace Exizent.CaseManagement.Client.Models.Expenses;
 
 public enum ExpensePurposeType
 {
-    Other = 0,
+    Administration = 0,
     AssetSaleOrLiabilityRepayment = 1,
     InheritanceTax = 2,
     CapitalGainsTax = 3,
