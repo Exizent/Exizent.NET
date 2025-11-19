@@ -9,5 +9,6 @@ public enum ExpensePurposeType
     IncomeTax = 4,
     FuneralCeremony = 5,
     Headstone = 6,
-    GeneralFuneral = 7
+    GeneralFuneral = 7,
+    Other = 8
 }
