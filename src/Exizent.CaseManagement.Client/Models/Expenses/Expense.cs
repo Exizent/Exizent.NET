@@ -10,7 +10,6 @@ public class ExpenseResourceRepresentation
     public DateTime? To { get; init; }
     public string Supplier { get; init; } = null!;
     public bool PaidByThirdParty { get; init; }
-    public ExpenseReimbursementResourceRepresentation? Reimbursement { get; init; }
     public List<ExpenseSettlementResourceRepresentation> Settlements { get; init; } = new List<ExpenseSettlementResourceRepresentation>();
     public string? Notes { get; }
     public ExpensePurposeType? Purpose { get; init; }   

@@ -17,9 +17,6 @@ public class ExpenseJsonBuilder
             { "to", resourceRepresentation.To!.Value.ToString("O") },
             { "supplier", resourceRepresentation.Supplier },
             { "paidByThirdParty", resourceRepresentation.PaidByThirdParty },
-            { "reimbursement", resourceRepresentation.Reimbursement is null
-                ? null
-                : ExpenseReimbursementJsonBuilder.Build(resourceRepresentation.Reimbursement) },
             { "settlements", ExpenseSettlementJsonBuilder.Build(resourceRepresentation.Settlements) },
             { "notes", resourceRepresentation.Notes },
             { "purpose", resourceRepresentation.Purpose.ToString() },
