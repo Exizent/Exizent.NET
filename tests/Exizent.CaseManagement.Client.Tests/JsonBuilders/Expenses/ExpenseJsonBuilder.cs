@@ -24,7 +24,6 @@ public class ExpenseJsonBuilder
             { "notes", resourceRepresentation.Notes },
             { "purpose", resourceRepresentation.Purpose.ToString() },
             { "generateIht423", resourceRepresentation.GenerateIht423 },
-            { "isArchived", resourceRepresentation.IsArchived },
             { "isComplete", resourceRepresentation.IsComplete }
         };
 
