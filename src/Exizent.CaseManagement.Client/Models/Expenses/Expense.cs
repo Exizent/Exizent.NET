@@ -14,4 +14,6 @@ public class ExpenseResourceRepresentation
     public string? Notes { get; }
     public ExpensePurposeType? Purpose { get; init; }   
     public bool? GenerateIht423 { get; init; }   
+
+    public bool IsComplete { get; init; }
 }
