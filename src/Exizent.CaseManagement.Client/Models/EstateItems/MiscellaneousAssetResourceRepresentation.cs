@@ -17,6 +17,7 @@ public class MiscellaneousAssetResourceRepresentation : EstateItemResourceRepres
     public bool IsHeritable { get; init; }
     public bool IsValidForInheritanceTax { get; init; }
     public bool? IsCharityDonation { get; init; }
+    public bool? IsHeritageExempt { get; init; }
     public decimal? GrossSaleProceeds { get; init; }
     public DateTime? DateOfSale { get; init; }
     public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;

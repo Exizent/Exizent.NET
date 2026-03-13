@@ -13,6 +13,8 @@ public class StateBenefitOverpaymentEstateItemJsonBuilder : EstateItemJsonBuilde
     protected override JsonObject InnerBuild(JsonObject jsonObject,
         StateBenefitOverpaymentResourceRepresentation resourceRepresentation)
     {
+        jsonObject.Add("institution", resourceRepresentation.Institution);
+        jsonObject.Add("description", resourceRepresentation.Description);
         jsonObject.Add("type", nameof(EstateItemType.StateBenefitOverpayment));
         jsonObject.Add("amount", resourceRepresentation.Amount);
         jsonObject.Add("hasBeenRepaid", resourceRepresentation.HasBeenRepaid);

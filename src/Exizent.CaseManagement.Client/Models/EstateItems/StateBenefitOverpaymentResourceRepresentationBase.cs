@@ -4,6 +4,8 @@ public abstract class StateBenefitOverpaymentResourceRepresentationBase : Estate
 {
     protected StateBenefitOverpaymentResourceRepresentationBase(): base(EstateItemType.StateBenefitOverpayment){}
 
+    public string? Institution { get; init; }
+    public string? Description { get; init; }
     public decimal? Amount { get; set; }
     public bool HasBeenRepaid { get; set; }
     public EstateItemSettlementResourceRepresentation Settlement { get; set; } = null!;
