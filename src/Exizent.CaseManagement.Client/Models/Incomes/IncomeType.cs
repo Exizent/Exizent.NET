@@ -4,5 +4,6 @@ public enum IncomeType
 {
     Income,
     SumsReceived,
-    Receipt
+    Receipt,
+    ShareholdingIncome
 }

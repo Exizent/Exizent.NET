@@ -11,5 +11,6 @@ public class AllIncomeResourceRepresentationTypesData : DataAttribute
         yield return new object[] { typeof(IncomeResourceRepresentation) };
         yield return new object[] { typeof(SumsReceivedIncomeResourceRepresentation) };
         yield return new object[] { typeof(ReceiptIncomeResourceRepresentation) };
+        yield return new object[] { typeof(ShareholdingIncomeResourceRepresentation) };
     }
 }
