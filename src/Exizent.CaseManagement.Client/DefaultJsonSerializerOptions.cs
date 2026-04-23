@@ -56,6 +56,7 @@ internal static class DefaultJsonSerializerOptions
         registry.RegisterType<IncomeResourceRepresentation>();
         registry.RegisterType<ReceiptIncomeResourceRepresentation>();
         registry.RegisterType<SumsReceivedIncomeResourceRepresentation>();
+        registry.RegisterType<ShareholdingIncomeResourceRepresentation>();
         
 
         return options;
