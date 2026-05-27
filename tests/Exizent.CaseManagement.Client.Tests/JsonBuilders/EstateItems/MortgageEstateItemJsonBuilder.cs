@@ -22,7 +22,9 @@ public class MortgageEstateItemJsonBuilder : EstateItemJsonBuilder<MortgageResou
         jsonObject.Add("linkedEstateItemId", resourceRepresentation.LinkedEstateItemId);
         jsonObject.Add("debtValue", resourceRepresentation.DebtValue);
         jsonObject.Add("settlement", EstateItemSettlementJsonBuilder.Build(resourceRepresentation.Settlement));
-        jsonObject.Add("jointOwnerIds", new JsonArray(resourceRepresentation.JointOwnerIds.Select(x => (JsonNode)JsonValue.Create(x)!).ToArray()));
+        jsonObject.Add("jointOwnerIds", resourceRepresentation.JointOwnerIds != null
+            ? new JsonArray(resourceRepresentation.JointOwnerIds.Select(x => (JsonNode)JsonValue.Create(x)!).ToArray())
+            : (JsonNode?)null);
 
         return jsonObject;
     }

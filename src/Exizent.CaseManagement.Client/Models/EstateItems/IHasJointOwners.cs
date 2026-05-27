@@ -2,5 +2,6 @@ namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
 public interface IHasJointOwners
 {
-    IReadOnlyList<Guid> JointOwnerIds { get; set; }
+    /// <remarks>This property is always null when <see cref="IPassableToJointOwner.IsPassedToSurvivingJointOwner"/> is false.</remarks>
+    IReadOnlyList<Guid>? JointOwnerIds { get; set; }
 }

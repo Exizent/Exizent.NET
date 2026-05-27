@@ -13,6 +13,7 @@ public abstract class LifePolicyResourceRepresentationBase : EstateItemResourceR
     public string? BeneficiaryDetails { get; set; }
     public string? Comments { get; set; }
     public decimal ProportionOwned { get; set; }
-    public IReadOnlyList<Guid> JointOwnerIds { get; set; } = Array.Empty<Guid>();
+    /// <remarks>This property is always null when <see cref="IsPassedToSurvivingJointOwner"/> is false.</remarks>
+    public IReadOnlyList<Guid>? JointOwnerIds { get; set; }
     public EstateItemRealisationResourceRepresentation Realisation { get; set; } = null!;
 }

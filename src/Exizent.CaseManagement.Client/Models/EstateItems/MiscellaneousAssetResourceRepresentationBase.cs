@@ -20,5 +20,6 @@ public abstract class MiscellaneousAssetResourceRepresentationBase : EstateItemR
     public decimal? GrossSaleProceeds { get; set; }
     public DateTime? DateOfSale { get; set; }
     public EstateItemRealisationResourceRepresentation Realisation { get; set; } = null!;
-    public IReadOnlyList<Guid> JointOwnerIds { get; set; } = Array.Empty<Guid>();
+    /// <remarks>This property is always null when <see cref="IsPassedToSurvivingJointOwner"/> is false.</remarks>
+    public IReadOnlyList<Guid>? JointOwnerIds { get; set; }
 }

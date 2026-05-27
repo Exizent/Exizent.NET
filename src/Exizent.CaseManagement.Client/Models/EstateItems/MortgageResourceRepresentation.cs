@@ -13,5 +13,6 @@ public class MortgageResourceRepresentation : EstateItemResourceRepresentation
     public Guid? LinkedEstateItemId { get; init; }
     public decimal? DebtValue { get; init; }
     public EstateItemSettlementResourceRepresentation Settlement { get; init; } = null!;
-    public IReadOnlyList<Guid> JointOwnerIds { get; init; } = Array.Empty<Guid>();
+    /// <remarks>This property is always null when <see cref="IsPassedToSurvivingJointOwner"/> is false.</remarks>
+    public IReadOnlyList<Guid>? JointOwnerIds { get; init; }
 }

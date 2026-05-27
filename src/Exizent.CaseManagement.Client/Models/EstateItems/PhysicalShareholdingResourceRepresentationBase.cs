@@ -17,6 +17,7 @@ public abstract class PhysicalShareholdingResourceRepresentationBase : EstateIte
     public string? ValuationBy { get; set; }
     public bool IsQuotedOnLondonStockExchange { get; set; }
     public EstateItemRealisationResourceRepresentation Realisation { get; set; } = null!;
-    public IReadOnlyList<Guid> JointOwnerIds { get; set; } = Array.Empty<Guid>();
+    /// <remarks>This property is always null when <see cref="IsPassedToSurvivingJointOwner"/> is false.</remarks>
+    public IReadOnlyList<Guid>? JointOwnerIds { get; set; }
     public bool HadControlOfTheCompany { get; set; }
 }

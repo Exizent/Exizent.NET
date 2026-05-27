@@ -30,6 +30,13 @@ public sealed class Harness : IDisposable
     {
         return (EstateItemResourceRepresentation)new SpecimenContext(Fixture).Resolve(type);
     }
+
+    public EstateItemResourceRepresentation CreateEstateItemWithNullJointOwnerIds(Type type)
+    {
+        var instance = CreateEstateItem(type);
+        type.GetProperty(nameof(IHasJointOwners.JointOwnerIds))?.SetValue(instance, null);
+        return instance;
+    }
     public IncomeBaseResourceRepresentation CreateIncome(Type type)
     {
         return (IncomeBaseResourceRepresentation)new SpecimenContext(Fixture).Resolve(type);

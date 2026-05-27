@@ -13,5 +13,6 @@ public abstract class MiscellaneousDebtResourceRepresentationBase : EstateItemRe
     public bool HasProviderBeenAdvised { get; set; }
     public decimal? DebtValue { get; set; }
     public EstateItemSettlementResourceRepresentation Settlement { get; set; } = null!;
-    public IReadOnlyList<Guid> JointOwnerIds { get; set; } = Array.Empty<Guid>();
+    /// <remarks>This property is always null when <see cref="IsPassedToSurvivingJointOwner"/> is false.</remarks>
+    public IReadOnlyList<Guid>? JointOwnerIds { get; set; }
 }

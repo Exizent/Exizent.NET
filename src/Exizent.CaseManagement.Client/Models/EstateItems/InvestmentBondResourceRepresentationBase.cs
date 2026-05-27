@@ -15,5 +15,6 @@ public abstract class InvestmentBondResourceRepresentationBase : EstateItemResou
     public decimal? InvestmentValue { get; set; }
     public bool IsValidForInheritanceTax { get; set; }
     public EstateItemRealisationResourceRepresentation Realisation { get; set; } = null!;
-    public IReadOnlyList<Guid> JointOwnerIds { get; set; } = Array.Empty<Guid>();
+    /// <remarks>This property is always null when <see cref="IsPassedToSurvivingJointOwner"/> is false.</remarks>
+    public IReadOnlyList<Guid>? JointOwnerIds { get; set; }
 }

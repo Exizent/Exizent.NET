@@ -16,5 +16,6 @@ public class IncomeBondResourceRepresentation : EstateItemResourceRepresentation
     public bool? IsPassedToSurvivingJointOwner { get; init; }
     public string? NotPassedDetails { get; init; }
     public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
-    public IReadOnlyList<Guid> JointOwnerIds { get; init; } = Array.Empty<Guid>();
+    /// <remarks>This property is always null when <see cref="IsPassedToSurvivingJointOwner"/> is false.</remarks>
+    public IReadOnlyList<Guid>? JointOwnerIds { get; init; }
 }

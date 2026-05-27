@@ -115,4 +115,29 @@ public sealed class GettingACaseWithEstateItems : IClassFixture<Harness>
         caseDetails?.EstateItems.Single().Should()
             .BeEquivalentTo(estateItem, o => o.RespectingRuntimeTypes());
     }
+
+    [Theory]
+    [AllJointOwnersEstateItemTypesData]
+    public async Task ShouldReturnEstateItemWithNullJointOwnerIds(Type estateItemResourceRepresentationType)
+    {
+        var estateItem = _harness.CreateEstateItemWithNullJointOwnerIds(estateItemResourceRepresentationType);
+
+        var caseResourceRepresentation = new CaseResourceRepresentationBuilder()
+            .With(estateItem)
+            .Build();
+
+        var body = CaseJsonBuilder.Build(caseResourceRepresentation);
+
+        _harness.ClientHandler.AddGetCaseResponse(caseResourceRepresentation.Id, body.ToJsonString());
+
+        var caseDetails = await _harness.Client.GetCase(caseResourceRepresentation.Id);
+
+        using var _ = new AssertionScope();
+        caseDetails.Should().NotBeNull();
+        caseDetails!.Id.Should().Be(caseResourceRepresentation.Id);
+        var returnedEstateItem = caseDetails.EstateItems.Single();
+        returnedEstateItem.GetType()
+            .GetProperty(nameof(IHasJointOwners.JointOwnerIds))!
+            .GetValue(returnedEstateItem).Should().BeNull();
+    }
 }

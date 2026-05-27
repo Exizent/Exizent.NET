@@ -43,5 +43,6 @@ public class BuildingResourceRepresentation : EstateItemResourceRepresentation
     public bool IsClaimingResidenceNilRateBand { get; init; }
     public bool IsHeritable { get; init; }
     public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
-    public IReadOnlyList<Guid> JointOwnerIds { get; init; } = Array.Empty<Guid>();
+    /// <remarks>This property is always null when <see cref="IsPassedToSurvivingJointOwner"/> is false.</remarks>
+    public IReadOnlyList<Guid>? JointOwnerIds { get; init; }
 }

@@ -41,7 +41,9 @@ public class NomineeInvestmentAccountEstateItemJsonBuilder : EstateItemJsonBuild
         jsonObject.Add("valuationBy", resourceRepresentation.ValuationBy);
         jsonObject.Add("isValidForInheritanceTax", resourceRepresentation.IsValidForInheritanceTax);
         jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
-        jsonObject.Add("jointOwnerIds", new JsonArray(resourceRepresentation.JointOwnerIds.Select(x => (JsonNode)JsonValue.Create(x)!).ToArray()));
+        jsonObject.Add("jointOwnerIds", resourceRepresentation.JointOwnerIds != null
+            ? new JsonArray(resourceRepresentation.JointOwnerIds.Select(x => (JsonNode)JsonValue.Create(x)!).ToArray())
+            : (JsonNode?)null);
         jsonObject.Add("hadControlOfTheCompany", resourceRepresentation.HadControlOfTheCompany);
 
         return jsonObject;

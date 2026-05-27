@@ -1,4 +1,5 @@
 using System.Text.Json.Nodes;
+using Exizent.CaseManagement.Client.Models.EstateItems;
 using Exizent.CaseManagement.Client.Tests.JsonBuilders;
 using Exizent.CaseManagement.Client.Tests.JsonBuilders.EstateItems;
 using FluentAssertions;
@@ -31,5 +32,26 @@ public class GettingEstateItems: IClassFixture<Harness>
         estateitemResponse!.Id.Should().Be(estateItem.Id);
         estateitemResponse.Should()
             .BeEquivalentTo(estateItem, o => o.RespectingRuntimeTypes());
+    }
+
+    [Theory]
+    [AllJointOwnersEstateItemTypesData]
+    public async Task ShouldReturnEstateItemWithNullJointOwnerIds(Type estateItemResourceRepresentationType)
+    {
+        var caseId = Guid.NewGuid();
+        var estateItem = _harness.CreateEstateItemWithNullJointOwnerIds(estateItemResourceRepresentationType);
+
+        var body = EstateItemJsonBuilderFactory.Create(estateItem).Build();
+
+        _harness.ClientHandler.AddGetEstateItemResponse(caseId, estateItem.Id, body.ToJsonString());
+
+        var estateitemResponse = await _harness.Client.GetEstateItem(caseId, estateItem.Id);
+
+        using var _ = new AssertionScope();
+        estateitemResponse.Should().NotBeNull();
+        estateitemResponse!.Id.Should().Be(estateItem.Id);
+        estateitemResponse.GetType()
+            .GetProperty(nameof(IHasJointOwners.JointOwnerIds))!
+            .GetValue(estateitemResponse).Should().BeNull();
     }
 }

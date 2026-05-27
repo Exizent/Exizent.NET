@@ -16,6 +16,7 @@ public abstract class BankAccountResourceRepresentationBase : EstateItemResource
     public string? TypeOfAccount { get; set; }
     public string? NotPassedDetails { get; set; }
     public decimal ProportionOwned { get; set; }
-    public IReadOnlyList<Guid> JointOwnerIds { get; set; } = Array.Empty<Guid>();
+    /// <remarks>This property is always null when <see cref="IsPassedToSurvivingJointOwner"/> is false.</remarks>
+    public IReadOnlyList<Guid>? JointOwnerIds { get; set; }
     public EstateItemRealisationResourceRepresentation Realisation { get; set; } = null!;
 }
