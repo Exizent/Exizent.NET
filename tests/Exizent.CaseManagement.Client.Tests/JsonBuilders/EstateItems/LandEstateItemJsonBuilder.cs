@@ -49,7 +49,10 @@ public class LandEstateItemJsonBuilder : EstateItemJsonBuilder<LandResourceRepre
         jsonObject.Add("isHeritable", resourceRepresentation.IsHeritable);        
         jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
         jsonObject.Add("jointOwnerIds", new JsonArray(resourceRepresentation.JointOwnerIds.Select(x => (JsonNode)JsonValue.Create(x)!).ToArray()));
-
+        jsonObject.Add("agriculturalReliefValueAt100Percent", resourceRepresentation.AgriculturalReliefValueAt100Percent);
+        jsonObject.Add("businessReliefValueAt100Percent", resourceRepresentation.BusinessReliefValueAt100Percent);
+        jsonObject.Add("agriculturalReliefValueAt50Percent", resourceRepresentation.AgriculturalReliefValueAt50Percent);
+        jsonObject.Add("businessReliefValueAt50Percent", resourceRepresentation.BusinessReliefValueAt50Percent);
 
         return jsonObject;
     }
