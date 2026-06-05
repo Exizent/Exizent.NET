@@ -34,4 +34,7 @@ public class ShareholdingIncomeResourceRepresentation : IncomeBaseResourceRepres
     public decimal? Cash { get; init; }
 
     public string? ShareholderReferenceNumber { get; init; }
+
+    public override decimal? Value =>
+        QuantityOfShares * (SharePrice / 100) + (Cash ?? 0);
 }
