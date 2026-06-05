@@ -43,4 +43,8 @@ public abstract class BuildingResourceRepresentationBase : EstateItemResourceRep
     public bool IsHeritable { get; set; }
     public EstateItemRealisationResourceRepresentation Realisation { get; set; } = null!;
     public IReadOnlyList<Guid> JointOwnerIds { get; set; } = Array.Empty<Guid>();
+    public decimal? AgriculturalReliefValueAt100Percent { get; set; }
+    public decimal? BusinessReliefValueAt100Percent { get; set; }
+    public decimal? AgriculturalReliefValueAt50Percent { get; set; }
+    public decimal? BusinessReliefValueAt50Percent { get; set; }
 }
