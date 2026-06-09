@@ -21,6 +21,7 @@ public class IncomeJsonBuilder : IncomeBaseJsonBuilder<IncomeResourceRepresentat
         jsonObject.Add("to", resourceRepresentation.To);
         jsonObject.Add("otherDestination", resourceRepresentation.OtherDestination);
         jsonObject.Add("destination", resourceRepresentation.Destination.ToString());
+        jsonObject.Add("destinationCaseItemId", resourceRepresentation.DestinationCaseItemId);
         jsonObject.Add("otherSource", resourceRepresentation.OtherSource);
         jsonObject.Add("source", resourceRepresentation.Source.ToString());
         jsonObject.Add("amountType", resourceRepresentation.AmountType.ToString());

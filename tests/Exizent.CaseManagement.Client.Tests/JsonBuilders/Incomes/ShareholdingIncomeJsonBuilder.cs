@@ -22,6 +22,7 @@ public class ShareholdingIncomeJsonBuilder : IncomeBaseJsonBuilder<ShareholdingI
         jsonObject.Add("isTaxable", resourceRepresentation.IsTaxable);
         jsonObject.Add("amountType", resourceRepresentation.AmountType.ToString());
         jsonObject.Add("destination", resourceRepresentation.Destination.ToString());
+        jsonObject.Add("destinationCaseItemId", resourceRepresentation.DestinationCaseItemId);
         jsonObject.Add("otherDestination", resourceRepresentation.OtherDestination);
         jsonObject.Add("includesValueUpToDateOfDeath", resourceRepresentation.IncludesValueUpToDateOfDeath);
         jsonObject.Add("valueIncludingUpToDateOfDeath", resourceRepresentation.ValueIncludingUpToDateOfDeath);

@@ -21,6 +21,8 @@ public class ShareholdingIncomeResourceRepresentation : IncomeBaseResourceRepres
 
     public IncomeDestination Destination { get; init; }
 
+    public Guid? DestinationCaseItemId { get; init; }
+
     public string? OtherDestination { get; init; }
 
     public bool IncludesValueUpToDateOfDeath { get; init; }
