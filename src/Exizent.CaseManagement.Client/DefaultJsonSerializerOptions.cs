@@ -14,6 +14,7 @@ internal static class DefaultJsonSerializerOptions
     private static JsonSerializerOptions CreateJsonSerializerOptions()
     {
         var options = new JsonSerializerOptions();
+        options.Converters.Add(new DateOnlyJsonConverter());
         options.Converters.Add(new JsonStringEnumConverter());
         options.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
         options.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
@@ -44,6 +45,8 @@ internal static class DefaultJsonSerializerOptions
         registry.RegisterType<NomineeInvestmentAccountResourceRepresentation>();
         registry.RegisterType<PensionResourceRepresentation>();
         registry.RegisterType<PhysicalShareholdingResourceRepresentation>();
+        registry.RegisterType<SingleSharePriceValuationResourceRepresentation>();
+        registry.RegisterType<QuarterUpSharePriceValuationResourceRepresentation>();
         registry.RegisterType<PremiumBondResourceRepresentation>();
         registry.RegisterType<SecuredLoanResourceRepresentation>();
         registry.RegisterType<StateBenefitOverpaymentResourceRepresentation>();

@@ -19,6 +19,13 @@ public sealed class Harness : IDisposable
         {
             BaseAddress = new Uri("https://testing.com")
         });
+
+        Fixture.Customizations.Add(
+            new TypeRelay(
+                typeof(PhysicalShareholdingValuationResourceRepresentation),
+                typeof(SingleSharePriceValuationResourceRepresentation)));
+
+        Fixture.Customize<DateOnly>(c => c.FromFactory<DateTime>(dt => DateOnly.FromDateTime(dt)));
     }
     
     public void Dispose()
