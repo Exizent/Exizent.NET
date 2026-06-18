@@ -14,6 +14,7 @@ internal static class DefaultJsonSerializerOptions
     private static JsonSerializerOptions CreateJsonSerializerOptions()
     {
         var options = new JsonSerializerOptions();
+        options.Converters.Add(new DateOnlyJsonConverter());
         options.Converters.Add(new JsonStringEnumConverter());
         options.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
         options.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
