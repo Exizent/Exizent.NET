@@ -44,6 +44,8 @@ internal static class DefaultJsonSerializerOptions
         registry.RegisterType<NomineeInvestmentAccountResourceRepresentation>();
         registry.RegisterType<PensionResourceRepresentation>();
         registry.RegisterType<PhysicalShareholdingResourceRepresentation>();
+        registry.RegisterType<SingleSharePriceValuationResourceRepresentation>();
+        registry.RegisterType<QuarterUpSharePriceValuationResourceRepresentation>();
         registry.RegisterType<PremiumBondResourceRepresentation>();
         registry.RegisterType<SecuredLoanResourceRepresentation>();
         registry.RegisterType<StateBenefitOverpaymentResourceRepresentation>();
