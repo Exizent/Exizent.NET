@@ -24,6 +24,8 @@ public sealed class Harness : IDisposable
             new TypeRelay(
                 typeof(PhysicalShareholdingValuationResourceRepresentation),
                 typeof(SingleSharePriceValuationResourceRepresentation)));
+
+        Fixture.Customize<DateOnly>(c => c.FromFactory<DateTime>(dt => DateOnly.FromDateTime(dt)));
     }
     
     public void Dispose()
