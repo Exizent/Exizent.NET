@@ -9,4 +9,5 @@ public class ExpenseSettlementResourceRepresentation
     public Guid? EstateItemId { get; init; }
     public Guid? PersonId { get; init; }
     public bool? GenerateIht423 { get; init; }
+    public ShareSettlementDetailsResourceRepresentation? ShareSettlement { get; init; }
 }
