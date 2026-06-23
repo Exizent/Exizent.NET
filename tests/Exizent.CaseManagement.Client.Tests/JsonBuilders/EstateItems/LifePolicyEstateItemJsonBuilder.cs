@@ -25,6 +25,11 @@ public class LifePolicyEstateItemJsonBuilder : EstateItemJsonBuilder<LifePolicyR
         jsonObject.Add("proportionOwned", resourceRepresentation.ProportionOwned);
         jsonObject.Add("jointOwnerIds", new JsonArray(resourceRepresentation.JointOwnerIds.Select(x => (JsonNode)JsonValue.Create(x)!).ToArray()));
         jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
+        jsonObject.Add("isPolicyOrAnnuity", resourceRepresentation.IsPolicyOrAnnuity);
+        jsonObject.Add("isJointlyOwned", resourceRepresentation.IsJointlyOwned);
+        jsonObject.Add("isPassedToSurvivingJointOwner", resourceRepresentation.IsPassedToSurvivingJointOwner);
+        jsonObject.Add("lifeAssuredPersonName", resourceRepresentation.LifeAssuredPersonName);
+        jsonObject.Add("didPaymentsContinueAfterDeath", resourceRepresentation.DidPaymentsContinueAfterDeath);
 
         return jsonObject;
     }
