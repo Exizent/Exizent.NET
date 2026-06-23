@@ -17,7 +17,7 @@ public class LifePolicyResourceRepresentation : EstateItemResourceRepresentation
     public IReadOnlyList<Guid> JointOwnerIds { get; init; } = Array.Empty<Guid>();
     public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
     public bool IsPolicyOrAnnuity { get; init; }
-    public bool? IsJointlyOwned { get; init; }
+    public bool IsJointlyOwned { get; init; }
     public bool? IsPassedToSurvivingJointOwner { get; init; }
     public string? LifeAssuredPersonName { get; init; }
     public bool? DidPaymentsContinueAfterDeath { get; init; }
