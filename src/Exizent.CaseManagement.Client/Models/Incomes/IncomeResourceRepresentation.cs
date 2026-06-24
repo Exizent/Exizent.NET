@@ -25,4 +25,6 @@ public class IncomeResourceRepresentation : IncomeBaseResourceRepresentation
     public string? OtherDestination { get; init; }
 
     public bool IncludesValueUpToDateOfDeath { get; init; }
+
+    public decimal? ValueIncludingUpToDateOfDeath { get; init; }
 }
