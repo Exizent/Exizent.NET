@@ -13,5 +13,5 @@ public abstract class EndowmentPolicyResourceRepresentationBase : EstateItemReso
     public bool PaysOnDeathOfDeceased { get; set; }
     public string? Comments { get; set; }
     public EstateItemRealisationResourceRepresentation Realisation { get; set; } = null!;
-    public bool? PropertyOwnedByDeceased { get; set; }
+    public bool? PropertySolelyOwnedByDeceased { get; set; }
 }
