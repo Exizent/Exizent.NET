@@ -17,5 +17,5 @@ public class InvestmentBondResourceRepresentation : EstateItemResourceRepresenta
     public bool IsValidForInheritanceTax { get; init; }
     public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
     public IReadOnlyList<Guid> JointOwnerIds { get; init; } = Array.Empty<Guid>();
-    public string? LifeAssuredPersonName {  get; init; }
+    public string? NameOfLifeAssured {  get; init; }
 }

@@ -26,7 +26,7 @@ public class InvestmentBondEstateItemJsonBuilder : EstateItemJsonBuilder<Investm
         jsonObject.Add("isValidForInheritanceTax", resourceRepresentation.IsValidForInheritanceTax);
         jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
         jsonObject.Add("jointOwnerIds", new JsonArray(resourceRepresentation.JointOwnerIds.Select(x => (JsonNode)JsonValue.Create(x)!).ToArray()));
-        jsonObject.Add("lifeAssuredPersonName", resourceRepresentation.LifeAssuredPersonName);
+        jsonObject.Add("nameOfLifeAssured", resourceRepresentation.NameOfLifeAssured);
 
         return jsonObject;
     }
