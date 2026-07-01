@@ -13,5 +13,7 @@ public enum FinancialGiftExemptionCategory
     OtherGiftWhereAnnualExemptionAppliesFromPreviousYear,
     SmallGiftsUpTo250,
     AgriculturalRelief,
-    BusinessRelief
+    BusinessRelief,
+    AgriculturalReliefAt50Percent,
+    BusinessReliefAt50Percent
 }
