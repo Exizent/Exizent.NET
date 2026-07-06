@@ -33,9 +33,7 @@ public class BuildingResourceRepresentation : EstateItemResourceRepresentation
     public DateTime? DateTenancyEnds { get; init; }
     public decimal? MonthlyRent { get; init; }
     public bool AgriculturalBusinessOrHeritageReliefExemption { get; init; }
-    public decimal? BusinessReliefValue { get; init; }
     public decimal? HeritageExemptionValue { get; init; }
-    public decimal? AgriculturalReliefValue { get; init; }
     public decimal? WoodlandsReliefValue { get; init; }
     public bool IsSubjectToSpecialFactors { get; init; }
     public string? SpecialFactorsDescription { get; init; }

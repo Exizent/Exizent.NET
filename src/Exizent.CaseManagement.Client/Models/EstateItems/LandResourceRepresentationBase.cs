@@ -28,9 +28,7 @@ public abstract class LandResourceRepresentationBase : EstateItemResourceReprese
     public DateTime? DateTenancyEnds { get; set; }
     public decimal? MonthlyRent { get; set; }
     public bool AgriculturalBusinessOrHeritageReliefExemption { get; set; }
-    public decimal? BusinessReliefValue { get; set; }
     public decimal? HeritageExemptionValue { get; set; }
-    public decimal? AgriculturalReliefValue { get; set; }
     public decimal? WoodlandsReliefValue { get; set; }
     public bool IsSubjectToSpecialFactors { get; set; }
     public string? SpecialFactorsDescription { get; set; }

@@ -43,9 +43,7 @@ public class BuildingEstateItemJsonBuilder : EstateItemJsonBuilder<BuildingResou
         jsonObject.Add("monthlyRent", resourceRepresentation.MonthlyRent);
         jsonObject.Add("agriculturalBusinessOrHeritageReliefExemption",
             resourceRepresentation.AgriculturalBusinessOrHeritageReliefExemption);
-        jsonObject.Add("businessReliefValue", resourceRepresentation.BusinessReliefValue);
         jsonObject.Add("heritageExemptionValue", resourceRepresentation.HeritageExemptionValue);
-        jsonObject.Add("agriculturalReliefValue", resourceRepresentation.AgriculturalReliefValue);
         jsonObject.Add("woodlandsReliefValue", resourceRepresentation.WoodlandsReliefValue);
         jsonObject.Add("isSubjectToSpecialFactors", resourceRepresentation.IsSubjectToSpecialFactors);
         jsonObject.Add("specialFactorsDescription", resourceRepresentation.SpecialFactorsDescription);
