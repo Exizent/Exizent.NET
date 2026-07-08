@@ -21,4 +21,8 @@ public class LifePolicyResourceRepresentation : EstateItemResourceRepresentation
     public bool? IsPassedToSurvivingJointOwner { get; init; }
     public string? NameOfLifeAssured { get; init; }
     public bool? DidPaymentsContinueAfterDeath { get; init; }
+    public string? LumpSumDisposalDetails { get; init; }
+    public string? RepaymentFrequency { get; init; }
+    public string? GuaranteedPaymentIncreaseDetails { get; init; }
+    public DateOnly? FinalGuaranteedPaymentDate { get; init; }
 }
