@@ -30,6 +30,10 @@ public class LifePolicyEstateItemJsonBuilder : EstateItemJsonBuilder<LifePolicyR
         jsonObject.Add("isPassedToSurvivingJointOwner", resourceRepresentation.IsPassedToSurvivingJointOwner);
         jsonObject.Add("nameOfLifeAssured", resourceRepresentation.NameOfLifeAssured);
         jsonObject.Add("didPaymentsContinueAfterDeath", resourceRepresentation.DidPaymentsContinueAfterDeath);
+        jsonObject.Add("lumpSumDisposalDetails", resourceRepresentation.LumpSumDisposalDetails);
+        jsonObject.Add("repaymentFrequency", resourceRepresentation.RepaymentFrequency);
+        jsonObject.Add("guaranteedPaymentIncreaseDetails", resourceRepresentation.GuaranteedPaymentIncreaseDetails);
+        jsonObject.Add("finalGuaranteedPaymentDate", resourceRepresentation.FinalGuaranteedPaymentDate?.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture));
 
         return jsonObject;
     }

@@ -20,4 +20,8 @@ public abstract class LifePolicyResourceRepresentationBase : EstateItemResourceR
     public bool? IsPassedToSurvivingJointOwner { get; set; }
     public string? NameOfLifeAssured { get; set; }
     public bool? DidPaymentsContinueAfterDeath { get; set; }
+    public string? LumpSumDisposalDetails { get; set; }
+    public string? RepaymentFrequency { get; set; }
+    public string? GuaranteedPaymentIncreaseDetails { get; set; }
+    public DateOnly? FinalGuaranteedPaymentDate { get; set; }
 }
