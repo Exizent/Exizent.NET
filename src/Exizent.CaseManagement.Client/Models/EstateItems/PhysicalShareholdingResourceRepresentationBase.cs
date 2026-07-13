@@ -28,6 +28,7 @@ public abstract class PhysicalShareholdingResourceRepresentationBase : EstateIte
     public bool IsValidForInheritanceTax { get; set; }
     public bool IsIncludedInEstateAccounts { get; set; }
     public bool HadControlOfTheCompany { get; set; }
+    public bool? ShouldGroupByRegistrar { get; set; }
     public IReadOnlyList<Guid> JointOwnerIds { get; set; } = Array.Empty<Guid>();
     public IReadOnlyList<ShareRealisationResourceRepresentation>? Realisations { get; set; }
 

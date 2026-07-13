@@ -43,6 +43,7 @@ public class PhysicalShareholdingEstateItemJsonBuilder : EstateItemJsonBuilder<P
         jsonObject.Add("isValidForInheritanceTax", resourceRepresentation.IsValidForInheritanceTax);
         jsonObject.Add("isIncludedInEstateAccounts", resourceRepresentation.IsIncludedInEstateAccounts);
         jsonObject.Add("hadControlOfTheCompany", resourceRepresentation.HadControlOfTheCompany);
+        jsonObject.Add("shouldGroupByRegistrar", resourceRepresentation.ShouldGroupByRegistrar);
         jsonObject.Add("realisations", new JsonArray(resourceRepresentation.Realisations
             .Select(r => (JsonNode)ShareRealisationJsonBuilder.Build(r)).ToArray()));
 

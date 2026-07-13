@@ -33,5 +33,6 @@ public class PhysicalShareholdingResourceRepresentation : EstateItemResourceRepr
     public bool IsValidForInheritanceTax { get; init; }
     public bool IsIncludedInEstateAccounts { get; init; }
     public bool HadControlOfTheCompany { get; init; }
+    public bool? ShouldGroupByRegistrar { get; init; }
     public IReadOnlyList<GetShareRealisationResourceRepresentation> Realisations { get; init; } = Array.Empty<GetShareRealisationResourceRepresentation>();
 }
