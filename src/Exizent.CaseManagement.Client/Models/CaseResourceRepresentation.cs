@@ -4,6 +4,7 @@ using Exizent.CaseManagement.Client.Models.Deceased;
 using Exizent.CaseManagement.Client.Models.Distributions;
 using Exizent.CaseManagement.Client.Models.EstateItems;
 using Exizent.CaseManagement.Client.Models.Expenses;
+using Exizent.CaseManagement.Client.Models.FormSettings;
 using Exizent.CaseManagement.Client.Models.Incomes;
 using Exizent.CaseManagement.Client.Models.Organisations;
 using Exizent.CaseManagement.Client.Models.People;
@@ -31,4 +32,5 @@ public class CaseResourceRepresentation
     public CollaboratorResourceRepresentation Owner { get; init; } = null!;
     public IReadOnlyList<CollaboratorResourceRepresentation> Collaborators { get; init; } = null!;
     public CompanyAddressResourceRepresentation Address { get; init; } = null!;
+    public FormSettingsResourceRepresentation FormSettings { get; init; } = null!;
 }
