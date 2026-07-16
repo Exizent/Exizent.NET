@@ -6,6 +6,7 @@ using Exizent.CaseManagement.Client.Models.Deceased;
 using Exizent.CaseManagement.Client.Models.Distributions;
 using Exizent.CaseManagement.Client.Models.EstateItems;
 using Exizent.CaseManagement.Client.Models.Expenses;
+using Exizent.CaseManagement.Client.Models.FormSettings;
 using Exizent.CaseManagement.Client.Models.Incomes;
 using Exizent.CaseManagement.Client.Models.Organisations;
 using Exizent.CaseManagement.Client.Models.People;
@@ -30,6 +31,7 @@ public class CaseResourceRepresentationBuilder
     private readonly List<CollaboratorResourceRepresentation> _collaborators = new();
     private CollaboratorResourceRepresentation? _owner = new();
     private CompanyAddressResourceRepresentation _address = new();
+    private FormSettingsResourceRepresentation? _formSettings;
 
     public CaseResourceRepresentationBuilder With(CompanyResourceRepresentation? company)
     {
@@ -119,6 +121,12 @@ public class CaseResourceRepresentationBuilder
         return this;
     }
 
+    public CaseResourceRepresentationBuilder With(FormSettingsResourceRepresentation formSettings)
+    {
+        _formSettings = formSettings;
+        return this;
+    }
+
     public CaseResourceRepresentation Build()
     {
         return new CaseResourceRepresentation
@@ -140,6 +148,13 @@ public class CaseResourceRepresentationBuilder
             Owner = _owner ?? _fixture.Create<CollaboratorResourceRepresentation>(),
             Collaborators = _collaborators,
             Address = _address,
+            FormSettings = _formSettings ?? new FormSettingsResourceRepresentation
+            {
+                C1 = new C1FormSettingsResourceRepresentation
+                {
+                    RegistrarsToGroup = Array.Empty<string>()
+                }
+            },
         };
     }
 }

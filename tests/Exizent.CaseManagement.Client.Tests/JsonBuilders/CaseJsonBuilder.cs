@@ -2,6 +2,7 @@
 using Exizent.CaseManagement.Client.Models;
 using Exizent.CaseManagement.Client.Tests.JsonBuilders.EstateItems;
 using Exizent.CaseManagement.Client.Tests.JsonBuilders.Expenses;
+using Exizent.CaseManagement.Client.Tests.JsonBuilders.FormSettings;
 using Exizent.CaseManagement.Client.Tests.JsonBuilders.Incomes;
 
 namespace Exizent.CaseManagement.Client.Tests.JsonBuilders;
@@ -75,6 +76,11 @@ public static class CaseJsonBuilder
         if (address is not null)
         {
             jsonObject.Add("address", address);
+        }
+
+        if (resourceRepresentation.FormSettings is not null)
+        {
+            jsonObject.Add("formSettings", FormSettingsJsonBuilder.Build(resourceRepresentation.FormSettings));
         }
 
         return jsonObject;
