@@ -18,6 +18,8 @@ public class CaseResourceRepresentation
     public string CompanyCaseId { get; init; } = null!;
     public decimal TaxThreshold { get; init; }
     public decimal ClientAccountBalance { get; init; }
+    public decimal GrossEstateValue { get; init; }
+    public decimal NetEstateValue { get; init; }
     public CompanyResourceRepresentation? Company { get; init; }
     public DeceasedResourceRepresentation Deceased { get; init; } = null!;
     public IReadOnlyList<PersonResourceRepresentation> People { get; init; } = null!;
