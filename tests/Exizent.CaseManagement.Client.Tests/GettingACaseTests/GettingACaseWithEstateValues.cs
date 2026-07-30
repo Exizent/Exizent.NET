@@ -25,6 +25,6 @@ public sealed class GettingACaseWithEstateValues : IClassFixture<Harness>
         using var _ = new AssertionScope();
         caseDetails.Should().NotBeNull();
         caseDetails!.GrossEstateValue.Should().Be(caseResourceRepresentation.GrossEstateValue);
-        caseDetails.NetEstateValue.Should().Be(caseResourceRepresentation.NetEstateValue);
+caseDetails!.NetEstateValue.Should().Be(caseResourceRepresentation.NetEstateValue);
     }
 }
