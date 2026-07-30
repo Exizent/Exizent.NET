@@ -17,6 +17,8 @@ public static class CaseJsonBuilder
             { "companyCaseId", resourceRepresentation.CompanyCaseId },
             { "taxThreshold", resourceRepresentation.TaxThreshold },
             { "clientAccountBalance", resourceRepresentation.ClientAccountBalance },
+            { "grossEstateValue", resourceRepresentation.GrossEstateValue },
+            { "netEstateValue", resourceRepresentation.NetEstateValue },
             { "deceased", DeceasedJsonBuilder.Build(resourceRepresentation.Deceased) },
             { "owner", CollaboratorJsonBuilder.Build(resourceRepresentation.Owner)}
         };
