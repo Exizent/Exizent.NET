@@ -22,7 +22,8 @@ public abstract class PhysicalShareholdingResourceRepresentationBase : EstateIte
     public bool? IsListedOnUkExchanges { get; set; }
     public EstateItemRealisationResourceRepresentation? Realisation { get; set; }
     public bool? OwnedForTwoYears { get; set; }
-    public decimal? BusinessRelief { get; set; }
+    public decimal? BusinessReliefAt50Percent { get; set; }
+    public decimal? BusinessReliefAt100Percent { get; set; }
     public CurrencyCode TradingCurrencyCode { get; set; }
     public decimal? ExchangeRate { get; set; }
     public bool IsValidForInheritanceTax { get; set; }

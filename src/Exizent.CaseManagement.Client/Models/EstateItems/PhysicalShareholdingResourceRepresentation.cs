@@ -27,7 +27,8 @@ public class PhysicalShareholdingResourceRepresentation : EstateItemResourceRepr
     public EstateItemRealisationResourceRepresentation? Realisation { get; init; }
     public IReadOnlyList<Guid> JointOwnerIds { get; init; } = Array.Empty<Guid>();
     public bool? OwnedForTwoYears { get; init; }
-    public decimal? BusinessRelief { get; init; }
+    public decimal? BusinessReliefAt50Percent { get; init; }
+    public decimal? BusinessReliefAt100Percent { get; init; }
     public CurrencyCode TradingCurrencyCode { get; init; }
     public decimal? ExchangeRate { get; init; }
     public bool IsValidForInheritanceTax { get; init; }
