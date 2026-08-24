@@ -24,7 +24,6 @@ public class PhysicalShareholdingResourceRepresentation : EstateItemResourceRepr
     public bool? IsListedOnRecognisedStockExchange { get; init; }
     public bool? IsTradedElsewhere { get; init; }
     public bool? IsListedOnUkExchanges { get; init; }
-    public EstateItemRealisationResourceRepresentation? Realisation { get; init; }
     public IReadOnlyList<Guid> JointOwnerIds { get; init; } = Array.Empty<Guid>();
     public bool? OwnedForTwoYears { get; init; }
     public decimal? BusinessRelief { get; init; }

@@ -34,7 +34,6 @@ public class PhysicalShareholdingEstateItemJsonBuilder : EstateItemJsonBuilder<P
         jsonObject.Add("isListedOnRecognisedStockExchange", resourceRepresentation.IsListedOnRecognisedStockExchange);
         jsonObject.Add("isTradedElsewhere", resourceRepresentation.IsTradedElsewhere);
         jsonObject.Add("isListedOnUkExchanges", resourceRepresentation.IsListedOnUkExchanges);
-        jsonObject.Add("realisation", resourceRepresentation.Realisation is not null ? EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation) : null);
         jsonObject.Add("jointOwnerIds", new JsonArray(resourceRepresentation.JointOwnerIds.Select(x => (JsonNode)JsonValue.Create(x)!).ToArray()));
         jsonObject.Add("ownedForTwoYears", resourceRepresentation.OwnedForTwoYears);
         jsonObject.Add("businessRelief", resourceRepresentation.BusinessRelief);
