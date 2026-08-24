@@ -1,6 +1,10 @@
 ﻿namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-public abstract class PhysicalShareholdingResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, IHasAddress, IRealisable
+/// <summary>
+/// A shareholding's realisations live in <see cref="Realisations"/>, so unlike every other realisable estate item
+/// it carries no single <c>Realisation</c> and does not implement <see cref="IRealisable"/>.
+/// </summary>
+public abstract class PhysicalShareholdingResourceRepresentationBase : EstateItemResourceRepresentationBase, IStandardJointOwnership, IHasAddress
 {
     protected PhysicalShareholdingResourceRepresentationBase(): base(EstateItemType.PhysicalShareholding){}
 
@@ -20,7 +24,6 @@ public abstract class PhysicalShareholdingResourceRepresentationBase : EstateIte
     public bool? IsListedOnRecognisedStockExchange { get; set; }
     public bool? IsTradedElsewhere { get; set; }
     public bool? IsListedOnUkExchanges { get; set; }
-    public EstateItemRealisationResourceRepresentation? Realisation { get; set; }
     public bool? OwnedForTwoYears { get; set; }
     public decimal? BusinessReliefAt50Percent { get; set; }
     public decimal? BusinessReliefAt100Percent { get; set; }
@@ -36,11 +39,5 @@ public abstract class PhysicalShareholdingResourceRepresentationBase : EstateIte
     {
         get => Address!;
         set => Address = value;
-    }
-
-    EstateItemRealisationResourceRepresentation IRealisable.Realisation
-    {
-        get => Realisation!;
-        set => Realisation = value;
     }
 }
