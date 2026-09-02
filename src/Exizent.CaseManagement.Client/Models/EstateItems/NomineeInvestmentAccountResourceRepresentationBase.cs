@@ -9,6 +9,8 @@ public abstract class NomineeInvestmentAccountResourceRepresentationBase : Estat
     public string? AccountNumber { get; set; }
     public string? AccountType { get; set; }
     public IReadOnlyList<ListedInvestmentResourceRepresentation> ListedInvestments { get; set; } = null!;
+    public IReadOnlyList<InvestmentCategoryResourceRepresentation> InvestmentCategories { get; set; } = null!;
+
     public decimal ProportionOwned { get; set; }
     public bool? IsPassedToSurvivingJointOwner { get; set; }
     public string? NotPassedDetails { get; set; }
