@@ -10,6 +10,7 @@ public class NomineeInvestmentAccountResourceRepresentation : EstateItemResource
     public string? AccountNumber { get; init; }
     public string? AccountType { get; init; }
     public IReadOnlyList<ListedInvestmentResourceRepresentation> ListedInvestments { get; init; } = null!;
+    public IReadOnlyList<InvestmentCategoryResourceRepresentation> InvestmentCategories { get; init; } = null!;
     public decimal ProportionOwned { get; init; }
     public bool? IsPassedToSurvivingJointOwner { get; init; }
     public string? NotPassedDetails { get; init; }

@@ -10,16 +10,31 @@ public class NomineeInvestmentAccountEstateItemJsonBuilder : EstateItemJsonBuild
     {
     }
 
+    private static JsonObject BuildInvestmentCategoryResourceRepresentation(
+        InvestmentCategoryResourceRepresentation resourceRepresentation)
+    {
+        var jsonObject = new JsonObject
+        {
+            { "id", resourceRepresentation.Id },
+            { "category", resourceRepresentation.Category.ToString() },
+            { "investments",  new JsonArray(resourceRepresentation.Investments.Select(BuildListedInvestmentResourceRepresentation).ToArray<JsonNode>()) }
+        };
+
+        return jsonObject;
+    }
+         
     private static JsonObject BuildListedInvestmentResourceRepresentation(
         ListedInvestmentResourceRepresentation resourceRepresentation)
     {
-        var jsonObject = new JsonObject();
+        var jsonObject = new JsonObject
+        {
+            { "identifier", resourceRepresentation.Identifier },
+            { "quantity", resourceRepresentation.Quantity },
+            { "shareDescription", resourceRepresentation.ShareDescription },
+            { "sharePrice", resourceRepresentation.SharePrice },
+            { "dividendDue", resourceRepresentation.DividendDue }
+        };
 
-        jsonObject.Add("identifier", resourceRepresentation.Identifier);
-        jsonObject.Add("quantity", resourceRepresentation.Quantity);
-        jsonObject.Add("shareDescription", resourceRepresentation.ShareDescription);
-        jsonObject.Add("sharePrice", resourceRepresentation.SharePrice);
-        jsonObject.Add("dividendDue", resourceRepresentation.DividendDue);
         return jsonObject;
     }
          
@@ -32,6 +47,7 @@ public class NomineeInvestmentAccountEstateItemJsonBuilder : EstateItemJsonBuild
         jsonObject.Add("accountNumber", resourceRepresentation.AccountNumber);
         jsonObject.Add("accountType", resourceRepresentation.AccountType);
         jsonObject.Add("listedInvestments",  new JsonArray(resourceRepresentation.ListedInvestments.Select(BuildListedInvestmentResourceRepresentation).ToArray<JsonNode>()));
+        jsonObject.Add("investmentCategories",  new JsonArray(resourceRepresentation.InvestmentCategories.Select(BuildInvestmentCategoryResourceRepresentation).ToArray<JsonNode>()));
         jsonObject.Add("proportionOwned", resourceRepresentation.ProportionOwned);
         jsonObject.Add("isPassedToSurvivingJointOwner", resourceRepresentation.IsPassedToSurvivingJointOwner);
         jsonObject.Add("notPassedDetails", resourceRepresentation.NotPassedDetails);
