@@ -1,6 +1,6 @@
 namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
-public enum InvestmentCategoryType
+public enum InvestmentType
 {
     GeneralInvestmentAccount = 0,
     AimShares = 1,
