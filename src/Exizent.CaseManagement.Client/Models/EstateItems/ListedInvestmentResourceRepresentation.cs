@@ -7,4 +7,7 @@ public class ListedInvestmentResourceRepresentation
     public string? ShareDescription { get; init; }
     public decimal? SharePrice { get; init; }
     public decimal? DividendDue { get; init; }
+    public decimal? InterestDue { get; init; }
+    public decimal? BusinessReliefAt50Percent { get; init; }
+    public decimal? BusinessReliefAt100Percent { get; init; }
 }

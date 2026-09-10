@@ -17,12 +17,16 @@ public class NomineeInvestmentAccountEstateItemJsonBuilder : EstateItemJsonBuild
         {
             { "id", resourceRepresentation.Id },
             { "category", resourceRepresentation.Category.ToString() },
+            { "ownedForTwoYears", resourceRepresentation.OwnedForTwoYears },
+            { "hadControlOfTheCompany", resourceRepresentation.HadControlOfTheCompany },
+            { "isListedOnRecognisedStockExchange", resourceRepresentation.IsListedOnRecognisedStockExchange },
+            { "isTradedElsewhere", resourceRepresentation.IsTradedElsewhere },
             { "investments",  new JsonArray(resourceRepresentation.Investments.Select(BuildListedInvestmentResourceRepresentation).ToArray<JsonNode>()) }
         };
 
         return jsonObject;
     }
-         
+
     private static JsonObject BuildListedInvestmentResourceRepresentation(
         ListedInvestmentResourceRepresentation resourceRepresentation)
     {
@@ -32,7 +36,10 @@ public class NomineeInvestmentAccountEstateItemJsonBuilder : EstateItemJsonBuild
             { "quantity", resourceRepresentation.Quantity },
             { "shareDescription", resourceRepresentation.ShareDescription },
             { "sharePrice", resourceRepresentation.SharePrice },
-            { "dividendDue", resourceRepresentation.DividendDue }
+            { "dividendDue", resourceRepresentation.DividendDue },
+            { "interestDue", resourceRepresentation.InterestDue },
+            { "businessReliefAt50Percent", resourceRepresentation.BusinessReliefAt50Percent },
+            { "businessReliefAt100Percent", resourceRepresentation.BusinessReliefAt100Percent }
         };
 
         return jsonObject;
