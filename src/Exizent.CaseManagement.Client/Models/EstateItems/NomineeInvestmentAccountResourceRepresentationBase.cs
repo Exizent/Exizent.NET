@@ -16,6 +16,7 @@ public abstract class NomineeInvestmentAccountResourceRepresentationBase : Estat
     public string? NotPassedDetails { get; set; }
     public decimal? DividendDue { get; set; }
     public decimal? InvestmentValue { get; set; }
+    public decimal? InvestmentValueExcludingCash { get; set; }
     public decimal? Cash { get; set; }
 
     public string? ValuationBy { get; set; }
