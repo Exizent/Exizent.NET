@@ -49,6 +49,25 @@ public interface ICaseManagementApiClient
     Task<string?> GetDocumentUploadUrl(Guid caseId, DocumentType documentType, string fileName,
         CancellationToken cancellationToken = default);
     Task DeleteDocument(Guid caseId, string documentKey, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Every document attached to an estate item, from the Cases API's document metadata store — whichever
+    /// system uploaded it.
+    /// </summary>
+    Task<IReadOnlyList<EstateItemDocumentResourceRepresentation>> GetEstateItemDocuments(Guid caseId,
+        Guid estateItemId, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// A presigned download URL for one estate item document, or why there isn't one.
+    /// </summary>
+    Task<EstateItemDocumentUrlResult> GetEstateItemDocumentUrl(Guid caseId, Guid estateItemId, Guid documentId,
+        CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Deletes one estate item document.
+    /// </summary>
+    Task DeleteEstateItemDocument(Guid caseId, Guid estateItemId, Guid documentId,
+        CancellationToken cancellationToken = default);
     Task UpdateCaseOwner(Guid caseId, int ownerId, CancellationToken cancellationToken = default);
     Task UpdateCaseCollaborators(Guid caseId, IEnumerable<int> collaboratorIds, CancellationToken cancellationToken = default);
 }
