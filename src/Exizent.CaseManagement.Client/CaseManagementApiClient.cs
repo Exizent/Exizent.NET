@@ -216,6 +216,24 @@ public class CaseManagementApiClient : ICaseManagementApiClient
     {
         await _documentsClient.DeleteDocument(caseId, documentKey, cancellationToken);
     }
+
+    public async Task<IReadOnlyList<EstateItemDocumentResourceRepresentation>> GetEstateItemDocuments(
+        Guid caseId, Guid estateItemId, CancellationToken cancellationToken = default)
+    {
+        return await _documentsClient.GetEstateItemDocuments(caseId, estateItemId, cancellationToken);
+    }
+
+    public async Task<EstateItemDocumentUrlResult> GetEstateItemDocumentUrl(Guid caseId, Guid estateItemId,
+        Guid documentId, CancellationToken cancellationToken = default)
+    {
+        return await _documentsClient.GetEstateItemDocumentUrl(caseId, estateItemId, documentId, cancellationToken);
+    }
+
+    public async Task DeleteEstateItemDocument(Guid caseId, Guid estateItemId, Guid documentId,
+        CancellationToken cancellationToken = default)
+    {
+        await _documentsClient.DeleteEstateItemDocument(caseId, estateItemId, documentId, cancellationToken);
+    }
     
     public async Task UpdateCaseOwner(Guid caseId, int ownerId, CancellationToken cancellationToken = default)
     {
