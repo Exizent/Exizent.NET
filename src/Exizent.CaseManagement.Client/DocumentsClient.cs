@@ -91,9 +91,9 @@ internal class DocumentsClient
     private const int EstateItemDocumentsPageSize = 100;
 
     /// <summary>
-    /// A stop on the paging loop below. At 100 a page that is more than a handful means something has gone
-    /// wrong with the paging rather than that an estate item really has ten thousand documents, and looping
-    /// forever against the API would be the worse failure.
+    /// A stop on the paging loop below. At 100 a page, an estate item with more than ten thousand documents
+    /// means the paging has gone wrong — a server repeating a full page, most likely — rather than that the
+    /// item really holds that many, and looping forever against the API would be the worse failure.
     /// </summary>
     private const int MaxEstateItemDocumentPages = 100;
 
@@ -101,6 +101,12 @@ internal class DocumentsClient
     /// Every document attached to an estate item, paging until the API runs out.
     /// </summary>
     /// <returns>An empty list when the case or estate item is not found, matching the other read methods here.</returns>
+    /// <exception cref="InvalidOperationException">
+    /// The paging did not terminate within <see cref="MaxEstateItemDocumentPages"/> pages. Thrown rather than
+    /// returning what has been collected, because a truncated list is indistinguishable from a complete one
+    /// to the caller — and a server repeating a full page would hand back thousands of duplicates that still
+    /// looked like a successful read.
+    /// </exception>
     public async Task<IReadOnlyList<EstateItemDocumentResourceRepresentation>> GetEstateItemDocuments(
         Guid caseId, Guid estateItemId, CancellationToken cancellationToken = default)
     {
@@ -131,11 +137,13 @@ internal class DocumentsClient
             // independent of how the API chooses to express paging.
             if (page.Count < EstateItemDocumentsPageSize)
             {
-                break;
+                return documents;
             }
         }
 
-        return documents;
+        throw new InvalidOperationException(
+            $"Documents for estate item {estateItemId} on case {caseId} did not finish paging within " +
+            $"{MaxEstateItemDocumentPages} pages of {EstateItemDocumentsPageSize}.");
     }
 
     /// <summary>
