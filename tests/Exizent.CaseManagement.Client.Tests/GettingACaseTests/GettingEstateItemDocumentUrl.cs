@@ -19,21 +19,39 @@ public class GettingEstateItemDocumentUrl : IClassFixture<Harness>
 
     public GettingEstateItemDocumentUrl(Harness harness) => _harness = harness;
 
+    /// <summary>
+    /// The action returns the URL as a bare string, so the content type is whatever the request negotiated.
+    /// The handler models that: ask for JSON and the URL comes back as a quoted JSON string, ask for nothing
+    /// and MVC's StringOutputFormatter hands back raw text that is not JSON at all. This passes only because
+    /// the client sends an Accept header — drop it and the deserialise throws, which is how this reached
+    /// develop the first time.
+    /// </summary>
     [Fact]
     public async Task ShouldReturnTheUrlWhenTheDocumentIsClean()
     {
         var (caseId, estateItemId, documentId) = Ids();
         const string url = "https://s3.example/develop/1/abc/EstateItems/def/doc.pdf?token=aaa";
 
-        // The endpoint returns the URL as a bare JSON string, so it arrives quoted.
-        _harness.ClientHandler.AddGetEstateItemDocumentUrlResponse(caseId, estateItemId, documentId,
-            HttpStatusCode.OK, JsonSerializer.Serialize(url));
+        _harness.ClientHandler.AddGetEstateItemDocumentUrlStringResult(caseId, estateItemId, documentId, url);
 
         var result = await _harness.Client.GetEstateItemDocumentUrl(caseId, estateItemId, documentId);
 
         using var _ = new AssertionScope();
         result.Status.Should().Be(EstateItemDocumentUrlStatus.Available);
         result.Url.Should().Be(url);
+    }
+
+    [Fact]
+    public async Task ShouldAskForJson()
+    {
+        var (caseId, estateItemId, documentId) = Ids();
+        _harness.ClientHandler.AddGetEstateItemDocumentUrlStringResult(caseId, estateItemId, documentId,
+            "https://s3.example/doc.pdf");
+
+        await _harness.Client.GetEstateItemDocumentUrl(caseId, estateItemId, documentId);
+
+        _harness.ClientHandler.LastAcceptHeader.Should().Contain("application/json",
+            "the endpoint only returns JSON when the request asks for it, and the response is parsed as JSON");
     }
 
     [Fact]

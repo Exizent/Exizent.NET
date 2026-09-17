@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Net;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using Exizent.CaseManagement.Client.Models;
@@ -160,6 +161,12 @@ internal class DocumentsClient
         using var request = new HttpRequestMessage(HttpMethod.Get,
             $"/cases/{caseId}/estateitems/{estateItemId}/documents/{documentId}/url");
 
+        // The endpoint answers with a bare string. Without this header the API has nothing to negotiate
+        // against, and MVC's StringOutputFormatter — which comes before the JSON one and serves only
+        // text/plain — claims it, so the URL arrives unquoted and is not JSON at all. Asking for JSON
+        // skips that formatter and the URL arrives as a quoted JSON string, which is what is parsed below.
+        request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
         using var response = await _client.SendAsync(request, cancellationToken);
 
         switch (response.StatusCode)
@@ -175,9 +182,10 @@ internal class DocumentsClient
 
         response.EnsureSuccessStatusCode();
 
-        // The endpoint returns the URL as a bare JSON string, so it arrives quoted.
         var body = await response.Content.ReadAsStringAsync(cancellationToken);
-        var url = JsonSerializer.Deserialize<string>(body, DefaultJsonSerializerOptions.Instance) ?? body;
+        var url = JsonSerializer.Deserialize<string>(body, DefaultJsonSerializerOptions.Instance)
+                  ?? throw new InvalidOperationException(
+                      $"Document {documentId} on estate item {estateItemId} returned success with no URL.");
 
         return EstateItemDocumentUrlResult.Available(url);
     }
