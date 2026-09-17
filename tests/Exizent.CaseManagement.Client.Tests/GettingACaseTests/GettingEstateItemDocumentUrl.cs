@@ -19,13 +19,6 @@ public class GettingEstateItemDocumentUrl : IClassFixture<Harness>
 
     public GettingEstateItemDocumentUrl(Harness harness) => _harness = harness;
 
-    /// <summary>
-    /// The action returns the URL as a bare string, so the content type is whatever the request negotiated.
-    /// The handler models that: ask for JSON and the URL comes back as a quoted JSON string, ask for nothing
-    /// and MVC's StringOutputFormatter hands back raw text that is not JSON at all. This passes only because
-    /// the client sends an Accept header — drop it and the deserialise throws, which is how this reached
-    /// develop the first time.
-    /// </summary>
     [Fact]
     public async Task ShouldReturnTheUrlWhenTheDocumentIsClean()
     {

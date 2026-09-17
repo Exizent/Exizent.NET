@@ -161,10 +161,7 @@ internal class DocumentsClient
         using var request = new HttpRequestMessage(HttpMethod.Get,
             $"/cases/{caseId}/estateitems/{estateItemId}/documents/{documentId}/url");
 
-        // The endpoint answers with a bare string. Without this header the API has nothing to negotiate
-        // against, and MVC's StringOutputFormatter — which comes before the JSON one and serves only
-        // text/plain — claims it, so the URL arrives unquoted and is not JSON at all. Asking for JSON
-        // skips that formatter and the URL arrives as a quoted JSON string, which is what is parsed below.
+        // The URL is returned as a bare string, which MVC serves as text/plain unless JSON is asked for.
         request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
         using var response = await _client.SendAsync(request, cancellationToken);

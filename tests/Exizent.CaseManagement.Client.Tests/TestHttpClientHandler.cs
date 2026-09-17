@@ -35,12 +35,7 @@ public class TestHttpClientHandler : HttpMessageHandler
 
         if (_stringResults.TryGetValue(key, out var stringResult))
         {
-            // What ASP.NET Core actually does with an action returning Ok(someString). MVC's
-            // StringOutputFormatter sits ahead of the JSON one and serves only text/plain, so a request that
-            // does not ask for JSON gets the string raw and unquoted — not JSON at all. Only a request that
-            // asks for application/json reaches the JSON formatter and gets a quoted JSON string.
-            // Modelled here rather than hard-coded, so a client that stops asking for JSON fails these tests
-            // the same way it failed in production.
+            // Mirrors MVC: a bare string is served as raw text/plain unless the request asks for JSON.
             var wantsJson = request.Headers.Accept.Any(a => a.MediaType == "application/json");
 
             return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)
