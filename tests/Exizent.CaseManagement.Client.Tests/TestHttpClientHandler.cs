@@ -1,5 +1,6 @@
 using System.Net;
 using System.Text;
+using System.Text.Json;
 using Exizent.CaseManagement.Client.Models;
 
 namespace Exizent.CaseManagement.Client.Tests;
@@ -7,6 +8,13 @@ namespace Exizent.CaseManagement.Client.Tests;
 public class TestHttpClientHandler : HttpMessageHandler
 {
     private readonly Dictionary<(string verb, string url), (HttpStatusCode status, string? body)> _response = new();
+
+    /// <summary>
+    /// Routes whose result is a bare string rather than an object, which the API negotiates the way MVC does
+    /// — see <see cref="SendAsync"/>.
+    /// </summary>
+    private readonly Dictionary<(string verb, string url), string> _stringResults = new();
+
     private readonly List<(string verb, string url)> _requests = new();
 
     /// <summary>
@@ -15,11 +23,28 @@ public class TestHttpClientHandler : HttpMessageHandler
     /// </summary>
     public IReadOnlyList<(string Verb, string Url)> Requests => _requests;
 
+    /// <summary>The Accept header of the most recent request, so a test can assert what was negotiated.</summary>
+    public string LastAcceptHeader { get; private set; } = string.Empty;
+
     protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
         CancellationToken cancellationToken)
     {
         var key = (request.Method.Method, request.RequestUri?.PathAndQuery ?? string.Empty);
         _requests.Add(key);
+        LastAcceptHeader = request.Headers.Accept.ToString();
+
+        if (_stringResults.TryGetValue(key, out var stringResult))
+        {
+            // Mirrors MVC: a bare string is served as raw text/plain unless the request asks for JSON.
+            var wantsJson = request.Headers.Accept.Any(a => a.MediaType == "application/json");
+
+            return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = wantsJson
+                    ? new StringContent(JsonSerializer.Serialize(stringResult), Encoding.UTF8, "application/json")
+                    : new StringContent(stringResult, Encoding.UTF8, "text/plain")
+            });
+        }
 
         if (_response.TryGetValue(key, out var response))
         {
@@ -81,6 +106,16 @@ public class TestHttpClientHandler : HttpMessageHandler
         HttpStatusCode status, string? response = null)
     {
         _response[("GET", EstateItemDocumentUrlRoute(caseId, estateItemId, documentId))] = (status, response);
+    }
+
+    /// <summary>
+    /// Registers the successful case, where the action returns the URL as a bare string and the content type
+    /// depends on what the request asked for. Pass the URL itself, not a serialised form of it.
+    /// </summary>
+    public void AddGetEstateItemDocumentUrlStringResult(Guid caseId, Guid estateItemId, Guid documentId,
+        string url)
+    {
+        _stringResults[("GET", EstateItemDocumentUrlRoute(caseId, estateItemId, documentId))] = url;
     }
 
     public static string EstateItemDocumentRoute(Guid caseId, Guid estateItemId, Guid documentId) =>
