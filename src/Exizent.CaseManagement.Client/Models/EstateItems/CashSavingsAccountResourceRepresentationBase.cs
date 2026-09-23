@@ -13,7 +13,15 @@ public abstract class CashSavingsAccountResourceRepresentationBase : EstateItemR
     public decimal? EstimatedBalance { get; set; }
     public decimal? ConfirmedBalance { get; set; }
     public decimal? InterestUpToDateOfDeath { get; set; }
-    public AddressResourceRepresentation Address { get; set; } = null!;
+    public AddressResourceRepresentation InstitutionAddress { get; set; } = null!;
+
+    // Not public, so it stays off the wire: the API binds institutionAddress and silently drops address.
+    AddressResourceRepresentation IHasAddress.Address
+    {
+        get => InstitutionAddress;
+        set => InstitutionAddress = value;
+    }
+
     public bool? IsPassedToSurvivingJointOwner { get; set; }
     public string? NotPassedDetails { get; set; }
     public decimal ProportionOwned { get; set; }
