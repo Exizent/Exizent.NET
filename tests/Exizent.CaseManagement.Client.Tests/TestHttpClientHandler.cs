@@ -26,12 +26,17 @@ public class TestHttpClientHandler : HttpMessageHandler
     /// <summary>The Accept header of the most recent request, so a test can assert what was negotiated.</summary>
     public string LastAcceptHeader { get; private set; } = string.Empty;
 
+    /// <summary>The body of the most recent request, so a test can assert on the JSON the client sent.</summary>
+    public string? LastRequestBody { get; private set; }
+
     protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
         CancellationToken cancellationToken)
     {
         var key = (request.Method.Method, request.RequestUri?.PathAndQuery ?? string.Empty);
         _requests.Add(key);
         LastAcceptHeader = request.Headers.Accept.ToString();
+        // The client only ever sends buffered StringContent, so reading it synchronously is safe.
+        LastRequestBody = request.Content?.ReadAsStringAsync(cancellationToken).GetAwaiter().GetResult();
 
         if (_stringResults.TryGetValue(key, out var stringResult))
         {
