@@ -60,8 +60,8 @@ public class NomineeInvestmentAccountEstateItemJsonBuilder : EstateItemJsonBuild
         jsonObject.Add("notPassedDetails", resourceRepresentation.NotPassedDetails);
         jsonObject.Add("dividendDue", resourceRepresentation.DividendDue);
         jsonObject.Add("investmentValue", resourceRepresentation.InvestmentValue);
-        jsonObject.Add("investmentValueExcludingCash", resourceRepresentation.InvestmentValueExcludingCash);
         jsonObject.Add("cash", resourceRepresentation.Cash);
+        jsonObject.Add("cashUninvestedInterestDue", resourceRepresentation.CashUninvestedInterestDue);
         jsonObject.Add("valuationBy", resourceRepresentation.ValuationBy);
         jsonObject.Add("isValidForInheritanceTax", resourceRepresentation.IsValidForInheritanceTax);
         jsonObject.Add("realisation", EstateItemRealisationJsonBuilder.Build(resourceRepresentation.Realisation));
