@@ -41,7 +41,7 @@ public sealed class RequestingAndGettingAnEstateItemValuation : IClassFixture<Ha
     }
 
     [Fact]
-    public async Task ShouldReadTheAcceptedValuationWithItsSubject()
+    public async Task ShouldReadTheAcceptedValuationsIdAndStatus()
     {
         _harness.ClientHandler.AddResponse("POST", Collection, HttpStatusCode.Accepted, Valuation());
 
@@ -53,9 +53,6 @@ public sealed class RequestingAndGettingAnEstateItemValuation : IClassFixture<Ha
         response.IsAccepted.Should().BeTrue();
         response.Valuation!.Id.Should().Be(_valuationId);
         response.Valuation.IsPending.Should().BeTrue();
-        response.Valuation.Details.Should().BeNull();
-        response.Valuation.Subject.Should().BeOfType<PropertyEstateItemValuationSubjectResourceRepresentation>()
-            .Which.Address.Postcode.Should().Be("LS1 4AB");
     }
 
     [Fact]
@@ -133,8 +130,26 @@ public sealed class RequestingAndGettingAnEstateItemValuation : IClassFixture<Ha
         await act.Should().ThrowAsync<HttpRequestException>();
     }
 
+    [Theory]
+    [InlineData("Pending", EstateItemValuationStatus.Pending, true)]
+    [InlineData("Completed", EstateItemValuationStatus.Completed, false)]
+    [InlineData("Failed", EstateItemValuationStatus.Failed, false)]
+    public async Task ShouldReadTheStatusWhenPolled(string statusName, EstateItemValuationStatus status,
+        bool isPending)
+    {
+        _harness.ClientHandler.AddResponse("GET", Item, HttpStatusCode.OK, Valuation(statusName));
+
+        var valuation = await _harness.Client.GetEstateItemValuation(_caseId, _estateItemId, _valuationId);
+
+        using var _ = new AssertionScope();
+        _harness.ClientHandler.Requests[^1].Should().Be(("GET", Item));
+        valuation!.Id.Should().Be(_valuationId);
+        valuation.Status.Should().Be(status);
+        valuation.IsPending.Should().Be(isPending);
+    }
+
     [Fact]
-    public async Task ShouldReadACompletedValuationWithItsDetails()
+    public async Task ShouldReadTheApisFullValuationWithoutTheFieldsItDoesNotKeep()
     {
         _harness.ClientHandler.AddResponse("GET", Item, HttpStatusCode.OK,
             Valuation("Completed", @"""2026-10-02T09:30:20Z""", "412500.00", @"""High""",
@@ -142,29 +157,8 @@ public sealed class RequestingAndGettingAnEstateItemValuation : IClassFixture<Ha
 
         var valuation = await _harness.Client.GetEstateItemValuation(_caseId, _estateItemId, _valuationId);
 
-        using var _ = new AssertionScope();
-        _harness.ClientHandler.Requests[^1].Should().Be(("GET", Item));
-        valuation!.Status.Should().Be(EstateItemValuationStatus.Completed);
-        valuation.IsPending.Should().BeFalse();
-        valuation.CompletedAt.Should().Be(new DateTime(2026, 10, 2, 9, 30, 20, DateTimeKind.Utc));
-        valuation.Value.Should().Be(412500m);
-        valuation.Confidence.Should().Be(EstateItemValuationConfidence.High);
-        valuation.Details.Should().BeOfType<PropertyEstateItemValuationDetailsResourceRepresentation>()
-            .Which.MatchedAddress.Should().Be("FLAT 3, 12 HIGH STREET, LEEDS");
-    }
-
-    [Fact]
-    public async Task ShouldReadAFailedValuationWithItsReason()
-    {
-        _harness.ClientHandler.AddResponse("GET", Item, HttpStatusCode.OK,
-            Valuation("Failed", @"""2026-10-02T09:30:20Z""", failureReason: @"""Property not found"""));
-
-        var valuation = await _harness.Client.GetEstateItemValuation(_caseId, _estateItemId, _valuationId);
-
-        using var _ = new AssertionScope();
-        valuation!.Status.Should().Be(EstateItemValuationStatus.Failed);
-        valuation.FailureReason.Should().Be("Property not found");
-        valuation.Value.Should().BeNull();
+        valuation.Should().BeEquivalentTo(new EstateItemValuationResourceRepresentation
+            { Id = _valuationId, Status = EstateItemValuationStatus.Completed });
     }
 
     [Fact]
@@ -173,16 +167,5 @@ public sealed class RequestingAndGettingAnEstateItemValuation : IClassFixture<Ha
         _harness.ClientHandler.AddResponse("GET", Item, HttpStatusCode.NotFound);
 
         (await _harness.Client.GetEstateItemValuation(_caseId, _estateItemId, _valuationId)).Should().BeNull();
-    }
-
-    [Fact]
-    public async Task ShouldRejectASubjectOfAnUnknownType()
-    {
-        _harness.ClientHandler.AddResponse("GET", Item, HttpStatusCode.OK,
-            Valuation().Replace(@"""type"":""Property""", @"""type"":""Vehicle"""));
-
-        var act = () => _harness.Client.GetEstateItemValuation(_caseId, _estateItemId, _valuationId);
-
-        await act.Should().ThrowAsync<System.Text.Json.JsonException>();
     }
 }
