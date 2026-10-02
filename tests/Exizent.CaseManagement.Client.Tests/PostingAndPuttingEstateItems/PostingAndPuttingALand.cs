@@ -110,20 +110,29 @@ public sealed class PostingAndPuttingALand : IClassFixture<Harness>
     }
 
     /// <summary>
-    /// Neither enum has a zero member, so an unset value must go as null for the API to reject it as
-    /// required, rather than as a number it cannot bind.
+    /// Neither enum has a zero member, so an unset value must not go as a number the API cannot bind.
     /// </summary>
     [Fact]
-    public async Task ShouldSendAnUnsetProprietorshipAndPurposeAsNull()
+    public async Task ShouldSendDefaultsForAnUnsetProprietorshipAndPurpose()
     {
         await Post(new PostLandResourceRepresentation());
 
         var body = SentBody();
         using var _ = new AssertionScope();
-        body.ContainsKey("proprietorship").Should().BeTrue();
-        body["proprietorship"].Should().BeNull();
-        body.ContainsKey("purpose").Should().BeTrue();
-        body["purpose"].Should().BeNull();
+        body["proprietorship"]!.GetValue<string>().Should().Be(nameof(PropertyProprietorship.SoleOwnership));
+        body["purpose"]!.GetValue<string>().Should().Be(nameof(PropertyPurpose.Residential));
+    }
+
+    [Fact]
+    public async Task ShouldSendEmptyStringsForUnsetText()
+    {
+        await Post(new PostLandResourceRepresentation());
+
+        var body = SentBody();
+        using var _ = new AssertionScope();
+        body["landType"]!.GetValue<string>().Should().BeEmpty();
+        body["landRegistryNumber"]!.GetValue<string>().Should().BeEmpty();
+        body["conveyancingDescription"]!.GetValue<string>().Should().BeEmpty();
     }
 
     private async Task Post(PostLandResourceRepresentation land)

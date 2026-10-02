@@ -5,9 +5,9 @@ namespace Exizent.CaseManagement.Client.Models.EstateItems;
 [JsonDiscriminator(nameof(EstateItemType.Land))]
 public class LandResourceRepresentation : EstateItemResourceRepresentation
 {
-    public string LandType { get; init; } = null!;
-    public string? LandRegistryNumber { get; init; }
-    public string? ConveyancingDescription { get; init; }
+    public string LandType { get; init; } = string.Empty;
+    public string LandRegistryNumber { get; init; } = string.Empty;
+    public string ConveyancingDescription { get; init; } = string.Empty;
     public bool IsMainResidence { get; init; }
     public bool IsVacant { get; init; }
     public bool IsRented { get; init; }
