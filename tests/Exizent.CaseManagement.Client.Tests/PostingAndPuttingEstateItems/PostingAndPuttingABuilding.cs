@@ -122,20 +122,17 @@ public sealed class PostingAndPuttingABuilding : IClassFixture<Harness>
     }
 
     /// <summary>
-    /// Neither enum has a zero member, so an unset value must go as null for the API to reject it as
-    /// required, rather than as a number it cannot bind.
+    /// Neither enum has a zero member, so an unset value must not go as a number the API cannot bind.
     /// </summary>
     [Fact]
-    public async Task ShouldSendAnUnsetProprietorshipAndPurposeAsNull()
+    public async Task ShouldSendDefaultsForAnUnsetProprietorshipAndPurpose()
     {
         await Post(new PostBuildingResourceRepresentation());
 
         var body = SentBody();
         using var _ = new AssertionScope();
-        body.ContainsKey("proprietorship").Should().BeTrue();
-        body["proprietorship"].Should().BeNull();
-        body.ContainsKey("purpose").Should().BeTrue();
-        body["purpose"].Should().BeNull();
+        body["proprietorship"]!.GetValue<string>().Should().Be(nameof(PropertyProprietorship.SoleOwnership));
+        body["purpose"]!.GetValue<string>().Should().Be(nameof(PropertyPurpose.Residential));
     }
 
     /// <summary>The API owns the Zoopla estimate, so the client never sends one.</summary>
