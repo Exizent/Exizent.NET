@@ -6,8 +6,8 @@ namespace Exizent.CaseManagement.Client.Models.EstateItems;
 public class LandResourceRepresentation : EstateItemResourceRepresentation
 {
     public string LandType { get; init; } = null!;
-    public string LandRegistryNumber { get; init; } = null!;
-    public string ConveyancingDescription { get; init; } = null!;
+    public string? LandRegistryNumber { get; init; }
+    public string? ConveyancingDescription { get; init; }
     public bool IsMainResidence { get; init; }
     public bool IsVacant { get; init; }
     public bool IsRented { get; init; }

@@ -5,13 +5,13 @@ public abstract class LandResourceRepresentationBase : EstateItemResourceReprese
     protected LandResourceRepresentationBase(): base(EstateItemType.Land){}
 
     public string LandType { get; set; } = null!;
-    public string LandRegistryNumber { get; set; } = null!;
-    public string ConveyancingDescription { get; set; } = null!;
+    public string? LandRegistryNumber { get; set; }
+    public string? ConveyancingDescription { get; set; }
     public bool IsMainResidence { get; set; }
     public bool IsVacant { get; set; }
     public bool IsRented { get; set; }
-    public PropertyPurpose Purpose { get; set; }
-    public PropertyProprietorship Proprietorship { get; set; }
+    public PropertyPurpose? Purpose { get; set; }
+    public PropertyProprietorship? Proprietorship { get; set; }
     public decimal? ExecutorEstimatedValue { get; set; }
     public decimal? SurveyorFormalValue { get; set; }
     public string? FormalValuationBy { get; set; }
