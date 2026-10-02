@@ -10,10 +10,9 @@ public abstract class BuildingResourceRepresentationBase : EstateItemResourceRep
     public bool IsMainResidence { get; set; }
     public bool IsVacant { get; set; }
     public bool IsRented { get; set; }
-    public PropertyProprietorship Proprietorship { get; set; }
-    public PropertyPurpose Purpose { get; set; }
+    public PropertyProprietorship? Proprietorship { get; set; }
+    public PropertyPurpose? Purpose { get; set; }
     public decimal? ExecutorEstimatedValue { get; set; }
-    public decimal? ZooplaEstimatedValue { get; set; }
     public decimal? SurveyorFormalValue { get; set; }
     public string? FormalValuationBy { get; set; }
     public bool HasAdvisedInsurance { get; set; }
