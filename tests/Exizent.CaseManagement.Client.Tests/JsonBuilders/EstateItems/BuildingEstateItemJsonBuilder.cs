@@ -56,6 +56,8 @@ public class BuildingEstateItemJsonBuilder : EstateItemJsonBuilder<BuildingResou
         jsonObject.Add("businessReliefValueAt100Percent", resourceRepresentation.BusinessReliefValueAt100Percent);
         jsonObject.Add("agriculturalReliefValueAt50Percent", resourceRepresentation.AgriculturalReliefValueAt50Percent);
         jsonObject.Add("businessReliefValueAt50Percent", resourceRepresentation.BusinessReliefValueAt50Percent);
+        jsonObject.Add("valuations", new JsonArray(resourceRepresentation.Valuations
+            .Select(EstateItemValuationSummaryJsonBuilder.Build).ToArray<JsonNode?>()));
 
         return jsonObject;
     }

@@ -1,6 +1,7 @@
 using Exizent.CaseManagement.Client.Models;
 using Exizent.CaseManagement.Client.Models.Deceased;
 using Exizent.CaseManagement.Client.Models.EstateItems;
+using Exizent.CaseManagement.Client.Models.EstateItemValuations;
 
 namespace Exizent.CaseManagement.Client;
 
@@ -43,6 +44,19 @@ public interface ICaseManagementApiClient
     Task ReopenEstateItem(Guid caseId, Guid estateItemId, CancellationToken cancellationToken = default);
     Task UpdateEstateItemNotes(Guid caseId, Guid estateItemId, string notes,
         CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Asks for an automated valuation of an estate item. It is processed in the background: poll
+    /// <see cref="GetEstateItemValuation"/> until it is no longer pending, then read its outcome from the estate
+    /// item's valuations. While one is pending, a repeated request returns that one. Any status other than those
+    /// <see cref="EstateItemValuationRequestResponse"/> describes throws.
+    /// </summary>
+    Task<EstateItemValuationRequestResponse> RequestEstateItemValuation(Guid caseId, Guid estateItemId,
+        EstateItemValuationProvider provider, CancellationToken cancellationToken = default);
+
+    /// <returns>The valuation, or null if it, its estate item or its case is not found.</returns>
+    Task<EstateItemValuationResourceRepresentation?> GetEstateItemValuation(Guid caseId, Guid estateItemId,
+        Guid valuationId, CancellationToken cancellationToken = default);
     Task<string?> GetDocumentUrl(Guid caseId, string documentKey, CancellationToken cancellationToken = default);
     Task<string?> GetDocumentUploadUrl(Guid caseId, Guid estateItemId, string fileName,
         CancellationToken cancellationToken = default);
