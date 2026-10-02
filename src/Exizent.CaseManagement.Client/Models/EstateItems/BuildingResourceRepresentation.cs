@@ -1,4 +1,5 @@
 ﻿using Dahomey.Json.Attributes;
+using Exizent.CaseManagement.Client.Models.EstateItemValuations;
 
 namespace Exizent.CaseManagement.Client.Models.EstateItems;
 
@@ -46,4 +47,14 @@ public class BuildingResourceRepresentation : EstateItemResourceRepresentation
     public decimal? BusinessReliefValueAt100Percent { get; init; }
     public decimal? AgriculturalReliefValueAt50Percent { get; init; }
     public decimal? BusinessReliefValueAt50Percent { get; init; }
+
+    private readonly IReadOnlyList<EstateItemValuationSummaryResourceRepresentation> _valuations =
+        Array.Empty<EstateItemValuationSummaryResourceRepresentation>();
+
+    /// <summary>Finished valuations, newest first. Empty when the API sends none, or sends null.</summary>
+    public IReadOnlyList<EstateItemValuationSummaryResourceRepresentation> Valuations
+    {
+        get => _valuations;
+        init => _valuations = value ?? Array.Empty<EstateItemValuationSummaryResourceRepresentation>();
+    }
 }

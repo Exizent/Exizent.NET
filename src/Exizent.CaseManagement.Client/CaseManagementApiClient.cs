@@ -6,6 +6,7 @@ using System.Text.Json;
 using Exizent.CaseManagement.Client.Models;
 using Exizent.CaseManagement.Client.Models.Deceased;
 using Exizent.CaseManagement.Client.Models.EstateItems;
+using Exizent.CaseManagement.Client.Models.EstateItemValuations;
 using Microsoft.AspNetCore.WebUtilities;
 
 namespace Exizent.CaseManagement.Client;
@@ -146,6 +147,22 @@ public class CaseManagementApiClient : ICaseManagementApiClient
         CancellationToken cancellationToken = default)
     {
         await _estateItemsClient.UpdateEstateItemNotes(caseId, estateItemId, notes, cancellationToken);
+    }
+
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public async Task<EstateItemValuationRequestResponse> RequestEstateItemValuation(Guid caseId,
+        Guid estateItemId, EstateItemValuationProvider provider, CancellationToken cancellationToken = default)
+    {
+        return await _estateItemsClient.RequestEstateItemValuation(caseId, estateItemId, provider,
+            cancellationToken);
+    }
+
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public async Task<EstateItemValuationResourceRepresentation?> GetEstateItemValuation(Guid caseId,
+        Guid estateItemId, Guid valuationId, CancellationToken cancellationToken = default)
+    {
+        return await _estateItemsClient.GetEstateItemValuation(caseId, estateItemId, valuationId,
+            cancellationToken);
     }
 
     private async Task<CaseResourceRepresentation?> GetCaseInternal(Guid caseId, int? companyId, GetCaseOptions options,
