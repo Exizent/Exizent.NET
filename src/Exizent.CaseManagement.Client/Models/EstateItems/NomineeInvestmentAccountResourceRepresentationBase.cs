@@ -8,8 +8,7 @@ public abstract class NomineeInvestmentAccountResourceRepresentationBase : Estat
     public string? NomineeManager { get; set; }
     public string? AccountNumber { get; set; }
     public string? AccountType { get; set; }
-    public IReadOnlyList<ListedInvestmentResourceRepresentation> ListedInvestments { get; set; } = null!;
-    public IReadOnlyList<InvestmentCategoryResourceRepresentation> InvestmentCategories { get; set; } = null!;
+    public IReadOnlyList<InvestmentCategoryResourceRepresentation> InvestmentCategories { get; set; } = Array.Empty<InvestmentCategoryResourceRepresentation>();
 
     public decimal ProportionOwned { get; set; }
     public bool? IsPassedToSurvivingJointOwner { get; set; }

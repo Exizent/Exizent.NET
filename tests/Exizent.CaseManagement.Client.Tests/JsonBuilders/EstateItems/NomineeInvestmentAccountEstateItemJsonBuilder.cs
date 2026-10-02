@@ -53,7 +53,6 @@ public class NomineeInvestmentAccountEstateItemJsonBuilder : EstateItemJsonBuild
         jsonObject.Add("nomineeManager", resourceRepresentation.NomineeManager);
         jsonObject.Add("accountNumber", resourceRepresentation.AccountNumber);
         jsonObject.Add("accountType", resourceRepresentation.AccountType);
-        jsonObject.Add("listedInvestments",  new JsonArray(resourceRepresentation.ListedInvestments.Select(BuildListedInvestmentResourceRepresentation).ToArray<JsonNode>()));
         jsonObject.Add("investmentCategories",  new JsonArray(resourceRepresentation.InvestmentCategories.Select(BuildInvestmentCategoryResourceRepresentation).ToArray<JsonNode>()));
         jsonObject.Add("proportionOwned", resourceRepresentation.ProportionOwned);
         jsonObject.Add("isPassedToSurvivingJointOwner", resourceRepresentation.IsPassedToSurvivingJointOwner);
