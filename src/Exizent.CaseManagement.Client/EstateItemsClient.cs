@@ -185,6 +185,22 @@ internal class EstateItemsClient
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
+    public async Task<IReadOnlyList<EstateItemValuationResourceRepresentation>?> ListEstateItemValuations(Guid caseId,
+        Guid estateItemId, CancellationToken cancellationToken = default)
+    {
+        using var request = new HttpRequestMessage(HttpMethod.Get,
+            $"/cases/{caseId}/estateitems/{estateItemId}/valuations");
+        using var response = await _client.SendAsync(request, cancellationToken);
+        if (response.StatusCode == HttpStatusCode.NotFound)
+            return null;
+
+        response.EnsureSuccessStatusCode();
+        var body = await response.Content.ReadAsStringAsync(cancellationToken);
+        return JsonSerializer.Deserialize<List<EstateItemValuationResourceRepresentation>>(body,
+            DefaultJsonSerializerOptions.Instance) ?? new List<EstateItemValuationResourceRepresentation>();
+    }
+
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public async Task<EstateItemValuationResourceRepresentation?> GetEstateItemValuation(Guid caseId,
         Guid estateItemId, Guid valuationId, CancellationToken cancellationToken = default)
     {
