@@ -18,14 +18,15 @@ public sealed class RequestingAndGettingAnEstateItemValuation : IClassFixture<Ha
     private string Collection => $"/cases/{_caseId}/estateitems/{_estateItemId}/valuations";
     private string Item => $"{Collection}/{_valuationId}";
 
-    private string Valuation(string status = "Pending", string completedAt = "null", string value = "null",
-        string confidence = "null", string failureReason = "null", string details = "null") =>
-        @"{""id"":""" + _valuationId + @""",""estateItemId"":""" + _estateItemId + @""",""provider"":""Hometrack""," +
-        @"""status"":""" + status + @""",""requestedAt"":""2026-10-02T09:30:15Z"",""completedAt"":" + completedAt +
-        @",""subject"":{""type"":""Property"",""address"":{""buildingNumber"":""12""," +
-        @"""buildingNameOrFlatNumber"":""Flat 3"",""streetName"":""High Street"",""city"":""Leeds""," +
-        @"""postcode"":""LS1 4AB""}},""value"":" + value + @",""confidence"":" + confidence +
-        @",""failureReason"":" + failureReason + @",""details"":" + details + "}";
+    private static string Valuation(Guid id, string status = "Pending", string finishedAt = "null",
+        string value = "null", string confidence = "null", string failure = "null") =>
+        @"{""id"":""" + id + @""",""provider"":""Hometrack"",""status"":""" + status +
+        @""",""requestedAt"":""2026-10-02T09:30:15Z"",""finishedAt"":" + finishedAt + @",""value"":" + value +
+        @",""confidence"":" + confidence + @",""failure"":" + failure + "}";
+
+    private string Valuation(string status = "Pending", string finishedAt = "null", string value = "null",
+        string confidence = "null", string failure = "null") =>
+        Valuation(_valuationId, status, finishedAt, value, confidence, failure);
 
     [Fact]
     public async Task ShouldPostTheProviderToTheEstateItemsValuations()
@@ -41,7 +42,7 @@ public sealed class RequestingAndGettingAnEstateItemValuation : IClassFixture<Ha
     }
 
     [Fact]
-    public async Task ShouldReadTheAcceptedValuationsIdAndStatus()
+    public async Task ShouldReadTheAcceptedValuation()
     {
         _harness.ClientHandler.AddResponse("POST", Collection, HttpStatusCode.Accepted, Valuation());
 
@@ -85,7 +86,7 @@ public sealed class RequestingAndGettingAnEstateItemValuation : IClassFixture<Ha
             @"{""status"":400,""errors"":{""provider"":[""Valuations from this provider are not available.""]}}");
 
         var response = await _harness.Client.RequestEstateItemValuation(_caseId, _estateItemId,
-            EstateItemValuationProvider.Zoopla);
+            EstateItemValuationProvider.Hometrack);
 
         using var _ = new AssertionScope();
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -149,16 +150,42 @@ public sealed class RequestingAndGettingAnEstateItemValuation : IClassFixture<Ha
     }
 
     [Fact]
-    public async Task ShouldReadTheApisFullValuationWithoutTheFieldsItDoesNotKeep()
+    public async Task ShouldReadACompletedValuation()
     {
         _harness.ClientHandler.AddResponse("GET", Item, HttpStatusCode.OK,
-            Valuation("Completed", @"""2026-10-02T09:30:20Z""", "412500.00", @"""High""",
-                details: @"{""type"":""Property"",""matchedAddress"":""FLAT 3, 12 HIGH STREET, LEEDS""}"));
+            Valuation("Completed", @"""2026-10-02T09:30:20Z""", "412500.00", @"""High"""));
 
         var valuation = await _harness.Client.GetEstateItemValuation(_caseId, _estateItemId, _valuationId);
 
         valuation.Should().BeEquivalentTo(new EstateItemValuationResourceRepresentation
-            { Id = _valuationId, Status = EstateItemValuationStatus.Completed });
+        {
+            Id = _valuationId,
+            Provider = EstateItemValuationProvider.Hometrack,
+            Status = EstateItemValuationStatus.Completed,
+            RequestedAt = new DateTime(2026, 10, 2, 9, 30, 15, DateTimeKind.Utc),
+            FinishedAt = new DateTime(2026, 10, 2, 9, 30, 20, DateTimeKind.Utc),
+            Value = 412500m,
+            Confidence = EstateItemValuationConfidence.High
+        });
+    }
+
+    [Theory]
+    [InlineData("NotValued", EstateItemValuationFailure.NotValued)]
+    [InlineData("ProviderUnavailable", EstateItemValuationFailure.ProviderUnavailable)]
+    [InlineData("TimedOut", EstateItemValuationFailure.TimedOut)]
+    [InlineData("CouldNotStart", EstateItemValuationFailure.CouldNotStart)]
+    [InlineData("CouldNotComplete", EstateItemValuationFailure.CouldNotComplete)]
+    public async Task ShouldReadEveryFailureTheApiReturns(string failureName, EstateItemValuationFailure failure)
+    {
+        _harness.ClientHandler.AddResponse("GET", Item, HttpStatusCode.OK,
+            Valuation("Failed", @"""2026-10-02T09:30:20Z""", failure: $@"""{failureName}"""));
+
+        var valuation = await _harness.Client.GetEstateItemValuation(_caseId, _estateItemId, _valuationId);
+
+        using var _ = new AssertionScope();
+        valuation!.Status.Should().Be(EstateItemValuationStatus.Failed);
+        valuation.Failure.Should().Be(failure);
+        valuation.Value.Should().BeNull();
     }
 
     [Fact]
@@ -167,5 +194,48 @@ public sealed class RequestingAndGettingAnEstateItemValuation : IClassFixture<Ha
         _harness.ClientHandler.AddResponse("GET", Item, HttpStatusCode.NotFound);
 
         (await _harness.Client.GetEstateItemValuation(_caseId, _estateItemId, _valuationId)).Should().BeNull();
+    }
+
+    [Fact]
+    public async Task ShouldListTheValuationsInTheOrderTheApiSendsThem()
+    {
+        var newer = Guid.NewGuid();
+        var older = Guid.NewGuid();
+        _harness.ClientHandler.AddResponse("GET", Collection, HttpStatusCode.OK,
+            $"[{Valuation(newer)},{Valuation(older, "Failed", @"""2026-10-01T09:30:20Z""", failure: @"""NotValued""")}]");
+
+        var valuations = (await _harness.Client.ListEstateItemValuations(_caseId, _estateItemId))!;
+
+        using var _ = new AssertionScope();
+        _harness.ClientHandler.Requests[^1].Should().Be(("GET", Collection));
+        valuations.Select(v => v.Id).Should().Equal(newer, older);
+        valuations[0].IsPending.Should().BeTrue();
+        valuations[1].Failure.Should().Be(EstateItemValuationFailure.NotValued);
+    }
+
+    [Fact]
+    public async Task ShouldListNoneForAnEstateItemWithoutValuations()
+    {
+        _harness.ClientHandler.AddResponse("GET", Collection, HttpStatusCode.OK, "[]");
+
+        (await _harness.Client.ListEstateItemValuations(_caseId, _estateItemId)).Should().NotBeNull().And.BeEmpty();
+    }
+
+    [Fact]
+    public async Task ShouldListNothingForAnEstateItemThatCannotBeValued()
+    {
+        _harness.ClientHandler.AddResponse("GET", Collection, HttpStatusCode.NotFound);
+
+        (await _harness.Client.ListEstateItemValuations(_caseId, _estateItemId)).Should().BeNull();
+    }
+
+    [Fact]
+    public async Task ShouldThrowWhenListingFailsOtherwise()
+    {
+        _harness.ClientHandler.AddResponse("GET", Collection, HttpStatusCode.InternalServerError);
+
+        var act = () => _harness.Client.ListEstateItemValuations(_caseId, _estateItemId);
+
+        await act.Should().ThrowAsync<HttpRequestException>();
     }
 }

@@ -158,6 +158,13 @@ public class CaseManagementApiClient : ICaseManagementApiClient
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
+    public async Task<IReadOnlyList<EstateItemValuationResourceRepresentation>?> ListEstateItemValuations(Guid caseId,
+        Guid estateItemId, CancellationToken cancellationToken = default)
+    {
+        return await _estateItemsClient.ListEstateItemValuations(caseId, estateItemId, cancellationToken);
+    }
+
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public async Task<EstateItemValuationResourceRepresentation?> GetEstateItemValuation(Guid caseId,
         Guid estateItemId, Guid valuationId, CancellationToken cancellationToken = default)
     {

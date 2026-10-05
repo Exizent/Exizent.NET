@@ -47,14 +47,24 @@ public interface ICaseManagementApiClient
 
     /// <summary>
     /// Asks for an automated valuation of an estate item. It is processed in the background: poll
-    /// <see cref="GetEstateItemValuation"/> until it is no longer pending, then read its outcome from the estate
-    /// item's valuations. While one is pending, a repeated request returns that one. Any status other than those
-    /// <see cref="EstateItemValuationRequestResponse"/> describes throws.
+    /// <see cref="GetEstateItemValuation"/> until it is no longer pending. While one is pending, a repeated request
+    /// returns that one. Any status other than those <see cref="EstateItemValuationRequestResponse"/> describes
+    /// throws.
     /// </summary>
     Task<EstateItemValuationRequestResponse> RequestEstateItemValuation(Guid caseId, Guid estateItemId,
         EstateItemValuationProvider provider, CancellationToken cancellationToken = default);
 
-    /// <returns>The valuation, or null if it, its estate item or its case is not found.</returns>
+    /// <returns>
+    /// The estate item's valuations, newest request first and pending ones included, or null if the case or estate
+    /// item is not found or no provider values that type of item.
+    /// </returns>
+    Task<IReadOnlyList<EstateItemValuationResourceRepresentation>?> ListEstateItemValuations(Guid caseId,
+        Guid estateItemId, CancellationToken cancellationToken = default);
+
+    /// <returns>
+    /// The valuation, or null if it, its estate item or its case is not found, or no provider values that type of
+    /// item.
+    /// </returns>
     Task<EstateItemValuationResourceRepresentation?> GetEstateItemValuation(Guid caseId, Guid estateItemId,
         Guid valuationId, CancellationToken cancellationToken = default);
     Task<string?> GetDocumentUrl(Guid caseId, string documentKey, CancellationToken cancellationToken = default);
