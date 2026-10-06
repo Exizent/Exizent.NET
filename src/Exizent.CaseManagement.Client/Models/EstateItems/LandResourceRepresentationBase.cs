@@ -34,6 +34,7 @@ public abstract class LandResourceRepresentationBase : EstateItemResourceReprese
     public string? SpecialFactorsDescription { get; set; }
     public bool IsCharityDonation { get; set; }
     public bool IsClaimingResidenceNilRateBand { get; set; }
+    [Obsolete("Ignored by the Cases API: land is always heritable.")]
     public bool IsHeritable { get; set; }
     public EstateItemRealisationResourceRepresentation Realisation { get; set; } = null!;
     public IReadOnlyList<Guid> JointOwnerIds { get; set; } = Array.Empty<Guid>();

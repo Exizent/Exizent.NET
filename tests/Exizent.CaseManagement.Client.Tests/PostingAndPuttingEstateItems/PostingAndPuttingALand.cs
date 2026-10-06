@@ -200,7 +200,9 @@ public sealed class PostingAndPuttingALand : IClassFixture<Harness>
         land.SpecialFactorsDescription = "Right of way";
         land.IsCharityDonation = false;
         land.IsClaimingResidenceNilRateBand = false;
+#pragma warning disable CS0618
         land.IsHeritable = true;
+#pragma warning restore CS0618
         land.Realisation = new EstateItemRealisationResourceRepresentation
         {
             ReceivedAt = new DateTime(2024, 3, 1),
