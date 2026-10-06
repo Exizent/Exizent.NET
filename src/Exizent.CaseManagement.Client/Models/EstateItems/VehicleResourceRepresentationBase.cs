@@ -12,6 +12,7 @@ public abstract class VehicleResourceRepresentationBase : EstateItemResourceRepr
     public string? EngineSize { get; set; }
     public string? RegistrationPlate { get; set; }
     public decimal? ExecutorEstimatedValue { get; set; }
+    [Obsolete("Set by the Cases API from vehicle valuations; ignored on write.")]
     public decimal? UkVehicleDataEstimatedValue { get; set; }
     public decimal? FormalValuation { get; set; }
     public string? FormalValuationBy { get; set; }
