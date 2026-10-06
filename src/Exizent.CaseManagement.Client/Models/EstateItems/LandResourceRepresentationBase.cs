@@ -18,7 +18,7 @@ public abstract class LandResourceRepresentationBase : EstateItemResourceReprese
     public bool HasAdvisedInsurance { get; set; }
     public bool HasAdvisedCouncil { get; set; }
     public decimal ProportionOwned { get; set; }
-    public bool IsValidForInheritanceTax { get; set; }
+    public bool IsValidForInheritanceTax { get; set; } = true;
     public decimal? GrossSaleProceeds { get; set; }
     public bool IsFarmOrFarmhouse { get; set; }
     public bool IsFreehold { get; set; }

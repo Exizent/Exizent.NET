@@ -67,6 +67,35 @@ public sealed class PostingAndPuttingAPension : IClassFixture<Harness>
         AssertBodySent();
     }
 
+    /// <summary>The API excludes an item from IHT only on an explicit false.</summary>
+    [Fact]
+    public async Task ShouldPostValidForInheritanceTaxWhenUnset()
+    {
+        var caseId = Guid.NewGuid();
+        _harness.ClientHandler.AddResponse("POST", $"/cases/{caseId}/estateitems", HttpStatusCode.Created,
+            $@"{{ ""id"": ""{Guid.NewGuid()}"" }}");
+
+        await _harness.Client.PostEstateItem(caseId, new PostPensionResourceRepresentation());
+
+        SentIsValidForInheritanceTax().Should().BeTrue();
+    }
+
+    [Fact]
+    public async Task ShouldPutValidForInheritanceTaxWhenUnset()
+    {
+        var caseId = Guid.NewGuid();
+        var estateItemId = Guid.NewGuid();
+        _harness.ClientHandler.AddResponse("PUT", $"/cases/{caseId}/estateitems/{estateItemId}",
+            HttpStatusCode.NoContent);
+
+        await _harness.Client.PutEstateItem(caseId, estateItemId, new PutPensionResourceRepresentation());
+
+        SentIsValidForInheritanceTax().Should().BeTrue();
+    }
+
+    private bool SentIsValidForInheritanceTax() =>
+        JsonNode.Parse(_harness.ClientHandler.LastRequestBody!)!["isValidForInheritanceTax"]!.GetValue<bool>();
+
     private static T Populate<T>(T pension) where T : PensionResourceRepresentationBase
     {
         pension.Location = Location.EnglandWales;

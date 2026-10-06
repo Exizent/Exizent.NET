@@ -12,6 +12,6 @@ public abstract class PensionResourceRepresentationBase : EstateItemResourceRepr
     public bool? HasValidNominationForm { get; set; }
     public decimal? DeathBenefitValuePayable { get; set; }
     public string? BeneficiaryDetails { get; set; }
-    public bool IsValidForInheritanceTax { get; set; }
+    public bool IsValidForInheritanceTax { get; set; } = true;
     public EstateItemRealisationResourceRepresentation Realisation { get; set; } = null!;
 }
