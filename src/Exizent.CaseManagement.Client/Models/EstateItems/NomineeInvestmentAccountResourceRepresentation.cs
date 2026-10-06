@@ -17,6 +17,7 @@ public class NomineeInvestmentAccountResourceRepresentation : EstateItemResource
     public decimal? InvestmentValue { get; init; }
     public decimal? Cash { get; init; }
     public decimal? CashUninvestedInterestDue { get; init; }
+    public decimal? InterestDue { get; init; }
 
     public string? ValuationBy { get; init; }
 
