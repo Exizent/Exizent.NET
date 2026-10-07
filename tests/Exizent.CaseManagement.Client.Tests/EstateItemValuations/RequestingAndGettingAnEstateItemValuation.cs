@@ -19,8 +19,8 @@ public sealed class RequestingAndGettingAnEstateItemValuation : IClassFixture<Ha
     private string Item => $"{Collection}/{_valuationId}";
 
     private static string Valuation(Guid id, string status = "Pending", string finishedAt = "null",
-        string value = "null", string confidence = "null", string failure = "null") =>
-        @"{""id"":""" + id + @""",""provider"":""Hometrack"",""status"":""" + status +
+        string value = "null", string confidence = "null", string failure = "null", string provider = "Hometrack") =>
+        @"{""id"":""" + id + @""",""provider"":""" + provider + @""",""status"":""" + status +
         @""",""requestedAt"":""2026-10-02T09:30:15Z"",""finishedAt"":" + finishedAt + @",""value"":" + value +
         @",""confidence"":" + confidence + @",""failure"":" + failure + "}";
 
@@ -39,6 +39,36 @@ public sealed class RequestingAndGettingAnEstateItemValuation : IClassFixture<Ha
         using var _ = new AssertionScope();
         _harness.ClientHandler.Requests[^1].Should().Be(("POST", Collection));
         _harness.ClientHandler.LastRequestBody.Should().Be(@"{""provider"":""Hometrack""}");
+    }
+
+    [Theory]
+    [InlineData(EstateItemValuationProvider.Hometrack, "Hometrack")]
+    [InlineData(EstateItemValuationProvider.UkVehicleData, "UkVehicleData")]
+    public async Task ShouldPostEveryProviderByTheApisName(EstateItemValuationProvider provider, string name)
+    {
+        _harness.ClientHandler.AddResponse("POST", Collection, HttpStatusCode.Accepted,
+            Valuation(_valuationId, provider: name));
+
+        var response = await _harness.Client.RequestEstateItemValuation(_caseId, _estateItemId, provider);
+
+        using var _ = new AssertionScope();
+        _harness.ClientHandler.LastRequestBody.Should().Be(@"{""provider"":""" + name + @"""}");
+        response.Valuation!.Provider.Should().Be(provider);
+    }
+
+    [Theory]
+    [InlineData("Hometrack", EstateItemValuationProvider.Hometrack)]
+    [InlineData("UkVehicleData", EstateItemValuationProvider.UkVehicleData)]
+    public async Task ShouldReadEveryProviderTheApiReturns(string name, EstateItemValuationProvider provider)
+    {
+        _harness.ClientHandler.AddResponse("GET", Collection, HttpStatusCode.OK,
+            $"[{Valuation(_valuationId, "Completed", @"""2026-10-02T09:30:20Z""", "7250.00", provider: name)}]");
+
+        var valuations = (await _harness.Client.ListEstateItemValuations(_caseId, _estateItemId))!;
+
+        using var _ = new AssertionScope();
+        valuations.Should().ContainSingle().Which.Provider.Should().Be(provider);
+        valuations[0].Confidence.Should().BeNull();
     }
 
     [Fact]

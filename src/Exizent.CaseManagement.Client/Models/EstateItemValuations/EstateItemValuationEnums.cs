@@ -6,7 +6,8 @@ namespace Exizent.CaseManagement.Client.Models.EstateItemValuations;
 /// <summary>The service that produced, or was asked for, an estate item valuation.</summary>
 public enum EstateItemValuationProvider
 {
-    Hometrack
+    Hometrack,
+    UkVehicleData
 }
 
 /// <summary>Where an estate item valuation has got to, and whether it returned a value.</summary>
