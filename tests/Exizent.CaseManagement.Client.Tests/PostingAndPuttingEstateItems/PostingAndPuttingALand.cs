@@ -135,6 +135,28 @@ public sealed class PostingAndPuttingALand : IClassFixture<Harness>
         body["conveyancingDescription"]!.GetValue<string>().Should().BeEmpty();
     }
 
+    /// <summary>The API excludes an item from IHT only on an explicit false.</summary>
+    [Fact]
+    public async Task ShouldPostValidForInheritanceTaxWhenUnset()
+    {
+        await Post(new PostLandResourceRepresentation());
+
+        SentBody()["isValidForInheritanceTax"]!.GetValue<bool>().Should().BeTrue();
+    }
+
+    [Fact]
+    public async Task ShouldPutValidForInheritanceTaxWhenUnset()
+    {
+        var caseId = Guid.NewGuid();
+        var estateItemId = Guid.NewGuid();
+        _harness.ClientHandler.AddResponse("PUT", $"/cases/{caseId}/estateitems/{estateItemId}",
+            HttpStatusCode.NoContent);
+
+        await _harness.Client.PutEstateItem(caseId, estateItemId, new PutLandResourceRepresentation());
+
+        SentBody()["isValidForInheritanceTax"]!.GetValue<bool>().Should().BeTrue();
+    }
+
     private async Task Post(PostLandResourceRepresentation land)
     {
         var caseId = Guid.NewGuid();
@@ -178,7 +200,9 @@ public sealed class PostingAndPuttingALand : IClassFixture<Harness>
         land.SpecialFactorsDescription = "Right of way";
         land.IsCharityDonation = false;
         land.IsClaimingResidenceNilRateBand = false;
+#pragma warning disable CS0618
         land.IsHeritable = true;
+#pragma warning restore CS0618
         land.Realisation = new EstateItemRealisationResourceRepresentation
         {
             ReceivedAt = new DateTime(2024, 3, 1),

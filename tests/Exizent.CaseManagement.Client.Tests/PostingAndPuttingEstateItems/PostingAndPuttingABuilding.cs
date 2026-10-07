@@ -144,6 +144,28 @@ public sealed class PostingAndPuttingABuilding : IClassFixture<Harness>
         SentBody().ContainsKey("zooplaEstimatedValue").Should().BeFalse();
     }
 
+    /// <summary>The API excludes an item from IHT only on an explicit false.</summary>
+    [Fact]
+    public async Task ShouldPostValidForInheritanceTaxWhenUnset()
+    {
+        await Post(new PostBuildingResourceRepresentation());
+
+        SentBody()["isValidForInheritanceTax"]!.GetValue<bool>().Should().BeTrue();
+    }
+
+    [Fact]
+    public async Task ShouldPutValidForInheritanceTaxWhenUnset()
+    {
+        var caseId = Guid.NewGuid();
+        var estateItemId = Guid.NewGuid();
+        _harness.ClientHandler.AddResponse("PUT", $"/cases/{caseId}/estateitems/{estateItemId}",
+            HttpStatusCode.NoContent);
+
+        await _harness.Client.PutEstateItem(caseId, estateItemId, new PutBuildingResourceRepresentation());
+
+        SentBody()["isValidForInheritanceTax"]!.GetValue<bool>().Should().BeTrue();
+    }
+
     private async Task Post(PostBuildingResourceRepresentation building)
     {
         var caseId = Guid.NewGuid();

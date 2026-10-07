@@ -21,7 +21,7 @@ public abstract class BuildingResourceRepresentationBase : EstateItemResourceRep
     public bool HasAdvisedCommsSuppliers { get; set; }
     public bool ContainsMoveableItems { get; set; }
     public decimal ProportionOwned { get; set; }
-    public bool IsValidForInheritanceTax { get; set; }
+    public bool IsValidForInheritanceTax { get; set; } = true;
     public decimal? GrossSaleProceeds { get; set; }
     public bool IsFarmOrFarmhouse { get; set; }
     public bool IsFreehold { get; set; }

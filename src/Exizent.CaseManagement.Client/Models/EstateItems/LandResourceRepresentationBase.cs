@@ -18,7 +18,7 @@ public abstract class LandResourceRepresentationBase : EstateItemResourceReprese
     public bool HasAdvisedInsurance { get; set; }
     public bool HasAdvisedCouncil { get; set; }
     public decimal ProportionOwned { get; set; }
-    public bool IsValidForInheritanceTax { get; set; }
+    public bool IsValidForInheritanceTax { get; set; } = true;
     public decimal? GrossSaleProceeds { get; set; }
     public bool IsFarmOrFarmhouse { get; set; }
     public bool IsFreehold { get; set; }
@@ -34,6 +34,7 @@ public abstract class LandResourceRepresentationBase : EstateItemResourceReprese
     public string? SpecialFactorsDescription { get; set; }
     public bool IsCharityDonation { get; set; }
     public bool IsClaimingResidenceNilRateBand { get; set; }
+    [Obsolete("Ignored by the Cases API: land is always heritable.")]
     public bool IsHeritable { get; set; }
     public EstateItemRealisationResourceRepresentation Realisation { get; set; } = null!;
     public IReadOnlyList<Guid> JointOwnerIds { get; set; } = Array.Empty<Guid>();
