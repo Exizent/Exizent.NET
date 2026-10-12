@@ -5,6 +5,7 @@ public abstract class IncomeBondResourceRepresentationBase : EstateItemResourceR
     protected IncomeBondResourceRepresentationBase(): base(EstateItemType.IncomeBond){}
 
     public AddressResourceRepresentation Address { get; set; } = null!;
+    public string? Institution { get; set; }
     public string? AccountNumber { get; set; }
     public decimal? ConfirmedBalance { get; set; }
     public decimal? EstimatedBalance { get; set; }
