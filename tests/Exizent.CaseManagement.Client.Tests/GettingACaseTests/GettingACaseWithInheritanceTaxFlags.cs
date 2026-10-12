@@ -32,6 +32,16 @@ public sealed class GettingACaseWithInheritanceTaxFlags : IClassFixture<Harness>
         pension.HasValidNominationForm.Should().Be(value);
     }
 
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public async Task ShouldReadWhetherLandIsValidForInheritanceTax(bool value)
+    {
+        var land = await GetCaseEstateItemWith<LandResourceRepresentation>("isValidForInheritanceTax", value);
+
+        land.IsValidForInheritanceTax.Should().Be(value);
+    }
+
     private async Task<T> GetCaseEstateItemWith<T>(string propertyName, bool value)
         where T : EstateItemResourceRepresentation
     {
