@@ -42,6 +42,16 @@ public sealed class GettingACaseWithInheritanceTaxFlags : IClassFixture<Harness>
         land.IsValidForInheritanceTax.Should().Be(value);
     }
 
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public async Task ShouldReadWhetherABuildingIsValidForInheritanceTax(bool value)
+    {
+        var building = await GetCaseEstateItemWith<BuildingResourceRepresentation>("isValidForInheritanceTax", value);
+
+        building.IsValidForInheritanceTax.Should().Be(value);
+    }
+
     private async Task<T> GetCaseEstateItemWith<T>(string propertyName, bool value)
         where T : EstateItemResourceRepresentation
     {
