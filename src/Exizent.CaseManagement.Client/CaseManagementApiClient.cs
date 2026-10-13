@@ -63,6 +63,18 @@ public class CaseManagementApiClient : ICaseManagementApiClient
         response.EnsureSuccessStatusCode();
     }
 
+    public async Task UpdateFinancialGiftsDetails(Guid caseId,
+        PutFinancialGiftsDetailsResourceRepresentation financialGiftsDetails,
+        CancellationToken cancellationToken = default)
+    {
+        var json = JsonSerializer.Serialize(financialGiftsDetails, DefaultJsonSerializerOptions.Instance);
+        using var request = new HttpRequestMessage(HttpMethod.Put, $"/cases/{caseId}/financialGiftsDetails");
+        request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+        using var response = await _client.SendAsync(request, cancellationToken);
+
+        response.EnsureSuccessStatusCode();
+    }
+
     public async Task<CaseResourceRepresentation?> GetCase(Guid caseId, int? companyId = null,
         CancellationToken cancellationToken = default)
     {
