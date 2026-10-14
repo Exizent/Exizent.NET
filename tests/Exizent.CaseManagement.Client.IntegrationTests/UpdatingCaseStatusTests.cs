@@ -12,8 +12,10 @@ namespace Exizent.CaseManagement.Client.IntegrationTests;
 
 public class UpdatingCaseStatusTests
 {
-    [Fact]
-    public async Task ShouldUpdateCaseStatus()
+    [Theory]
+    [InlineData(CaseStatus.Open, "\"Open\"")]
+    [InlineData(CaseStatus.WithHmrc, "\"WithHmrc\"")]
+    public async Task ShouldUpdateCaseStatus(CaseStatus status, string expectedBody)
     {
         var caseId = Guid.NewGuid();
 
@@ -22,6 +24,7 @@ public class UpdatingCaseStatusTests
         using var casesApiServer = WireMockServer.Start();
         casesApiServer.Given(
                 Request.Create().WithPath($"/cases/{caseId}/status").UsingPut()
+                    .WithBody(expectedBody)
                     .WithHeader("User-Agent", "My browser")
             )
             .RespondWith(Response.Create()
@@ -36,7 +39,7 @@ public class UpdatingCaseStatusTests
         using var scope = serviceProvider.CreateScope();
         var client = scope.ServiceProvider.GetRequiredService<ICaseManagementApiClient>();
 
-        await client.UpdateCaseStatus(caseId, CaseStatus.Open );
+        await client.UpdateCaseStatus(caseId, status);
     }
     
     [Fact]

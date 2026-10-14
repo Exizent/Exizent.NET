@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Exizent.CaseManagement.Client.Models.Collaborators;
 using Exizent.CaseManagement.Client.Models.Company;
 using Exizent.CaseManagement.Client.Models.Deceased;
@@ -16,6 +17,8 @@ public class CaseResourceRepresentation
 {
     public Guid Id { get; init; }
     public string CompanyCaseId { get; init; } = null!;
+    [JsonConverter(typeof(LenientEnumJsonConverter<CaseStatus>))]
+    public CaseStatus? Status { get; init; }
     public decimal TaxThreshold { get; init; }
     public decimal ClientAccountBalance { get; init; }
     public decimal GrossEstateValue { get; init; }
