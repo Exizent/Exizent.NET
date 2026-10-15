@@ -21,6 +21,7 @@ public class NomineeInvestmentAccountEstateItemJsonBuilder : EstateItemJsonBuild
             { "hadControlOfTheCompany", resourceRepresentation.HadControlOfTheCompany },
             { "isListedOnRecognisedStockExchange", resourceRepresentation.IsListedOnRecognisedStockExchange },
             { "isTradedElsewhere", resourceRepresentation.IsTradedElsewhere },
+            { "isListedOnUkExchanges", resourceRepresentation.IsListedOnUkExchanges },
             { "investments",  new JsonArray(resourceRepresentation.Investments.Select(BuildListedInvestmentResourceRepresentation).ToArray<JsonNode>()) }
         };
 

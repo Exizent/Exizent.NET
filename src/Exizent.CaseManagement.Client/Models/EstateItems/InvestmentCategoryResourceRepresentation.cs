@@ -8,5 +8,6 @@ public class InvestmentCategoryResourceRepresentation
     public bool? HadControlOfTheCompany { get; set; }
     public bool? IsListedOnRecognisedStockExchange { get; set; }
     public bool? IsTradedElsewhere { get; set; }
+    public bool? IsListedOnUkExchanges { get; set; }
     public IReadOnlyList<ListedInvestmentResourceRepresentation> Investments { get; set; } = Array.Empty<ListedInvestmentResourceRepresentation>();
 };
