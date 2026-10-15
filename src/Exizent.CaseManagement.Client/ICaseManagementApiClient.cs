@@ -12,6 +12,9 @@ public interface ICaseManagementApiClient
 
     Task UpdateCaseStatus(Guid caseId, CaseStatus status, CancellationToken cancellationToken = default);
 
+    Task UpdateFinancialGiftsDetails(Guid caseId, PutFinancialGiftsDetailsResourceRepresentation financialGiftsDetails,
+        CancellationToken cancellationToken = default);
+
     Task<CaseResourceRepresentation?> GetCase(Guid caseId, int? companyId = null,
         CancellationToken cancellationToken = default);
 
