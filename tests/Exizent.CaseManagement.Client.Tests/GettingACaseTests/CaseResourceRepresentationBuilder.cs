@@ -17,6 +17,7 @@ namespace Exizent.CaseManagement.Client.Tests.GettingACaseTests;
 public class CaseResourceRepresentationBuilder
 {
     private readonly Fixture _fixture = new();
+    private string _companyCaseId = null!;
     private CompanyResourceRepresentation? _company;
     private DeceasedResourceRepresentation? _deceased;
     private FinancialGiftsDetailsResourceRepresentation? _financialGiftsDetails;
@@ -32,6 +33,12 @@ public class CaseResourceRepresentationBuilder
     private CollaboratorResourceRepresentation? _owner = new();
     private CompanyAddressResourceRepresentation _address = new();
     private FormSettingsResourceRepresentation? _formSettings;
+
+    public CaseResourceRepresentationBuilder WithCompanyCaseId(string companyCaseId)
+    {
+        _companyCaseId = companyCaseId;
+        return this;
+    }
 
     public CaseResourceRepresentationBuilder With(CompanyResourceRepresentation? company)
     {
@@ -132,6 +139,7 @@ public class CaseResourceRepresentationBuilder
         return new CaseResourceRepresentation
         {
             Id = Guid.NewGuid(),
+            CompanyCaseId = _companyCaseId,
             TaxThreshold = 10000,
             ClientAccountBalance = 20000,
             GrossEstateValue = 30000,
