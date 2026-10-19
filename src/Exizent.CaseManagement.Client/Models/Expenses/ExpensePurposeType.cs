@@ -10,5 +10,6 @@ public enum ExpensePurposeType
     FuneralCeremony = 5,
     Headstone = 6,
     GeneralFuneral = 7,
-    Other = 8
+    Other = 8,
+    Realisation = 9
 }
