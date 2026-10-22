@@ -16,4 +16,7 @@ public class ExpenseResourceRepresentation
     public bool? GenerateIht423 { get; init; }   
 
     public bool IsComplete { get; init; }
+
+    public DateTime CreatedAt { get; init; }
+    public DateTime UpdatedAt { get; init; }
 }
