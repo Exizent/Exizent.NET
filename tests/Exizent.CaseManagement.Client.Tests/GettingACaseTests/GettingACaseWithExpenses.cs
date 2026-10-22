@@ -104,4 +104,27 @@ public sealed class GettingACaseWithExpenses : IClassFixture<Harness>
         returnedSettlement.ShareSettlement.PaySurplus.CaseItemId.Should().Be(bankAccountId);
     }
 
+    [Fact]
+    public async Task ShouldReturnWhenTheExpenseWasCreatedAndLastUpdated()
+    {
+        var createdAt = new DateTime(2024, 6, 27, 7, 40, 11, 643, DateTimeKind.Utc);
+        var updatedAt = new DateTime(2025, 11, 25, 11, 3, 21, 606, DateTimeKind.Utc);
+        var expense = _harness.Fixture.Build<ExpenseResourceRepresentation>()
+            .With(x => x.CreatedAt, createdAt)
+            .With(x => x.UpdatedAt, updatedAt)
+            .Create();
+        var caseResourceRepresentation = new CaseResourceRepresentationBuilder()
+            .With(expense)
+            .Build();
+
+        _harness.ClientHandler.AddGetCaseResponse(caseResourceRepresentation.Id,
+            CaseJsonBuilder.Build(caseResourceRepresentation).ToJsonString());
+
+        var caseDetails = await _harness.Client.GetCase(caseResourceRepresentation.Id);
+
+        using var _ = new AssertionScope();
+        var returnedExpense = caseDetails!.Expenses.Single();
+        returnedExpense.CreatedAt.Should().Be(createdAt);
+        returnedExpense.UpdatedAt.Should().Be(updatedAt);
+    }
 }

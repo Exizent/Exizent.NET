@@ -21,7 +21,9 @@ public class ExpenseJsonBuilder
             { "notes", resourceRepresentation.Notes },
             { "purpose", resourceRepresentation.Purpose.ToString() },
             { "generateIht423", resourceRepresentation.GenerateIht423 },
-            { "isComplete", resourceRepresentation.IsComplete }
+            { "isComplete", resourceRepresentation.IsComplete },
+            { "createdAt", resourceRepresentation.CreatedAt.ToString("O") },
+            { "updatedAt", resourceRepresentation.UpdatedAt.ToString("O") }
         };
 
 
