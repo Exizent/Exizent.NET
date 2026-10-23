@@ -19,6 +19,7 @@ public class ShareholdingIncomeResourceRepresentation : IncomeBaseResourceRepres
 
     public AmountType? AmountType { get; init; }
 
+    [Obsolete("Use DestinationCaseItemId, or OtherDestination when the income is not paid to a case item, instead.")]
     public IncomeDestination Destination { get; init; }
 
     public Guid? DestinationCaseItemId { get; init; }

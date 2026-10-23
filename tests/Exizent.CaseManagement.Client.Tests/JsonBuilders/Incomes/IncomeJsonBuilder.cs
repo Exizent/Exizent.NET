@@ -20,7 +20,9 @@ public class IncomeJsonBuilder : IncomeBaseJsonBuilder<IncomeResourceRepresentat
         jsonObject.Add("from", resourceRepresentation.From);
         jsonObject.Add("to", resourceRepresentation.To);
         jsonObject.Add("otherDestination", resourceRepresentation.OtherDestination);
+#pragma warning disable CS0618
         jsonObject.Add("destination", resourceRepresentation.Destination.ToString());
+#pragma warning restore CS0618
         jsonObject.Add("destinationCaseItemId", resourceRepresentation.DestinationCaseItemId);
         jsonObject.Add("otherSource", resourceRepresentation.OtherSource);
         jsonObject.Add("source", resourceRepresentation.Source.ToString());

@@ -13,7 +13,8 @@ public class ExpenseSettlementJsonBuilder
             { "value", resourceRepresentation.Value },
             { "sourceOfFunds", resourceRepresentation.SourceOfFunds.ToString("G") },
             { "at", resourceRepresentation.At.ToString("O") },
-            { "estateItemId", resourceRepresentation.EstateItemId },
+            { "caseItemId", resourceRepresentation.CaseItemId },
+            { "estateItemId", resourceRepresentation.CaseItemId },
             { "personId", resourceRepresentation.PersonId },
             { "generateIht423", resourceRepresentation.GenerateIht423 },
             { "shareSettlement", BuildShareSettlement(resourceRepresentation.ShareSettlement) },
@@ -43,7 +44,9 @@ public class ExpenseSettlementJsonBuilder
 
         return new JsonObject
         {
+#pragma warning disable CS0618
             { "type", paySurplus.Type?.ToString("G") },
+#pragma warning restore CS0618
             { "caseItemId", paySurplus.CaseItemId },
             { "other", paySurplus.Other },
         };

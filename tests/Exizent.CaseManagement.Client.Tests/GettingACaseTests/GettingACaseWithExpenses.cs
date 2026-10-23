@@ -68,7 +68,9 @@ public sealed class GettingACaseWithExpenses : IClassFixture<Harness>
                 Price = 1000m,
                 PaySurplus = new PaySurplusDestinationResourceRepresentation
                 {
+#pragma warning disable CS0618
                     Type = PaySurplusToType.BankAccount,
+#pragma warning restore CS0618
                     CaseItemId = bankAccountId
                 }
             }
@@ -100,7 +102,9 @@ public sealed class GettingACaseWithExpenses : IClassFixture<Harness>
         returnedSettlement.ShareSettlement!.Quantity.Should().Be(10);
         returnedSettlement.ShareSettlement.Price.Should().Be(1000m);
         returnedSettlement.ShareSettlement.Value.Should().Be(100m);  // 10 * 1000 / 100
+#pragma warning disable CS0618
         returnedSettlement.ShareSettlement.PaySurplus!.Type.Should().Be(PaySurplusToType.BankAccount);
+#pragma warning restore CS0618
         returnedSettlement.ShareSettlement.PaySurplus.CaseItemId.Should().Be(bankAccountId);
     }
 
