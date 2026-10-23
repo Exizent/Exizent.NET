@@ -10,8 +10,8 @@ public class ExpenseSettlementResourceRepresentation
     public SourceOfFunds SourceOfFunds { get; init; }
     public DateTime At { get; init; }
 
-    // Falls back to estateItemId so settlements that only carry the older name are still read,
-    // whichever order the two properties arrive in.
+    // Falls back to estateItemId so settlements that only carry the older name are still read. When both are set,
+    // from JSON in either order or from an initialiser, caseItemId wins.
     public Guid? CaseItemId
     {
         get => _caseItemId ?? _estateItemId;
