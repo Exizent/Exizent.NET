@@ -21,7 +21,9 @@ public class ShareholdingIncomeJsonBuilder : IncomeBaseJsonBuilder<ShareholdingI
         jsonObject.Add("to", resourceRepresentation.To);
         jsonObject.Add("isTaxable", resourceRepresentation.IsTaxable);
         jsonObject.Add("amountType", resourceRepresentation.AmountType.ToString());
+#pragma warning disable CS0618
         jsonObject.Add("destination", resourceRepresentation.Destination.ToString());
+#pragma warning restore CS0618
         jsonObject.Add("destinationCaseItemId", resourceRepresentation.DestinationCaseItemId);
         jsonObject.Add("otherDestination", resourceRepresentation.OtherDestination);
         jsonObject.Add("includesValueUpToDateOfDeath", resourceRepresentation.IncludesValueUpToDateOfDeath);
