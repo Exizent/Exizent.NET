@@ -85,6 +85,12 @@ public static class CaseJsonBuilder
             jsonObject.Add("formSettings", FormSettingsJsonBuilder.Build(resourceRepresentation.FormSettings));
         }
 
+        if (resourceRepresentation.ClientCashAccounts.Count > 0)
+        {
+            jsonObject.Add("clientCashAccounts", new JsonArray(resourceRepresentation.ClientCashAccounts.Select(
+                ClientCashAccountJsonBuilder.Build).ToArray<JsonNode?>()));
+        }
+
         return jsonObject;
     }
 }

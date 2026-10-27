@@ -38,4 +38,6 @@ public class CaseResourceRepresentation
     public IReadOnlyList<CollaboratorResourceRepresentation> Collaborators { get; init; } = null!;
     public CompanyAddressResourceRepresentation Address { get; init; } = null!;
     public FormSettingsResourceRepresentation FormSettings { get; init; } = null!;
+    public IReadOnlyList<ClientCashAccountResourceRepresentation> ClientCashAccounts { get; init; } =
+        Array.Empty<ClientCashAccountResourceRepresentation>();
 }
