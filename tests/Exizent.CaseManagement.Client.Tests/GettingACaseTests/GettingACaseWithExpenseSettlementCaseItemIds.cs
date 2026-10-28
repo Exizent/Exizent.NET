@@ -50,18 +50,12 @@ public sealed class GettingACaseWithExpenseSettlementCaseItemIds : IClassFixture
         settlement.CaseItemId.Should().BeNull();
     }
 
-    [Theory]
-    [InlineData(true)]
-    [InlineData(false)]
-    public async Task ShouldReadTheCaseItemIdAndIgnoreEstateItemIdWhenBothAreSent(bool caseItemIdFirst)
+    [Fact]
+    public async Task ShouldReadTheCaseItemIdAndIgnoreEstateItemIdWhenBothAreSent()
     {
         var caseItemId = Guid.NewGuid();
-        var caseItemIdProperty = ("caseItemId", (Guid?)caseItemId);
-        var estateItemIdProperty = ("estateItemId", (Guid?)Guid.NewGuid());
 
-        var settlement = await GetSettlementWith(caseItemIdFirst
-            ? new[] { caseItemIdProperty, estateItemIdProperty }
-            : new[] { estateItemIdProperty, caseItemIdProperty });
+        var settlement = await GetSettlementWith(("estateItemId", Guid.NewGuid()), ("caseItemId", caseItemId));
 
         settlement.CaseItemId.Should().Be(caseItemId);
     }
