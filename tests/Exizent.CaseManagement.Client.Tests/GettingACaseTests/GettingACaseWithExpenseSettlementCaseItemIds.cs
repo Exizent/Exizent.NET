@@ -3,13 +3,12 @@ using AutoFixture;
 using Exizent.CaseManagement.Client.Models.Expenses;
 using Exizent.CaseManagement.Client.Tests.JsonBuilders;
 using FluentAssertions;
-using FluentAssertions.Execution;
 using Xunit;
 
 namespace Exizent.CaseManagement.Client.Tests.GettingACaseTests;
 
 /// <summary>
-/// A settlement's case item is sent as caseItemId, and may also be sent under its older name, estateItemId.
+/// A settlement's case item is read from caseItemId only; the retired estateItemId name is ignored.
 /// </summary>
 public sealed class GettingACaseWithExpenseSettlementCaseItemIds : IClassFixture<Harness>
 {
@@ -18,85 +17,47 @@ public sealed class GettingACaseWithExpenseSettlementCaseItemIds : IClassFixture
     public GettingACaseWithExpenseSettlementCaseItemIds(Harness harness) => _harness = harness;
 
     [Fact]
-    public async Task ShouldReadTheCaseItemIdWhenOnlyCaseItemIdIsSent()
+    public async Task ShouldReadTheCaseItemIdWhenCaseItemIdIsSent()
     {
         var caseItemId = Guid.NewGuid();
 
         var settlement = await GetSettlementWith(("caseItemId", caseItemId));
 
-        AssertCaseItemId(settlement, caseItemId);
+        settlement.CaseItemId.Should().Be(caseItemId);
     }
 
     [Fact]
-    public async Task ShouldReadTheCaseItemIdFromEstateItemIdWhenOnlyEstateItemIdIsSent()
-    {
-        var estateItemId = Guid.NewGuid();
-
-        var settlement = await GetSettlementWith(("estateItemId", estateItemId));
-
-        AssertCaseItemId(settlement, estateItemId);
-    }
-
-    [Theory]
-    [InlineData(true)]
-    [InlineData(false)]
-    public async Task ShouldReadTheCaseItemIdWhenBothAreSentWithTheSameValue(bool caseItemIdFirst)
-    {
-        var caseItemId = Guid.NewGuid();
-
-        var settlement = await GetSettlementWith(InOrder(caseItemIdFirst, caseItemId, caseItemId));
-
-        AssertCaseItemId(settlement, caseItemId);
-    }
-
-    [Theory]
-    [InlineData(true)]
-    [InlineData(false)]
-    public async Task ShouldPreferCaseItemIdWhenBothAreSentWithDifferentValues(bool caseItemIdFirst)
-    {
-        var caseItemId = Guid.NewGuid();
-
-        var settlement = await GetSettlementWith(InOrder(caseItemIdFirst, caseItemId, Guid.NewGuid()));
-
-        AssertCaseItemId(settlement, caseItemId);
-    }
-
-    [Theory]
-    [InlineData(true)]
-    [InlineData(false)]
-    public async Task ShouldReadTheCaseItemIdFromEstateItemIdWhenCaseItemIdIsNull(bool caseItemIdFirst)
-    {
-        var estateItemId = Guid.NewGuid();
-
-        var settlement = await GetSettlementWith(InOrder(caseItemIdFirst, null, estateItemId));
-
-        AssertCaseItemId(settlement, estateItemId);
-    }
-
-    [Fact]
-    public async Task ShouldHaveNoCaseItemIdWhenNeitherIsSent()
+    public async Task ShouldHaveNoCaseItemIdWhenCaseItemIdIsNotSent()
     {
         var settlement = await GetSettlementWith();
 
-        AssertCaseItemId(settlement, null);
+        settlement.CaseItemId.Should().BeNull();
     }
 
     [Fact]
-    public async Task ShouldHaveNoCaseItemIdWhenBothAreNull()
+    public async Task ShouldHaveNoCaseItemIdWhenCaseItemIdIsNull()
     {
-        var settlement = await GetSettlementWith(("caseItemId", null), ("estateItemId", null));
+        var settlement = await GetSettlementWith(("caseItemId", null));
 
-        AssertCaseItemId(settlement, null);
+        settlement.CaseItemId.Should().BeNull();
     }
 
-    private static (string Name, Guid? Value)[] InOrder(bool caseItemIdFirst, Guid? caseItemId, Guid? estateItemId)
+    [Fact]
+    public async Task ShouldIgnoreEstateItemIdWhenOnlyEstateItemIdIsSent()
     {
-        var caseItemIdProperty = ("caseItemId", caseItemId);
-        var estateItemIdProperty = ("estateItemId", estateItemId);
+        var settlement = await GetSettlementWith(("estateItemId", Guid.NewGuid()));
 
-        return caseItemIdFirst
-            ? new[] { caseItemIdProperty, estateItemIdProperty }
-            : new[] { estateItemIdProperty, caseItemIdProperty };
+        settlement.CaseItemId.Should().BeNull();
+    }
+
+    [Fact]
+    public async Task ShouldReadTheCaseItemIdAndIgnoreEstateItemIdWhenBothAreSent()
+    {
+        var caseItemId = Guid.NewGuid();
+
+        var settlement = await GetSettlementWith(("estateItemId", Guid.NewGuid()), ("caseItemId", caseItemId));
+
+        settlement.CaseItemId.Should().Be(caseItemId);
     }
 
     private async Task<ExpenseSettlementResourceRepresentation> GetSettlementWith(
@@ -113,7 +74,6 @@ public sealed class GettingACaseWithExpenseSettlementCaseItemIds : IClassFixture
         var body = CaseJsonBuilder.Build(caseResourceRepresentation);
         var settlementJson = body["expenses"]![0]!["settlements"]![0]!.AsObject();
         settlementJson.Remove("caseItemId");
-        settlementJson.Remove("estateItemId");
         foreach (var (name, value) in idProperties)
         {
             settlementJson.Add(name, value);
@@ -124,14 +84,5 @@ public sealed class GettingACaseWithExpenseSettlementCaseItemIds : IClassFixture
         var caseDetails = await _harness.Client.GetCase(caseResourceRepresentation.Id);
 
         return caseDetails!.Expenses.Single().Settlements.Single();
-    }
-
-    private static void AssertCaseItemId(ExpenseSettlementResourceRepresentation settlement, Guid? expected)
-    {
-        using var _ = new AssertionScope();
-        settlement.CaseItemId.Should().Be(expected);
-#pragma warning disable CS0618
-        settlement.EstateItemId.Should().Be(expected);
-#pragma warning restore CS0618
     }
 }

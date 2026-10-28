@@ -124,7 +124,6 @@ public sealed class GettingACaseWithMoneyDestinations : IClassFixture<Harness>
                 (IncomeDestination.Other, null, OtherDestination));
         var settlement = caseDetails.Expenses.Single().Settlements.Single();
         settlement.CaseItemId.Should().Be(shareholding.Id);
-        settlement.EstateItemId.Should().Be(shareholding.Id);
         settlement.ShareSettlement!.PaySurplus!.Type.Should().Be(PaySurplusToType.BankAccount);
         settlement.ShareSettlement.PaySurplus.CaseItemId.Should().Be(bankAccount.Id);
     }
@@ -229,7 +228,6 @@ public sealed class GettingACaseWithMoneyDestinations : IClassFixture<Harness>
                     { "sourceOfFunds", "ProceedsOfSale" },
                     { "at", "2026-05-01T00:00:00Z" },
                     { "caseItemId", settlementCaseItemId },
-                    { "estateItemId", settlementCaseItemId },
                     { "personId", null },
                     { "generateIht423", false },
                     {

@@ -14,7 +14,6 @@ public class ExpenseSettlementJsonBuilder
             { "sourceOfFunds", resourceRepresentation.SourceOfFunds.ToString("G") },
             { "at", resourceRepresentation.At.ToString("O") },
             { "caseItemId", resourceRepresentation.CaseItemId },
-            { "estateItemId", resourceRepresentation.CaseItemId },
             { "personId", resourceRepresentation.PersonId },
             { "generateIht423", resourceRepresentation.GenerateIht423 },
             { "shareSettlement", BuildShareSettlement(resourceRepresentation.ShareSettlement) },
