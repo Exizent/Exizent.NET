@@ -15,6 +15,8 @@ namespace Exizent.CaseManagement.Client.Models;
 
 public class CaseResourceRepresentation
 {
+    private readonly IReadOnlyList<CashAccountResourceRepresentation>? _cashAccounts;
+
     public Guid Id { get; init; }
     public string CompanyCaseId { get; init; } = null!;
     [JsonConverter(typeof(LenientEnumJsonConverter<CaseStatus>))]
@@ -38,6 +40,10 @@ public class CaseResourceRepresentation
     public IReadOnlyList<CollaboratorResourceRepresentation> Collaborators { get; init; } = null!;
     public CompanyAddressResourceRepresentation Address { get; init; } = null!;
     public FormSettingsResourceRepresentation FormSettings { get; init; } = null!;
-    public IReadOnlyList<CashAccountResourceRepresentation> CashAccounts { get; init; } =
-        Array.Empty<CashAccountResourceRepresentation>();
+
+    public IReadOnlyList<CashAccountResourceRepresentation> CashAccounts
+    {
+        get => _cashAccounts ?? Array.Empty<CashAccountResourceRepresentation>();
+        init => _cashAccounts = value;
+    }
 }

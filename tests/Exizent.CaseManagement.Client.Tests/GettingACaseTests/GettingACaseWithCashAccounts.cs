@@ -1,3 +1,4 @@
+using System.Text.Json.Nodes;
 using Exizent.CaseManagement.Client.Models;
 using Exizent.CaseManagement.Client.Tests.JsonBuilders;
 using FluentAssertions;
@@ -59,5 +60,39 @@ public sealed class GettingACaseWithCashAccounts : IClassFixture<Harness>
         using var _ = new AssertionScope();
         caseDetails.Should().NotBeNull();
         caseDetails!.CashAccounts.Should().BeEmpty();
+    }
+
+    [Fact]
+    public async Task ShouldReturnNoCashAccountsWhenCashAccountsIsNull()
+    {
+        var caseDetails = await GetCaseWith("cashAccounts", null);
+
+        caseDetails.CashAccounts.Should().BeEmpty();
+    }
+
+    [Fact]
+    public async Task ShouldNotReadClientCashAccounts()
+    {
+        var account = new CashAccountResourceRepresentation { Id = Guid.NewGuid(), Name = "Client Account" };
+
+        var caseDetails = await GetCaseWith("clientCashAccounts", new JsonArray(CashAccountJsonBuilder.Build(account)));
+
+        caseDetails.CashAccounts.Should().BeEmpty();
+    }
+
+    private async Task<CaseResourceRepresentation> GetCaseWith(string propertyName, JsonNode? value)
+    {
+        var caseResourceRepresentation = new CaseResourceRepresentationBuilder()
+            .Build();
+
+        var body = CaseJsonBuilder.Build(caseResourceRepresentation);
+        body.Add(propertyName, value);
+
+        _harness.ClientHandler.AddGetCaseResponse(caseResourceRepresentation.Id, body.ToJsonString());
+
+        var caseDetails = await _harness.Client.GetCase(caseResourceRepresentation.Id);
+
+        caseDetails.Should().NotBeNull();
+        return caseDetails!;
     }
 }
