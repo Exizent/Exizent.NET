@@ -15,6 +15,9 @@ namespace Exizent.CaseManagement.Client.Models;
 
 public class CaseResourceRepresentation
 {
+    private readonly IReadOnlyList<CashAccountResourceRepresentation>? _cashAccounts;
+    private readonly IReadOnlyList<CashAccountResourceRepresentation>? _clientCashAccounts;
+
     public Guid Id { get; init; }
     public string CompanyCaseId { get; init; } = null!;
     [JsonConverter(typeof(LenientEnumJsonConverter<CaseStatus>))]
@@ -38,6 +41,19 @@ public class CaseResourceRepresentation
     public IReadOnlyList<CollaboratorResourceRepresentation> Collaborators { get; init; } = null!;
     public CompanyAddressResourceRepresentation Address { get; init; } = null!;
     public FormSettingsResourceRepresentation FormSettings { get; init; } = null!;
-    public IReadOnlyList<ClientCashAccountResourceRepresentation> ClientCashAccounts { get; init; } =
-        Array.Empty<ClientCashAccountResourceRepresentation>();
+
+    // Falls back to clientCashAccounts so responses that only carry the older name are still read,
+    // whichever order the two properties arrive in.
+    public IReadOnlyList<CashAccountResourceRepresentation> CashAccounts
+    {
+        get => _cashAccounts ?? _clientCashAccounts ?? Array.Empty<CashAccountResourceRepresentation>();
+        init => _cashAccounts = value;
+    }
+
+    [Obsolete("Use CashAccounts instead.")]
+    public IReadOnlyList<CashAccountResourceRepresentation> ClientCashAccounts
+    {
+        get => _clientCashAccounts ?? _cashAccounts ?? Array.Empty<CashAccountResourceRepresentation>();
+        init => _clientCashAccounts = value;
+    }
 }

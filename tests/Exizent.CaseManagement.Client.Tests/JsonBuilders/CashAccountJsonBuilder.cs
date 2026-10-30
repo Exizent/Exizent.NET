@@ -3,9 +3,9 @@ using Exizent.CaseManagement.Client.Models;
 
 namespace Exizent.CaseManagement.Client.Tests.JsonBuilders;
 
-public static class ClientCashAccountJsonBuilder
+public static class CashAccountJsonBuilder
 {
-    public static JsonObject Build(ClientCashAccountResourceRepresentation account) => new()
+    public static JsonObject Build(CashAccountResourceRepresentation account) => new()
     {
         { "id", account.Id },
         { "name", account.Name },

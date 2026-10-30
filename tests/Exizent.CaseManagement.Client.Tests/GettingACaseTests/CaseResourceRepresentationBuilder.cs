@@ -33,7 +33,7 @@ public class CaseResourceRepresentationBuilder
     private CollaboratorResourceRepresentation? _owner = new();
     private CompanyAddressResourceRepresentation _address = new();
     private FormSettingsResourceRepresentation? _formSettings;
-    private readonly List<ClientCashAccountResourceRepresentation> _clientCashAccounts = new();
+    private readonly List<CashAccountResourceRepresentation> _cashAccounts = new();
 
     public CaseResourceRepresentationBuilder WithCompanyCaseId(string companyCaseId)
     {
@@ -135,9 +135,9 @@ public class CaseResourceRepresentationBuilder
         return this;
     }
 
-    public CaseResourceRepresentationBuilder With(ClientCashAccountResourceRepresentation clientCashAccount)
+    public CaseResourceRepresentationBuilder With(CashAccountResourceRepresentation cashAccount)
     {
-        _clientCashAccounts.Add(clientCashAccount);
+        _cashAccounts.Add(cashAccount);
         return this;
     }
 
@@ -172,7 +172,7 @@ public class CaseResourceRepresentationBuilder
                     RegistrarsToGroup = Array.Empty<string>()
                 }
             },
-            ClientCashAccounts = _clientCashAccounts,
+            CashAccounts = _cashAccounts,
         };
     }
 }

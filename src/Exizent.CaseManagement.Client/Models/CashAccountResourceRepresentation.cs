@@ -1,6 +1,6 @@
 namespace Exizent.CaseManagement.Client.Models;
 
-public class ClientCashAccountResourceRepresentation
+public class CashAccountResourceRepresentation
 {
     public Guid Id { get; init; }
     public string Name { get; init; } = null!;
