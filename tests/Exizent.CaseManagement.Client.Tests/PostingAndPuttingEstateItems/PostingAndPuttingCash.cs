@@ -15,7 +15,7 @@ public sealed class PostingAndPuttingCash : IClassFixture<Harness>
     private static readonly string[] ExpectedKeys =
     {
         "type", "location", "notes", "proportionOwned", "isPassedToSurvivingJointOwner", "notPassedDetails",
-        "jointOwnerIds", "address", "description", "value", "isValidForInheritanceTax", "isCharityDonation",
+        "jointOwnerIds", "address", "description", "value", "isValidForInheritanceTax",
         "realisation"
     };
 
@@ -60,7 +60,6 @@ public sealed class PostingAndPuttingCash : IClassFixture<Harness>
         cash.Description = "Cash at home";
         cash.Value = 1234.56m;
         cash.IsValidForInheritanceTax = true;
-        cash.IsCharityDonation = true;
         cash.Realisation = new EstateItemRealisationResourceRepresentation();
         return cash;
     }
@@ -82,7 +81,6 @@ public sealed class PostingAndPuttingCash : IClassFixture<Harness>
         body["description"]!.GetValue<string>().Should().Be("Cash at home");
         body["value"]!.GetValue<decimal>().Should().Be(1234.56m);
         body["isValidForInheritanceTax"]!.GetValue<bool>().Should().BeTrue();
-        body["isCharityDonation"]!.GetValue<bool>().Should().BeTrue();
         body["realisation"].Should().BeOfType<JsonObject>();
     }
 }

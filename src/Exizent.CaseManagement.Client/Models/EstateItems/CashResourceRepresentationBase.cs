@@ -11,7 +11,6 @@ public abstract class CashResourceRepresentationBase : EstateItemResourceReprese
     public string Description { get; set; } = null!;
     public decimal Value { get; set; }
     public bool IsValidForInheritanceTax { get; set; }
-    public bool? IsCharityDonation { get; set; }
     public EstateItemRealisationResourceRepresentation Realisation { get; set; } = null!;
     public IReadOnlyList<Guid> JointOwnerIds { get; set; } = Array.Empty<Guid>();
 }
