@@ -10,6 +10,7 @@ public static class EstateItemJsonBuilderFactory
             BankAccountResourceRepresentation bankAccount => new BankAccountEstateItemJsonBuilder(bankAccount),
             BuildingResourceRepresentation building => new BuildingEstateItemJsonBuilder(building),
             BusinessInterestResourceRepresentation businessInterest => new BusinessInterestEstateItemJsonBuilder(businessInterest),
+            CashResourceRepresentation cash => new CashEstateItemJsonBuilder(cash),
             CashIsaResourceRepresentation cashIsa => new CashIsaEstateItemJsonBuilder(cashIsa),
             CashSavingsAccountResourceRepresentation cashSavingsAccount => new CashSavingsAccountEstateItemJsonBuilder(cashSavingsAccount),
             CreditCardOrPersonalLoanResourceRepresentation creditCardOrPersonalLoan => new CreditCardOrPersonalLoanEstateItemJsonBuilder(creditCardOrPersonalLoan),

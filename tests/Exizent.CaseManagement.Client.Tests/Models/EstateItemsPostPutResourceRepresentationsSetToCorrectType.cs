@@ -152,6 +152,15 @@ public class EstateItemsPostPutResourceRepresentationsSetToCorrectType
     }
 
     [Fact]
+    public void TestCash()
+    {
+        EstateItemResourceRepresentationBase estateItem = new PostCashResourceRepresentation();
+        estateItem.Type.Should().Be(EstateItemType.Cash);
+        estateItem = new PutCashResourceRepresentation();
+        estateItem.Type.Should().Be(EstateItemType.Cash);
+    }
+
+    [Fact]
     public void TestMoneyOwed()
     {
         EstateItemResourceRepresentationBase estateItem = new PostMoneyOwedResourceRepresentation();
