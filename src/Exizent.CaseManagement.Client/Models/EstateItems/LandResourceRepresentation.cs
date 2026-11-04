@@ -19,7 +19,7 @@ public class LandResourceRepresentation : EstateItemResourceRepresentation
     public bool HasAdvisedInsurance { get; init; }
     public bool HasAdvisedCouncil { get; init; }
     public decimal ProportionOwned { get; init; }
-    public bool? IsValidForInheritanceTax { get; init; }
+    public bool IsValidForInheritanceTax { get; init; }
     public decimal? GrossSaleProceeds { get; init; }
     public bool IsFarmOrFarmhouse { get; init; }
     public bool IsFreehold { get; init; }

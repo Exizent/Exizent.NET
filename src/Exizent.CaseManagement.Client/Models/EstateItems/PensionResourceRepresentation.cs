@@ -9,9 +9,9 @@ public class PensionResourceRepresentation : EstateItemResourceRepresentation
     public string? PensionType { get; init; }
     public string? Provider { get; init; }
     public string? PlanReference { get; init; }
-    public bool? HasValidNominationForm { get; init; }
+    public bool HasValidNominationForm { get; init; }
     public decimal? DeathBenefitValuePayable { get; init; }
     public string? BeneficiaryDetails { get; init; }
-    public bool? IsValidForInheritanceTax { get; init; }
+    public bool IsValidForInheritanceTax { get; init; }
     public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
 }
