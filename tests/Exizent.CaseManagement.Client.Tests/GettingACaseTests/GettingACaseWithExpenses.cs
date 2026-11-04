@@ -109,6 +109,50 @@ public sealed class GettingACaseWithExpenses : IClassFixture<Harness>
     }
 
     [Fact]
+    public async Task ShouldDeserialiseAFractionalShareSettlementQuantity()
+    {
+        var expense = new ExpenseResourceRepresentation
+        {
+            Id = Guid.NewGuid(),
+            Description = "Share Sale",
+            CaseItemId = Guid.NewGuid(),
+            Value = 341.07m,
+            From = DateTime.UtcNow,
+            To = DateTime.UtcNow,
+            Supplier = "Broker",
+            Purpose = ExpensePurposeType.AssetSaleOrLiabilityRepayment,
+            Settlements = new List<ExpenseSettlementResourceRepresentation>
+            {
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    Value = 341.07m,
+                    SourceOfFunds = SourceOfFunds.ProceedsOfSale,
+                    At = DateTime.UtcNow,
+                    ShareSettlement = new ShareSettlementDetailsResourceRepresentation
+                    {
+                        Quantity = 873.664m,
+                        Price = 39.04m
+                    }
+                }
+            }
+        };
+        var caseResourceRepresentation = new CaseResourceRepresentationBuilder()
+            .With(expense)
+            .Build();
+
+        _harness.ClientHandler.AddGetCaseResponse(caseResourceRepresentation.Id,
+            CaseJsonBuilder.Build(caseResourceRepresentation).ToJsonString());
+
+        var caseDetails = await _harness.Client.GetCase(caseResourceRepresentation.Id);
+
+        using var _ = new AssertionScope();
+        var shareSettlement = caseDetails!.Expenses.Single().Settlements.Single().ShareSettlement;
+        shareSettlement!.Quantity.Should().Be(873.664m);
+        shareSettlement.Value.Should().Be(341.0784256m);
+    }
+
+    [Fact]
     public async Task ShouldReturnWhenTheExpenseWasCreatedAndLastUpdated()
     {
         var createdAt = new DateTime(2024, 6, 27, 7, 40, 11, 643, DateTimeKind.Utc);
