@@ -11,6 +11,8 @@ public static class IncomeJsonBuilderFactory
             SumsReceivedIncomeResourceRepresentation sumsReceived => new SumsReceivedIncomeJsonBuilder(sumsReceived),
             ReceiptIncomeResourceRepresentation receipt => new ReceiptIncomeJsonBuilder(receipt),
             ShareholdingIncomeResourceRepresentation shareholding => new ShareholdingIncomeJsonBuilder(shareholding),
+            NomineeInvestmentAccountIncomeResourceRepresentation nomineeInvestmentAccount =>
+                new NomineeInvestmentAccountIncomeJsonBuilder(nomineeInvestmentAccount),
             _ => throw new ArgumentException("This income resource representation is not supported", resourceRepresentation.GetType().Name)
         };
 }
