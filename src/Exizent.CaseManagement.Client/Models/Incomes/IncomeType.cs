@@ -5,5 +5,6 @@ public enum IncomeType
     Income,
     SumsReceived,
     Receipt,
-    ShareholdingIncome
+    ShareholdingIncome,
+    NomineeInvestmentAccountIncome
 }
