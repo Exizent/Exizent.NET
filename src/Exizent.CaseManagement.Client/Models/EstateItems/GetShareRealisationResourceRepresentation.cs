@@ -4,7 +4,6 @@ public class GetShareRealisationResourceRepresentation
 {
     public Guid Id { get; init; }
     public DateOnly? ReceivedAt { get; init; }
-    public RealisationDestination? Destination { get; init; }
     public string? OtherDestination { get; init; }
     public decimal Quantity { get; init; }
     public decimal Price { get; init; }

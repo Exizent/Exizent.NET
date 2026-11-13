@@ -22,10 +22,7 @@ public sealed class GettingACaseWithNomineeInvestmentAccountCategories : IClassF
         {
             Id = Guid.NewGuid(),
             Address = new AddressResourceRepresentation(),
-            Realisation = new EstateItemRealisationResourceRepresentation
-            {
-                Destination = RealisationDestination.BankAccount
-            },
+            Realisation = new EstateItemRealisationResourceRepresentation(),
             InvestmentCategories = new[]
             {
                 new InvestmentCategoryResourceRepresentation

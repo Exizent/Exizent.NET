@@ -29,7 +29,6 @@ public sealed class PostingAndPuttingAPension : IClassFixture<Harness>
         ""realisation"": {
             ""receivedAt"": ""2024-03-01T00:00:00"",
             ""value"": 120000.25,
-            ""destination"": ""BankAccount"",
             ""otherDestination"": ""Somewhere else"",
             ""caseItemId"": ""5f0c2a8e-3b1d-4c6a-9e2f-7a8b9c0d1e2f""
         },
@@ -90,7 +89,6 @@ public sealed class PostingAndPuttingAPension : IClassFixture<Harness>
         {
             ReceivedAt = new DateTime(2024, 3, 1),
             Value = 120000.25m,
-            Destination = RealisationDestination.BankAccount,
             OtherDestination = "Somewhere else",
             CaseItemId = CaseItemId
         };
