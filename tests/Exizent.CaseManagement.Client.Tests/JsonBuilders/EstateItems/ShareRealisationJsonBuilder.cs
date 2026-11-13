@@ -10,7 +10,6 @@ public static class ShareRealisationJsonBuilder
         {
             { "id", r.Id },
             { "receivedAt", r.ReceivedAt?.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture) },
-            { "destination", r.Destination?.ToString() },
             { "otherDestination", r.OtherDestination },
             { "quantity", r.Quantity },
             { "price", r.Price },

@@ -43,9 +43,6 @@ public class ExpenseSettlementJsonBuilder
 
         return new JsonObject
         {
-#pragma warning disable CS0618
-            { "type", paySurplus.Type?.ToString("G") },
-#pragma warning restore CS0618
             { "caseItemId", paySurplus.CaseItemId },
             { "other", paySurplus.Other },
         };

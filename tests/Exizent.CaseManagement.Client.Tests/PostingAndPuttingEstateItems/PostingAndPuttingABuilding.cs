@@ -57,7 +57,6 @@ public sealed class PostingAndPuttingABuilding : IClassFixture<Harness>
         ""realisation"": {
             ""receivedAt"": ""2024-03-01T00:00:00"",
             ""value"": 370000.25,
-            ""destination"": ""BankAccount"",
             ""otherDestination"": ""Somewhere else"",
             ""caseItemId"": ""5f0c2a8e-3b1d-4c6a-9e2f-7a8b9c0d1e2f""
         },
@@ -202,7 +201,6 @@ public sealed class PostingAndPuttingABuilding : IClassFixture<Harness>
         {
             ReceivedAt = new DateTime(2024, 3, 1),
             Value = 370000.25m,
-            Destination = RealisationDestination.BankAccount,
             OtherDestination = "Somewhere else",
             CaseItemId = CaseItemId
         };
