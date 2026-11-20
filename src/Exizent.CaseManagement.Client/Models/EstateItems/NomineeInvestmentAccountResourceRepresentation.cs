@@ -21,7 +21,7 @@ public class NomineeInvestmentAccountResourceRepresentation : EstateItemResource
 
     public string? ValuationBy { get; init; }
 
-    public bool? IsValidForInheritanceTax { get; init; }
+    public bool IsValidForInheritanceTax { get; init; }
     public EstateItemRealisationResourceRepresentation Realisation { get; init; } = null!;
     public IReadOnlyList<Guid> JointOwnerIds { get; init; } = Array.Empty<Guid>();
     public bool HadControlOfTheCompany { get; init; }
