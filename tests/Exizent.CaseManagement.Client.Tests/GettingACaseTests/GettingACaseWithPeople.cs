@@ -51,4 +51,34 @@ public sealed class GettingACaseWithPeople : IClassFixture<Harness>
         caseDetails.People.Single().Should()
             .BeEquivalentTo(expectedPerson);
     }
+
+    [Theory]
+    [InlineData("Sole", ExecutorStatus.Sole)]
+    [InlineData("JointLead", ExecutorStatus.JointLead)]
+    [InlineData("JointSecondary", ExecutorStatus.JointSecondary)]
+    [InlineData("Declined", ExecutorStatus.Declined)]
+    [InlineData("PowerOfAttorney", ExecutorStatus.PowerOfAttorney)]
+    [InlineData("PowerReserved", ExecutorStatus.PowerReserved)]
+    [InlineData("Renounced", ExecutorStatus.Renounced)]
+    [InlineData("Deceased", ExecutorStatus.Deceased)]
+    [InlineData("LacksCapacity", ExecutorStatus.LacksCapacity)]
+    public async Task ShouldReadTheExecutorStatus(string executorStatus, ExecutorStatus expected)
+    {
+        var person = _harness.Fixture.Create<PersonResourceRepresentation>();
+        var caseResourceRepresentation = new CaseResourceRepresentationBuilder()
+            .With(person)
+            .Build();
+
+        var body = CaseJsonBuilder.Build(caseResourceRepresentation);
+        body["people"]![0]!["executorStatus"] = executorStatus;
+
+        _harness.ClientHandler.AddGetCaseResponse(caseResourceRepresentation.Id, body.ToJsonString());
+
+        var caseDetails = await _harness.Client.GetCase(caseResourceRepresentation.Id);
+
+        using var _ = new AssertionScope();
+        caseDetails.Should().NotBeNull();
+        caseDetails!.People.Single().Id.Should().Be(person.Id);
+        caseDetails.People.Single().ExecutorStatus.Should().Be(expected);
+    }
 }
