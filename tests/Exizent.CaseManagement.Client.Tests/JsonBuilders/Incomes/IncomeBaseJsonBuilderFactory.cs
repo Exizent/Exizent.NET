@@ -13,6 +13,8 @@ public static class IncomeJsonBuilderFactory
             ShareholdingIncomeResourceRepresentation shareholding => new ShareholdingIncomeJsonBuilder(shareholding),
             NomineeInvestmentAccountIncomeResourceRepresentation nomineeInvestmentAccount =>
                 new NomineeInvestmentAccountIncomeJsonBuilder(nomineeInvestmentAccount),
+            NomineeInvestmentAccountShareIncomeResourceRepresentation nomineeInvestmentAccountShare =>
+                new NomineeInvestmentAccountShareIncomeJsonBuilder(nomineeInvestmentAccountShare),
             _ => throw new ArgumentException("This income resource representation is not supported", resourceRepresentation.GetType().Name)
         };
 }
