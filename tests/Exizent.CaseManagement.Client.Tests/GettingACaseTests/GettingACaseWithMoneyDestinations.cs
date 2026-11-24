@@ -94,6 +94,31 @@ public sealed class GettingACaseWithMoneyDestinations : IClassFixture<Harness>
     }
 
     [Theory]
+    [InlineData("ClientCashAccount", true)]
+    [InlineData("AssetValue", true)]
+    [InlineData("BankAccount", true)]
+    [InlineData("Contact", true)]
+    [InlineData("SomethingNew", true)]
+    [InlineData("Other", false)]
+    public async Task ShouldReadWhereANomineeInvestmentAccountShareIncomeWasPaid(string destination,
+        bool paidToACaseItem)
+    {
+        var destinationCaseItemId = paidToACaseItem ? Guid.NewGuid() : (Guid?)null;
+        var otherDestination = paidToACaseItem ? null : OtherDestination;
+        var caseJson = CaseJson(incomes: new JsonArray(
+            NomineeInvestmentAccountShareIncomeJson(Guid.NewGuid(), destination, destinationCaseItemId,
+                otherDestination)));
+
+        var caseDetails = await GetCase(caseJson);
+
+        var income = caseDetails.Incomes.Should().ContainSingle()
+            .Which.Should().BeOfType<NomineeInvestmentAccountShareIncomeResourceRepresentation>().Subject;
+        using var _ = new AssertionScope();
+        income.DestinationCaseItemId.Should().Be(destinationCaseItemId);
+        income.OtherDestination.Should().Be(otherDestination);
+    }
+
+    [Theory]
     [InlineData("Asset", true)]
     [InlineData("ClientCashAccount", true)]
     [InlineData("BankAccount", true)]
@@ -330,6 +355,34 @@ public sealed class GettingACaseWithMoneyDestinations : IClassFixture<Harness>
             { "origin", "CashUninvested" },
             { "listedInvestmentId", null },
             { "niaDestination", "CashUninvested" },
+        };
+
+    private static JsonObject NomineeInvestmentAccountShareIncomeJson(Guid estateItemId, string destination,
+        Guid? destinationCaseItemId, string? otherDestination) =>
+        new()
+        {
+            { "id", Guid.NewGuid() },
+            { "createdAt", "2026-04-06T09:15:00Z" },
+            { "updatedAt", "2026-04-06T09:15:00Z" },
+            { "notes", null },
+            { "value", 340.00m },
+            { "isDeleted", false },
+            { "type", "NomineeInvestmentAccountShareIncome" },
+            { "estateItemId", estateItemId },
+            { "source", "Dividend" },
+            { "otherSource", null },
+            { "from", "2025-10-01T00:00:00Z" },
+            { "to", "2026-03-31T00:00:00Z" },
+            { "isTaxable", true },
+            { "amountType", "Net" },
+            { "destination", destination },
+            { "destinationCaseItemId", destinationCaseItemId },
+            { "otherDestination", otherDestination },
+            { "includesValueUpToDateOfDeath", false },
+            { "valueIncludingUpToDateOfDeath", null },
+            { "listedInvestmentId", Guid.NewGuid() },
+            { "quantityOfShares", 1000m },
+            { "sharePrice", 34m },
         };
 
     private static JsonObject ShareSaleExpenseJson(Guid expenseCaseItemId, Guid settlementCaseItemId,
